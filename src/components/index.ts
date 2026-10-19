@@ -1,3 +1,11 @@
 export * from "./SearchAnimation";
 export * from "./ButtonAnimation";
 export * from "./NavbarAnimation";
+export * from "./ToastAnimation";
+export * from "./ModalAnimation";
+export * from "./Marquee";
+export * from "./Timeline";
+export * from "./MultiCodeSnippet";
+
+
+

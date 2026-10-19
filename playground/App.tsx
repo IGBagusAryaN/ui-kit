@@ -7,6 +7,11 @@ import { ButtonAnimationPage } from "./pages/ButtonAnimationPage";
 import { SearchAnimationPage } from "./pages/SearchAnimationPage";
 import { NavbarAnimationPage } from "./pages/NavbarAnimationPage";
 import { WebIconsPage } from "./pages/WebIconsPage";
+import { ToastAnimationPage } from "./pages/ToastAnimationPage";
+import { ModalAnimationPage } from "./pages/ModalAnimationPage";
+import { MarqueeAnimationPage } from "./pages/MarqueeAnimationPage";
+import { TimelineAnimationPage } from "./pages/TimelineAnimationPage";
+import { ToastProvider } from "../src/components/ToastAnimation";
 
 export function App() {
   const { t } = useTranslation();
@@ -28,6 +33,26 @@ export function App() {
         items: [
           { id: "button-animation", label: t("nav.button", "Button") },
           { id: "navbar-animation", label: t("nav.navbar", "Navbar") },
+          {
+            id: "toast-animation",
+            label: t("nav.toast", "Toast / Snackbar"),
+            badge: t("badge.new", "new"),
+          },
+          {
+            id: "modal-animation",
+            label: t("nav.modal", "Modal / Dialog"),
+            badge: t("badge.new", "new"),
+          },
+          {
+            id: "marquee-animation",
+            label: t("nav.marquee", "Infinite Marquee"),
+            badge: t("badge.new", "new"),
+          },
+          {
+            id: "timeline-animation",
+            label: t("nav.timeline", "Timeline / Milestone"),
+            badge: t("badge.new", "new"),
+          },
         ],
       },
       {
@@ -43,7 +68,17 @@ export function App() {
   // Ambil initial page dari URL hash jika ada (misal #button-animation), default ke "installation"
   const getInitialPage = () => {
     const hash = window.location.hash.replace("#", "");
-    const allPageIds = ["installation", "button-animation", "navbar-animation", "web-icons", "search-animation"];
+    const allPageIds = [
+      "installation",
+      "button-animation",
+      "navbar-animation",
+      "toast-animation",
+      "modal-animation",
+      "marquee-animation",
+      "timeline-animation",
+      "web-icons",
+      "search-animation",
+    ];
     return allPageIds.includes(hash) ? hash : "installation";
   };
 
@@ -78,6 +113,14 @@ export function App() {
         return <SearchAnimationPage />;
       case "navbar-animation":
         return <NavbarAnimationPage />;
+      case "toast-animation":
+        return <ToastAnimationPage />;
+      case "modal-animation":
+        return <ModalAnimationPage />;
+      case "marquee-animation":
+        return <MarqueeAnimationPage />;
+      case "timeline-animation":
+        return <TimelineAnimationPage />;
       case "web-icons":
         return <WebIconsPage />;
       default:
@@ -87,13 +130,16 @@ export function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="ui-theme">
-      <DocsLayout
-        activePage={activePage}
-        onSelectPage={handleSelectPage}
-        navGroups={navGroups}
-      >
-        {renderContent()}
-      </DocsLayout>
+      <ToastProvider position="bottom-right" defaultDuration={4000}>
+        <DocsLayout
+          activePage={activePage}
+          onSelectPage={handleSelectPage}
+          navGroups={navGroups}
+        >
+          {renderContent()}
+        </DocsLayout>
+      </ToastProvider>
     </ThemeProvider>
   );
 }
+

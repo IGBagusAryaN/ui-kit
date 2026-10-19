@@ -6,7 +6,7 @@
   /* Targetkan langsung tag pembentuk struktur, hindari selektor * dan pseudo-elements */
   html, body, div, nav, aside, header, main, section, button, input, a, span {
     transition-property: background-color, color, fill, stroke;
-    transition-duration: 150ms;
+    transition-duration: 250ms;
     transition-timing-function: ease-in-out;
   }
 
