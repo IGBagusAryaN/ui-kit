@@ -365,7 +365,7 @@ export function IconDemo() {
         <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           {t("content.iconDemo.pageDesc", {
             total: ALL_ICONS.length,
-            defaultValue: `Koleksi ${ALL_ICONS.length} ikon SVG web esensial bawaan pustaka @a/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).`,
+            defaultValue: `Koleksi ${ALL_ICONS.length} ikon SVG web esensial bawaan pustaka @bgsaryzzz/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).`,
           })}
         </p>
       </div>

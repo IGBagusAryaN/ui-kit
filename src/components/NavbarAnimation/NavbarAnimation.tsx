@@ -711,7 +711,7 @@ export function FullscreenMenuNav({
 
             {/* Footer metadata */}
             <div className="pt-4 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-2">
-              <span>© {new Date().getFullYear()} @a/ui design system</span>
+              <span>© {new Date().getFullYear()} @bgsaryzzz/ui design system</span>
               <div className="flex items-center gap-4">
                 <span className="hover:text-neutral-300 cursor-pointer">GitHub</span>
                 <span className="hover:text-neutral-300 cursor-pointer">Twitter</span>

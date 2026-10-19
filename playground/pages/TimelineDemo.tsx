@@ -217,7 +217,7 @@ export function TimelineDemo() {
    * CODE SNIPPETS
    * ------------------------------------------------------------------------- */
   const verticalCodeBlocks = {
-    react: `import { VerticalTimeline, TimelineItemData } from "@a/ui";
+    react: `import { VerticalTimeline, TimelineItemData } from "@bgsaryzzz/ui";
 
 const milestones: TimelineItemData[] = [
   {
@@ -255,7 +255,7 @@ export function ProjectRoadmap() {
   return <VerticalTimeline items={milestones} animated />;
 }`,
     vue: `<script setup lang="ts">
-import { VerticalTimeline } from "@a/ui-vue";
+import { VerticalTimeline } from "@bgsaryzzz/ui-vue";
 
 const milestones = [
   {
@@ -333,7 +333,7 @@ const milestones = [
 
     const stepperCodeBlocks = {
     react: `import { useState } from "react";
-import { HorizontalStepper, StepItem } from "@a/ui";
+import { HorizontalStepper, StepItem } from "@bgsaryzzz/ui";
 
 const checkoutSteps: StepItem[] = [
   { id: 1, title: "Akun", subtitle: "Autentikasi Pengguna" },
@@ -358,7 +358,7 @@ export function OnboardingFlow() {
 }`,
     vue: `<script setup lang="ts">
 import { ref } from "vue";
-import { HorizontalStepper } from "@a/ui-vue";
+import { HorizontalStepper } from "@bgsaryzzz/ui-vue";
 
 const currentStep = ref(0);
 const checkoutSteps = [
@@ -401,7 +401,7 @@ const checkoutSteps = [
   };
 
   const accordionCodeBlocks = {
-    react: `import { AccordionTimeline, TimelineItemData } from "@a/ui";
+    react: `import { AccordionTimeline, TimelineItemData } from "@bgsaryzzz/ui";
 
 const auditMilestones: TimelineItemData[] = [
   {
@@ -435,7 +435,7 @@ export function ProjectAudit() {
   );
 }`,
     vue: `<script setup lang="ts">
-import { AccordionTimeline } from "@a/ui-vue";
+import { AccordionTimeline } from "@bgsaryzzz/ui-vue";
 
 const auditMilestones = [
   {

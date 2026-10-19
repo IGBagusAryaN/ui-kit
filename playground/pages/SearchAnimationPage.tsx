@@ -2,7 +2,7 @@ import { Demo } from "./Demo";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function SearchAnimationPage() {
-  const sampleUsage = `import { SearchAnimation } from "@a/ui";
+  const sampleUsage = `import { SearchAnimation } from "@bgsaryzzz/ui";
 
 export function SearchVariants() {
   return (

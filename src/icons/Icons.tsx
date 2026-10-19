@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 
 /**
- * Interface dasar untuk seluruh koleksi komponen ikon SVG @a/ui.
+ * Interface dasar untuk seluruh koleksi komponen ikon SVG @bgsaryzzz/ui.
  * Menerima `size` (default: 24) dan mewarisi seluruh atribut standar SVGElement.
  */
 export interface IconProps extends React.SVGAttributes<SVGElement> {

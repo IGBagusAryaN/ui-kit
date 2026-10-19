@@ -1,4 +1,4 @@
-# @a/ui
+# @bgsaryzzz/ui
 
 A modern, accessible, installable, and highly customizable React UI component library featuring smooth animations powered by **Framer Motion** and styled with **Tailwind CSS**.
 
@@ -20,7 +20,7 @@ A modern, accessible, installable, and highly customizable React UI component li
 ## 🚀 Installation
 
 ```bash
-npm install @a/ui
+npm install @bgsaryzzz/ui
 ```
 
 ### Peer Dependencies
@@ -31,14 +31,14 @@ npm install framer-motion tailwindcss react react-dom
 ```
 
 ### Tailwind CSS Setup
-In your project's `tailwind.config.js`, include `@a/ui` in the `content` array so Tailwind detects the classes:
+In your project's `tailwind.config.js`, include `@bgsaryzzz/ui` in the `content` array so Tailwind detects the classes:
 
 ```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@a/ui/dist/**/*.{js,mjs}"
+    "./node_modules/@bgsaryzzz/ui/dist/**/*.{js,mjs}"
   ],
   theme: {
     extend: {},
@@ -55,7 +55,7 @@ module.exports = {
 Expandable search bar with spring physics, click-outside handling, and escape key listener.
 
 ```tsx
-import { SearchAnimation } from "@a/ui";
+import { SearchAnimation } from "@bgsaryzzz/ui";
 
 export function HeaderSearch() {
   return (
@@ -72,8 +72,8 @@ export function HeaderSearch() {
 Button with spring tap feedback, hover scale, loading spinner, and shimmering effects.
 
 ```tsx
-import { ButtonAnimation } from "@a/ui";
-import { ArrowRightIcon } from "@a/ui/icons";
+import { ButtonAnimation } from "@bgsaryzzz/ui";
+import { ArrowRightIcon } from "@bgsaryzzz/ui/icons";
 
 export function ActionSection() {
   return (
@@ -94,7 +94,7 @@ export function ActionSection() {
 Floating or sticky navbar with auto-hide on scroll and animated mobile menu drawer.
 
 ```tsx
-import { NavbarAnimation, SearchAnimation, ButtonAnimation } from "@a/ui";
+import { NavbarAnimation, SearchAnimation, ButtonAnimation } from "@bgsaryzzz/ui";
 
 const navItems = [
   { label: "Home", href: "/", active: true },

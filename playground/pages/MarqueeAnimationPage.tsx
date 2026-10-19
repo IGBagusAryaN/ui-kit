@@ -5,7 +5,7 @@ import { CodeBlock } from "../components/CodeBlock";
 export function MarqueeAnimationPage() {
   const { t } = useTranslation();
 
-  const sampleUsage = `import { Marquee } from "@a/ui";
+  const sampleUsage = `import { Marquee } from "@bgsaryzzz/ui";
 
 export function SponsorMarquee() {
   const partners = [

@@ -70,7 +70,7 @@ export const resources = {
         installation: {
           badge: "Memulai",
           title: "Instalasi",
-          description: "Panduan langkah demi langkah untuk menginstal dan mengkonfigurasi UI Component Library @a/ui pada project React, Vite, atau Next.js Anda.",
+          description: "Panduan langkah demi langkah untuk menginstal dan mengkonfigurasi UI Component Library @bgsaryzzz/ui pada project React, Vite, atau Next.js Anda.",
           step1: {
             badge: "1",
             title: "Install Package",
@@ -84,7 +84,13 @@ export const resources = {
           step3: {
             badge: "3",
             title: "Konfigurasi Tailwind CSS",
-            desc: "Tambahkan path file bundle library pada konfigurasi content di tailwind.config.js agar class Tailwind yang digunakan oleh komponen tidak terhapus saat purge/build:",
+            desc: "Pilih versi Tailwind CSS yang digunakan pada proyek Anda untuk instruksi konfigurasi yang sesuai:",
+            v4Tab: "Tailwind CSS v4",
+            v4Badge: "Rekomendasi",
+            v4Desc: "Pada Tailwind CSS v4, Anda tidak lagi memerlukan file tailwind.config.js. Cukup tambahkan direktif @source ke file CSS global utama Anda (misal: index.css atau globals.css) agar Tailwind memindai dan mengekstrak komponen library:",
+            v3Tab: "Tailwind CSS v3",
+            v3Badge: "Legacy",
+            v3Desc: "Bagi pengguna Tailwind CSS v3, daftarkan path distribusi library ke dalam array content di file tailwind.config.js agar class utilitas komponen tidak terhapus saat proses purge/build:",
           },
           step4: {
             badge: "4",
@@ -269,7 +275,7 @@ export const resources = {
         iconDemo: {
           badge: "Aset",
           pageTitle: "Web Icons ({{total}} Ikon Esensial)",
-          pageDesc: "Koleksi {{total}} ikon SVG web esensial bawaan pustaka @a/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
+          pageDesc: "Koleksi {{total}} ikon SVG web esensial bawaan pustaka @bgsaryzzz/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
           searchPlaceholder: "Cari ikon (contoh: 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...",
           clearSearch: "✕ Hapus",
           previewSize: "Ukuran Preview:",
@@ -798,7 +804,7 @@ export const resources = {
         installation: {
           badge: "Getting Started",
           title: "Installation",
-          description: "Step-by-step guide to installing and configuring the @a/ui UI Component Library in your React, Vite, or Next.js project.",
+          description: "Step-by-step guide to installing and configuring the @bgsaryzzz/ui UI Component Library in your React, Vite, or Next.js project.",
           step1: {
             badge: "1",
             title: "Install Package",
@@ -812,7 +818,13 @@ export const resources = {
           step3: {
             badge: "3",
             title: "Configure Tailwind CSS",
-            desc: "Add the library bundle path to the content configuration in tailwind.config.js so Tailwind classes used by components are not removed during purge/build:",
+            desc: "Choose the Tailwind CSS version used in your project for the appropriate configuration instructions:",
+            v4Tab: "Tailwind CSS v4",
+            v4Badge: "Recommended",
+            v4Desc: "In Tailwind CSS v4, you no longer need a tailwind.config.js file. Simply add the @source directive to your main global CSS file (e.g. index.css or globals.css) so Tailwind scans and extracts classes from the library components:",
+            v3Tab: "Tailwind CSS v3",
+            v3Badge: "Legacy",
+            v3Desc: "For projects using Tailwind CSS v3, add the library distribution path to the content array in your tailwind.config.js file so component utility classes are not purged during build:",
           },
           step4: {
             badge: "4",
@@ -997,7 +1009,7 @@ export const resources = {
         iconDemo: {
           badge: "Assets",
           pageTitle: "Web Icons ({{total}} Essential Icons)",
-          pageDesc: "Collection of {{total}} built-in essential web SVG icons in @a/ui. Designed with minimalist outline style (stroke width 2, viewBox 24x24), modular, lightweight, and fully styleable via Tailwind CSS utilities (currentColor).",
+          pageDesc: "Collection of {{total}} built-in essential web SVG icons in @bgsaryzzz/ui. Designed with minimalist outline style (stroke width 2, viewBox 24x24), modular, lightweight, and fully styleable via Tailwind CSS utilities (currentColor).",
           searchPlaceholder: "Search icons (e.g. 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...",
           clearSearch: "✕ Clear",
           previewSize: "Preview Size:",

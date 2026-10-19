@@ -5,7 +5,7 @@ import { CodeBlock } from "../components/CodeBlock";
 
 export function ButtonAnimationPage() {
   const { t } = useTranslation();
-  const sampleUsage = `import { ButtonAnimation } from "@a/ui";
+  const sampleUsage = `import { ButtonAnimation } from "@bgsaryzzz/ui";
 
 export function ButtonGallery() {
   return (

@@ -5,7 +5,7 @@ import { CodeBlock } from "../components/CodeBlock";
 export function ToastAnimationPage() {
   const { t } = useTranslation();
 
-  const sampleUsage = `import { ToastProvider, useToast } from "@a/ui";
+  const sampleUsage = `import { ToastProvider, useToast } from "@bgsaryzzz/ui";
 
 // 1. Bungkus aplikasi Anda dengan ToastProvider di root
 export function App() {

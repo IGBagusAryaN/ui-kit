@@ -12,7 +12,7 @@ import {
   ModalDrawer,
   ModalBottomSheet,
   ModalMedia,
-} from "@a/ui";
+} from "@bgsaryzzz/ui";
 
 export function DialogShowcase() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);

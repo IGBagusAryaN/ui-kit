@@ -10,7 +10,7 @@ export function WebIconsPage() {
   SettingsIcon,
   CheckCircleIcon,
   DownloadIcon
-} from "@a/ui/icons";
+} from "@bgsaryzzz/ui/icons";
 
 export function Example() {
   return (

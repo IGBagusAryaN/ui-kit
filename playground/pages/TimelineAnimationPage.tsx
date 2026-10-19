@@ -12,7 +12,7 @@ export function TimelineAnimationPage() {
   AccordionTimeline,
   NeonGlowTimeline,
   TimelineItemData,
-} from "@a/ui";
+} from "@bgsaryzzz/ui";
 
 const milestoneData: TimelineItemData[] = [
   {

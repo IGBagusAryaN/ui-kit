@@ -58,7 +58,7 @@ export function DocsLayout({
               </div>
               <div className="flex items-baseline gap-1.5">
                 <span className="font-bold text-base tracking-tight text-neutral-950 dark:text-white">
-                  @a/ui
+                  @bgsaryzzz/ui
                 </span>
                 <span className="text-xs font-medium text-neutral-400 dark:text-neutral-500">
                   docs

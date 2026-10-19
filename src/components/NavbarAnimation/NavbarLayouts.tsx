@@ -81,7 +81,7 @@ export function EnterpriseNav({
                 ▲
               </div>
               <span className="font-bold text-base tracking-tight text-neutral-950 dark:text-white">
-                a/ui
+                bgsaryzzz/ui
               </span>
               <span className="hidden sm:inline-block text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60">
                 Enterprise
@@ -216,7 +216,7 @@ export function GlassHeader({
                 ✦
               </span>
               <span className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 dark:text-white">
-                a/ui
+                bgsaryzzz/ui
               </span>
             </div>
           )}
@@ -293,7 +293,7 @@ export function PillNav({
                 P
               </div>
               <span className="font-bold text-sm tracking-tight text-neutral-950 dark:text-white">
-                a/ui
+                bgsaryzzz/ui
               </span>
             </>
           )}
@@ -433,7 +433,7 @@ export function DropdownNav({
           {brand || (
             <div className="flex items-center gap-2 cursor-pointer">
               <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                a/ui
+                bgsaryzzz/ui
               </span>
             </div>
           )}
@@ -644,7 +644,7 @@ export function SplitNav({
               S
             </span>
             <span className="font-extrabold text-base sm:text-lg tracking-tight text-neutral-950 dark:text-white">
-              a/ui
+              bgsaryzzz/ui
             </span>
           </div>
 

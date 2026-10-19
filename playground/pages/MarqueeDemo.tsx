@@ -203,7 +203,7 @@ const userReviews: ReviewItem[] = [
     username: "@sarah_dev",
     avatarGrad: "from-blue-500 to-cyan-500",
     stars: 5,
-    content: "Animasi fisika di @a/ui benar-benar mulus. Kami mengganti 3 library animasi berbeda cukup dengan satu paket ini.",
+    content: "Animasi fisika di @bgsaryzzz/ui benar-benar mulus. Kami mengganti 3 library animasi berbeda cukup dengan satu paket ini.",
   },
   {
     id: "r2",
@@ -369,7 +369,7 @@ const codeBlocksVariant1 = {
   </Marquee>
 </div>`,
   vue: `<script setup lang="ts">
-import { Marquee } from "@a/ui-vue";
+import { Marquee } from "@bgsaryzzz/ui-vue";
 </script>
 
 <template>
@@ -421,7 +421,7 @@ const codeBlocksVariant2 = {
   ))}
 </Marquee>`,
   vue: `<script setup lang="ts">
-import { Marquee } from "@a/ui-vue";
+import { Marquee } from "@bgsaryzzz/ui-vue";
 </script>
 
 <template>
@@ -475,7 +475,7 @@ const codeBlocksVariant3 = {
   </Marquee>
 </div>`,
   vue: `<script setup lang="ts">
-import { Marquee } from "@a/ui-vue";
+import { Marquee } from "@bgsaryzzz/ui-vue";
 </script>
 
 <template>
@@ -510,7 +510,7 @@ const codeBlocksVariant4 = {
   </div>
 </Marquee>`,
   vue: `<script setup lang="ts">
-import { Marquee } from "@a/ui-vue";
+import { Marquee } from "@bgsaryzzz/ui-vue";
 </script>
 
 <template>
@@ -543,7 +543,7 @@ const codeBlocksVariant5 = {
   </div>
 </div>`,
   vue: `<script setup lang="ts">
-import { Marquee } from "@a/ui-vue";
+import { Marquee } from "@bgsaryzzz/ui-vue";
 </script>
 
 <template>
