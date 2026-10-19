@@ -19,46 +19,50 @@ export function App() {
   const navGroups: NavGroup[] = useMemo(
     () => [
       {
-        title: t("nav.gettingStarted", "Getting Started"),
+        title: t("sidebar.gettingStarted", "Getting Started"),
         items: [
           {
             id: "installation",
-            label: t("nav.installation", "Installation"),
-            badge: t("badge.start", "start"),
+            label: t("sidebar.installation", "Installation"),
           },
         ],
       },
       {
-        title: t("nav.components", "Components"),
+        title: t("sidebar.components.title", "Components"),
         items: [
-          { id: "button-animation", label: t("nav.button", "Button") },
-          { id: "navbar-animation", label: t("nav.navbar", "Navbar") },
+          {
+            id: "button-animation",
+            label: t("sidebar.components.button", "Button"),
+          },
+          {
+            id: "navbar-animation",
+            label: t("sidebar.components.navbar", "Navbar"),
+          },
           {
             id: "toast-animation",
-            label: t("nav.toast", "Toast / Snackbar"),
-            badge: t("badge.new", "new"),
+            label: t("sidebar.components.toast", "Toast"),
           },
           {
             id: "modal-animation",
-            label: t("nav.modal", "Modal / Dialog"),
-            badge: t("badge.new", "new"),
+            label: t("sidebar.components.modal", "Modal"),
           },
           {
             id: "marquee-animation",
-            label: t("nav.marquee", "Infinite Marquee"),
-            badge: t("badge.new", "new"),
+            label: t("sidebar.components.marquee", "Marquee"),
           },
           {
             id: "timeline-animation",
-            label: t("nav.timeline", "Timeline / Milestone"),
-            badge: t("badge.new", "new"),
+            label: t("sidebar.components.timeline", "Timeline"),
           },
         ],
       },
       {
-        title: t("nav.icons", "Icons"),
+        title: t("sidebar.icons.title", "Icons"),
         items: [
-          { id: "web-icons", label: t("nav.webIcons", "Web Icons") },
+          {
+            id: "web-icons",
+            label: t("sidebar.icons.icons", "Icons"),
+          },
         ],
       },
     ],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   VerticalTimeline,
@@ -7,65 +7,8 @@ import {
   TimelineItemData,
   StepItem,
 } from "../../src/components/Timeline";
-import { MultiCodeSnippet } from "../components/MultiCodeSnippet";
-import { CheckIcon, CopyIcon } from "../../src/icons";
-
-/* =========================================================================
- * SUB-KOMPONEN: USAGE SNIPPET BLOCK (ADAPTIF LIGHT / DARK MODE)
- * ========================================================================= */
-interface SnippetBlockProps {
-  code: string;
-  title?: string;
-}
-
-function SnippetBlock({ code, title }: SnippetBlockProps) {
-  const { t } = useTranslation();
-  const [copied, setCopied] = useState(false);
-
-  const onCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  };
-
-  return (
-    <div className="mt-8 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 shadow-xs transition-colors dark:border-zinc-800 dark:bg-zinc-950">
-      {/* Header Blok Kode (Top Bar dengan kontras halus) */}
-      <div className="flex items-center justify-between border-b border-zinc-200 bg-zinc-100 px-4 py-2.5 dark:border-zinc-800 dark:bg-zinc-900">
-        <span className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
-          {title || t("content.timelineDemo.usageSnippet", "Usage Snippet")}
-        </span>
-        {/* Tombol Copy */}
-        <button
-          type="button"
-          onClick={onCopy}
-          className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200/80 bg-white/80 px-2.5 py-1 text-[11px] font-medium text-zinc-500 shadow-2xs transition active:scale-95 cursor-pointer hover:bg-zinc-200 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-zinc-800/80 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-        >
-          {copied ? (
-            <>
-              <CheckIcon size={13} className="text-emerald-600 dark:text-emerald-400 stroke-[2.5]" />
-              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                {t("content.timelineDemo.copied", "✓ Disalin")}
-              </span>
-            </>
-          ) : (
-            <>
-              <CopyIcon size={13} className="opacity-75" />
-              <span>{t("content.timelineDemo.copy", "Salin")}</span>
-            </>
-          )}
-        </button>
-      </div>
-
-      {/* Kontainer Utama (Body Kode) */}
-      <div className="p-4 overflow-x-auto font-mono text-[11px] sm:text-xs leading-relaxed text-zinc-800 dark:text-zinc-300">
-        <pre className="m-0 p-0 font-mono">
-          <code>{code}</code>
-        </pre>
-      </div>
-    </div>
-  );
-}
+import { SearchIcon } from "../../src/icons";
+import { CodeSnippet } from "../components/CodeSnippet";
 
 /* =========================================================================
  * MAIN COMPONENT: TIMELINE DEMO (3 VARIAN UTAMA)
@@ -554,61 +497,31 @@ const auditMilestones = [
 />`,
   };
 
-  return (
-    <div className="space-y-12 sm:space-y-16">
-      {/* =====================================================================
-       * VARIAN 1: CLASSIC VERTICAL
-       * ===================================================================== */}
-      <section className="rounded-xl border border-zinc-200/90 bg-white p-6 sm:p-8 shadow-xs dark:border-zinc-800/90 dark:bg-zinc-950">
-        <div className="mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800">
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="rounded-md bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-              {t("content.timelineDemo.variants.classicVertical.badge", "Linear Progression")}
-            </span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            {t("content.timelineDemo.variants.classicVertical.title", "1. Classic Vertical (VerticalTimeline)")}
-          </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-            {t(
-              "content.timelineDemo.variants.classicVertical.desc",
-              "Garis alur vertikal di sisi kiri dengan penanda titik/ikon. Konten tanggal, judul, dan deskripsi meluncur masuk (slide-in) dari kanan saat memasuki viewport."
-            )}
-          </p>
-        </div>
+  const [searchQuery, setSearchQuery] = useState("");
 
-        {/* Live Interactive Preview */}
-        <div className="rounded-xl border border-zinc-200/70 bg-zinc-50/50 p-6 sm:p-8 dark:border-zinc-800/80 dark:bg-zinc-900/40">
-          <VerticalTimeline items={classicItems} />
-        </div>
-
-        {/* Usage Snippet Adaptif */}
-        <MultiCodeSnippet codeBlocks={verticalCodeBlocks} title="1. Classic Vertical Usage" />
-      </section>
-
-      {/* =====================================================================
-       * VARIAN 2: HORIZONTAL STEPPER
-       * ===================================================================== */}
-      <section className="rounded-xl border border-zinc-200/90 bg-white p-6 sm:p-8 shadow-xs dark:border-zinc-800/90 dark:bg-zinc-950">
-        <div className="mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800">
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="rounded-md bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-              {t("content.timelineDemo.variants.stepper.badge", "Interactive Flow")}
-            </span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            {t("content.timelineDemo.variants.stepper.title", "2. Horizontal Stepper (HorizontalStepper)")}
-          </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-            {t(
-              "content.timelineDemo.variants.stepper.desc",
-              "Milestone alur horizontal langkah demi langkah (Step 1 → Step 2 → Step 3). Dilengkapi animasi garis progress yang terisi secara mulus dan kontrol tombol interaktif Next / Prev."
-            )}
-          </p>
-        </div>
-
-        {/* Live Interactive Preview */}
-        <div className="rounded-xl border border-zinc-200/70 bg-zinc-50/50 p-6 sm:p-8 dark:border-zinc-800/80 dark:bg-zinc-900/40">
+  const timelineList = useMemo(
+    () => [
+      {
+        id: "classic-vertical",
+        title: t("content.timelineDemo.variants.classicVertical.title", "1. Classic Vertical (VerticalTimeline)"),
+        badge: t("content.timelineDemo.variants.classicVertical.badge", "Linear Progression"),
+        description: t(
+          "content.timelineDemo.variants.classicVertical.desc",
+          "Garis alur vertikal di sisi kiri dengan penanda titik/ikon. Konten tanggal, judul, dan deskripsi meluncur masuk (slide-in) dari kanan saat memasuki viewport."
+        ),
+        snippet: verticalCodeBlocks.react,
+        render: () => <VerticalTimeline items={classicItems} />,
+      },
+      {
+        id: "horizontal-stepper",
+        title: t("content.timelineDemo.variants.stepper.title", "2. Horizontal Stepper (HorizontalStepper)"),
+        badge: t("content.timelineDemo.variants.stepper.badge", "Interactive Flow"),
+        description: t(
+          "content.timelineDemo.variants.stepper.desc",
+          "Milestone alur horizontal langkah demi langkah (Step 1 → Step 2 → Step 3). Dilengkapi animasi garis progress yang terisi secara mulus dan kontrol tombol interaktif Next / Prev."
+        ),
+        snippet: stepperCodeBlocks.react,
+        render: () => (
           <HorizontalStepper
             steps={stepperSteps}
             currentStep={activeStep}
@@ -620,45 +533,140 @@ const auditMilestones = [
             nextLabel={t("content.timelineDemo.variants.stepper.nextBtn", "Langkah Selanjutnya")}
             resetLabel={t("content.timelineDemo.variants.stepper.resetBtn", "Ulangi Alur")}
           />
-        </div>
-
-        {/* Usage Snippet Adaptif */}
-        <MultiCodeSnippet codeBlocks={stepperCodeBlocks} title="2. Horizontal Stepper Usage" />
-      </section>
-
-      {/* =====================================================================
-       * VARIAN 3: INTERACTIVE EXPANDABLE (ACCORDION TIMELINE)
-       * ===================================================================== */}
-      <section className="rounded-xl border border-zinc-200/90 bg-white p-6 sm:p-8 shadow-xs dark:border-zinc-800/90 dark:bg-zinc-950">
-        <div className="mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800">
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="rounded-md bg-rose-50 px-2.5 py-0.5 text-xs font-semibold text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
-              {t("content.timelineDemo.variants.accordion.badge", "Expandable Accordion")}
-            </span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            {t("content.timelineDemo.variants.accordion.title", "3. Interactive Expandable (AccordionTimeline)")}
-          </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-            {t(
-              "content.timelineDemo.variants.accordion.desc",
-              "Milestone vertikal interaktif di mana setiap kartu dapat diklik untuk membuka atau menutup rincian penjelasan secara dinamis dengan animasi tinggi yang mulus."
-            )}
-          </p>
-        </div>
-
-        {/* Live Interactive Preview */}
-        <div className="rounded-xl border border-zinc-200/70 bg-zinc-50/50 p-6 sm:p-8 dark:border-zinc-800/80 dark:bg-zinc-900/40">
+        ),
+      },
+      {
+        id: "accordion-timeline",
+        title: t("content.timelineDemo.variants.accordion.title", "3. Interactive Expandable (AccordionTimeline)"),
+        badge: t("content.timelineDemo.variants.accordion.badge", "Expandable Accordion"),
+        description: t(
+          "content.timelineDemo.variants.accordion.desc",
+          "Milestone vertikal interaktif di mana setiap kartu dapat diklik untuk membuka atau menutup rincian penjelasan secara dinamis dengan animasi tinggi yang mulus."
+        ),
+        snippet: accordionCodeBlocks.react,
+        render: () => (
           <AccordionTimeline
             items={accordionItems}
             allowMultiple={false}
             defaultOpenIds={["acc-1"]}
           />
+        ),
+      },
+    ],
+    [t, classicItems, stepperSteps, activeStep, accordionItems, verticalCodeBlocks, stepperCodeBlocks, accordionCodeBlocks]
+  );
+
+  const filteredList = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return timelineList;
+    return timelineList.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.badge.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q)
+    );
+  }, [timelineList, searchQuery]);
+
+  return (
+    <div className="w-full space-y-8">
+      {/* Top Search & Filter Bar */}
+      <div className="space-y-4">
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
+            <SearchIcon size={18} />
+          </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={t(
+              "content.timelineDemo.searchPlaceholder",
+              "Cari tata letak timeline (contoh: 'vertical', 'stepper', 'accordion', 'progress')..."
+            )}
+            className="w-full rounded-2xl border border-neutral-200/90 bg-white py-3.5 pl-11 pr-10 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-neutral-800/90 dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder:text-neutral-500 transition shadow-xs"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 cursor-pointer"
+            >
+              {t("common.clearSearch", "✕ Hapus")}
+            </button>
+          )}
         </div>
 
-        {/* Usage Snippet Adaptif */}
-        <MultiCodeSnippet codeBlocks={accordionCodeBlocks} title="3. Interactive Accordion Usage" />
-      </section>
+        {/* Info Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
+          <div className="space-y-0.5">
+            <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
+              {t("content.timelineDemo.collectionTitle", "Koleksi Tata Letak Timeline & Milestone:")}
+            </span>
+            <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
+              {t("content.timelineDemo.showingCount", {
+                count: filteredList.length,
+                total: timelineList.length,
+                defaultValue: `Menampilkan ${filteredList.length} dari ${timelineList.length} tata letak timeline dan milestone progres.`,
+              })}
+            </p>
+          </div>
+          <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
+            {t("content.timelineDemo.statusBadge", "Responsive & Production Ready")}
+          </span>
+        </div>
+      </div>
+
+      {/* Empty Search State */}
+      {filteredList.length === 0 && (
+        <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
+          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+            {t("content.timelineDemo.emptySearch", {
+              query: searchQuery,
+              defaultValue: `Tidak ditemukan variasi timeline dengan kata kunci "${searchQuery}"`,
+            })}
+          </p>
+          <button
+            type="button"
+            onClick={() => setSearchQuery("")}
+            className="mt-3 text-xs text-blue-600 hover:underline dark:text-blue-400 font-medium cursor-pointer"
+          >
+            {t("content.timelineDemo.resetSearch", "Reset pencarian")}
+          </button>
+        </div>
+      )}
+
+      {/* 1 Column Vertical List (gap-14) for Full Experience */}
+      <div className="flex flex-col gap-14">
+        {filteredList.map((item) => (
+          <div
+            key={item.id}
+            className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
+          >
+            {/* Header Info */}
+            <div className="space-y-2 mb-4">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
+                  {item.title}
+                </h3>
+                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
+                  {item.badge}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+
+            {/* Interactive Preview Canvas */}
+            <div className="w-full flex items-center justify-center p-4 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
+              {item.render()}
+            </div>
+
+            {/* Usage Code Snippet */}
+            <CodeSnippet code={item.snippet} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

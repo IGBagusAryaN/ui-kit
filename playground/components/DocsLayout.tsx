@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MenuIcon, CloseIcon } from "../../src/icons";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageDropdown } from "./LanguageDropdown";
+import { Sidebar, NavGroup } from "./Sidebar";
 
-export interface NavGroup {
-  title: string;
-  items: {
-    id: string;
-    label: string;
-    badge?: string;
-  }[];
-}
+export type { NavGroup };
 
 interface DocsLayoutProps {
   activePage: string;
@@ -19,7 +13,7 @@ interface DocsLayoutProps {
   navGroups: NavGroup[];
 }
 
-export function   DocsLayout({
+export function DocsLayout({
   activePage,
   onSelectPage,
   children,
@@ -49,7 +43,7 @@ export function   DocsLayout({
               type="button"
               aria-label="Toggle navigation menu"
               onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-              className="flex md:hidden h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-900 transition"
+              className="flex md:hidden h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-900 transition cursor-pointer"
             >
               {mobileSidebarOpen ? <CloseIcon size={18} /> : <MenuIcon size={18} />}
             </button>
@@ -98,53 +92,14 @@ export function   DocsLayout({
           />
         )}
 
-        {/* Left Sidebar (Sticky top-16, below header, h-[calc(100vh-4rem)], self-start) */}
-        <aside
-          className={`fixed top-16 bottom-0 left-0 z-40 w-64 shrink-0 border-r border-neutral-200/80 bg-white/95 p-4 backdrop-blur-md dark:border-neutral-800/80 dark:bg-neutral-950/95 md:sticky md:top-16 md:z-30 md:h-[calc(100vh-4rem)] md:self-start md:overflow-y-auto md:translate-x-0 ${
-            mobileSidebarOpen ? "translate-x-0 shadow-xl" : "-translate-x-full"
-          }`}
-        >
-          <nav className="h-full space-y-6 pb-8">
-            {navGroups.map((group) => (
-              <div key={group.title} className="space-y-1">
-                <h4 className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-                  {group.title}
-                </h4>
-                <ul className="space-y-0.5">
-                  {group.items.map((item) => {
-                    const isActive = activePage === item.id;
-                    return (
-                      <li key={item.id}>
-                        <button
-                          type="button"
-                          onClick={() => handleMenuClick(item.id)}
-                          className={`w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors. text-left ${
-                            isActive
-                              ? "bg-neutral-100 text-neutral-950 font-semibold dark:bg-neutral-900 dark:text-white border-l-2 border-blue-600 pl-2.5 dark:border-blue-500"
-                              : "text-neutral-600 hover:bg-neutral-100/70 hover:text-neutral-950 dark:text-neutral-400 dark:hover:bg-neutral-900/60 dark:hover:text-neutral-100"
-                          }`}
-                        >
-                          <span>{item.label}</span>
-                          {item.badge && (
-                            <span
-                              className={`rounded-md px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${
-                                isActive
-                                  ? "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300"
-                                  : "bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400"
-                              }`}
-                            >
-                              {item.badge}
-                            </span>
-                          )}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </nav>
-        </aside>
+        {/* Left Sidebar */}
+        <Sidebar
+          activePage={activePage}
+          onSelectPage={handleMenuClick}
+          isOpenMobile={mobileSidebarOpen}
+          onCloseMobile={() => setMobileSidebarOpen(false)}
+          navGroups={navGroups}
+        />
 
         {/* Right Main Content */}
         <main className="flex-1 w-full min-w-0 px-4 py-8 sm:px-8 lg:px-12">

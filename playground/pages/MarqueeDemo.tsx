@@ -1,58 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Marquee } from "../../src/components/Marquee";
-import { MultiCodeSnippet } from "../components/MultiCodeSnippet";
+import { CodeSnippet } from "../components/CodeSnippet";
+import { SearchIcon } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
-import { CheckIcon, CopyIcon } from "../../src/icons";
-
-/* =========================================================================
- * SUB-KOMPONEN: USAGE SNIPPET BLOCK (DENGAN BACKGROUND DARK & TOMBOL COPY)
- * ========================================================================= */
-interface SnippetBlockProps {
-  code: string;
-  title?: string;
-}
-
-function SnippetBlock({ code, title }: SnippetBlockProps) {
-  const { t } = useTranslation();
-  const [copied, setCopied] = useState(false);
-
-  const onCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  };
-
-  return (
-    <div className="mt-6 rounded-xl border border-zinc-200/80 bg-zinc-950 p-4 font-mono text-xs text-zinc-100 shadow-inner dark:border-zinc-800/80">
-      <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-zinc-800/80 font-sans text-xs">
-        <span className="font-semibold uppercase tracking-wider text-zinc-400">
-          {title || t("content.marqueeDemo.usageSnippet", "Usage Snippet")}
-        </span>
-        <button
-          type="button"
-          onClick={onCopy}
-          className="inline-flex items-center gap-1.5 rounded-md border border-zinc-700/80 bg-zinc-800/90 px-2.5 py-1 text-[11px] font-medium text-zinc-300 hover:bg-zinc-700 hover:text-white transition shadow-xs cursor-pointer active:scale-95"
-        >
-          {copied ? (
-            <>
-              <CheckIcon size={13} className="text-emerald-400" />
-              <span className="text-emerald-400 font-semibold">{t("common.copied", "Disalin!")}</span>
-            </>
-          ) : (
-            <>
-              <CopyIcon size={13} />
-              <span>{t("common.copy", "Salin")}</span>
-            </>
-          )}
-        </button>
-      </div>
-      <pre className="overflow-x-auto font-mono text-[11px] sm:text-xs text-zinc-300 leading-relaxed m-0 p-0">
-        <code>{code}</code>
-      </pre>
-    </div>
-  );
-}
 
 /* =========================================================================
  * DATA & DEFINISI UNTUK KE-5 VARIASI MARQUEE
@@ -629,34 +580,21 @@ import { Marquee } from "@a/ui-vue";
 
 export function MarqueeDemo() {
   const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  return (
-    <div className="flex flex-col gap-24">
-      {/* =====================================================================
-       * VARIASI 1: TRUSTED BY / TECH STACK PILLS
-       * ===================================================================== */}
-      <section className="space-y-4">
-        {/* Header Section */}
-        <div className="flex items-center justify-between border-b border-zinc-200/80 pb-3 dark:border-zinc-800/80">
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-2.5 py-0.5 text-xs font-semibold text-blue-600 dark:text-blue-400 border border-blue-500/20 mb-1.5">
-              <span>{t("content.marqueeDemo.variants.trustedBy.badge", "Tech Stack Pills")}</span>
-            </div>
-            <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {t("content.marqueeDemo.variants.trustedBy.title", "1. Trusted By / Tech Stack (Pill Ticker)")}
-            </h2>
-          </div>
-        </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-          {t(
-            "content.marqueeDemo.variants.trustedBy.desc",
-            "Marquee interaktif berisi deretan teknologi modern dalam format kapsul (pill) adaptif, lengkap dengan ikon beraksen, nama teknologi, dan badge kategori."
-          )}
-        </p>
-
-        {/* Demo Box */}
-        <div className="rounded-xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-950 transition-colors">
-          <div className="relative overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 py-6 dark:border-zinc-800/70 dark:bg-zinc-900/40 space-y-5">
+  const marqueeList = useMemo(
+    () => [
+      {
+        id: "trusted-by",
+        title: t("content.marqueeDemo.variants.trustedBy.title", "1. Trusted By / Tech Stack (Pill Ticker)"),
+        badge: t("content.marqueeDemo.variants.trustedBy.badge", "Tech Stack Pills"),
+        description: t(
+          "content.marqueeDemo.variants.trustedBy.desc",
+          "Marquee interaktif berisi deretan teknologi modern dalam format kapsul (pill) adaptif, lengkap dengan ikon beraksen, nama teknologi, dan badge kategori."
+        ),
+        snippet: codeBlocksVariant1.react,
+        render: () => (
+          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 py-6 dark:border-zinc-800/70 dark:bg-zinc-900/40 space-y-5">
             {/* Baris 1: Arah Kiri */}
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
               {techPillsRow1.map((tech) => (
@@ -664,7 +602,6 @@ export function MarqueeDemo() {
                   key={tech.id}
                   className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 px-3.5 py-2 shadow-2xs backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-zinc-200/80 hover:border-zinc-300 hover:shadow-md dark:hover:bg-zinc-800 dark:hover:border-zinc-700 cursor-pointer select-none"
                 >
-                  {/* Kiri: Lingkaran kecil w-8 h-8 rounded-full beraksen halus */}
                   <div
                     className={cn(
                       "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border shadow-2xs transition-transform duration-300 group-hover/pill:scale-110",
@@ -673,13 +610,9 @@ export function MarqueeDemo() {
                   >
                     {tech.icon("h-4 w-4")}
                   </div>
-
-                  {/* Tengah: Nama teknologi teks semibold */}
                   <span className="text-sm font-semibold tracking-tight text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
                     {tech.name}
                   </span>
-
-                  {/* Kanan: Badge kategori bersudut rounded-md */}
                   <span className="rounded-md border border-zinc-200/80 bg-white/90 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-zinc-600 uppercase dark:border-zinc-700/60 dark:bg-zinc-800/80 dark:text-zinc-300 whitespace-nowrap">
                     {tech.category}
                   </span>
@@ -694,7 +627,6 @@ export function MarqueeDemo() {
                   key={tech.id}
                   className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 px-3.5 py-2 shadow-2xs backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-zinc-200/80 hover:border-zinc-300 hover:shadow-md dark:hover:bg-zinc-800 dark:hover:border-zinc-700 cursor-pointer select-none"
                 >
-                  {/* Kiri: Lingkaran kecil w-8 h-8 rounded-full beraksen halus */}
                   <div
                     className={cn(
                       "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border shadow-2xs transition-transform duration-300 group-hover/pill:scale-110",
@@ -703,13 +635,9 @@ export function MarqueeDemo() {
                   >
                     {tech.icon("h-4 w-4")}
                   </div>
-
-                  {/* Tengah: Nama teknologi teks semibold */}
                   <span className="text-sm font-semibold tracking-tight text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
                     {tech.name}
                   </span>
-
-                  {/* Kanan: Badge kategori bersudut rounded-md */}
                   <span className="rounded-md border border-zinc-200/80 bg-white/90 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-zinc-600 uppercase dark:border-zinc-700/60 dark:bg-zinc-800/80 dark:text-zinc-300 whitespace-nowrap">
                     {tech.category}
                   </span>
@@ -717,37 +645,19 @@ export function MarqueeDemo() {
               ))}
             </Marquee>
           </div>
-
-          {/* Usage Code Snippet */}
-          <MultiCodeSnippet codeBlocks={codeBlocksVariant1} title="1. Tech Stack Pills Usage" />
-        </div>
-      </section>
-
-      {/* =====================================================================
-       * VARIASI 2: USER TESTIMONIALS (REVIEW CARDS)
-       * ===================================================================== */}
-      <section className="space-y-4">
-        {/* Header Section */}
-        <div className="flex items-center justify-between border-b border-zinc-200/80 pb-3 dark:border-zinc-800/80">
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-1.5">
-              <span>{t("content.marqueeDemo.variants.testimonials.badge", "Social Proof")}</span>
-            </div>
-            <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {t("content.marqueeDemo.variants.testimonials.title", "2. User Testimonials (Review Cards)")}
-            </h2>
-          </div>
-        </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-          {t(
-            "content.marqueeDemo.variants.testimonials.desc",
-            "Marquee yang membungkus deretan kartu testimoni pengguna dengan avatar, nama, handle @, rating bintang 5, dan kutipan ulasan singkat."
-          )}
-        </p>
-
-        {/* Demo Box */}
-        <div className="rounded-xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-950 transition-colors">
-          <div className="relative overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 py-6 dark:border-zinc-800/70 dark:bg-zinc-900/40 space-y-4">
+        ),
+      },
+      {
+        id: "testimonials",
+        title: t("content.marqueeDemo.variants.testimonials.title", "2. User Testimonials (Review Cards)"),
+        badge: t("content.marqueeDemo.variants.testimonials.badge", "Social Proof"),
+        description: t(
+          "content.marqueeDemo.variants.testimonials.desc",
+          "Marquee yang membungkus deretan kartu testimoni pengguna dengan avatar, nama, handle @, rating bintang 5, dan kutipan ulasan singkat."
+        ),
+        snippet: codeBlocksVariant2.react,
+        render: () => (
+          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 py-6 dark:border-zinc-800/70 dark:bg-zinc-900/40 space-y-4">
             {/* Baris 1: Testimoni ke Kiri */}
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
               {userReviews.slice(0, 4).map((review) => (
@@ -818,37 +728,19 @@ export function MarqueeDemo() {
               ))}
             </Marquee>
           </div>
-
-          {/* Usage Code Snippet */}
-          <MultiCodeSnippet codeBlocks={codeBlocksVariant2} title="2. Testimonials Usage" />
-        </div>
-      </section>
-
-      {/* =====================================================================
-       * VARIASI 3: VERTICAL COLUMN (MASONRY TICKER)
-       * ===================================================================== */}
-      <section className="space-y-4">
-        {/* Header Section */}
-        <div className="flex items-center justify-between border-b border-zinc-200/80 pb-3 dark:border-zinc-800/80">
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/10 px-2.5 py-0.5 text-xs font-semibold text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-1.5">
-              <span>{t("content.marqueeDemo.variants.vertical.badge", "Dual Column Waterfall")}</span>
-            </div>
-            <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {t("content.marqueeDemo.variants.vertical.title", "3. Vertical Column (Masonry Ticker)")}
-            </h2>
-          </div>
-        </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-          {t(
-            "content.marqueeDemo.variants.vertical.desc",
-            "Dua marquee vertikal berdampingan bergerak secara simultan berlawanan arah (ke atas dan ke bawah), menciptakan efek air terjun dinamis."
-          )}
-        </p>
-
-        {/* Demo Box */}
-        <div className="rounded-xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-950 transition-colors">
-          <div className="relative h-[430px] overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 p-4 dark:border-zinc-800/70 dark:bg-zinc-900/40">
+        ),
+      },
+      {
+        id: "vertical-masonry",
+        title: t("content.marqueeDemo.variants.vertical.title", "3. Vertical Column (Masonry Ticker)"),
+        badge: t("content.marqueeDemo.variants.vertical.badge", "Dual Column Waterfall"),
+        description: t(
+          "content.marqueeDemo.variants.vertical.desc",
+          "Dua marquee vertikal berdampingan bergerak secara simultan berlawanan arah (ke atas dan ke bawah), menciptakan efek air terjun dinamis."
+        ),
+        snippet: codeBlocksVariant3.react,
+        render: () => (
+          <div className="w-full relative h-[430px] overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 p-4 dark:border-zinc-800/70 dark:bg-zinc-900/40">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
               {/* Kolom 1: Bergerak Vertikal ke Atas (Up) */}
               <div className="h-full relative overflow-hidden">
@@ -931,37 +823,19 @@ export function MarqueeDemo() {
               </div>
             </div>
           </div>
-
-          {/* Usage Code Snippet */}
-          <MultiCodeSnippet codeBlocks={codeBlocksVariant3} title="3. Vertical Columns Usage" />
-        </div>
-      </section>
-
-      {/* =====================================================================
-       * VARIASI 4: GIANT TYPOGRAPHY (BACKGROUND LAYER)
-       * ===================================================================== */}
-      <section className="space-y-4">
-        {/* Header Section */}
-        <div className="flex items-center justify-between border-b border-zinc-200/80 pb-3 dark:border-zinc-800/80">
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-rose-500/10 px-2.5 py-0.5 text-xs font-semibold text-rose-600 dark:text-rose-400 border border-rose-500/20 mb-1.5">
-              <span>{t("content.marqueeDemo.variants.giantTypography.badge", "Hero Outline Text")}</span>
-            </div>
-            <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {t("content.marqueeDemo.variants.giantTypography.title", "4. Giant Typography (Background Layer)")}
-            </h2>
-          </div>
-        </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-          {t(
-            "content.marqueeDemo.variants.giantTypography.desc",
-            "Teks raksasa dengan tipografi outline transparan yang bergerak sangat lambat, ideal sebagai latar belakang dinamis hero section."
-          )}
-        </p>
-
-        {/* Demo Box */}
-        <div className="rounded-xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-950 transition-colors">
-          <div className="relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-50/80 py-12 dark:border-zinc-800/70 dark:bg-zinc-950 space-y-4">
+        ),
+      },
+      {
+        id: "giant-typography",
+        title: t("content.marqueeDemo.variants.giantTypography.title", "4. Giant Typography (Background Layer)"),
+        badge: t("content.marqueeDemo.variants.giantTypography.badge", "Hero Outline Text"),
+        description: t(
+          "content.marqueeDemo.variants.giantTypography.desc",
+          "Teks raksasa dengan tipografi outline transparan yang bergerak sangat lambat, ideal sebagai latar belakang dinamis hero section."
+        ),
+        snippet: codeBlocksVariant4.react,
+        render: () => (
+          <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-50/80 py-12 dark:border-zinc-800/70 dark:bg-zinc-950 space-y-4">
             {/* Baris 1: Outline Teks Raksasa Kiri */}
             <Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
               <div
@@ -1002,41 +876,22 @@ export function MarqueeDemo() {
               </div>
             </Marquee>
           </div>
-
-          {/* Usage Code Snippet */}
-          <MultiCodeSnippet codeBlocks={codeBlocksVariant4} title="4. Bold Typography Usage" />
-        </div>
-      </section>
-
-      {/* =====================================================================
-       * VARIASI 5: 3D PERSPECTIVE TICKER
-       * ===================================================================== */}
-      <section className="space-y-4">
-        {/* Header Section */}
-        <div className="flex items-center justify-between border-b border-zinc-200/80 pb-3 dark:border-zinc-800/80">
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-600 dark:text-amber-400 border border-amber-500/20 mb-1.5">
-              <span>{t("content.marqueeDemo.variants.perspective3d.badge", "CSS 3D Depth")}</span>
-            </div>
-            <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {t("content.marqueeDemo.variants.perspective3d.title", "5. 3D Perspective Ticker")}
-            </h2>
-          </div>
-        </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
-          {t(
-            "content.marqueeDemo.variants.perspective3d.desc",
-            "Marquee dalam kontainer dengan efek kedalaman CSS 3D Perspective, menciptakan ilusi deretan kartu bergerak masuk ke dalam ruang 3 dimensi."
-          )}
-        </p>
-
-        {/* Demo Box */}
-        <div className="rounded-xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-950 transition-colors">
+        ),
+      },
+      {
+        id: "perspective-3d",
+        title: t("content.marqueeDemo.variants.perspective3d.title", "5. 3D Perspective Ticker"),
+        badge: t("content.marqueeDemo.variants.perspective3d.badge", "CSS 3D Depth"),
+        description: t(
+          "content.marqueeDemo.variants.perspective3d.desc",
+          "Marquee dalam kontainer dengan efek kedalaman CSS 3D Perspective, menciptakan ilusi deretan kartu bergerak masuk ke dalam ruang 3 dimensi."
+        ),
+        snippet: codeBlocksVariant5.react,
+        render: () => (
           <div
-            className="relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-100/70 py-16 px-4 dark:border-zinc-800/70 dark:bg-zinc-950/90"
+            className="w-full relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-100/70 py-16 px-4 dark:border-zinc-800/70 dark:bg-zinc-950/90"
             style={{ perspective: "1100px" }}
           >
-            {/* Stage 3D yang dirotasi pada sumbu X & Z */}
             <div
               className="space-y-6 transition-transform duration-500"
               style={{
@@ -1109,11 +964,123 @@ export function MarqueeDemo() {
               </Marquee>
             </div>
           </div>
+        ),
+      },
+    ],
+    [t]
+  );
 
-          {/* Usage Code Snippet */}
-          <MultiCodeSnippet codeBlocks={codeBlocksVariant5} title="5. 3D Perspective Usage" />
+  const filteredList = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return marqueeList;
+    return marqueeList.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.badge.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q)
+    );
+  }, [marqueeList, searchQuery]);
+
+  return (
+    <div className="w-full space-y-8">
+      {/* Top Search & Filter Bar */}
+      <div className="space-y-4">
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
+            <SearchIcon size={18} />
+          </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={t(
+              "content.marqueeDemo.searchPlaceholder",
+              "Cari variasi marquee (contoh: 'ticker', 'social proof', 'testimonials', '3d', 'typography')..."
+            )}
+            className="w-full rounded-2xl border border-neutral-200/90 bg-white py-3.5 pl-11 pr-10 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-neutral-800/90 dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder:text-neutral-500 transition shadow-xs"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 cursor-pointer"
+            >
+              {t("common.clearSearch", "✕ Hapus")}
+            </button>
+          )}
         </div>
-      </section>
+
+        {/* Info Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
+          <div className="space-y-0.5">
+            <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
+              {t("content.marqueeDemo.collectionTitle", "Koleksi Variasi Marquee Animasi:")}
+            </span>
+            <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
+              {t("content.marqueeDemo.showingCount", {
+                count: filteredList.length,
+                total: marqueeList.length,
+                defaultValue: `Menampilkan ${filteredList.length} dari ${marqueeList.length} variasi marquee motion berkinerja tinggi.`,
+              })}
+            </p>
+          </div>
+          <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
+            {t("content.marqueeDemo.statusBadge", "Smooth 60FPS Hardware Accelerated")}
+          </span>
+        </div>
+      </div>
+
+      {/* Empty Search State */}
+      {filteredList.length === 0 && (
+        <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
+          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+            {t("content.marqueeDemo.emptySearch", {
+              query: searchQuery,
+              defaultValue: `Tidak ditemukan variasi marquee dengan kata kunci "${searchQuery}"`,
+            })}
+          </p>
+          <button
+            type="button"
+            onClick={() => setSearchQuery("")}
+            className="mt-3 text-xs text-blue-600 hover:underline dark:text-blue-400 font-medium cursor-pointer"
+          >
+            {t("content.marqueeDemo.resetSearch", "Reset pencarian")}
+          </button>
+        </div>
+      )}
+
+      {/* 1 Column Vertical List (gap-14) for Full Experience */}
+      <div className="flex flex-col gap-14">
+        {filteredList.map((item) => (
+          <div
+            key={item.id}
+            className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
+          >
+            {/* Header Info */}
+            <div className="space-y-2 mb-4">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
+                  {item.title}
+                </h3>
+                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
+                  {item.badge}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+
+            {/* Interactive Preview Canvas */}
+            <div className="w-full flex items-center justify-center p-4 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
+              {item.render()}
+            </div>
+
+            {/* Usage Code Snippet */}
+            <CodeSnippet code={item.snippet} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

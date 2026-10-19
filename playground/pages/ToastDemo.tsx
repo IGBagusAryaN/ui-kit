@@ -10,6 +10,7 @@ import {
   SearchIcon,
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
+import { CodeSnippet } from "../components/CodeSnippet";
 
 interface ToastCardInfo {
   type: ToastType;
@@ -25,15 +26,8 @@ interface ToastCardInfo {
 export function ToastDemo() {
   const { t } = useTranslation();
   const { toasts, toast } = useToast();
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
-
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 1800);
-  };
 
   // Definisi 5 variasi Toast
   const toastItems: ToastCardInfo[] = useMemo(
@@ -258,7 +252,7 @@ export function ToastDemo() {
         {/* Search Bar */}
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
-            <SearchIcon size={16} />
+            <SearchIcon size={18} />
           </div>
           <input
             type="text"
@@ -385,21 +379,21 @@ export function ToastDemo() {
           <div
             key={item.type}
             className={cn(
-              "flex flex-col rounded-2xl border border-neutral-200/80 bg-white p-5 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700",
+              "flex flex-col rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700",
               filteredList.length === 5 && item.type === "promise" ? "md:col-span-2" : ""
             )}
           >
             {/* Header Info */}
             <div className="space-y-2 mb-4">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
+                <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
                   {item.title}
                 </h3>
-                <span className="shrink-0 font-mono text-[10px] px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
+                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
                   {item.badge}
                 </span>
               </div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed min-h-[44px]">
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed min-h-[44px]">
                 {item.physicsDescription}
               </p>
             </div>
@@ -457,27 +451,7 @@ export function ToastDemo() {
             </div>
 
             {/* Usage Code Snippet (Anchored at the bottom with mt-auto) */}
-            <div className="mt-auto relative rounded-xl border border-neutral-200/80 bg-neutral-100/70 p-3 font-mono text-xs dark:border-neutral-800/80 dark:bg-neutral-900/70 text-neutral-800 dark:text-neutral-200">
-              <div className="flex items-center justify-between mb-1.5 text-[11px] font-sans text-neutral-500 dark:text-neutral-400">
-                <span>{t("content.toastDemo.usageSnippet", "Usage Snippet")}</span>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(item.type, item.snippet)}
-                  className="hover:text-neutral-800 dark:hover:text-neutral-200 transition cursor-pointer"
-                >
-                  {copiedId === item.type ? (
-                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
-                      ✓ Disalin
-                    </span>
-                  ) : (
-                    "Salin"
-                  )}
-                </button>
-              </div>
-              <pre className="overflow-x-auto text-[11px] leading-relaxed p-1 m-0">
-                <code>{item.snippet}</code>
-              </pre>
-            </div>
+            <CodeSnippet code={item.snippet} className="mt-auto" />
           </div>
         ))}
       </div>

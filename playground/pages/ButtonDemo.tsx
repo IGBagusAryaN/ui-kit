@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ButtonAnimation, ButtonAnimationType, ButtonVariant } from "../../src";
+import { CodeSnippet } from "../components/CodeSnippet";
 
 interface AnimationCardInfo {
   animation: ButtonAnimationType;
@@ -13,15 +14,8 @@ interface AnimationCardInfo {
 
 export function ButtonDemo() {
   const { t } = useTranslation();
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<ButtonVariant>("default");
   const [searchQuery, setSearchQuery] = useState("");
-
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 1800);
-  };
 
   const animationsList: AnimationCardInfo[] = useMemo(
     () => [
@@ -444,23 +438,7 @@ export function ButtonDemo() {
             </div>
 
             {/* Usage Code Snippet */}
-            <div className="relative rounded-xl border border-neutral-200/80 bg-neutral-100/70 p-3 font-mono text-xs dark:border-neutral-800/80 dark:bg-neutral-900/70 text-neutral-800 dark:text-neutral-200">
-              <div className="flex items-center justify-between mb-1 text-[11px] font-sans text-neutral-500 dark:text-neutral-400">
-                <span>{t("content.buttonDemo.usageSnippet", "Usage Snippet")}</span>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(item.animation, item.snippet)}
-                  className="rounded-md border border-neutral-200 bg-white px-2 py-0.5 text-[10px] font-medium text-neutral-600 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:text-white transition shadow-xs cursor-pointer"
-                >
-                  {copiedId === item.animation
-                    ? t("content.buttonDemo.copied", "✓ Disalin")
-                    : t("content.buttonDemo.copy", "Salin")}
-                </button>
-              </div>
-              <pre className="overflow-x-auto m-0 py-1 text-[11px] leading-relaxed">
-                <code>{item.snippet}</code>
-              </pre>
-            </div>
+            <CodeSnippet code={item.snippet} />
           </div>
         ))}
       </div>

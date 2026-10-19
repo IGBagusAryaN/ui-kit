@@ -8,6 +8,7 @@ import {
   SplitNav,
 } from "../../src/components/NavbarAnimation";
 import { SearchIcon } from "../../src/icons";
+import { CodeSnippet } from "../components/CodeSnippet";
 
 interface NavbarCardInfo {
   id: string;
@@ -25,16 +26,9 @@ interface NavbarCardInfo {
 
 export function NavbarDemo() {
   const { t } = useTranslation();
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [glassScrolled, setGlassScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(3);
-
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 1800);
-  };
 
   const navbarsList: NavbarCardInfo[] = useMemo(
     () => [
@@ -379,25 +373,7 @@ export function NavbarDemo() {
             </div>
 
             {/* Usage Code Snippet */}
-            <div className="relative rounded-xl border border-neutral-200/80 bg-neutral-100/70 p-3.5 font-mono text-xs dark:border-neutral-800/80 dark:bg-neutral-900/70 text-neutral-800 dark:text-neutral-200">
-              <div className="flex items-center justify-between mb-1.5 text-[11px] font-sans text-neutral-500 dark:text-neutral-400">
-                <span className="font-medium">
-                  {t("content.navbarDemo.usageSnippet", "Usage Snippet")}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(item.id, item.snippet)}
-                  className="rounded-md border border-neutral-200 bg-white px-2.5 py-1 text-[11px] font-medium text-neutral-600 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:text-white transition shadow-xs cursor-pointer"
-                >
-                  {copiedId === item.id
-                    ? t("content.navbarDemo.copied", "✓ Disalin")
-                    : t("content.navbarDemo.copy", "Salin")}
-                </button>
-              </div>
-              <pre className="overflow-x-auto m-0 py-1 text-[11px] leading-relaxed">
-                <code>{item.snippet}</code>
-              </pre>
-            </div>
+            <CodeSnippet code={item.snippet} />
           </div>
         ))}
       </div>

@@ -6,21 +6,39 @@ export const defaultNS = "translation";
 export const resources = {
   id: {
     translation: {
+      sidebar: {
+        gettingStarted: "Memulai",
+        installation: "Instalasi",
+        components: {
+          title: "Komponen",
+          button: "Tombol",
+          navbar: "Navbar",
+          toast: "Toast",
+          modal: "Modal",
+          marquee: "Marquee",
+          timeline: "Timeline",
+        },
+        icons: {
+          title: "Ikon",
+          icons: "Icons",
+        },
+      },
       nav: {
         gettingStarted: "Memulai",
         installation: "Instalasi",
         components: "Komponen",
         button: "Tombol",
-        navbar: "Navigasi",
+        navbar: "Navbar",
         search: "Pencarian",
         icons: "Ikon",
-        webIcons: "Ikon Web",
-        toast: "Toast / Notifikasi",
-        modal: "Modal / Dialog",
-        marquee: "Marquee / Ticker",
-        timeline: "Timeline / Milestone",
+        webIcons: "Icons",
+        toast: "Toast",
+        modal: "Modal",
+        marquee: "Marquee",
+        timeline: "Timeline",
       },
       common: {
+        usageSnippet: "Usage Snippet",
         copyCode: "Salin Kode",
         copied: "Disalin!",
         copy: "Salin",
@@ -716,6 +734,23 @@ export const resources = {
   },
   en: {
     translation: {
+      sidebar: {
+        gettingStarted: "Getting Started",
+        installation: "Installation",
+        components: {
+          title: "Components",
+          button: "Button",
+          navbar: "Navbar",
+          toast: "Toast",
+          modal: "Modal",
+          marquee: "Marquee",
+          timeline: "Timeline",
+        },
+        icons: {
+          title: "Icons",
+          icons: "Icons",
+        },
+      },
       nav: {
         gettingStarted: "Getting Started",
         installation: "Installation",
@@ -724,13 +759,14 @@ export const resources = {
         navbar: "Navbar",
         search: "Search Animation",
         icons: "Icons",
-        webIcons: "Web Icons",
-        toast: "Toast / Snackbar",
-        modal: "Modal / Pop-up Dialog",
-        marquee: "Infinite Marquee",
-        timeline: "Timeline / Milestone",
+        webIcons: "Icons",
+        toast: "Toast",
+        modal: "Modal",
+        marquee: "Marquee",
+        timeline: "Timeline",
       },
       common: {
+        usageSnippet: "Usage Snippet",
         copyCode: "Copy Code",
         copied: "Copied!",
         copy: "Copy",
