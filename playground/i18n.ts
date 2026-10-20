@@ -36,6 +36,8 @@ export const resources = {
         modal: "Modal",
         marquee: "Marquee",
         timeline: "Timeline",
+        treeMenu: "Tree Menu",
+        dropdown: "Dropdown",
       },
       common: {
         usageSnippet: "Usage Snippet",
@@ -51,7 +53,7 @@ export const resources = {
         reset: "Reset",
         all: "Semua",
         language: "Bahasa",
-        version: "v0.1.0",
+        version: "v0.1.2",
       },
       theme: {
         dark: "Gelap",
@@ -510,6 +512,27 @@ export const resources = {
             bentoGrid: "Bento Grid",
           },
         },
+                treeMenuDemo: {
+          badge: "Navigasi",
+          pageTitle: "Animated Tree Menu",
+          pageDesc: "Komponen navigasi hierarkis modern terinspirasi Notion dan Linear. Dilengkapi garis panduan vertikal, animasi expand/collapse mulus Framer Motion, rotasi chevron otomatis, badge angka, dan rendering rekursif.",
+          variant1: {
+            badge: "Navigasi Sidebar",
+            title: "1. Department Directory (Parent-Child Hierarchy)",
+            desc: "Parent 'DEPARTMENTS' yang dapat di-klik untuk membuka/menutup daftar tim turunan. Dilengkapi garis vertikal hierarki, chevron rotasi dinamis, dan badge angka di sisi kanan.",
+          },
+        dropdownDemo: {
+          badge: "Overlay & Navigasi",
+          pageTitle: "Animated Dropdown",
+          pageDesc:
+            "Komponen multi-varian dropdown modern dengan 3 variasi animasi: Sidebar (Notion-style nested accordion), Floating (Vercel-style popover dengan staggered entrance), dan Mega (Stripe-style menu dengan title, subtitle, dan spring physics).",
+        },
+          variant2: {
+            badge: "Hierarki Bertingkat",
+            title: "2. Deep Nested Workspace (Infinite Recursion)",
+            desc: "Hierarki berkas proyek bertingkat (Level 0 → Level 1 → Level 2) dengan garis pemandu rekursif yang secara otomatis berindentasi sesuai kedalaman folder.",
+          },
+        },
         timelineDemo: {
           badge: "Milestone & Progress",
           pageTitle: "Animated Milestone / Timeline",
@@ -770,6 +793,8 @@ export const resources = {
         modal: "Modal",
         marquee: "Marquee",
         timeline: "Timeline",
+        treeMenu: "Tree Menu",
+        dropdown: "Dropdown",
       },
       common: {
         usageSnippet: "Usage Snippet",
@@ -785,7 +810,7 @@ export const resources = {
         reset: "Reset",
         all: "All",
         language: "Language",
-        version: "v0.1.0",
+        version: "v0.1.2",
       },
       theme: {
         dark: "Dark",
@@ -1243,7 +1268,28 @@ export const resources = {
             bentoGrid: "Bento Grid",
           },
         },
-        timelineDemo: {
+                treeMenuDemo: {
+          badge: "Navigation",
+          pageTitle: "Animated Tree Menu",
+          pageDesc: "Modern hierarchical navigation component inspired by Notion and Linear. Features vertical guidelines, fluid Framer Motion expand/collapse animations, automatic chevron rotation, numeric badges, and recursive rendering.",
+          variant1: {
+            badge: "Sidebar Navigation",
+            title: "1. Department Directory (Parent-Child Hierarchy)",
+            desc: "Parent 'DEPARTMENTS' clickable to expand/collapse child team items. Features vertical hierarchy guide rail, dynamic rotating chevron, and right-aligned numeric badges.",
+          },
+        dropdownDemo: {
+          badge: "Overlay & Navigation",
+          pageTitle: "Animated Dropdown",
+          pageDesc:
+            "Modern multi-variant animated dropdown component with 3 variations: Sidebar (Notion-style nested accordion), Floating (Vercel-style popover with staggered entrance), and Mega (Stripe-style menu with title, subtitle, and spring physics).",
+        },
+          variant2: {
+            badge: "Multi-Level Hierarchy",
+            title: "2. Deep Nested Workspace (Infinite Recursion)",
+            desc: "Deep project file explorer hierarchy (Level 0 → Level 1 → Level 2) with recursive guide rail dynamically indented by nesting depth.",
+          },
+        },
+timelineDemo: {
           badge: "Milestone & Progress",
           pageTitle: "Animated Milestone / Timeline",
           pageDesc: "Linear flow, roadmap history, and milestone progress component featuring fluid Framer Motion animations, interactive micro-interactions, and comprehensive Light/Dark mode support.",

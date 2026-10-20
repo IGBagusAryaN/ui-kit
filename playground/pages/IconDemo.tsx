@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { IconCard } from "../../src/components/IconCard";
 import {
   // 1. Navigasi Dasar (11)
   SearchIcon,
@@ -482,37 +483,13 @@ export function IconDemo() {
       {/* Responsive Icons Grid: 2 cols di mobile, 3 di sm, 4 di md, 6 di lg */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
         {filteredIcons.map(({ name, Component }) => (
-          <button
+          <IconCard
             key={name}
-            type="button"
-            onClick={() => handleCopyJSX(name)}
-            title={t("content.iconDemo.clickToCopy", {
-              name,
-              size: previewSize,
-              defaultValue: `Klik untuk copy <${name} size={${previewSize}} />`,
-            })}
-            className="relative flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-neutral-200/80 bg-white shadow-xs transition hover:border-blue-400 hover:shadow-md dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-blue-500 group cursor-pointer text-left"
-          >
-            {/* Visual Icon Preview */}
-            <div className="flex h-12 w-12 items-center justify-center text-neutral-700 dark:text-neutral-300 transition duration-200 group-hover:scale-115 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-              <Component size={previewSize} />
-            </div>
-
-            {/* Icon Name Label */}
-            <span className="text-[11px] font-mono font-medium text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-200 text-center truncate max-w-full px-1">
-              {name}
-            </span>
-
-            {/* Click-to-copy Success Overlay Toast */}
-            {copiedIcon === name && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-2xl bg-neutral-900/95 text-white backdrop-blur-xs shadow-lg animate-in fade-in zoom-in-95 duration-150">
-                <CheckIcon size={20} className="text-emerald-400" />
-                <span className="text-[11px] font-medium tracking-wide">
-                  {t("content.iconDemo.copied", "Copied!")}
-                </span>
-              </div>
-            )}
-          </button>
+            name={name}
+            icon={<Component size={previewSize} />}
+            jsxContent={`<${name} size={${previewSize}} />`}
+            className="p-5"
+          />
         ))}
       </div>
     </div>

@@ -11,6 +11,8 @@ import { ToastAnimationPage } from "./pages/ToastAnimationPage";
 import { ModalAnimationPage } from "./pages/ModalAnimationPage";
 import { MarqueeAnimationPage } from "./pages/MarqueeAnimationPage";
 import { TimelineAnimationPage } from "./pages/TimelineAnimationPage";
+import { TreeMenuPage } from "./pages/TreeMenuPage";
+import { DropdownPage } from "./pages/DropdownPage";
 import { ToastProvider } from "../src/components/ToastAnimation";
 
 export function App() {
@@ -54,6 +56,14 @@ export function App() {
             id: "timeline-animation",
             label: t("sidebar.components.timeline", "Timeline"),
           },
+          {
+            id: "tree-menu",
+            label: t("sidebar.components.treeMenu", "Tree Menu"),
+          },
+          {
+            id: "dropdown-animation",
+            label: t("sidebar.components.dropdown", "Dropdown"),
+          },
         ],
       },
       {
@@ -80,6 +90,8 @@ export function App() {
       "modal-animation",
       "marquee-animation",
       "timeline-animation",
+      "tree-menu",
+      "dropdown-animation",
       "web-icons",
       "search-animation",
     ];
@@ -125,6 +137,10 @@ export function App() {
         return <MarqueeAnimationPage />;
       case "timeline-animation":
         return <TimelineAnimationPage />;
+      case "tree-menu":
+        return <TreeMenuPage />;
+      case "dropdown-animation":
+        return <DropdownPage />;
       case "web-icons":
         return <WebIconsPage />;
       default:
@@ -146,4 +162,3 @@ export function App() {
     </ThemeProvider>
   );
 }
-

@@ -1,59 +1,86 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export interface CodeSnippetProps {
+export interface MultiCodeSnippetProps {
   /**
-   * String kode yang akan ditampilkan dan disalin ke clipboard.
+   * String kode langsung (single snippet mode)
    */
   code?: string;
   /**
-   * Dukungan backward-compatibility jika komponen menerima objek codeBlocks.
+   * Blok kode multi-framework (React, Vue, Laravel)
    */
   codeBlocks?: {
     react?: string;
     vue?: string;
     laravel?: string;
-    [key: string]: any;
+    [key: string]: string | undefined;
   };
   /**
-   * ClassName utility Tailwind kustom untuk kontainer terluar.
+   * Judul opsional di header blok kode
+   */
+  title?: string;
+  /**
+   * ClassName utility Tailwind kustom untuk kontainer terluar
    */
   className?: string;
 }
 
-/**
- * Komponen CodeSnippet Standar (Navbar / Button Spec):
- * - Wrapper: relative rounded-xl border border-neutral-200/80 bg-neutral-100/70 p-3.5 font-mono text-xs dark:border-neutral-800/80 dark:bg-neutral-900/70 text-neutral-800 dark:text-neutral-200
- * - Header: flex items-center justify-between mb-1.5 text-[11px] font-sans text-neutral-500 dark:text-neutral-400
- * - Tombol: rounded-md border border-neutral-200 bg-white px-2.5 py-1 text-[11px] font-medium text-neutral-600 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:text-white transition shadow-xs cursor-pointer
- * - Pre: overflow-x-auto m-0 py-1 text-[11px] leading-relaxed
- */
-export const CodeSnippet: React.FC<CodeSnippetProps> = ({
+export type FrameworkTab = "react" | "vue" | "laravel" | string;
+
+export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
   code,
   codeBlocks,
+  title,
   className = "",
 }) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState<boolean>(false);
 
-  // Ambil string kode: props.code > props.codeBlocks.react > fallback string pertama
-  const displayCode =
-    code ??
-    codeBlocks?.react ??
-    (codeBlocks ? Object.values(codeBlocks).find((c) => typeof c === "string") : "") ??
-    "";
+  // Tentukan daftar tab yang tersedia berdasarkan codeBlocks
+  const availableTabs = codeBlocks
+    ? (Object.keys(codeBlocks).filter(
+        (key) => Boolean(codeBlocks[key])
+      ) as FrameworkTab[])
+    : [];
 
-  // Handler salin kode ke clipboard dengan feedback status
+  const hasMultipleTabs = availableTabs.length > 1;
+
+  // Tab aktif (default "react" atau tab pertama yang ada)
+  const [activeTab, setActiveTab] = useState<FrameworkTab>(
+    availableTabs.includes("react")
+      ? "react"
+      : availableTabs[0] ?? "react"
+  );
+
+  // Dapatkan kode yang sedang aktif
+  const currentCode =
+    (codeBlocks && codeBlocks[activeTab]) ||
+    code ||
+    (codeBlocks?.react ?? "");
+
+  // Label nama framework untuk tab
+  const getTabLabel = (tab: string) => {
+    switch (tab) {
+      case "react":
+        return "React";
+      case "vue":
+        return "Vue 3";
+      case "laravel":
+        return "Laravel (Blade)";
+      default:
+        return tab.toUpperCase();
+    }
+  };
+
   const handleCopy = async () => {
-    if (!displayCode) return;
+    if (!currentCode) return;
     try {
-      await navigator.clipboard.writeText(displayCode);
+      await navigator.clipboard.writeText(currentCode);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      // Fallback jika API clipboard diblokir oleh browser
       const textArea = document.createElement("textarea");
-      textArea.value = displayCode;
+      textArea.value = currentCode;
       document.body.appendChild(textArea);
       textArea.select();
       document.execCommand("copy");
@@ -65,31 +92,100 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
 
   return (
     <div
-      className={`relative rounded-xl border border-neutral-200/80 bg-neutral-100/70 p-3.5 font-mono text-xs dark:border-neutral-800/80 dark:bg-neutral-900/70 text-neutral-800 dark:text-neutral-200 ${className}`}
+      className={`relative rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 overflow-hidden font-mono text-xs shadow-xs transition-colors ${className}`}
     >
-      <div className="flex items-center justify-between mb-1.5 text-[11px] font-sans text-neutral-500 dark:text-neutral-400">
-        <span className="font-medium">
-          {t("common.usageSnippet", { defaultValue: "Usage Snippet" })}
-        </span>
+      {/* Header Bar */}
+      <div className="flex items-center justify-between px-3.5 py-2 bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 select-none">
+        <div className="flex items-center gap-2">
+          {title && (
+            <span className="font-sans text-xs font-semibold text-zinc-700 dark:text-zinc-300 mr-2">
+              {title}
+            </span>
+          )}
+
+          {/* Tab Framework Buttons */}
+          {hasMultipleTabs && (
+            <div className="flex items-center gap-1 bg-zinc-200/70 dark:bg-zinc-800/80 p-0.5 rounded-lg">
+              {availableTabs.map((tab) => {
+                const isActive = activeTab === tab;
+                return (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-2.5 py-1 rounded-md text-[11px] font-sans font-medium transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 shadow-xs"
+                        : "text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100"
+                    }`}
+                  >
+                    {getTabLabel(tab)}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {!hasMultipleTabs && !title && (
+            <span className="font-sans text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
+              {t("common.usageSnippet", { defaultValue: "Usage Snippet" })}
+            </span>
+          )}
+        </div>
+
+        {/* Copy Button */}
         <button
           type="button"
           onClick={handleCopy}
           aria-label="Copy code to clipboard"
-          className="rounded-md border border-neutral-200 bg-white px-2.5 py-1 text-[11px] font-medium text-neutral-600 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:text-white transition shadow-xs cursor-pointer"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-sans font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80 transition cursor-pointer"
         >
-          {copied
-            ? t("common.copied", { defaultValue: "✓ Disalin" })
-            : t("common.copy", { defaultValue: "Salin" })}
+          {copied ? (
+            <>
+              <svg
+                className="w-3.5 h-3.5 text-emerald-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span className="text-emerald-600 dark:text-emerald-400">
+                {t("common.copied", { defaultValue: "Disalin!" })}
+              </span>
+            </>
+          ) : (
+            <>
+              <svg
+                className="w-3.5 h-3.5 opacity-70"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              </svg>
+              <span>{t("common.copy", { defaultValue: "Salin" })}</span>
+            </>
+          )}
         </button>
       </div>
-      <pre className="overflow-x-auto m-0 py-1 text-[11px] leading-relaxed">
-        <code>{displayCode}</code>
+
+      {/* Code Body */}
+      <pre className="overflow-x-auto p-4 m-0 text-[11px] leading-relaxed text-zinc-800 dark:text-zinc-300 font-mono">
+        <code>{currentCode}</code>
       </pre>
     </div>
   );
 };
 
-// Export alias untuk backward-compatibility
-export const MultiCodeSnippet = CodeSnippet;
-export type MultiCodeSnippetProps = CodeSnippetProps;
-export default CodeSnippet;
+// Aliases for backward compatibility
+export const CodeSnippet = MultiCodeSnippet;
+export type CodeSnippetProps = MultiCodeSnippetProps;
+export default MultiCodeSnippet;

@@ -70,7 +70,7 @@ export function DocsLayout({
           {/* Right Header: Version Pill & Theme Toggle */}
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline-flex items-center rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-mono font-medium text-neutral-600 border border-neutral-200/80 dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800">
-              v0.1.0
+              v0.1.2
             </span>
 
             {/* Language Dropdown (ID / EN) */}
