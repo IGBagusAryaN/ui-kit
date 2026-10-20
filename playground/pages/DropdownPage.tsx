@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { DropdownDemo } from "./DropdownDemo";
 import { CodeBlock } from "../components/CodeBlock";
@@ -6,24 +6,28 @@ import { CodeBlock } from "../components/CodeBlock";
 export function DropdownPage() {
   const { t } = useTranslation();
 
-  const sampleUsage = `import { AnimatedDropdown, DropdownItem } from "@bgsaryzzz/ui";
+  const sampleUsage = useMemo(
+    () => `import { AnimatedDropdown, DropdownItem } from "@bgsaryzzz/ui";
 
 const items: DropdownItem[] = [
-  { id: "1", label: "Production", badge: "Live" },
-  { id: "2", label: "Staging" },
-  { id: "3", label: "Development" },
+  { id: "1", label: "${t("content.dropdownDemo.data.context.items.prod.label", "Production (us-east-1)")}", badge: "${t("content.dropdownDemo.data.context.items.prod.badge", "Live")}" },
+  { id: "2", label: "${t("content.dropdownDemo.data.context.items.staging.label", "Staging (eu-central-1)")}" },
+  { id: "3", label: "${t("content.dropdownDemo.data.context.items.dev.label", "Development (ap-southeast-1)")}" },
 ];
 
 export function App() {
   return (
     <AnimatedDropdown
-      variant="floating"
+      variant="context"
       items={items}
-      triggerLabel="Pilih Environment"
+      triggerLabel="${t("content.dropdownDemo.data.context.triggerLabel", "Pilih Environment")}"
+      align="center"
       onItemClick={(item) => console.log(item)}
     />
   );
-}`;
+}`,
+    [t]
+  );
 
   return (
     <div className="space-y-12 pb-16">
@@ -38,7 +42,7 @@ export function App() {
         <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           {t(
             "content.dropdownDemo.pageDesc",
-            "Komponen multi-varian dropdown modern dengan 5 variasi animasi: 1. Tree (Nested Explorer), 2. Context (Floating Select dengan staggered entrance), 3. Mega (Stripe 2-column grid dengan spring physics), 4. Profile (GitHub user menu dengan destructive logout), dan 5. Command (Raycast search menu dengan keyboard shortcuts)."
+            "Koleksi 4 variasi dropdown modern dengan micro-animations fluida: Context & Select Menu (Floating Select dengan staggered entrance), Mega Menu (Stripe 2-column feature grid), User Profile Menu (GitHub/Linear user account & settings), dan Command Menu (Raycast keyboard-driven search menu)."
           )}
         </p>
       </div>
@@ -59,16 +63,16 @@ export function App() {
       {/* Props Reference Table */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Props Reference
+          {t("common.propsReference", "Props Reference")}
         </h2>
         <div className="overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-800">
           <table className="w-full text-left text-sm text-neutral-600 dark:text-neutral-400">
             <thead className="border-b border-neutral-200 bg-neutral-50 text-xs uppercase font-medium text-neutral-500 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
               <tr>
-                <th className="px-4 py-3">Prop</th>
-                <th className="px-4 py-3">Type</th>
-                <th className="px-4 py-3">Default</th>
-                <th className="px-4 py-3">Description</th>
+                <th className="px-4 py-3">{t("common.propHeader", "Prop")}</th>
+                <th className="px-4 py-3">{t("common.typeHeader", "Type")}</th>
+                <th className="px-4 py-3">{t("common.defaultHeader", "Default")}</th>
+                <th className="px-4 py-3">{t("common.descHeader", "Description")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
@@ -77,11 +81,14 @@ export function App() {
                   variant
                 </td>
                 <td className="px-4 py-3 font-mono text-xs text-amber-600 dark:text-amber-400">
-                  "tree" | "context" | "mega" | "profile" | "command"
+                  "context" | "mega" | "profile" | "command"
                 </td>
-                <td className="px-4 py-3 font-mono text-xs">"tree"</td>
+                <td className="px-4 py-3 font-mono text-xs">"context"</td>
                 <td className="px-4 py-3">
-                  Pilihan 5 variasi tata letak dan animasi dropdown modern.
+                  {t(
+                    "content.dropdownDemo.propsTable.variant",
+                    "Pilihan 4 variasi tata letak dan animasi dropdown modern."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -93,7 +100,10 @@ export function App() {
                 </td>
                 <td className="px-4 py-3 font-mono text-xs">required</td>
                 <td className="px-4 py-3">
-                  Daftar elemen menu beserta properti label, icon, subtitle, badge, dan children.
+                  {t(
+                    "content.dropdownDemo.propsTable.items",
+                    "Daftar elemen menu beserta properti label, icon, subtitle, badge, dan children."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -105,7 +115,10 @@ export function App() {
                 </td>
                 <td className="px-4 py-3 font-mono text-xs">undefined</td>
                 <td className="px-4 py-3">
-                  Elemen tombol pembuka kustom untuk varian floating dan mega.
+                  {t(
+                    "content.dropdownDemo.propsTable.trigger",
+                    "Elemen tombol pembuka kustom untuk varian floating dan mega."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -115,9 +128,14 @@ export function App() {
                 <td className="px-4 py-3 font-mono text-xs text-amber-600 dark:text-amber-400">
                   string
                 </td>
-                <td className="px-4 py-3 font-mono text-xs">"Pilih Opsi"</td>
+                <td className="px-4 py-3 font-mono text-xs">
+                  "{t("content.dropdownDemo.data.context.triggerLabel", "Pilih Environment")}"
+                </td>
                 <td className="px-4 py-3">
-                  Teks tombol default jika prop trigger tidak disediakan.
+                  {t(
+                    "content.dropdownDemo.propsTable.triggerLabel",
+                    "Teks tombol default jika prop trigger tidak disediakan."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -127,9 +145,12 @@ export function App() {
                 <td className="px-4 py-3 font-mono text-xs text-amber-600 dark:text-amber-400">
                   "left" | "right" | "center"
                 </td>
-                <td className="px-4 py-3 font-mono text-xs">"left"</td>
+                <td className="px-4 py-3 font-mono text-xs">"center"</td>
                 <td className="px-4 py-3">
-                  Alignment posisi popover terhadap tombol trigger.
+                  {t(
+                    "content.dropdownDemo.propsTable.align",
+                    "Alignment posisi popover terhadap tombol trigger."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -141,7 +162,10 @@ export function App() {
                 </td>
                 <td className="px-4 py-3 font-mono text-xs">undefined</td>
                 <td className="px-4 py-3">
-                  ID item yang sedang aktif (controlled active state).
+                  {t(
+                    "content.dropdownDemo.propsTable.activeId",
+                    "ID item yang sedang aktif (controlled active state)."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -153,7 +177,10 @@ export function App() {
                 </td>
                 <td className="px-4 py-3 font-mono text-xs">undefined</td>
                 <td className="px-4 py-3">
-                  Callback ketika salah satu item diklik oleh pengguna.
+                  {t(
+                    "content.dropdownDemo.propsTable.onItemClick",
+                    "Callback ketika salah satu item diklik oleh pengguna."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -165,7 +192,10 @@ export function App() {
                 </td>
                 <td className="px-4 py-3 font-mono text-xs">undefined</td>
                 <td className="px-4 py-3">
-                  Data profil pengguna (name, email, avatarUrl, fallback) khusus varian profile.
+                  {t(
+                    "content.dropdownDemo.propsTable.profile",
+                    "Data profil pengguna (name, email, avatarUrl, fallback) khusus varian profile."
+                  )}
                 </td>
               </tr>
               <tr>
@@ -175,9 +205,14 @@ export function App() {
                 <td className="px-4 py-3 font-mono text-xs text-amber-600 dark:text-amber-400">
                   string
                 </td>
-                <td className="px-4 py-3 font-mono text-xs">"Type a command..."</td>
+                <td className="px-4 py-3 font-mono text-xs">
+                  "{t("content.dropdownDemo.data.command.searchPlaceholder", "Type a command...")}"
+                </td>
                 <td className="px-4 py-3">
-                  Placeholder input pencarian khusus untuk varian command palette.
+                  {t(
+                    "content.dropdownDemo.propsTable.searchPlaceholder",
+                    "Placeholder input pencarian khusus untuk varian command palette."
+                  )}
                 </td>
               </tr>
             </tbody>
@@ -189,4 +224,3 @@ export function App() {
 }
 
 export default DropdownPage;
-

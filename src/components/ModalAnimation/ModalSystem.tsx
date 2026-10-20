@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CloseIcon,
@@ -60,6 +61,24 @@ function useModalAccessibility(
   }, [isOpen, handleKeyDown]);
 }
 
+/**
+ * Helper Portal wrapper to render modal overlays into document.body,
+ * avoiding any layout boundary, clipping, or sticky navbar stacking context issues.
+ */
+export function ModalPortal({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(children, document.body);
+}
+
 /* =========================================================================
  * 3. VARIANT 1: STANDARD CONFIRMATION (ModalConfirm)
  * Alert klasik di tengah layar dengan ikon peringatan, judul, deskripsi,
@@ -93,23 +112,24 @@ export function ModalConfirm({
   useModalAccessibility(isOpen, onClose, closeOnEscape);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          {/* Backdrop Transparan / Blur */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => {
-              if (closeOnBackdropClick) onClose();
-            }}
-            className={cn(
-              "fixed inset-0 bg-neutral-950/60 backdrop-blur-xs",
-              backdropClassName
-            )}
-          />
+    <ModalPortal>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop Transparan / Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => {
+                if (closeOnBackdropClick) onClose();
+              }}
+              className={cn(
+                "fixed inset-0 bg-neutral-950/60 backdrop-blur-xs",
+                backdropClassName
+              )}
+            />
 
           {/* Kotak Modal Dialog */}
           <motion.div
@@ -184,6 +204,7 @@ export function ModalConfirm({
         </div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }
 
@@ -222,7 +243,7 @@ export function ModalForm({
   subtitle,
   cancelLabel = "Batal",
   saveLabel = "Simpan Perubahan",
-  initialValues = { name: "Arya Wijaya", email: "arya@example.com", role: "Design Architect" },
+  initialValues = { name: "John Doe", email: "arya@example.com", role: "Design Architect" },
   labels = { name: "Nama Lengkap", email: "Alamat Email", role: "Peran / Role" },
   placeholders = { name: "Masukkan nama Anda", email: "nama@perusahaan.com" },
   onSubmit,
@@ -248,23 +269,24 @@ export function ModalForm({
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          {/* Backdrop Transparan / Blur */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => {
-              if (closeOnBackdropClick) onClose();
-            }}
-            className={cn(
-              "fixed inset-0 bg-neutral-950/60 backdrop-blur-xs",
-              backdropClassName
-            )}
-          />
+    <ModalPortal>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop Transparan / Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => {
+                if (closeOnBackdropClick) onClose();
+              }}
+              className={cn(
+                "fixed inset-0 bg-neutral-950/60 backdrop-blur-xs",
+                backdropClassName
+              )}
+            />
 
           {/* Kotak Modal Form */}
           <motion.div
@@ -374,6 +396,7 @@ export function ModalForm({
         </div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }
 
@@ -408,35 +431,36 @@ export function ModalDrawer({
   useModalAccessibility(isOpen, onClose, closeOnEscape);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end">
-          {/* Backdrop Transparan / Blur */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={() => {
-              if (closeOnBackdropClick) onClose();
-            }}
-            className={cn(
-              "fixed inset-0 bg-neutral-950/60 backdrop-blur-xs",
-              backdropClassName
-            )}
-          />
+    <ModalPortal>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 top-0 left-0 right-0 bottom-0 z-[100] flex justify-end overflow-hidden">
+            {/* Backdrop Transparan / Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => {
+                if (closeOnBackdropClick) onClose();
+              }}
+              className={cn(
+                "fixed inset-0 top-0 left-0 right-0 bottom-0 bg-neutral-950/60 backdrop-blur-xs",
+                backdropClassName
+              )}
+            />
 
-          {/* Drawer Sheet 100% Height */}
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 360, damping: 32 }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative flex h-full w-full max-w-md flex-col border-l border-neutral-200/90 bg-white shadow-2xl dark:border-neutral-800/90 dark:bg-neutral-900 z-10"
-          >
+            {/* Drawer Sheet 100% Height */}
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 360, damping: 32 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative flex h-full h-screen max-h-screen w-full max-w-md flex-col border-l border-neutral-200/90 bg-white shadow-2xl dark:border-neutral-800/90 dark:bg-neutral-900 z-10"
+            >
             {/* Header Drawer */}
             <div className="flex items-center justify-between border-b border-neutral-200/80 px-6 py-5 dark:border-neutral-800/80">
               <div className="flex items-center gap-3">
@@ -495,6 +519,7 @@ export function ModalDrawer({
         </div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }
 
@@ -525,9 +550,10 @@ export function ModalBottomSheet({
   useModalAccessibility(isOpen, onClose, closeOnEscape);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center">
+    <ModalPortal>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-[100] flex items-end justify-center">
           {/* Backdrop Transparan / Blur */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -600,6 +626,7 @@ export function ModalBottomSheet({
         </div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }
 
@@ -630,9 +657,10 @@ export function ModalMedia({
   useModalAccessibility(isOpen, onClose, closeOnEscape);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
+    <ModalPortal>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8">
           {/* Backdrop Sangat Gelap Khusus Media (bg-black/90) */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -701,5 +729,6 @@ export function ModalMedia({
         </div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }

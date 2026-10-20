@@ -8,10 +8,12 @@ export const resources = {
     translation: {
       sidebar: {
         gettingStarted: "Memulai",
+        introduction: "Pengenalan",
         installation: "Instalasi",
         components: {
           title: "Komponen",
           button: "Tombol",
+          advancedButtons: "Tombol Animasi",
           navbar: "Navbar",
           toast: "Toast",
           modal: "Modal",
@@ -36,7 +38,6 @@ export const resources = {
         modal: "Modal",
         marquee: "Marquee",
         timeline: "Timeline",
-        treeMenu: "Tree Menu",
         dropdown: "Dropdown",
       },
       common: {
@@ -47,6 +48,11 @@ export const resources = {
         preview: "Pratinjau Interaktif",
         usage: "Cara Penggunaan",
         props: "Properti",
+        propsReference: "Referensi Props",
+        propHeader: "Properti",
+        typeHeader: "Tipe",
+        defaultHeader: "Bawaan",
+        descHeader: "Deskripsi",
         searchPlaceholder: "Cari komponen atau ikon...",
         search: "Cari",
         close: "Tutup",
@@ -69,6 +75,34 @@ export const resources = {
         docs: "dokumentasi",
       },
       content: {
+        introduction: {
+          badge: "✨ @bgsaryzzz/ui v0.1.2 kini telah tersedia",
+          titleLine1: "Animate Your Interfaces,",
+          titleLine2: "Modern React UI Kit",
+          desc: "Koleksi komponen antarmuka web modern dengan animasi mikro fluida berbasis Framer Motion dan styling Tailwind CSS yang bebas dari dependensi kaku. Siap salin-tempel ke proyek Anda.",
+          browseComponents: "Browse Components",
+          installationGuide: "Installation Guide",
+          showcase: {
+            buttonAnimation: "ButtonAnimation",
+            holdingToConfirm: "Tahan untuk Konfirmasi",
+            confirmed: "Terkonfirmasi",
+            componentsFolder: "komponen",
+            treeItem1: "ButtonAnimation.tsx",
+            treeItem2: "AnimatedDropdown.tsx",
+            treeItem3: "ToastProvider.tsx",
+            telemetryTitle: "Telemetry & Physics",
+            fps: "60 FPS",
+            physics: "Spring Interpolation",
+            physicsDetail: "stiffness: 300 • damping: 20",
+            toggleState: "Micro-interactions: On",
+          },
+          cards: {
+            card1Title: "Zero Dependency Lock-in",
+            card1Desc: "Salin kodenya, sesuaikan class Tailwind, dan jadikan milik proyek Anda sendiri.",
+            card2Title: "Fluid Animations",
+            card2Desc: "Ditenagai oleh Framer Motion untuk interaksi micro-animations yang sangat halus.",
+          },
+        },
         installation: {
           badge: "Memulai",
           title: "Instalasi",
@@ -512,25 +546,113 @@ export const resources = {
             bentoGrid: "Bento Grid",
           },
         },
-                treeMenuDemo: {
-          badge: "Navigasi",
-          pageTitle: "Animated Tree Menu",
-          pageDesc: "Komponen navigasi hierarkis modern terinspirasi Notion dan Linear. Dilengkapi garis panduan vertikal, animasi expand/collapse mulus Framer Motion, rotasi chevron otomatis, badge angka, dan rendering rekursif.",
-          variant1: {
-            badge: "Navigasi Sidebar",
-            title: "1. Department Directory (Parent-Child Hierarchy)",
-            desc: "Parent 'DEPARTMENTS' yang dapat di-klik untuk membuka/menutup daftar tim turunan. Dilengkapi garis vertikal hierarki, chevron rotasi dinamis, dan badge angka di sisi kanan.",
-          },
         dropdownDemo: {
           badge: "Overlay & Navigasi",
           pageTitle: "Animated Dropdown",
           pageDesc:
-            "Komponen multi-varian dropdown modern dengan 3 variasi animasi: Sidebar (Notion-style nested accordion), Floating (Vercel-style popover dengan staggered entrance), dan Mega (Stripe-style menu dengan title, subtitle, dan spring physics).",
-        },
-          variant2: {
-            badge: "Hierarki Bertingkat",
-            title: "2. Deep Nested Workspace (Infinite Recursion)",
-            desc: "Hierarki berkas proyek bertingkat (Level 0 → Level 1 → Level 2) dengan garis pemandu rekursif yang secara otomatis berindentasi sesuai kedalaman folder.",
+            "Koleksi 4 variasi dropdown modern dengan micro-animations fluida: Context & Select Menu (Floating Select dengan staggered entrance), Mega Menu (Stripe 2-column feature grid), User Profile Menu (GitHub/Linear user account & settings), dan Command Menu (Raycast keyboard-driven search menu).",
+          searchPlaceholder: "Cari variasi dropdown (contoh: 'context', 'mega', 'profile', 'command', 'select')...",
+          collectionTitle: "Koleksi Variasi Dropdown Animasi:",
+          showingCount: "Menampilkan {{count}} dari {{total}} variasi dropdown interaktif.",
+          statusBadge: "Floating & Click-Outside Handled",
+          emptySearch: "Tidak ditemukan variasi dropdown dengan kata kunci \"{{query}}\"",
+          resetSearch: "Reset pencarian",
+          variants: {
+            context: {
+              title: "1. Context & Select Menu (Floating Popover)",
+              badge: "Floating Staggered",
+              desc: "Menu mengambang adaptif ala Vercel untuk pemilihan environment atau opsi cepat dengan checkmark status aktif, animasi staggered halus, dan auto-close saat klik di luar.",
+            },
+            mega: {
+              title: "2. Mega Menu (2-Column Feature Grid)",
+              badge: "Stripe Style Grid",
+              desc: "Panel navigasi dua kolom ala Stripe dengan kartu berikon, subtitle penjelasan, badge fitur baru, dan footer aksi dengan transisi spring physics.",
+            },
+            profile: {
+              title: "3. User Profile Menu (Account & Settings)",
+              badge: "Avatar Popover",
+              desc: "Menu akun pengguna ala GitHub & Linear dengan avatar header, nama & email pengguna, navigasi profil, pengaturan, dan tombol logout destruktif.",
+            },
+            command: {
+              title: "4. Command Search Menu (Raycast Palette)",
+              badge: "Keyboard Shortcuts",
+              desc: "Dropdown pencarian aksi cepat ala Raycast dengan input search instan, pengelompokan aksi, dan badge shortcut keyboard.",
+            },
+          },
+          data: {
+            context: {
+              triggerLabel: "Pilih Environment",
+              items: {
+                prod: { label: "Production (us-east-1)", badge: "Live" },
+                staging: { label: "Staging (eu-central-1)", badge: "v2.4" },
+                dev: { label: "Development (ap-southeast-1)" },
+                preview: { label: "Preview Branch (Ephemeral)" },
+              },
+            },
+            mega: {
+              triggerLabel: "Semua Solusi & Fitur",
+              items: {
+                payments: {
+                  label: "Payments & Billing",
+                  subtitle: "Infrastruktur pemrosesan transaksi global & multi-mata uang.",
+                  badge: "Populer",
+                },
+                connect: {
+                  label: "Instant Connect",
+                  subtitle: "Routing pembayaran marketplace & split fee otomatis.",
+                },
+                vault: {
+                  label: "Cloud Vault",
+                  subtitle: "Enkripsi zero-knowledge & penyimpanan token PCI-DSS.",
+                },
+                shield: {
+                  label: "Fraud Shield",
+                  subtitle: "Deteksi anomali berbasis AI & machine learning realtime.",
+                  badge: "AI",
+                },
+                analytics: {
+                  label: "Deep Analytics",
+                  subtitle: "Insight metrik churn, MRR, dan visualisasi retensi pengguna.",
+                },
+                deploy: {
+                  label: "Edge Network",
+                  subtitle: "Jaringan server CDN 280+ PoP di seluruh dunia.",
+                },
+              },
+            },
+            profile: {
+              name: "John Doe",
+              email: "John Doe",
+              status: "Pro Member",
+              items: {
+                profile: { label: "Profil Akun" },
+                settings: { label: "Pengaturan Workspace" },
+                keys: { label: "API Credentials", badge: "Aktif" },
+                logout: { label: "Keluar Akun" },
+              },
+            },
+            command: {
+              triggerLabel: "Ketik perintah... (⌘K)",
+              searchPlaceholder: "Cari perintah atau aksi cepat...",
+              items: {
+                newProject: { label: "Buat Proyek Baru" },
+                inviteMember: { label: "Undang Anggota Tim" },
+                deployProd: { label: "Deploy ke Produksi" },
+                securityAudit: { label: "Jalankan Audit Keamanan" },
+                systemPrefs: { label: "Preferensi Sistem" },
+              },
+            },
+          },
+          propsTable: {
+            variant: "Pilihan 4 variasi tata letak dan animasi dropdown modern.",
+            items: "Daftar elemen menu beserta properti label, icon, subtitle, badge, dan children.",
+            trigger: "Elemen tombol pembuka kustom untuk varian floating dan mega.",
+            triggerLabel: "Teks tombol default jika prop trigger tidak disediakan.",
+            align: "Alignment posisi popover terhadap tombol trigger.",
+            activeId: "ID item yang sedang aktif (controlled active state).",
+            onItemClick: "Callback ketika salah satu item diklik oleh pengguna.",
+            profile: "Data profil pengguna (name, email, avatarUrl, fallback) khusus varian profile.",
+            searchPlaceholder: "Placeholder input pencarian khusus untuk varian command palette.",
           },
         },
         timelineDemo: {
@@ -764,11 +886,13 @@ export const resources = {
   en: {
     translation: {
       sidebar: {
-        gettingStarted: "Getting Started",
+        gettingStarted: "Get Started",
+        introduction: "Introduction",
         installation: "Installation",
         components: {
           title: "Components",
           button: "Button",
+          advancedButtons: "Advanced Buttons",
           navbar: "Navbar",
           toast: "Toast",
           modal: "Modal",
@@ -781,7 +905,7 @@ export const resources = {
         },
       },
       nav: {
-        gettingStarted: "Getting Started",
+        gettingStarted: "Get Started",
         installation: "Installation",
         components: "Components",
         button: "Button",
@@ -793,7 +917,6 @@ export const resources = {
         modal: "Modal",
         marquee: "Marquee",
         timeline: "Timeline",
-        treeMenu: "Tree Menu",
         dropdown: "Dropdown",
       },
       common: {
@@ -804,6 +927,11 @@ export const resources = {
         preview: "Interactive Preview",
         usage: "Usage",
         props: "Props",
+        propsReference: "Props Reference",
+        propHeader: "Prop",
+        typeHeader: "Type",
+        defaultHeader: "Default",
+        descHeader: "Description",
         searchPlaceholder: "Search components or icons...",
         search: "Search",
         close: "Close",
@@ -826,8 +954,36 @@ export const resources = {
         docs: "docs",
       },
       content: {
+        introduction: {
+          badge: "✨ @bgsaryzzz/ui v0.1.2 is now available",
+          titleLine1: "Animate Your Interfaces,",
+          titleLine2: "Modern React UI Kit",
+          desc: "A high-end collection of modern web components featuring silky Framer Motion micro-animations and zero-dependency Tailwind CSS styling. Built for copy-paste flexibility.",
+          browseComponents: "Browse Components",
+          installationGuide: "Installation Guide",
+          showcase: {
+            buttonAnimation: "ButtonAnimation",
+            holdingToConfirm: "Hold to Confirm",
+            confirmed: "Confirmed",
+            componentsFolder: "components",
+            treeItem1: "ButtonAnimation.tsx",
+            treeItem2: "AnimatedDropdown.tsx",
+            treeItem3: "ToastProvider.tsx",
+            telemetryTitle: "Telemetry & Physics",
+            fps: "60 FPS",
+            physics: "Spring Interpolation",
+            physicsDetail: "stiffness: 300 • damping: 20",
+            toggleState: "Micro-interactions: On",
+          },
+          cards: {
+            card1Title: "Zero Dependency Lock-in",
+            card1Desc: "Copy the code, tweak the Tailwind classes, and make it your own.",
+            card2Title: "Fluid Animations",
+            card2Desc: "Powered by Framer Motion for buttery smooth interactions.",
+          },
+        },
         installation: {
-          badge: "Getting Started",
+          badge: "Get Started",
           title: "Installation",
           description: "Step-by-step guide to installing and configuring the @bgsaryzzz/ui UI Component Library in your React, Vite, or Next.js project.",
           step1: {
@@ -1268,25 +1424,113 @@ export const resources = {
             bentoGrid: "Bento Grid",
           },
         },
-                treeMenuDemo: {
-          badge: "Navigation",
-          pageTitle: "Animated Tree Menu",
-          pageDesc: "Modern hierarchical navigation component inspired by Notion and Linear. Features vertical guidelines, fluid Framer Motion expand/collapse animations, automatic chevron rotation, numeric badges, and recursive rendering.",
-          variant1: {
-            badge: "Sidebar Navigation",
-            title: "1. Department Directory (Parent-Child Hierarchy)",
-            desc: "Parent 'DEPARTMENTS' clickable to expand/collapse child team items. Features vertical hierarchy guide rail, dynamic rotating chevron, and right-aligned numeric badges.",
-          },
         dropdownDemo: {
           badge: "Overlay & Navigation",
           pageTitle: "Animated Dropdown",
           pageDesc:
-            "Modern multi-variant animated dropdown component with 3 variations: Sidebar (Notion-style nested accordion), Floating (Vercel-style popover with staggered entrance), and Mega (Stripe-style menu with title, subtitle, and spring physics).",
-        },
-          variant2: {
-            badge: "Multi-Level Hierarchy",
-            title: "2. Deep Nested Workspace (Infinite Recursion)",
-            desc: "Deep project file explorer hierarchy (Level 0 → Level 1 → Level 2) with recursive guide rail dynamically indented by nesting depth.",
+            "Collection of 4 modern animated dropdown variations with fluid micro-interactions: Context & Select Menu (Floating Select with staggered entrance), Mega Menu (Stripe 2-column feature grid), User Profile Menu (GitHub/Linear user account & settings), and Command Menu (Raycast keyboard-driven search menu).",
+          searchPlaceholder: "Search dropdown variations (e.g., 'context', 'mega', 'profile', 'command', 'select')...",
+          collectionTitle: "Animated Dropdown Variations Collection:",
+          showingCount: "Showing {{count}} of {{total}} interactive dropdown variations.",
+          statusBadge: "Floating & Click-Outside Handled",
+          emptySearch: "No dropdown variations found matching \"{{query}}\"",
+          resetSearch: "Reset search",
+          variants: {
+            context: {
+              title: "1. Context & Select Menu (Floating Popover)",
+              badge: "Floating Staggered",
+              desc: "Adaptive floating popover menu ala Vercel for environment selection or quick actions with active status checkmark, smooth staggered entrance, and click-outside dismissal.",
+            },
+            mega: {
+              title: "2. Mega Menu (2-Column Feature Grid)",
+              badge: "Stripe Style Grid",
+              desc: "Two-column navigation panel ala Stripe with rich icon cards, descriptive subtitles, new feature badges, and action footer with spring physics.",
+            },
+            profile: {
+              title: "3. User Profile Menu (Account & Settings)",
+              badge: "Avatar Popover",
+              desc: "User account menu ala GitHub & Linear featuring user avatar header, name & email, profile links, settings, and destructive logout item.",
+            },
+            command: {
+              title: "4. Command Search Menu (Raycast Palette)",
+              badge: "Keyboard Shortcuts",
+              desc: "Quick action search dropdown ala Raycast with instant search input, action grouping, and keyboard shortcut badges.",
+            },
+          },
+          data: {
+            context: {
+              triggerLabel: "Select Environment",
+              items: {
+                prod: { label: "Production (us-east-1)", badge: "Live" },
+                staging: { label: "Staging (eu-central-1)", badge: "v2.4" },
+                dev: { label: "Development (ap-southeast-1)" },
+                preview: { label: "Preview Branch (Ephemeral)" },
+              },
+            },
+            mega: {
+              triggerLabel: "All Solutions & Features",
+              items: {
+                payments: {
+                  label: "Payments & Billing",
+                  subtitle: "Global transaction processing & multi-currency infrastructure.",
+                  badge: "Popular",
+                },
+                connect: {
+                  label: "Instant Connect",
+                  subtitle: "Marketplace payment routing & automated split fees.",
+                },
+                vault: {
+                  label: "Cloud Vault",
+                  subtitle: "Zero-knowledge encryption & PCI-DSS token storage.",
+                },
+                shield: {
+                  label: "Fraud Shield",
+                  subtitle: "Real-time AI & machine learning anomaly detection.",
+                  badge: "AI",
+                },
+                analytics: {
+                  label: "Deep Analytics",
+                  subtitle: "Churn metrics, MRR insights, and user retention visualization.",
+                },
+                deploy: {
+                  label: "Edge Network",
+                  subtitle: "Global 280+ PoP CDN edge network server mesh.",
+                },
+              },
+            },
+            profile: {
+              name: "John Doe",
+              email: "John Doe",
+              status: "Pro Member",
+              items: {
+                profile: { label: "Account Profile" },
+                settings: { label: "Workspace Settings" },
+                keys: { label: "API Credentials", badge: "Active" },
+                logout: { label: "Log Out" },
+              },
+            },
+            command: {
+              triggerLabel: "Type a command... (⌘K)",
+              searchPlaceholder: "Search commands or quick actions...",
+              items: {
+                newProject: { label: "Create New Project" },
+                inviteMember: { label: "Invite Team Member" },
+                deployProd: { label: "Deploy to Production" },
+                securityAudit: { label: "Run Security Audit" },
+                systemPrefs: { label: "System Preferences" },
+              },
+            },
+          },
+          propsTable: {
+            variant: "Choice of 4 modern dropdown layout and animation variations.",
+            items: "List of menu items with label, icon, subtitle, badge, and children properties.",
+            trigger: "Custom trigger button element for floating and mega variants.",
+            triggerLabel: "Default button text if trigger prop is not provided.",
+            align: "Popover position alignment relative to trigger button.",
+            activeId: "Currently active item ID (controlled active state).",
+            onItemClick: "Callback triggered when a menu item is clicked by the user.",
+            profile: "User profile data (name, email, avatarUrl, fallback) for profile variant.",
+            searchPlaceholder: "Search input placeholder specifically for command palette variant.",
           },
         },
 timelineDemo: {

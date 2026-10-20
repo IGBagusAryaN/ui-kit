@@ -382,7 +382,7 @@ const ContextVariant: React.FC<{
   onClose,
   activeId,
   onItemClick,
-  align = "left",
+  align = "center",
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -395,9 +395,9 @@ const ContextVariant: React.FC<{
   const alignClasses =
     align === "right"
       ? "right-0"
-      : align === "center"
-      ? "left-1/2 -translate-x-1/2"
-      : "left-0";
+      : align === "left"
+      ? "left-0"
+      : "left-1/2 -translate-x-1/2";
 
   return (
     <div
@@ -435,15 +435,16 @@ const ContextVariant: React.FC<{
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            variants={contextContainerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            style={{ transformOrigin: "top" }}
-            className={`absolute z-50 mt-2 min-w-[210px] w-60 rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-1.5 shadow-2xl backdrop-blur-md ${alignClasses}`}
-          >
-            <div className="space-y-0.5">
+          <div className={`absolute z-50 mt-2 ${alignClasses}`}>
+            <motion.div
+              variants={contextContainerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ transformOrigin: "top center" }}
+              className="min-w-[210px] w-60 rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-1.5 shadow-2xl backdrop-blur-md"
+            >
+              <div className="space-y-0.5">
               {items.map((item) => {
                 const isItemActive = activeId
                   ? activeId === item.id
@@ -495,8 +496,9 @@ const ContextVariant: React.FC<{
               })}
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
+    </AnimatePresence>
     </div>
   );
 };
@@ -525,7 +527,7 @@ const MegaVariant: React.FC<{
   onClose,
   activeId,
   onItemClick,
-  align = "left",
+  align = "center",
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -534,9 +536,9 @@ const MegaVariant: React.FC<{
   const alignClasses =
     align === "right"
       ? "right-0"
-      : align === "center"
-      ? "left-1/2 -translate-x-1/2"
-      : "left-0";
+      : align === "left"
+      ? "left-0"
+      : "left-1/2 -translate-x-1/2";
 
   return (
     <div
@@ -571,18 +573,20 @@ const MegaVariant: React.FC<{
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{
-              type: "spring",
-              stiffness: 420,
-              damping: 26,
-              mass: 0.8,
-            }}
-            className={`absolute z-50 mt-2.5 w-[22rem] sm:w-[32rem] md:w-[36rem] rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-3 shadow-2xl backdrop-blur-md ${alignClasses}`}
-          >
+          <div className={`absolute z-50 mt-2.5 ${alignClasses}`}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: -12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -10 }}
+              transition={{
+                type: "spring",
+                stiffness: 420,
+                damping: 26,
+                mass: 0.8,
+              }}
+              style={{ transformOrigin: "top center" }}
+              className="w-[22rem] sm:w-[32rem] md:w-[36rem] rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-3 shadow-2xl backdrop-blur-md"
+            >
             {/* Grid 2 Kolom ala Stripe */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {items.map((item) => {
@@ -644,10 +648,11 @@ const MegaVariant: React.FC<{
               })}
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+        </div>
+      )}
+    </AnimatePresence>
+  </div>
+);
 };
 
 /* =========================================================================
@@ -668,7 +673,7 @@ const ProfileVariant: React.FC<{
 }> = ({
   items,
   profile = {
-    name: "Arya Wijaya",
+    name: "John Doe",
     email: "arya@engineering.acme.co",
     avatarFallback: "AW",
     status: "Lead Architect",
@@ -679,18 +684,18 @@ const ProfileVariant: React.FC<{
   onClose,
   activeId,
   onItemClick,
-  align = "right",
+  align = "center",
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useClickOutside(containerRef, onClose, isOpen);
 
   const alignClasses =
-    align === "left"
+    align === "right"
+      ? "right-0"
+      : align === "left"
       ? "left-0"
-      : align === "center"
-      ? "left-1/2 -translate-x-1/2"
-      : "right-0";
+      : "left-1/2 -translate-x-1/2";
 
   return (
     <div
@@ -726,13 +731,15 @@ const ProfileVariant: React.FC<{
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -6 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -6 }}
-            transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className={`absolute z-50 mt-2 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-1.5 shadow-2xl backdrop-blur-md ${alignClasses}`}
-          >
+          <div className={`absolute z-50 mt-2 ${alignClasses}`}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -6 }}
+              transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformOrigin: "top center" }}
+              className="w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-1.5 shadow-2xl backdrop-blur-md"
+            >
             {/* Profile Header Box */}
             <div className="px-3 py-2.5 mb-1 border-b border-zinc-200/80 dark:border-zinc-800/80">
               <div className="flex items-center gap-2.5">
@@ -800,10 +807,11 @@ const ProfileVariant: React.FC<{
               })}
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+        </div>
+      )}
+    </AnimatePresence>
+  </div>
+);
 };
 
 /* =========================================================================
@@ -832,7 +840,7 @@ const CommandVariant: React.FC<{
   onClose,
   activeId,
   onItemClick,
-  align = "left",
+  align = "center",
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -865,9 +873,9 @@ const CommandVariant: React.FC<{
   const alignClasses =
     align === "right"
       ? "right-0"
-      : align === "center"
-      ? "left-1/2 -translate-x-1/2"
-      : "left-0";
+      : align === "left"
+      ? "left-0"
+      : "left-1/2 -translate-x-1/2";
 
   return (
     <div
@@ -893,13 +901,15 @@ const CommandVariant: React.FC<{
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -8 }}
-            transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className={`absolute z-50 mt-2 w-72 sm:w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 shadow-2xl backdrop-blur-md overflow-hidden ${alignClasses}`}
-          >
+          <div className={`absolute z-50 mt-2 ${alignClasses}`}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -8 }}
+              transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformOrigin: "top center" }}
+              className="w-72 sm:w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 shadow-2xl backdrop-blur-md overflow-hidden"
+            >
             {/* Search Input Bar (Raycast Style) */}
             <div className="flex items-center gap-2 px-3.5 py-2.5 border-b border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30">
               <SearchIcon className="w-4 h-4 text-zinc-400 shrink-0" />
@@ -972,10 +982,11 @@ const CommandVariant: React.FC<{
               )}
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+        </div>
+      )}
+    </AnimatePresence>
+  </div>
+);
 };
 
 /* =========================================================================
@@ -993,7 +1004,7 @@ const CommandVariant: React.FC<{
  * 5. "command": Raycast Style Menu (Built-in search input, scrollable list, keyboard shortcuts)
  */
 export const AnimatedDropdown: React.FC<AnimatedDropdownProps> = ({
-  variant = "tree",
+  variant = "context",
   items,
   trigger,
   triggerLabel,
@@ -1005,7 +1016,7 @@ export const AnimatedDropdown: React.FC<AnimatedDropdownProps> = ({
   activeId,
   onItemClick,
   className = "",
-  align = "left",
+  align = "center",
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState<boolean>(defaultOpen);
   const isControlled = controlledIsOpen !== undefined;

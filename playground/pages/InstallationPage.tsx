@@ -59,7 +59,7 @@ export default function Header() {
       {/* Title Section */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
-          <span>{t("content.installation.badge", "Getting Started")}</span>
+          <span>{t("content.installation.badge", "Get Started")}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-950 dark:text-neutral-50">
           {t("content.installation.title", "Installation")}

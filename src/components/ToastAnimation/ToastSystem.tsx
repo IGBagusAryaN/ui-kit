@@ -38,6 +38,8 @@ export interface ToastItemData {
   type: ToastType;
   title?: string;
   message: string;
+  /** Posisi penempatan toast khusus */
+  position?: ToastPosition;
   /** Durasi tampilan sebelum auto-dismiss dalam milidetik (default: 4000ms, 0 untuk manual dismiss) */
   duration?: number;
   /** Konfigurasi tombol aksi untuk ToastAction */
@@ -55,6 +57,8 @@ export interface ToastOptions {
   title?: string;
   /** Durasi tayang toast sebelum hilang otomatis (ms) */
   duration?: number;
+  /** Posisi penempatan toast khusus (e.g. 'top-right', 'bottom-center') */
+  position?: ToastPosition;
   /** Opsi tombol aksi sekunder */
   action?: ToastActionOptions;
   /** Kustom ID untuk toast */
@@ -164,6 +168,7 @@ export function ToastProvider({
         title: options?.title,
         message,
         duration: options?.duration ?? defaultDuration,
+        position: options?.position,
         action: options?.action,
         createdAt: Date.now(),
         ...extra,
@@ -283,14 +288,30 @@ export function ToastProvider({
     dismissAll,
   };
 
+  const ALL_POSITIONS: ToastPosition[] = [
+    "top-left",
+    "top-center",
+    "top-right",
+    "bottom-left",
+    "bottom-center",
+    "bottom-right",
+  ];
+
   return (
     <ToastContext.Provider value={{ toasts, toast: toastMethods }}>
       {children}
-      <ToastContainer
-        toasts={toasts}
-        position={position}
-        onDismiss={dismiss}
-      />
+      {ALL_POSITIONS.map((pos) => {
+        const posToasts = toasts.filter((t) => (t.position || position) === pos);
+        if (posToasts.length === 0) return null;
+        return (
+          <ToastContainer
+            key={pos}
+            toasts={posToasts}
+            position={pos}
+            onDismiss={dismiss}
+          />
+        );
+      })}
     </ToastContext.Provider>
   );
 }
