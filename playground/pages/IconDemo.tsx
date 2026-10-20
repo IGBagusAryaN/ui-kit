@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { IconCard } from "../../src/components/IconCard";
 import {
   // 1. Navigasi Dasar (11)
   SearchIcon,
@@ -134,6 +135,37 @@ import {
   MoonIcon,
   GlobeIcon,
   ThermometerIcon,
+  // 11. Tambahan 30 Ikon Web Esensial Baru
+  EyeIcon,
+  EyeOffIcon,
+  HeartIcon,
+  BookmarkIcon,
+  FilterIcon,
+  SlidersIcon,
+  HelpCircleIcon,
+  AlertCircleIcon,
+  XCircleIcon,
+  CheckSquareIcon,
+  SquareIcon,
+  ToggleLeftIcon,
+  ToggleRightIcon,
+  PrinterIcon,
+  ArchiveIcon,
+  InboxIcon,
+  PaperclipIcon,
+  WifiIcon,
+  WifiOffIcon,
+  BluetoothIcon,
+  CpuIcon,
+  ServerIcon,
+  ShuffleIcon,
+  RepeatIcon,
+  Volume1Icon,
+  TrendingUpIcon,
+  TrendingDownIcon,
+  BarChart2Icon,
+  PieChartIcon,
+  SparklesIcon,
   IconProps,
 } from "../../src/icons";
 
@@ -300,6 +332,38 @@ export const ALL_ICONS: IconItem[] = [
   { name: "MoonIcon", categoryKey: "timeLocation", Component: MoonIcon, tags: ["moon", "bulan", "dark", "night", "malam"] },
   { name: "GlobeIcon", categoryKey: "timeLocation", Component: GlobeIcon, tags: ["globe", "dunia", "earth", "bumi", "world", "international"] },
   { name: "ThermometerIcon", categoryKey: "timeLocation", Component: ThermometerIcon, tags: ["thermometer", "termometer", "suhu", "cuaca", "temperatur", "panas", "dingin"] },
+
+  // 11. Tambahan 30 Ikon Web Esensial Baru
+  { name: "EyeIcon", categoryKey: "userAccount", Component: EyeIcon, tags: ["eye", "mata", "lihat", "view", "show", "password", "buka"] },
+  { name: "EyeOffIcon", categoryKey: "userAccount", Component: EyeOffIcon, tags: ["eye off", "mata tertutup", "hide", "sembunyi", "secret", "password"] },
+  { name: "HeartIcon", categoryKey: "actionInteraction", Component: HeartIcon, tags: ["heart", "hati", "love", "suka", "favorite", "favorit", "like"] },
+  { name: "BookmarkIcon", categoryKey: "actionInteraction", Component: BookmarkIcon, tags: ["bookmark", "mark", "penanda", "simpan", "save", "baca nanti"] },
+  { name: "FilterIcon", categoryKey: "actionInteraction", Component: FilterIcon, tags: ["filter", "saring", "corong", "sort", "kategori", "funnel"] },
+  { name: "SlidersIcon", categoryKey: "systemFeedback", Component: SlidersIcon, tags: ["sliders", "pengaturan", "controls", "preferensi", "eq", "adjust"] },
+  { name: "HelpCircleIcon", categoryKey: "systemFeedback", Component: HelpCircleIcon, tags: ["help", "bantuan", "tanya", "faq", "question", "support"] },
+  { name: "AlertCircleIcon", categoryKey: "systemFeedback", Component: AlertCircleIcon, tags: ["alert", "circle", "error", "peringatan", "danger", "warning"] },
+  { name: "XCircleIcon", categoryKey: "systemFeedback", Component: XCircleIcon, tags: ["cancel", "silang", "x circle", "close", "batal", "stop", "failed"] },
+  { name: "CheckSquareIcon", categoryKey: "actionInteraction", Component: CheckSquareIcon, tags: ["check", "centang", "kotak", "checkbox", "done", "selesai", "task"] },
+  { name: "SquareIcon", categoryKey: "actionInteraction", Component: SquareIcon, tags: ["square", "kotak", "uncheck", "empty", "box"] },
+  { name: "ToggleLeftIcon", categoryKey: "systemFeedback", Component: ToggleLeftIcon, tags: ["toggle", "left", "switch off", "mati", "nonaktif", "disable"] },
+  { name: "ToggleRightIcon", categoryKey: "systemFeedback", Component: ToggleRightIcon, tags: ["toggle", "right", "switch on", "nyala", "aktif", "enable"] },
+  { name: "PrinterIcon", categoryKey: "deviceHardware", Component: PrinterIcon, tags: ["printer", "cetak", "print", "dokumen", "hardcopy"] },
+  { name: "ArchiveIcon", categoryKey: "mediaDocument", Component: ArchiveIcon, tags: ["archive", "arsip", "simpan", "storage", "box", "gudang"] },
+  { name: "InboxIcon", categoryKey: "communication", Component: InboxIcon, tags: ["inbox", "kotak masuk", "surat", "mail", "pesan"] },
+  { name: "PaperclipIcon", categoryKey: "communication", Component: PaperclipIcon, tags: ["paperclip", "lampiran", "attach", "attachment", "klip"] },
+  { name: "WifiIcon", categoryKey: "deviceHardware", Component: WifiIcon, tags: ["wifi", "internet", "wireless", "jaringan", "sinyal", "online"] },
+  { name: "WifiOffIcon", categoryKey: "deviceHardware", Component: WifiOffIcon, tags: ["wifi off", "no internet", "offline", "terputus", "sinyal hilang"] },
+  { name: "BluetoothIcon", categoryKey: "deviceHardware", Component: BluetoothIcon, tags: ["bluetooth", "nirkabel", "pairing", "connect", "koneksi"] },
+  { name: "CpuIcon", categoryKey: "deviceHardware", Component: CpuIcon, tags: ["cpu", "processor", "prosesor", "chip", "hardware", "kinerja"] },
+  { name: "ServerIcon", categoryKey: "deviceHardware", Component: ServerIcon, tags: ["server", "hosting", "rack", "backend", "cloud", "database"] },
+  { name: "ShuffleIcon", categoryKey: "mediaDocument", Component: ShuffleIcon, tags: ["shuffle", "acak", "random", "music", "lagu", "playlist"] },
+  { name: "RepeatIcon", categoryKey: "mediaDocument", Component: RepeatIcon, tags: ["repeat", "ulang", "loop", "putar ulang", "music"] },
+  { name: "Volume1Icon", categoryKey: "mediaDocument", Component: Volume1Icon, tags: ["volume", "audio", "suara rendah", "sound", "speaker"] },
+  { name: "TrendingUpIcon", categoryKey: "ecommerceFinance", Component: TrendingUpIcon, tags: ["trending up", "naik", "profit", "untung", "growth", "saham", "bullish"] },
+  { name: "TrendingDownIcon", categoryKey: "ecommerceFinance", Component: TrendingDownIcon, tags: ["trending down", "turun", "rugi", "drop", "loss", "bearish"] },
+  { name: "BarChart2Icon", categoryKey: "ecommerceFinance", Component: BarChart2Icon, tags: ["chart", "grafik", "diagram", "statistik", "bar", "analytics"] },
+  { name: "PieChartIcon", categoryKey: "ecommerceFinance", Component: PieChartIcon, tags: ["pie chart", "diagram lingkaran", "persentase", "statistik", "rasio"] },
+  { name: "SparklesIcon", categoryKey: "actionInteraction", Component: SparklesIcon, tags: ["sparkles", "kilau", "bintang", "ai", "magic", "fitur baru", "clean"] },
 ];
 
 export function IconDemo() {
@@ -482,37 +546,13 @@ export function IconDemo() {
       {/* Responsive Icons Grid: 2 cols di mobile, 3 di sm, 4 di md, 6 di lg */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
         {filteredIcons.map(({ name, Component }) => (
-          <button
+          <IconCard
             key={name}
-            type="button"
-            onClick={() => handleCopyJSX(name)}
-            title={t("content.iconDemo.clickToCopy", {
-              name,
-              size: previewSize,
-              defaultValue: `Klik untuk copy <${name} size={${previewSize}} />`,
-            })}
-            className="relative flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-neutral-200/80 bg-white shadow-xs transition hover:border-blue-400 hover:shadow-md dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-blue-500 group cursor-pointer text-left"
-          >
-            {/* Visual Icon Preview */}
-            <div className="flex h-12 w-12 items-center justify-center text-neutral-700 dark:text-neutral-300 transition duration-200 group-hover:scale-115 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-              <Component size={previewSize} />
-            </div>
-
-            {/* Icon Name Label */}
-            <span className="text-[11px] font-mono font-medium text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-200 text-center truncate max-w-full px-1">
-              {name}
-            </span>
-
-            {/* Click-to-copy Success Overlay Toast */}
-            {copiedIcon === name && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-2xl bg-neutral-900/95 text-white backdrop-blur-xs shadow-lg animate-in fade-in zoom-in-95 duration-150">
-                <CheckIcon size={20} className="text-emerald-400" />
-                <span className="text-[11px] font-medium tracking-wide">
-                  {t("content.iconDemo.copied", "Copied!")}
-                </span>
-              </div>
-            )}
-          </button>
+            name={name}
+            icon={<Component size={previewSize} />}
+            jsxContent={`<${name} size={${previewSize}} />`}
+            className="p-5"
+          />
         ))}
       </div>
     </div>
