@@ -14,7 +14,13 @@ import { ModalAnimationPage } from "./pages/ModalAnimationPage";
 import { MarqueeAnimationPage } from "./pages/MarqueeAnimationPage";
 import { TimelineAnimationPage } from "./pages/TimelineAnimationPage";
 import { DropdownPage } from "./pages/DropdownPage";
+import { AnimatedAccordionDemo } from "./pages/AnimatedAccordionDemo";
+import { AdvancedCarouselDemo } from "./pages/AdvancedCarouselDemo";
+import { AutoCarouselDemo } from "./pages/AutoCarouselDemo";
+import { AnimatedDatepickerDemo } from "./pages/AnimatedDatepickerDemo";
+import { AnimatedTabsDemo } from "./pages/AnimatedTabsDemo";
 import { ToastProvider } from "../src/components/ToastAnimation";
+import { FloatingFeedback } from "./components/FloatingFeedback";
 
 export function App() {
   const { t } = useTranslation();
@@ -69,6 +75,26 @@ export function App() {
             id: "dropdown-animation",
             label: t("sidebar.components.dropdown", "Dropdown"),
           },
+          {
+            id: "accordion-animation",
+            label: t("sidebar.components.accordion", "Accordion"),
+          },
+          {
+            id: "carousel-animation",
+            label: t("sidebar.components.carousel", "Carousel"),
+          },
+          {
+            id: "auto-carousel-animation",
+            label: t("sidebar.components.autoCarousel", "Auto Carousel"),
+          },
+          {
+            id: "datepicker-animation",
+            label: t("sidebar.components.datepicker", "Animated Datepicker"),
+          },
+          {
+            id: "tabs-animation",
+            label: t("sidebar.components.tabs", "Animated Tabs"),
+          },
         ],
       },
       {
@@ -94,6 +120,11 @@ export function App() {
       "advanced-buttons",
       "navbar-animation",
       "dropdown-animation",
+      "accordion-animation",
+      "carousel-animation",
+      "auto-carousel-animation",
+      "datepicker-animation",
+      "tabs-animation",
       "toast-animation",
       "modal-animation",
       "marquee-animation",
@@ -141,6 +172,16 @@ export function App() {
         return <NavbarAnimationPage />;
       case "dropdown-animation":
         return <DropdownPage />;
+      case "accordion-animation":
+        return <AnimatedAccordionDemo />;
+      case "carousel-animation":
+        return <AdvancedCarouselDemo />;
+      case "auto-carousel-animation":
+        return <AutoCarouselDemo />;
+      case "datepicker-animation":
+        return <AnimatedDatepickerDemo />;
+      case "tabs-animation":
+        return <AnimatedTabsDemo />;
       case "toast-animation":
         return <ToastAnimationPage />;
       case "modal-animation":
@@ -166,6 +207,7 @@ export function App() {
         >
           {renderContent()}
         </DocsLayout>
+        <FloatingFeedback />
       </ToastProvider>
     </ThemeProvider>
   );

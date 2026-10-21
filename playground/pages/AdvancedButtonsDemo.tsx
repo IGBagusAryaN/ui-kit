@@ -8,6 +8,18 @@ import {
 } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CodeSnippet } from "../components/CodeSnippet";
+import {
+    StarIcon,
+  ShieldCheckIcon,
+  UnlockIcon,
+  SendIcon,
+  CopyIcon,
+  CheckIcon,
+  ZapIcon,
+  SparklesIcon,
+  GlobeIcon,
+  CodeIcon,
+} from "../../src/icons";
 
 // ============================================================================
 // I18N LOCALIZATION DICTIONARY (ALL 8 ADVANCED BUTTONS)
@@ -15,10 +27,10 @@ import { CodeSnippet } from "../components/CodeSnippet";
 const BUTTONS_DICT = {
   en: {
     pillTag1: "State-Driven & Physics",
-    pillTag2: "8 Components",
+    pillTag2: "13 Components",
     pageTitle: "Advanced Animated Buttons",
     pageDescription:
-      "A high-end collection of 8 state-driven and physics-powered button architectures engineered with Framer Motion and Tailwind CSS. Built with precision gesture detection, layout morphing, 3D flips, and accessible spring physics.",
+      "A high-end collection of 13 state-driven and physics-powered button architectures engineered with Framer Motion and Tailwind CSS. Built with precision gesture detection, layout morphing, 3D flips, biometric scanning, confetti cannons, origami flight, and orbital action hubs.",
     cards: {
       hold: {
         title: "1. Hold to Confirm",
@@ -157,14 +169,94 @@ export function Example() {
   );
 }`,
       },
+      star: {
+        title: "9. Reaction Burst Upvote & Star Counter",
+        badge: "Radial Spark & Rolling Counter",
+        desc: "High-engagement social micro-interaction modeled after GitHub Star and Twitter/X Like. Clicking triggers a 360-degree radial explosion of 12 luminous sparks, an elastic star pop, and a rolling vertical numerical counter transition.",
+        snippet: `import { ReactionBurstButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <ReactionBurstButton
+      initialCount={1428}
+      label="Star"
+      activeLabel="Starred"
+      onToggle={(isStarred, count) => console.log(isStarred, count)}
+    />
+  );
+}`,
+      },
+      biometric: {
+        title: "10. Biometric Passkey & Laser Scanner Button",
+        badge: "Sonar Pulse & Laser Scanline",
+        desc: "Futuristic security authorization button inspired by Apple TouchID/FaceID and WebAuthn passkeys. Displays an animated neon laser scanline traversing a biometric fingerprint icon accompanied by expanding radar sonar rings.",
+        snippet: `import { BiometricAuthButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <BiometricAuthButton
+      label="Authenticate Passkey"
+      scanningLabel="Verifying Biometrics..."
+      successLabel="Access Granted"
+      onAuthSuccess={() => console.log("Passkey verified")}
+    />
+  );
+}`,
+      },
+      confetti: {
+        title: "11. Celebration Confetti Cannon Copy Button",
+        badge: "Physics Particle Cannon",
+        desc: "High-delight copy interaction for referral codes and API tokens. Alongside copying to the system clipboard, it fires a dynamic multi-colored confetti cannon using Framer Motion gravity and 3D rotational physics.",
+        snippet: `import { CopyConfettiButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <CopyConfettiButton
+      textToCopy="ARYA-UI-2026-VIP"
+      idleLabel="Copy Referral Code"
+      copiedLabel="Referral Code Copied!"
+    />
+  );
+}`,
+      },
+      origami: {
+        title: "12. Origami Paper Airplane Flight Button",
+        badge: "3D Origami Fold & Flight Trajectory",
+        desc: "Delightful feedback and messaging button. When triggered, the button body smoothly folds along 3D perspective creases into an origami paper airplane, tilts, and launches into the sky with trailing smoke puffs before stamping a confirmed delivery badge.",
+        snippet: `import { OrigamiPaperPlaneButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <OrigamiPaperPlaneButton
+      idleText="Send Message"
+      onSend={() => console.log("Message dispatched")}
+    />
+  );
+}`,
+      },
+      orbital: {
+        title: "13. Gravitational Orbit Satellite Action Hub",
+        badge: "Spatial Orbit & Proximity Magnet",
+        desc: "Advanced multi-action spatial hub inspired by canvas toolbars (Figma and Linear). A central glowing AI core deploys 4 floating satellite badges (Summarize, Translate, Refactor, Optimize) that orbit around the button and attract toward cursor proximity.",
+        snippet: `import { OrbitalActionHubButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <OrbitalActionHubButton
+      mainLabel="AI Copilot"
+      onSelectAction={(action) => console.log("Selected:", action.label)}
+    />
+  );
+}`,
+      },
     },
   },
   id: {
     pillTag1: "Berbasis State & Fisika",
-    pillTag2: "8 Komponen",
+    pillTag2: "13 Komponen",
     pageTitle: "Tombol Animasi Tingkat Lanjut",
     pageDescription:
-      "Koleksi premium 8 arsitektur tombol berbasis state dan fisika yang dirancang dengan Framer Motion dan Tailwind CSS. Dibangun dengan deteksi gestur presisi tinggi, perubahan bentuk (morphing) tata letak, rotasi 3D, dan fisika pegas mulus.",
+      "Koleksi premium 13 arsitektur tombol berbasis state dan fisika yang dirancang dengan Framer Motion dan Tailwind CSS. Dibangun dengan deteksi gestur presisi tinggi, perubahan bentuk (morphing) tata letak, pemindaian biometrik, meriam confetti, pesawat origami, dan hub aksi satelit orbital.",
     cards: {
       hold: {
         title: "1. Tahan untuk Konfirmasi (Hold to Confirm)",
@@ -299,6 +391,86 @@ export function Example() {
       downloadingText="Mengunduh"
       successText="Unduhan Selesai!"
       onComplete={() => console.log("Paket berhasil diunduh")}
+    />
+  );
+}`,
+      },
+      star: {
+        title: "9. Tombol Bintang / Upvote dengan Ledakan Partikel (Reaction Burst)",
+        badge: "Percikan 360° & Counter Bergulir",
+        desc: "Mikro-interaksi sosial tingkat tinggi ala GitHub Star dan Twitter/X Like. Saat diklik, tombol menembakkan 12 partikel percikan emas radial 360 derajat, memantulkan ikon bintang secara elastis, dan menggulirkan angka counter secara vertikal.",
+        snippet: `import { ReactionBurstButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <ReactionBurstButton
+      initialCount={1428}
+      label="Bintang"
+      activeLabel="Berbintang"
+      onToggle={(isStarred, count) => console.log(isStarred, count)}
+    />
+  );
+}`,
+      },
+      biometric: {
+        title: "10. Pemindai Biometrik & Passkey Laser (Biometric Scanner)",
+        badge: "Gelombang Sonar & Sinar Laser",
+        desc: "Tombol otorisasi keamanan futuristik yang terinspirasi dari Apple TouchID/FaceID dan WebAuthn passkey. Menampilkan sinar laser neon yang menyapu ikon sidik jari secara vertikal disertai gelombang sonar radar melingkar.",
+        snippet: `import { BiometricAuthButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <BiometricAuthButton
+      label="Otentikasi Passkey"
+      scanningLabel="Memindai Biometrik..."
+      successLabel="Akses Diberikan!"
+      onAuthSuccess={() => console.log("Passkey terverifikasi")}
+    />
+  );
+}`,
+      },
+      confetti: {
+        title: "11. Tombol Salin dengan Meriam Confetti Ceria (Confetti Cannon Copy)",
+        badge: "Fisika Partikel Gravitasi 3D",
+        desc: "Interaksi penyalinan penuh kepuasan (delight factor) untuk kode promo, token API, atau tautan undangan. Selain menyalin ke papan klip, tombol menembakkan puluhan keping confetti aneka warna yang melayang dengan simulasi gravitasi dan rotasi 3D.",
+        snippet: `import { CopyConfettiButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <CopyConfettiButton
+      textToCopy="ARYA-UI-2026-VIP"
+      idleLabel="Salin Kode Undangan"
+      copiedLabel="Kode Berhasil Disalin! 🎉"
+    />
+  );
+}`,
+      },
+      origami: {
+        title: "12. Tombol Pesawat Kertas Origami 3D (Origami Flight)",
+        badge: "Lipatan 3D & Jejak Asap Meluncur",
+        desc: "Tombol kirim pesan penuh kejutan visual. Saat diklik, bodi tombol melipat secara 3D menjadi pesawat kertas origami, memiringkan sayap, dan melesat terbang ke udara dengan partikel jejak asap sebelum memunculkan stempel sukses terkirim.",
+        snippet: `import { OrigamiPaperPlaneButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <OrigamiPaperPlaneButton
+      idleText="Kirim Pesan"
+      onSend={() => console.log("Pesan diluncurkan")}
+    />
+  );
+}`,
+      },
+      orbital: {
+        title: "13. Hub Aksi Satelit Gravitasi Orbital (Orbital Action Hub)",
+        badge: "Orbit Spasial & Magnet Proksimitas",
+        desc: "Hub multi-aksi spasial yang terinspirasi dari kanvas desain modern (Figma & Linear). Inti tombol AI di tengah meluncurkan 4 lencana satelit (Ringkas, Terjemahkan, Refactor, Optimasi) yang mengorbit secara halus dan membesar saat didekati kursor.",
+        snippet: `import { OrbitalActionHubButton } from "@bgsaryzzz/ui";
+
+export function Example() {
+  return (
+    <OrbitalActionHubButton
+      mainLabel="AI Copilot"
+      onSelectAction={(action) => console.log("Dipilih:", action.label)}
     />
   );
 }`,
@@ -1321,8 +1493,765 @@ export function DownloadProgressButton({
   );
 }
 
+
 // ============================================================================
-// MAIN PAGE: AdvancedButtonsDemo (Single Column Layout with All 8 Components)
+// 9. <ReactionBurstButton /> (Radial Spark & Rolling Counter Upvote)
+// ============================================================================
+interface SparkParticle {
+  id: number;
+  angle: number;
+  distance: number;
+  size: number;
+  color: string;
+}
+
+export interface ReactionBurstButtonProps {
+  initialCount?: number;
+  label?: string;
+  activeLabel?: string;
+  onToggle?: (isStarred: boolean, count: number) => void;
+  className?: string;
+}
+
+export function ReactionBurstButton({
+  initialCount = 1428,
+  label,
+  activeLabel,
+  onToggle,
+  className = "",
+}: ReactionBurstButtonProps) {
+  const { i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+
+  const defaultLabel = lang === "id" ? "Bintang" : "Star";
+  const defaultActive = lang === "id" ? "Berbintang" : "Starred";
+  const activeDefaultLabel = label ?? defaultLabel;
+  const activeActiveLabel = activeLabel ?? defaultActive;
+
+  const [isStarred, setIsStarred] = useState(false);
+  const [count, setCount] = useState(initialCount);
+  const [sparks, setSparks] = useState<SparkParticle[]>([]);
+
+  const colors = ["#f59e0b", "#fbbf24", "#fb923c", "#f43f5e", "#ec4899", "#8b5cf6"];
+
+  const handleClick = () => {
+    const nextState = !isStarred;
+    setIsStarred(nextState);
+    const nextCount = nextState ? count + 1 : count - 1;
+    setCount(nextCount);
+    if (onToggle) onToggle(nextState, nextCount);
+
+    if (nextState) {
+      const newSparks: SparkParticle[] = Array.from({ length: 12 }, (_, i) => ({
+        id: Date.now() + i,
+        angle: (i * 30 * Math.PI) / 180,
+        distance: Math.floor(Math.random() * 26) + 38,
+        size: Math.floor(Math.random() * 4) + 4,
+        color: colors[i % colors.length],
+      }));
+      setSparks(newSparks);
+      setTimeout(() => setSparks([]), 850);
+    } else {
+      setSparks([]);
+    }
+  };
+
+  return (
+    <div className={`inline-flex flex-col items-center gap-3 ${className}`}>
+      <div className="relative">
+        <AnimatePresence>
+          {sparks.map((spark) => {
+            const destX = Math.cos(spark.angle) * spark.distance;
+            const destY = Math.sin(spark.angle) * spark.distance;
+            return (
+              <motion.div
+                key={spark.id}
+                initial={{ opacity: 1, scale: 0, x: 0, y: 0 }}
+                animate={{
+                  opacity: [1, 1, 0],
+                  scale: [0, 1.4, 0.2],
+                  x: destX,
+                  y: destY,
+                }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.65, ease: "easeOut" }}
+                style={{
+                  position: "absolute",
+                  left: "30%",
+                  top: "50%",
+                  width: spark.size,
+                  height: spark.size,
+                  borderRadius: "50%",
+                  backgroundColor: spark.color,
+                  boxShadow: `0 0 10px ${spark.color}`,
+                  pointerEvents: "none",
+                  zIndex: 20,
+                }}
+              />
+            );
+          })}
+        </AnimatePresence>
+
+        <motion.button
+          type="button"
+          onClick={handleClick}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.94 }}
+          transition={{ type: "spring", stiffness: 450, damping: 20 }}
+          className={`relative z-10 flex items-center gap-3 px-5 py-3 rounded-2xl border font-semibold text-sm transition-all shadow-xs cursor-pointer select-none ${
+            isStarred
+              ? "bg-amber-500/10 border-amber-500/50 text-amber-700 dark:text-amber-300 shadow-[0_0_24px_rgba(245,158,11,0.25)]"
+              : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700"
+          }`}
+        >
+          <motion.div
+            animate={
+              isStarred
+                ? {
+                    scale: [1, 1.45, 0.9, 1.1, 1],
+                    rotate: [0, -28, 22, -10, 0],
+                  }
+                : { scale: 1, rotate: 0 }
+            }
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className="flex items-center justify-center"
+          >
+            <StarIcon
+              className={`w-5 h-5 transition-colors ${
+                isStarred
+                  ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)]"
+                  : "text-zinc-400 dark:text-zinc-500"
+              }`}
+            />
+          </motion.div>
+
+          <span className="font-medium text-xs sm:text-sm">
+            {isStarred ? activeActiveLabel : activeDefaultLabel}
+          </span>
+
+          <span className="h-4 w-px bg-zinc-200 dark:bg-zinc-800" />
+
+          <div className="relative overflow-hidden h-5 min-w-[42px] flex items-center justify-center font-mono text-xs font-bold">
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.span
+                key={count}
+                initial={{ y: isStarred ? 14 : -14, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: isStarred ? -14 : 14, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 450, damping: 25 }}
+                className={isStarred ? "text-amber-600 dark:text-amber-400" : "text-zinc-600 dark:text-zinc-400"}
+              >
+                {count.toLocaleString()}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+        </motion.button>
+      </div>
+
+      <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+        {isStarred
+          ? (lang === "id" ? "Bintang diberikan • Counter bertambah" : "Starred • Counter incremented with particle burst")
+          : (lang === "id" ? "Klik bintang untuk memicu reaksi partikel" : "Click star to trigger reaction burst")}
+      </span>
+    </div>
+  );
+}
+
+// ============================================================================
+// 10. <BiometricAuthButton /> (Passkey & Biometric Laser Scanner)
+// ============================================================================
+export type BiometricState = "idle" | "scanning" | "success";
+
+export interface BiometricAuthButtonProps {
+  label?: string;
+  scanningLabel?: string;
+  successLabel?: string;
+  onAuthSuccess?: () => void;
+  className?: string;
+}
+
+export function BiometricAuthButton({
+  label,
+  scanningLabel,
+  successLabel,
+  onAuthSuccess,
+  className = "",
+}: BiometricAuthButtonProps) {
+  const { i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+
+  const defaultLabel = lang === "id" ? "Otentikasi Passkey" : "Authenticate Passkey";
+  const defaultScanning = lang === "id" ? "Memindai Biometrik..." : "Verifying Biometrics...";
+  const defaultSuccess = lang === "id" ? "Akses Diberikan!" : "Access Granted!";
+
+  const activeLabel = label ?? defaultLabel;
+  const activeScanning = scanningLabel ?? defaultScanning;
+  const activeSuccess = successLabel ?? defaultSuccess;
+
+  const [state, setState] = useState<BiometricState>("idle");
+  const [scanPercent, setScanPercent] = useState(0);
+
+  const handleStartScan = () => {
+    if (state !== "idle") return;
+    setState("scanning");
+    setScanPercent(0);
+
+    const interval = setInterval(() => {
+      setScanPercent((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setState("success");
+          if (onAuthSuccess) onAuthSuccess();
+          return 100;
+        }
+        return prev + 12;
+      });
+    }, 150);
+  };
+
+  const handleReset = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setState("idle");
+    setScanPercent(0);
+  };
+
+  return (
+    <div className={`inline-flex flex-col items-center gap-3 ${className}`}>
+      <div className="relative">
+        {state === "scanning" && (
+          <>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0.8 }}
+              animate={{ scale: [1, 1.45, 1.8], opacity: [0.8, 0.4, 0] }}
+              transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
+              className="absolute inset-0 rounded-2xl bg-cyan-500/20 dark:bg-cyan-400/20 -z-10 pointer-events-none"
+            />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0.8 }}
+              animate={{ scale: [1, 1.3, 1.6], opacity: [0.6, 0.3, 0] }}
+              transition={{ duration: 1.4, repeat: Infinity, delay: 0.4, ease: "easeOut" }}
+              className="absolute inset-0 rounded-2xl bg-emerald-500/20 dark:bg-emerald-400/20 -z-10 pointer-events-none"
+            />
+          </>
+        )}
+
+        <motion.button
+          type="button"
+          onClick={handleStartScan}
+          disabled={state !== "idle"}
+          whileHover={state === "idle" ? { scale: 1.02 } : {}}
+          whileTap={state === "idle" ? { scale: 0.98 } : {}}
+          className={`relative overflow-hidden flex items-center gap-3 px-6 py-3.5 rounded-2xl font-semibold text-sm transition-all shadow-md select-none border ${
+            state === "idle"
+              ? "bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border-zinc-800 dark:border-zinc-200 cursor-pointer"
+              : state === "scanning"
+              ? "bg-zinc-950 text-cyan-400 border-cyan-500/50 shadow-[0_0_25px_rgba(6,182,212,0.3)] cursor-wait"
+              : "bg-emerald-500 text-white border-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.3)] cursor-default"
+          }`}
+        >
+          <div className="relative flex items-center justify-center w-6 h-6 overflow-hidden rounded-md">
+            {state === "idle" && (
+              <ShieldCheckIcon className="w-5 h-5 text-zinc-400 dark:text-zinc-500" />
+            )}
+
+            {state === "scanning" && (
+              <>
+                <svg className="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2a5 5 0 00-5 5v3a5 5 0 0010 0V7a5 5 0 00-5-5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 10v1a7 7 0 01-14 0v-1M12 18v4M8 22h8" />
+                </svg>
+                <motion.div
+                  animate={{ y: [-16, 16] }}
+                  transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                  className="absolute inset-x-0 h-0.5 bg-cyan-300 shadow-[0_0_8px_#22d3ee]"
+                />
+              </>
+            )}
+
+            {state === "success" && (
+              <motion.div
+                initial={{ scale: 0.4, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 450, damping: 20 }}
+              >
+                <UnlockIcon className="w-5 h-5 text-white" />
+              </motion.div>
+            )}
+          </div>
+
+          <span>
+            {state === "idle"
+              ? activeLabel
+              : state === "scanning"
+              ? `${activeScanning} ${Math.min(100, scanPercent)}%`
+              : activeSuccess}
+          </span>
+        </motion.button>
+      </div>
+
+      <div className="flex items-center gap-2 text-xs">
+        <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+          {state === "idle"
+            ? (lang === "id" ? "Tekan untuk memulai pemindaian biometrik" : "Press to initiate biometric passkey scan")
+            : state === "scanning"
+            ? (lang === "id" ? "Memverifikasi enkripsi hardware enclave..." : "Verifying secure hardware enclave...")
+            : (lang === "id" ? "Otentikasi berhasil • Token sesi diterbitkan" : "Authentication successful • Session token granted")}
+        </span>
+        {state === "success" && (
+          <button
+            type="button"
+            onClick={handleReset}
+            className="text-[11px] font-medium text-zinc-600 dark:text-zinc-300 hover:underline cursor-pointer"
+          >
+            Reset
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// 11. <CopyConfettiButton /> (Celebration Confetti Cannon Copy)
+// ============================================================================
+interface ConfettiPiece {
+  id: number;
+  x: number;
+  y: number;
+  rotateX: number;
+  rotateY: number;
+  rotateZ: number;
+  color: string;
+  shape: "circle" | "rect" | "strip";
+  scale: number;
+}
+
+export interface CopyConfettiButtonProps {
+  textToCopy?: string;
+  idleLabel?: string;
+  copiedLabel?: string;
+  className?: string;
+}
+
+export function CopyConfettiButton({
+  textToCopy = "ARYA-UI-2026-VIP",
+  idleLabel,
+  copiedLabel,
+  className = "",
+}: CopyConfettiButtonProps) {
+  const { i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+
+  const defaultIdle = lang === "id" ? "Salin Kode Undangan" : "Copy Invite Code";
+  const defaultCopied = lang === "id" ? "Kode Berhasil Disalin! 🎉" : "Code Copied to Clipboard! 🎉";
+
+  const activeIdle = idleLabel ?? defaultIdle;
+  const activeCopied = copiedLabel ?? defaultCopied;
+
+  const [isCopied, setIsCopied] = useState(false);
+  const [confetti, setConfetti] = useState<ConfettiPiece[]>([]);
+
+  const colors = ["#10b981", "#3b82f6", "#f59e0b", "#ec4899", "#8b5cf6", "#06b6d4"];
+  const shapes: Array<"circle" | "rect" | "strip"> = ["circle", "rect", "strip"];
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(textToCopy);
+    setIsCopied(true);
+
+    const pieces = Array.from({ length: 24 }, (_, i) => {
+      const spreadX = (Math.random() - 0.5) * 220;
+      const spreadY = -Math.floor(Math.random() * 90 + 70);
+      return {
+        id: Date.now() + i,
+        x: spreadX,
+        y: spreadY,
+        rotateX: Math.random() * 720,
+        rotateY: Math.random() * 720,
+        rotateZ: Math.random() * 720,
+        color: colors[i % colors.length],
+        shape: shapes[i % shapes.length],
+        scale: Math.random() * 0.5 + 0.7,
+      };
+    });
+
+    setConfetti(pieces);
+
+    setTimeout(() => {
+      setConfetti([]);
+    }, 1200);
+
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2600);
+  };
+
+  return (
+    <div className={`relative inline-flex flex-col items-center gap-3 ${className}`}>
+      <AnimatePresence>
+        {confetti.map((item) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 1, scale: 0, x: 0, y: 0 }}
+            animate={{
+              opacity: [1, 1, 0],
+              scale: [0, item.scale, item.scale * 0.8],
+              x: [0, item.x, item.x * 1.3],
+              y: [0, item.y, item.y + 110],
+              rotateX: item.rotateX,
+              rotateY: item.rotateY,
+              rotateZ: item.rotateZ,
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              position: "absolute",
+              top: "30%",
+              left: "50%",
+              width: item.shape === "strip" ? "12px" : "8px",
+              height: item.shape === "circle" ? "8px" : item.shape === "strip" ? "4px" : "8px",
+              borderRadius: item.shape === "circle" ? "50%" : "2px",
+              backgroundColor: item.color,
+              boxShadow: `0 0 6px ${item.color}`,
+              pointerEvents: "none",
+              zIndex: 30,
+            }}
+          />
+        ))}
+      </AnimatePresence>
+
+      <motion.button
+        type="button"
+        onClick={handleCopy}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.96 }}
+        className={`relative z-10 flex items-center gap-2.5 px-6 py-3.5 rounded-2xl font-semibold text-sm transition-all shadow-md select-none border cursor-pointer ${
+          isCopied
+            ? "bg-emerald-500 text-white border-emerald-500 shadow-[0_0_24px_rgba(16,185,129,0.35)]"
+            : "bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border-zinc-800 dark:border-zinc-200"
+        }`}
+      >
+        <AnimatePresence mode="wait">
+          {isCopied ? (
+            <motion.div
+              key="copied"
+              initial={{ scale: 0.5, rotate: -20 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0.5 }}
+              className="flex items-center gap-2"
+            >
+              <CheckIcon className="w-4 h-4 text-white stroke-[2.5]" />
+              <span>{activeCopied}</span>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="idle"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="flex items-center gap-2"
+            >
+              <CopyIcon className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+              <span>{activeIdle}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
+
+      <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+        {isCopied
+          ? (lang === "id" ? `Tersalin: "${textToCopy}"` : `Copied to clipboard: "${textToCopy}"`)
+          : (lang === "id" ? `Klik untuk menyalin "${textToCopy}" dengan ledakan confetti` : `Click to copy "${textToCopy}" with confetti cannon`)}
+      </span>
+    </div>
+  );
+}
+
+
+// ============================================================================
+// 12. <OrigamiPaperPlaneButton /> (3D Origami Fold & Flight Trajectory)
+// ============================================================================
+export interface OrigamiPaperPlaneButtonProps {
+  idleText?: string;
+  sendingText?: string;
+  successText?: string;
+  onSend?: () => void;
+  className?: string;
+}
+
+export function OrigamiPaperPlaneButton({
+  idleText,
+  sendingText,
+  successText,
+  onSend,
+  className = "",
+}: OrigamiPaperPlaneButtonProps) {
+  const { i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+
+  const defaultIdle = lang === "id" ? "Kirim Pesan" : "Send Message";
+  const defaultSending = lang === "id" ? "Meluncur..." : "Launching...";
+  const defaultSuccess = lang === "id" ? "Terkirim ke Cloud!" : "Dispatched to Cloud!";
+
+  const activeIdle = idleText ?? defaultIdle;
+  const activeSending = sendingText ?? defaultSending;
+  const activeSuccess = successText ?? defaultSuccess;
+
+  const [state, setState] = useState<"idle" | "launching" | "delivered">("idle");
+
+  const handleLaunch = () => {
+    if (state !== "idle") return;
+    setState("launching");
+    if (onSend) onSend();
+
+    setTimeout(() => {
+      setState("delivered");
+    }, 1400);
+
+    setTimeout(() => {
+      setState("idle");
+    }, 4200);
+  };
+
+  const handleReset = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setState("idle");
+  };
+
+  return (
+    <div className={`relative inline-flex flex-col items-center gap-3 ${className}`}>
+      <motion.div layout className="relative overflow-visible">
+        <AnimatePresence>
+          {state === "launching" && (
+            <motion.div
+              initial={{ x: 0, y: 0, scale: 0.8, rotate: -25, opacity: 1 }}
+              animate={{
+                x: [0, 40, 160, 260],
+                y: [0, -35, -120, -220],
+                scale: [0.8, 1.2, 0.9, 0.3],
+                rotate: [-25, -45, -35, -55],
+                opacity: [1, 1, 0.8, 0],
+              }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute left-1/2 top-1/2 -ml-4 -mt-4 z-40 pointer-events-none text-sky-400"
+            >
+              <SendIcon className="w-8 h-8 drop-shadow-[0_0_12px_rgba(56,189,248,0.7)]" />
+              <div className="absolute -left-3 top-4 flex gap-1">
+                <span className="w-2 h-2 rounded-full bg-sky-300/60 animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          {state === "idle" && (
+            <motion.button
+              key="idle"
+              type="button"
+              onClick={handleLaunch}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              className="flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-800 dark:border-zinc-200 font-semibold text-sm transition-colors shadow-md cursor-pointer select-none"
+            >
+              <SendIcon className="w-4 h-4 text-sky-400" />
+              <span>{activeIdle}</span>
+            </motion.button>
+          )}
+
+          {state === "launching" && (
+            <motion.div
+              key="launching"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-zinc-950 text-sky-400 border border-sky-500/40 font-semibold text-sm shadow-xl select-none"
+            >
+              <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping" />
+              <span>{activeSending}</span>
+            </motion.div>
+          )}
+
+          {state === "delivered" && (
+            <motion.div
+              key="delivered"
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ type: "spring", stiffness: 450, damping: 22 }}
+              className="flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 border border-emerald-400 select-none"
+            >
+              <CheckIcon className="w-4 h-4 stroke-[2.5]" />
+              <span>{activeSuccess}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      <div className="flex items-center gap-2 text-xs">
+        <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+          {state === "idle"
+            ? (lang === "id" ? "Klik untuk melipat dan menerbangkan pesawat kertas" : "Click to fold and launch paper airplane trajectory")
+            : state === "launching"
+            ? (lang === "id" ? "Pesawat sedang meluncur di angkasa..." : "Origami craft in supersonic transit...")
+            : (lang === "id" ? "Pesan telah mendarat di server tujuan" : "Payload safely anchored in destination server")}
+        </span>
+        {state === "delivered" && (
+          <button
+            type="button"
+            onClick={handleReset}
+            className="text-[11px] font-medium text-zinc-600 dark:text-zinc-300 hover:underline cursor-pointer"
+          >
+            Reset
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// 13. <OrbitalActionHubButton /> (Spatial Orbit & Proximity Magnet Action Hub)
+// ============================================================================
+export interface SatelliteAction {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  color: string;
+  onClick?: () => void;
+}
+
+export interface OrbitalActionHubButtonProps {
+  mainLabel?: string;
+  actions?: SatelliteAction[];
+  className?: string;
+}
+
+export function OrbitalActionHubButton({
+  mainLabel,
+  actions: customActions,
+  className = "",
+}: OrbitalActionHubButtonProps) {
+  const { i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+
+  const defaultLabel = lang === "id" ? "AI Copilot Hub" : "AI Copilot Hub";
+  const activeMainLabel = mainLabel ?? defaultLabel;
+
+  const defaultActions: SatelliteAction[] = [
+    {
+      id: "summarize",
+      label: lang === "id" ? "Ringkaskan" : "Summarize",
+      icon: <SparklesIcon className="w-4 h-4" />,
+      color: "bg-blue-500/10 border-blue-500/40 text-blue-600 dark:text-blue-400 hover:bg-blue-500 hover:text-white",
+    },
+    {
+      id: "translate",
+      label: lang === "id" ? "Terjemahkan" : "Translate",
+      icon: <GlobeIcon className="w-4 h-4" />,
+      color: "bg-purple-500/10 border-purple-500/40 text-purple-600 dark:text-purple-400 hover:bg-purple-500 hover:text-white",
+    },
+    {
+      id: "refactor",
+      label: lang === "id" ? "Refactor Kode" : "Refactor Code",
+      icon: <CodeIcon className="w-4 h-4" />,
+      color: "bg-emerald-500/10 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white",
+    },
+    {
+      id: "optimize",
+      label: lang === "id" ? "Optimasi Kilat" : "Optimize",
+      icon: <ZapIcon className="w-4 h-4" />,
+      color: "bg-amber-500/10 border-amber-500/40 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white",
+    },
+  ];
+
+  const actions = customActions || defaultActions;
+  const [isOpen, setIsOpen] = useState(false);
+  const [hoveredSatellite, setHoveredSatellite] = useState<string | null>(null);
+  const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
+
+  const radius = 64;
+
+  const handleSelect = (action: SatelliteAction) => {
+    setSelectedMessage(lang === "id" ? `Mengeksekusi satelit: ${action.label}` : `Executing satellite: ${action.label}`);
+    if (action.onClick) action.onClick();
+    setTimeout(() => setSelectedMessage(null), 2500);
+  };
+
+  return (
+    <div className={`relative inline-flex flex-col items-center gap-3 ${className}`}>
+      <div className="relative w-64 h-48 flex items-center justify-center select-none">
+        <div
+          className={`absolute rounded-full border border-dashed transition-all duration-500 pointer-events-none ${
+            isOpen
+              ? "w-44 h-44 border-zinc-300 dark:border-zinc-700 opacity-80 scale-100"
+              : "w-10 h-10 border-transparent opacity-0 scale-50"
+          }`}
+        />
+
+        <AnimatePresence>
+          {isOpen &&
+            actions.map((sat, index) => {
+              const angle = (index * (360 / actions.length) * Math.PI) / 180;
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius;
+
+              return (
+                <motion.button
+                  key={sat.id}
+                  type="button"
+                  onClick={() => handleSelect(sat)}
+                  onMouseEnter={() => setHoveredSatellite(sat.label)}
+                  onMouseLeave={() => setHoveredSatellite(null)}
+                  initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                  animate={{ opacity: 1, scale: 1, x, y }}
+                  exit={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 25, delay: index * 0.04 }}
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.9 }}
+                  className={`absolute z-30 w-10 h-10 rounded-full border flex items-center justify-center shadow-lg backdrop-blur-md transition-colors cursor-pointer ${sat.color}`}
+                  title={sat.label}
+                >
+                  {sat.icon}
+                </motion.button>
+              );
+            })}
+        </AnimatePresence>
+
+        <motion.button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`relative z-20 flex items-center gap-2.5 px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm shadow-xl transition-all border cursor-pointer ${
+            isOpen
+              ? "bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-900 border-zinc-700 shadow-[0_0_25px_rgba(99,102,241,0.25)]"
+              : "bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border-zinc-800 dark:border-zinc-200"
+          }`}
+        >
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+          >
+            <SparklesIcon className="w-4 h-4 text-indigo-400 dark:text-indigo-600" />
+          </motion.div>
+          <span>{activeMainLabel}</span>
+        </motion.button>
+      </div>
+
+      <div className="h-4 text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+        {selectedMessage ||
+          hoveredSatellite ||
+          (isOpen
+            ? (lang === "id" ? "Pilih salah satu satelit aksi orbital" : "Select an orbital action satellite node")
+            : (lang === "id" ? "Klik untuk mengorbitkan 4 satelit aksi" : "Click to deploy 4 gravitational action satellites"))}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// MAIN PAGE: AdvancedButtonsDemo (Single Column Layout with All 14 Components)
 // ============================================================================
 export function AdvancedButtonsDemo() {
   const { i18n } = useTranslation();
@@ -1530,6 +2459,121 @@ export function AdvancedButtonsDemo() {
           </div>
 
           <CodeSnippet code={t.cards.download.snippet} />
+        </section>
+
+        {/* 9. REACTION BURST BUTTON */}
+        <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
+          <div className="space-y-2 mb-6">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                {t.cards.star.title}
+              </h2>
+              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+                {t.cards.star.badge}
+              </span>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
+              {t.cards.star.desc}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6">
+            <ReactionBurstButton />
+          </div>
+
+          <CodeSnippet code={t.cards.star.snippet} />
+        </section>
+
+        {/* 10. BIOMETRIC AUTH BUTTON */}
+        <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
+          <div className="space-y-2 mb-6">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                {t.cards.biometric.title}
+              </h2>
+              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+                {t.cards.biometric.badge}
+              </span>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
+              {t.cards.biometric.desc}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6">
+            <BiometricAuthButton />
+          </div>
+
+          <CodeSnippet code={t.cards.biometric.snippet} />
+        </section>
+
+        {/* 11. COPY CONFETTI BUTTON */}
+        <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
+          <div className="space-y-2 mb-6">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                {t.cards.confetti.title}
+              </h2>
+              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+                {t.cards.confetti.badge}
+              </span>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
+              {t.cards.confetti.desc}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6">
+            <CopyConfettiButton />
+          </div>
+
+          <CodeSnippet code={t.cards.confetti.snippet} />
+        </section>
+
+        {/* 12. ORIGAMI PAPER PLANE BUTTON */}
+        <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
+          <div className="space-y-2 mb-6">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                {t.cards.origami.title}
+              </h2>
+              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+                {t.cards.origami.badge}
+              </span>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
+              {t.cards.origami.desc}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6">
+            <OrigamiPaperPlaneButton />
+          </div>
+
+          <CodeSnippet code={t.cards.origami.snippet} />
+        </section>
+
+        {/* 13. ORBITAL ACTION HUB BUTTON */}
+        <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
+          <div className="space-y-2 mb-6">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                {t.cards.orbital.title}
+              </h2>
+              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+                {t.cards.orbital.badge}
+              </span>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
+              {t.cards.orbital.desc}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6">
+            <OrbitalActionHubButton />
+          </div>
+
+          <CodeSnippet code={t.cards.orbital.snippet} />
         </section>
       </div>
     </div>
