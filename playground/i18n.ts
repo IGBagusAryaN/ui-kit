@@ -19,6 +19,8 @@ export const resources = {
           modal: "Modal",
           marquee: "Marquee",
           timeline: "Timeline",
+          dropdown: "Dropdown",
+          accordion: "Akordion",
         },
         icons: {
           title: "Ikon",
@@ -526,6 +528,31 @@ export const resources = {
               badge: "CSS 3D Depth",
               desc: "Marquee dalam kontainer dengan efek kedalaman CSS 3D Perspective, menciptakan ilusi deretan kartu bergerak masuk ke dalam ruang 3 dimensi.",
             },
+            verticalTestimonials: {
+              title: "6. Vertical Infinite Scroll (Dual-Column Testimonials)",
+              badge: "Dual Vertical Flow",
+              desc: "Dua kolom vertikal berdampingan bergerak secara berlawanan arah (ke atas dan ke bawah) dibungkus gradient mask fade atas-bawah.",
+            },
+            parallaxDual: {
+              title: "7. Parallax Dual-Direction (Opposing Text Tracks)",
+              badge: "Interactive Velocity",
+              desc: "Dua baris teks raksasa berlawanan arah dengan kecepatan asimetris. Hovering pada kontainer secara dinamis memvariasikan kecepatan untuk efek paralaks.",
+            },
+            draggableCarousel: {
+              title: "8. Draggable Carousel Marquee (Framer Motion Physics)",
+              badge: "Interactive Drag Physics",
+              desc: "Marquee otomatis yang dapat digeser dan di-drag secara interaktif oleh kursor pengguna menggunakan fisika elastis Framer Motion.",
+            },
+            strokeFill: {
+              title: "9. Outline to Solid Typography (Stroke Fill Hover)",
+              badge: "CSS Text-Stroke Transition",
+              desc: "Teks outline transparan menggunakan CSS text-stroke yang secara halus terisi warna solid saat kursor mouse melintas di atasnya.",
+            },
+            sandwichMarquee: {
+              title: "10. Z-Index Layering (Sandwich Image Marquee)",
+              badge: "Spatial Sandwich Depth",
+              desc: "Objek 3D berada tepat di tengah, diapit antara marquee teks solid di belakang dan marquee outline transparan di depannya.",
+            },
           },
           badges: {
             antigravity: "Antigravity",
@@ -898,6 +925,8 @@ export const resources = {
           modal: "Modal",
           marquee: "Marquee",
           timeline: "Timeline",
+          dropdown: "Dropdown",
+          accordion: "Accordion",
         },
         icons: {
           title: "Icons",
@@ -1403,6 +1432,31 @@ export const resources = {
               title: "5. 3D Perspective Ticker",
               badge: "CSS 3D Depth",
               desc: "Marquee embedded inside a CSS 3D perspective viewport, creating the visual depth of cards flowing into dimensional space.",
+            },
+            verticalTestimonials: {
+              title: "6. Vertical Infinite Scroll (Dual-Column Testimonials)",
+              badge: "Dual Vertical Flow",
+              desc: "Two vertical columns side-by-side moving in counter-flow directions (up and down) masked with a top-to-bottom edge fade gradient.",
+            },
+            parallaxDual: {
+              title: "7. Parallax Dual-Direction (Opposing Text Tracks)",
+              badge: "Interactive Velocity",
+              desc: "Two giant text tracks running in opposite directions with asymmetric velocities. Hovering over the container dynamically shifts speed for a parallax depth illusion.",
+            },
+            draggableCarousel: {
+              title: "8. Draggable Carousel Marquee (Framer Motion Physics)",
+              badge: "Interactive Drag Physics",
+              desc: "Autonomous motion loop that empowers users to swipe and drag content horizontally using Framer Motion drag constraints, elastic bounds, and grab cursors.",
+            },
+            strokeFill: {
+              title: "9. Outline to Solid Typography (Stroke Fill Hover)",
+              badge: "CSS Text-Stroke Transition",
+              desc: "Hollow text using transparent fill with stroke borders that smoothly transitions into vibrant solid colors upon mouse hover with micro-scaling.",
+            },
+            sandwichMarquee: {
+              title: "10. Z-Index Layering (Sandwich Image Marquee)",
+              badge: "Spatial Sandwich Depth",
+              desc: "A floating 3D graphic anchored between two synchronized marquee streams: a solid backdrop layer underneath, and an outline wireframe layer in front.",
             },
           },
           badges: {

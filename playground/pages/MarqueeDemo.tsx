@@ -1,12 +1,26 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, useMotionValue } from "framer-motion";
 import { Marquee } from "../../src/components/Marquee";
-import { CodeSnippet } from "../components/CodeSnippet";
-import { SearchIcon } from "../../src/icons";
+import { MultiCodeSnippet } from "../components/MultiCodeSnippet";
+import {
+  SearchIcon,
+  CheckCircleIcon,
+  ZapIcon,
+  GlobeIcon,
+  LayersIcon,
+  ShieldIcon,
+  TerminalIcon,
+  DatabaseIcon,
+  CreditCardIcon,
+  HardDriveIcon,
+  CloudIcon,
+  StarIcon,
+} from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
 /* =========================================================================
- * DATA & DEFINISI UNTUK KE-5 VARIASI MARQUEE
+ * DATA & ASSETS UNTUK 10 VARIASI MARQUEE
  * ========================================================================= */
 
 // 1. DATA: Tech Stack Pills (Trusted By / Ecosystem)
@@ -77,32 +91,6 @@ const techPillsRow1: TechPill[] = [
       </svg>
     ),
   },
-  {
-    id: "vite",
-    name: "Vite JS",
-    category: "Bundler",
-    accentCircle: "bg-purple-500/10 text-purple-600 border-purple-500/25 dark:bg-purple-500/20 dark:text-purple-400 dark:border-purple-500/30",
-    icon: (cls) => (
-      <svg className={cls} viewBox="0 0 24 24" fill="currentColor">
-        <path d="m20.2 3.6-7.8 14.5L9.6 11l-5.8 4.6 6.8 6.8 10-17.7a.8.8 0 0 0-.4-1.1zM9.4 3.8 3.8 4.7l6.8 12.8 1.7-3.1L9.4 3.8z" />
-      </svg>
-    ),
-  },
-  {
-    id: "lucide",
-    name: "Lucide Icons",
-    category: "Web Icons",
-    accentCircle: "bg-amber-500/10 text-amber-600 border-amber-500/25 dark:bg-amber-500/20 dark:text-amber-400 dark:border-amber-500/30",
-    icon: (cls) => (
-      <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" />
-        <path d="m4.93 4.93 4.24 4.24" />
-        <path d="m14.83 14.83 4.24 4.24" />
-        <path d="m14.83 9.17 4.24-4.24" />
-        <path d="m4.93 19.07 4.24-4.24" />
-      </svg>
-    ),
-  },
 ];
 
 const techPillsRow2: TechPill[] = [
@@ -152,17 +140,6 @@ const techPillsRow2: TechPill[] = [
     ),
   },
   {
-    id: "graphql",
-    name: "GraphQL",
-    category: "API Query",
-    accentCircle: "bg-pink-500/10 text-pink-600 border-pink-500/25 dark:bg-pink-500/20 dark:text-pink-400 dark:border-pink-500/30",
-    icon: (cls) => (
-      <svg className={cls} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2 3.5 7v10L12 22l8.5-5V7L12 2zm0 2.3 6.5 3.8v7.8L12 19.7l-6.5-3.8V8.1L12 4.3z" />
-      </svg>
-    ),
-  },
-  {
     id: "redis",
     name: "Redis",
     category: "In-Memory",
@@ -173,24 +150,14 @@ const techPillsRow2: TechPill[] = [
       </svg>
     ),
   },
-  {
-    id: "radix",
-    name: "Radix UI",
-    category: "Primitives",
-    accentCircle: "bg-violet-500/10 text-violet-600 border-violet-500/25 dark:bg-violet-500/20 dark:text-violet-400 dark:border-violet-500/30",
-    icon: (cls) => (
-      <svg className={cls} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M6 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm12 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM6 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm12 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-      </svg>
-    ),
-  },
 ];
 
-// 2. DATA: Testimoni Pengguna (Review Cards)
+// 2. DATA: Testimoni Pengguna
 interface ReviewItem {
   id: string;
   name: string;
   username: string;
+  role: string;
   avatarGrad: string;
   stars: number;
   content: string;
@@ -201,69 +168,59 @@ const userReviews: ReviewItem[] = [
     id: "r1",
     name: "Sarah Jenkins",
     username: "@sarah_dev",
+    role: "Senior Frontend Lead",
     avatarGrad: "from-blue-500 to-cyan-500",
     stars: 5,
-    content: "Animasi fisika di @bgsaryzzz/ui benar-benar mulus. Kami mengganti 3 library animasi berbeda cukup dengan satu paket ini.",
+    content: "The hardware-accelerated animations in @bgsaryzzz/ui are butter smooth. Replaced three disparate packages with zero layout shift.",
   },
   {
     id: "r2",
     name: "Alex Rivera",
     username: "@alex_architect",
+    role: "Staff Engineer",
     avatarGrad: "from-purple-500 to-pink-500",
     stars: 5,
-    content: "Sistem Toast & Modal-nya menghemat sprint kami selama 3 minggu. Strukturnya sangat bersih dan zero-config.",
+    content: "The accessible keyboard navigation and dual-theme tokens reduced our product launch cycle by over three full sprints.",
   },
   {
     id: "r3",
     name: "David Chen",
     username: "@david_stack",
+    role: "CTO @ CloudSync",
     avatarGrad: "from-amber-500 to-emerald-500",
     stars: 5,
-    content: "Akhirnya ada UI kit React yang 60fps nyata tanpa layout shift dan mendukung mode gelap secara native.",
+    content: "True 60 FPS across both low-end mobile devices and high-refresh desktop monitors. Absolutely enterprise-grade UI design.",
   },
   {
     id: "r4",
     name: "Clara Oswald",
     username: "@clara_code",
+    role: "Design Technologist",
     avatarGrad: "from-rose-500 to-orange-500",
     stars: 5,
-    content: "Marquee ticker-nya sangat stabil di browser mobile maupun desktop. Efek edge fade mask-nya elegan sekali.",
+    content: "The edge fade mask and spring physics make product showcases look like high-budget Apple promotional pages.",
   },
   {
     id: "r5",
-    name: "Marcus Brody",
-    username: "@marcus_ui",
-    avatarGrad: "from-teal-500 to-sky-500",
+    name: "Elena Rostova",
+    username: "@elena_ux",
+    role: "Head of Product Design",
+    avatarGrad: "from-fuchsia-500 to-indigo-500",
     stars: 5,
-    content: "Spring physics Framer Motion terasa organik saat di-hover dan tap. Sangat layak untuk aplikasi enterprise SaaS.",
+    content: "Visual consistency from Buttons, Navbars, Tree Menus all the way to Marquees is an absolute delight to build with.",
   },
   {
     id: "r6",
-    name: "Elena Rostova",
-    username: "@elena_ux",
-    avatarGrad: "from-fuchsia-500 to-indigo-500",
-    stars: 5,
-    content: "Konsistensi visual dari Button, Navbar, hingga Marquee sangat memanjakan mata tim desainer dan engineer kami.",
-  },
-  {
-    id: "r7",
     name: "Kenji Sato",
     username: "@kenji_cloud",
-    avatarGrad: "from-emerald-500 to-cyan-500",
+    role: "Infrastructure Architect",
+    avatarGrad: "from-emerald-500 to-teal-500",
     stars: 5,
-    content: "Type-safety lengkap, aksesibilitas dengan aria-hidden otomatis, dan integrasi i18n yang siap pakai.",
-  },
-  {
-    id: "r8",
-    name: "Maya Lin",
-    username: "@maya_creative",
-    avatarGrad: "from-violet-500 to-pink-500",
-    stars: 5,
-    content: "Fitur pause on hover dan kecepatan dinamis memudahkan kami membuat showcase produk yang sangat interaktif.",
+    content: "Complete TypeScript typing, automatic aria-hidden tags, and native i18n support make this our default library.",
   },
 ];
 
-// 3. DATA: Kolom Vertikal (Masonry Waterfall)
+// 3. DATA: Activity Feed for Vertical Waterfall
 interface ActivityFeed {
   id: string;
   title: string;
@@ -274,19 +231,17 @@ interface ActivityFeed {
 }
 
 const columnFeed1: ActivityFeed[] = [
-  { id: "c1-1", title: "Release v2.4.0 Deployed", tag: "Production", badgeBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", time: "2m lalu", icon: "🚀" },
-  { id: "c1-2", title: "Lighthouse Score: 100/100", tag: "Performance", badgeBg: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20", time: "8m lalu", icon: "⚡" },
-  { id: "c1-3", title: "Framer Physics Calibrated", tag: "Animation", badgeBg: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20", time: "14m lalu", icon: "✦" },
-  { id: "c1-4", title: "Database Query: 1.2ms", tag: "PostgreSQL", badgeBg: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20", time: "22m lalu", icon: "⌗" },
-  { id: "c1-5", title: "Zero Layout Shift Verified", tag: "Core Web Vitals", badgeBg: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20", time: "30m lalu", icon: "◈" },
+  { id: "c1-1", title: "Release v2.4.0 Deployed", tag: "Production", badgeBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", time: "2m ago", icon: "🚀" },
+  { id: "c1-2", title: "Lighthouse Score: 100/100", tag: "Performance", badgeBg: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20", time: "8m ago", icon: "⚡" },
+  { id: "c1-3", title: "Framer Physics Calibrated", tag: "Animation", badgeBg: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20", time: "14m ago", icon: "✦" },
+  { id: "c1-4", title: "Database Query: 1.2ms", tag: "PostgreSQL", badgeBg: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20", time: "22m ago", icon: "⌗" },
 ];
 
 const columnFeed2: ActivityFeed[] = [
-  { id: "c2-1", title: "New 3D Perspective Preset", tag: "UI Library", badgeBg: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20", time: "5m lalu", icon: "◫" },
-  { id: "c2-2", title: "Bundle Size Reduced by 34%", tag: "Rollup / Vite", badgeBg: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20", time: "11m lalu", icon: "📦" },
-  { id: "c2-3", title: "Dark & Light Token Synced", tag: "Design Token", badgeBg: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20", time: "19m lalu", icon: "◐" },
-  { id: "c2-4", title: "Test Suites: 100% Passed", tag: "CI / CD", badgeBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", time: "27m lalu", icon: "✓" },
-  { id: "c2-5", title: "WCAG AAA Accessible", tag: "A11y", badgeBg: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20", time: "41m lalu", icon: "♿" },
+  { id: "c2-1", title: "New 3D Perspective Preset", tag: "UI Library", badgeBg: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20", time: "5m ago", icon: "◫" },
+  { id: "c2-2", title: "Bundle Size Reduced by 34%", tag: "Rollup / Vite", badgeBg: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20", time: "11m ago", icon: "📦" },
+  { id: "c2-3", title: "Dark & Light Token Synced", tag: "Design Token", badgeBg: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20", time: "19m ago", icon: "◐" },
+  { id: "c2-4", title: "Test Suites: 100% Passed", tag: "CI / CD", badgeBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", time: "27m ago", icon: "✓" },
 ];
 
 // 5. DATA: 3D Perspective Cards
@@ -299,283 +254,141 @@ interface ProjectCard {
 }
 
 const projectCards: ProjectCard[] = [
-  {
-    id: "p1",
-    title: "Quantum Engine",
-    category: "Physics Simulator",
-    metric: "60 FPS",
-    accentGradient:
-      "from-blue-500/10 via-indigo-500/10 to-cyan-500/10 border-blue-500/20 dark:from-blue-950/60 dark:via-indigo-950/50 dark:to-cyan-950/40 dark:border-blue-500/30",
-  },
-  {
-    id: "p2",
-    title: "Neural Matrix",
-    category: "AI Interface",
-    metric: "99.9% Acc",
-    accentGradient:
-      "from-purple-500/10 via-pink-500/10 to-rose-500/10 border-purple-500/20 dark:from-purple-950/60 dark:via-pink-950/50 dark:to-rose-950/40 dark:border-purple-500/30",
-  },
-  {
-    id: "p3",
-    title: "Horizon Dashboard",
-    category: "SaaS Analytics",
-    metric: "3.2M Req",
-    accentGradient:
-      "from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-emerald-500/20 dark:from-emerald-950/60 dark:via-teal-950/50 dark:to-cyan-950/40 dark:border-emerald-500/30",
-  },
-  {
-    id: "p4",
-    title: "Aura Particles",
-    category: "WebGL Shader",
-    metric: "120 FPS",
-    accentGradient:
-      "from-amber-500/10 via-orange-500/10 to-rose-500/10 border-amber-500/20 dark:from-amber-950/60 dark:via-orange-950/50 dark:to-rose-950/40 dark:border-amber-500/30",
-  },
-  {
-    id: "p5",
-    title: "Hyperdrive Flow",
-    category: "Vector Graphics",
-    metric: "Zero Shift",
-    accentGradient:
-      "from-fuchsia-500/10 via-purple-500/10 to-indigo-500/10 border-fuchsia-500/20 dark:from-fuchsia-950/60 dark:via-purple-950/50 dark:to-indigo-950/40 dark:border-fuchsia-500/30",
-  },
-  {
-    id: "p6",
-    title: "Starlight Mesh",
-    category: "3D Canvas",
-    metric: "GPU Ready",
-    accentGradient:
-      "from-cyan-500/10 via-sky-500/10 to-blue-500/10 border-cyan-500/20 dark:from-cyan-950/60 dark:via-sky-950/50 dark:to-blue-950/40 dark:border-cyan-500/30",
-  },
+  { id: "p1", title: "Quantum Engine", category: "Physics Simulator", metric: "60 FPS", accentGradient: "from-blue-500/10 via-indigo-500/10 to-cyan-500/10 border-blue-500/20 dark:from-blue-950/60 dark:via-indigo-950/50 dark:to-cyan-950/40 dark:border-blue-500/30" },
+  { id: "p2", title: "Neural Matrix", category: "AI Interface", metric: "99.9% Acc", accentGradient: "from-purple-500/10 via-pink-500/10 to-rose-500/10 border-purple-500/20 dark:from-purple-950/60 dark:via-pink-950/50 dark:to-rose-950/40 dark:border-purple-500/30" },
+  { id: "p3", title: "Horizon Dashboard", category: "SaaS Analytics", metric: "3.2M Req", accentGradient: "from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-emerald-500/20 dark:from-emerald-950/60 dark:via-teal-950/50 dark:to-cyan-950/40 dark:border-emerald-500/30" },
+  { id: "p4", title: "Aura Particles", category: "WebGL Shader", metric: "120 FPS", accentGradient: "from-amber-500/10 via-orange-500/10 to-rose-500/10 border-amber-500/20 dark:from-amber-950/60 dark:via-orange-950/50 dark:to-rose-950/40 dark:border-amber-500/30" },
+];
+
+// 8. DATA: Draggable Cards
+interface DraggableCardItem {
+  id: string;
+  title: string;
+  description: string;
+  tag: string;
+  color: string;
+  stat: string;
+}
+
+const draggableItems: DraggableCardItem[] = [
+  { id: "d1", title: "Aurora Motion Engine", description: "Ultra-fluid spring physics with automatic inertia calculation.", tag: "Physics", color: "from-indigo-500 to-purple-600", stat: "120Hz" },
+  { id: "d2", title: "Hyper-Responsive Grid", description: "Zero layout shift masonry layout designed for modern web apps.", tag: "Layout", color: "from-blue-500 to-cyan-500", stat: "0ms CLS" },
+  { id: "d3", title: "Adaptive Color Tokens", description: "Seamless dark and light contrast transitions without page reload.", tag: "Theming", color: "from-emerald-500 to-teal-500", stat: "WCAG AAA" },
+  { id: "d4", title: "Touch Gesture Handler", description: "Natural tactile swipe gestures optimized for mobile viewports.", tag: "Gestures", color: "from-rose-500 to-orange-500", stat: "< 2ms" },
+  { id: "d5", title: "Accessible Primitives", description: "Compliant WAI-ARIA standards baked directly into DOM elements.", tag: "A11y", color: "from-fuchsia-500 to-indigo-500", stat: "100% Score" },
+  { id: "d6", title: "Spatial Layering System", description: "Depth-aware z-index elevation with ambient backdrop filter.", tag: "Elevation", color: "from-amber-500 to-pink-500", stat: "3D Ready" },
 ];
 
 /* =========================================================================
- * CODE SNIPPETS TEMPLATE UNTUK KE-5 VARIAN
+ * SUB-KOMPONEN KHUSUS: DRAGGABLE CAROUSEL MARQUEE
  * ========================================================================= */
-const codeBlocksVariant1 = {
-  react: `<div className="space-y-4">
-  {/* Baris 1: Arah Kiri */}
-  <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
-    {techPillsRow1.map((tech) => (
-      <TechPillItem key={tech.id} item={tech} />
-    ))}
-  </Marquee>
+function DraggableMarqueeCarousel() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  {/* Baris 2: Arah Kanan */}
-  <Marquee direction="right" speed="normal" pauseOnHover fade gap={20}>
-    {techPillsRow2.map((tech) => (
-      <TechPillItem key={tech.id} item={tech} />
-    ))}
-  </Marquee>
-</div>`,
-  vue: `<script setup lang="ts">
-import { Marquee } from "@bgsaryzzz/ui-vue";
-</script>
-
-<template>
-  <div class="space-y-4">
-    <!-- Baris 1: Arah Kiri -->
-    <Marquee direction="left" speed="normal" pauseOnHover fade :gap="20">
-      <TechPillItem v-for="tech in techPillsRow1" :key="tech.id" :item="tech" />
-    </Marquee>
-
-    <!-- Baris 2: Arah Kanan -->
-    <Marquee direction="right" speed="normal" pauseOnHover fade :gap="20">
-      <TechPillItem v-for="tech in techPillsRow2" :key="tech.id" :item="tech" />
-    </Marquee>
-  </div>
-</template>`,
-  laravel: `<div class="space-y-4">
-  {{-- Baris 1: Arah Kiri --}}
-  <x-arya-marquee direction="left" speed="normal" pause-on-hover fade :gap="20">
-    @foreach($techPillsRow1 as $tech)
-      <x-tech-pill :item="$tech" />
-    @endforeach
-  </x-arya-marquee>
-
-  {{-- Baris 2: Arah Kanan --}}
-  <x-arya-marquee direction="right" speed="normal" pause-on-hover fade :gap="20">
-    @foreach($techPillsRow2 as $tech)
-      <x-tech-pill :item="$tech" />
-    @endforeach
-  </x-arya-marquee>
-</div>`
-};
-
-const codeBlocksVariant2 = {
-  react: `<Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
-  {reviews.map((review) => (
+  return (
     <div
-      key={review.id}
-      className="w-80 shrink-0 rounded-2xl border border-zinc-200/90 bg-white/95 p-5 shadow-xs dark:border-zinc-800/90 dark:bg-zinc-900/90"
+      ref={containerRef}
+      className="relative w-full overflow-hidden py-4 cursor-grab active:cursor-grabbing select-none"
     >
-      <div className="flex items-center gap-3">
-        <img src={review.avatar} alt={review.name} className="h-10 w-10 rounded-full" />
-        <div>
-          <p className="font-semibold text-zinc-900 dark:text-zinc-100">{review.name}</p>
-          <p className="text-xs text-zinc-500">{review.handle}</p>
-        </div>
-      </div>
-      <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-300">{review.content}</p>
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: -1100, right: 0 }}
+        dragElastic={0.12}
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
+        animate={isDragging ? undefined : { x: [0, -700] }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 28,
+            ease: "linear",
+          },
+        }}
+        className="flex gap-4 w-max"
+      >
+        {[...draggableItems, ...draggableItems].map((item, idx) => (
+          <div
+            key={`${item.id}-${idx}`}
+            className="w-72 shrink-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-5 shadow-sm transition-all hover:border-zinc-300 dark:hover:border-zinc-700 pointer-events-auto"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                {item.tag}
+              </span>
+              <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 font-mono">
+                {item.stat}
+              </span>
+            </div>
+
+            <div className={`h-1.5 w-12 rounded-full bg-gradient-to-r ${item.color} mb-3`} />
+
+            <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1">
+              {item.title}
+            </h4>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </motion.div>
     </div>
-  ))}
-</Marquee>`,
-  vue: `<script setup lang="ts">
-import { Marquee } from "@bgsaryzzz/ui-vue";
-</script>
-
-<template>
-  <Marquee direction="left" speed="normal" pauseOnHover fade :gap="18">
-    <div
-      v-for="review in reviews"
-      :key="review.id"
-      class="w-80 shrink-0 rounded-2xl border border-zinc-200/90 bg-white/95 p-5 shadow-xs dark:border-zinc-800/90 dark:bg-zinc-900/90"
-    >
-      <div class="flex items-center gap-3">
-        <img :src="review.avatar" :alt="review.name" class="h-10 w-10 rounded-full" />
-        <div>
-          <p class="font-semibold text-zinc-900 dark:text-zinc-100">{{ review.name }}</p>
-          <p class="text-xs text-zinc-500">{{ review.handle }}</p>
-        </div>
-      </div>
-      <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300">{{ review.content }}</p>
-    </div>
-  </Marquee>
-</template>`,
-  laravel: `<x-arya-marquee direction="left" speed="normal" pause-on-hover fade :gap="18">
-  @foreach($reviews as $review)
-    <div class="w-80 shrink-0 rounded-2xl border border-zinc-200/90 bg-white/95 p-5 shadow-xs dark:border-zinc-800/90 dark:bg-zinc-900/90">
-      <div class="flex items-center gap-3">
-        <img src="{{ $review['avatar'] }}" alt="{{ $review['name'] }}" class="h-10 w-10 rounded-full" />
-        <div>
-          <p class="font-semibold text-zinc-900 dark:text-zinc-100">{{ $review['name'] }}</p>
-          <p class="text-xs text-zinc-500">{{ $review['handle'] }}</p>
-        </div>
-      </div>
-      <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300">{{ $review['content'] }}</p>
-    </div>
-  @endforeach
-</x-arya-marquee>`
-};
-
-const codeBlocksVariant3 = {
-  react: `<div className="h-[430px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-  {/* Kolom 1: Bergerak Vertikal ke Atas */}
-  <Marquee orientation="vertical" direction="up" speed="normal" pauseOnHover fade gap={14}>
-    {testimonialsCol1.map((item) => (
-      <FeedCard key={item.id} item={item} />
-    ))}
-  </Marquee>
-
-  {/* Kolom 2: Bergerak Vertikal ke Bawah */}
-  <Marquee orientation="vertical" direction="down" speed="normal" pauseOnHover fade gap={14}>
-    {testimonialsCol2.map((item) => (
-      <FeedCard key={item.id} item={item} />
-    ))}
-  </Marquee>
-</div>`,
-  vue: `<script setup lang="ts">
-import { Marquee } from "@bgsaryzzz/ui-vue";
-</script>
-
-<template>
-  <div class="h-[430px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-    <Marquee orientation="vertical" direction="up" speed="normal" pauseOnHover fade :gap="14">
-      <FeedCard v-for="item in testimonialsCol1" :key="item.id" :item="item" />
-    </Marquee>
-    <Marquee orientation="vertical" direction="down" speed="normal" pauseOnHover fade :gap="14">
-      <FeedCard v-for="item in testimonialsCol2" :key="item.id" :item="item" />
-    </Marquee>
-  </div>
-</template>`,
-  laravel: `<div class="h-[430px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-  <x-arya-marquee orientation="vertical" direction="up" speed="normal" pause-on-hover fade :gap="14">
-    @foreach($testimonialsCol1 as $item)
-      <x-feed-card :item="$item" />
-    @endforeach
-  </x-arya-marquee>
-
-  <x-arya-marquee orientation="vertical" direction="down" speed="normal" pause-on-hover fade :gap="14">
-    @foreach($testimonialsCol2 as $item)
-      <x-feed-card :item="$item" />
-    @endforeach
-  </x-arya-marquee>
-</div>`
-};
-
-const codeBlocksVariant4 = {
-  react: `<Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
-  <div className="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
-    NEXT-GEN UI SYSTEM • 60 FPS MOTION • ACCESSIBLE • TAILWIND READY •
-  </div>
-</Marquee>`,
-  vue: `<script setup lang="ts">
-import { Marquee } from "@bgsaryzzz/ui-vue";
-</script>
-
-<template>
-  <Marquee direction="left" :speed="45" fade :gap="24" pauseOnHover>
-    <div class="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
-      NEXT-GEN UI SYSTEM • 60 FPS MOTION • ACCESSIBLE • TAILWIND READY •
-    </div>
-  </Marquee>
-</template>`,
-  laravel: `<x-arya-marquee direction="left" :speed="45" fade :gap="24" pause-on-hover>
-  <div class="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
-    NEXT-GEN UI SYSTEM • 60 FPS MOTION • ACCESSIBLE • TAILWIND READY •
-  </div>
-</x-arya-marquee>`
-};
-
-const codeBlocksVariant5 = {
-  react: `<div className="relative overflow-hidden py-16" style={{ perspective: "1100px" }}>
-  <div style={{ transform: "rotateX(22deg) rotateZ(-12deg) skewX(8deg)" }} className="space-y-6">
-    <Marquee direction="left" speed="normal" pauseOnHover gap={24}>
-      {cardsRow1.map((card) => (
-        <ThreeDCard key={card.id} card={card} />
-      ))}
-    </Marquee>
-    <Marquee direction="right" speed="normal" pauseOnHover gap={24}>
-      {cardsRow2.map((card) => (
-        <ThreeDCard key={card.id} card={card} />
-      ))}
-    </Marquee>
-  </div>
-</div>`,
-  vue: `<script setup lang="ts">
-import { Marquee } from "@bgsaryzzz/ui-vue";
-</script>
-
-<template>
-  <div class="relative overflow-hidden py-16" style="perspective: 1100px">
-    <div style="transform: rotateX(22deg) rotateZ(-12deg) skewX(8deg)" class="space-y-6">
-      <Marquee direction="left" speed="normal" pauseOnHover :gap="24">
-        <ThreeDCard v-for="card in cardsRow1" :key="card.id" :card="card" />
-      </Marquee>
-      <Marquee direction="right" speed="normal" pauseOnHover :gap="24">
-        <ThreeDCard v-for="card in cardsRow2" :key="card.id" :card="card" />
-      </Marquee>
-    </div>
-  </div>
-</template>`,
-  laravel: `<div class="relative overflow-hidden py-16" style="perspective: 1100px">
-  <div style="transform: rotateX(22deg) rotateZ(-12deg) skewX(8deg)" class="space-y-6">
-    <x-arya-marquee direction="left" speed="normal" pause-on-hover :gap="24">
-      @foreach($cardsRow1 as $card)
-        <x-three-d-card :card="$card" />
-      @endforeach
-    </x-arya-marquee>
-    <x-arya-marquee direction="right" speed="normal" pause-on-hover :gap="24">
-      @foreach($cardsRow2 as $card)
-        <x-three-d-card :card="$card" />
-      @endforeach
-    </x-arya-marquee>
-  </div>
-</div>`
-};
+  );
+}
 
 /* =========================================================================
- * KOMPONEN UTAMA: MARQUEE DEMO DENGAN 5 VARIASI DESAIN
+ * SUB-KOMPONEN KHUSUS: PARALLAX DUAL DIRECTION DENGAN SPEED SHIFT HOVER
+ * ========================================================================= */
+function ParallaxDualDirection() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 py-10 space-y-3 cursor-pointer"
+    >
+      {/* Track 1: Bergerak ke Kiri (Melambat saat di-hover) */}
+      <Marquee
+        direction="left"
+        speed={isHovered ? 52 : 24}
+        fade
+        pauseOnHover={false}
+        gap={28}
+      >
+        <span className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-zinc-900 dark:text-zinc-100 whitespace-nowrap">
+          PARALLAX VELOCITY • NEXT-GEN INTERFACES • 60 FPS HARDWARE ACCELERATED •
+        </span>
+      </Marquee>
+
+      {/* Track 2: Bergerak ke Kanan (Mempercepat saat di-hover) */}
+      <Marquee
+        direction="right"
+        speed={isHovered ? 14 : 36}
+        fade
+        pauseOnHover={false}
+        gap={28}
+      >
+        <span className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 whitespace-nowrap">
+          COUNTER DIRECTIONAL TRACKS • DYNAMIC HOVER SHIFT • SMOOTH MOTION •
+        </span>
+      </Marquee>
+
+      <div className="text-center pt-2">
+        <span className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+          <span>💡 Hover State:</span>
+          <span className={isHovered ? "text-emerald-500 font-bold" : "text-zinc-400"}>
+            {isHovered ? "Track 1 Decelerated (52s) | Track 2 Accelerated (14s)" : "Normal Speeds (24s & 36s)"}
+          </span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================================
+ * KOMPONEN UTAMA: MARQUEE DEMO DENGAN 10 VARIASI DESAIN LENGKAP
  * ========================================================================= */
 
 export function MarqueeDemo() {
@@ -584,61 +397,75 @@ export function MarqueeDemo() {
 
   const marqueeList = useMemo(
     () => [
+      // 1. TRUSTED BY / TECH STACK
       {
         id: "trusted-by",
         title: t("content.marqueeDemo.variants.trustedBy.title", "1. Trusted By / Tech Stack (Pill Ticker)"),
         badge: t("content.marqueeDemo.variants.trustedBy.badge", "Tech Stack Pills"),
-        description: t(
-          "content.marqueeDemo.variants.trustedBy.desc",
-          "Marquee interaktif berisi deretan teknologi modern dalam format kapsul (pill) adaptif, lengkap dengan ikon beraksen, nama teknologi, dan badge kategori."
-        ),
-        snippet: codeBlocksVariant1.react,
+        description:
+          "Dual horizontal counter-flow marquee showcasing technology badges and client logos with interactive glow effects and category pills.",
+        codeBlocks: {
+          react: `<div className="space-y-4">
+  <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
+    {techPillsRow1.map((tech) => <TechPill key={tech.id} item={tech} />)}
+  </Marquee>
+  <Marquee direction="right" speed="slow" pauseOnHover fade gap={20}>
+    {techPillsRow2.map((tech) => <TechPill key={tech.id} item={tech} />)}
+  </Marquee>
+</div>`,
+          vue: `<template>
+  <div class="space-y-4">
+    <Marquee direction="left" speed="normal" pauseOnHover fade :gap="20">
+      <TechPill v-for="tech in techPillsRow1" :key="tech.id" :item="tech" />
+    </Marquee>
+    <Marquee direction="right" speed="slow" pauseOnHover fade :gap="20">
+      <TechPill v-for="tech in techPillsRow2" :key="tech.id" :item="tech" />
+    </Marquee>
+  </div>
+</template>`,
+          laravel: `<div class="space-y-4">
+  <x-ui::marquee direction="left" speed="normal" pause-on-hover fade :gap="20">
+    @foreach($techPillsRow1 as $tech) <x-tech-pill :item="$tech" /> @endforeach
+  </x-ui::marquee>
+  <x-ui::marquee direction="right" speed="slow" pause-on-hover fade :gap="20">
+    @foreach($techPillsRow2 as $tech) <x-tech-pill :item="$tech" /> @endforeach
+  </x-ui::marquee>
+</div>`,
+        },
         render: () => (
-          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 py-6 dark:border-zinc-800/70 dark:bg-zinc-900/40 space-y-5">
-            {/* Baris 1: Arah Kiri */}
+          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-6 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
               {techPillsRow1.map((tech) => (
                 <div
                   key={tech.id}
-                  className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 px-3.5 py-2 shadow-2xs backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-zinc-200/80 hover:border-zinc-300 hover:shadow-md dark:hover:bg-zinc-800 dark:hover:border-zinc-700 cursor-pointer select-none"
+                  className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3.5 py-2 shadow-xs transition-all hover:scale-105 cursor-pointer select-none"
                 >
-                  <div
-                    className={cn(
-                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border shadow-2xs transition-transform duration-300 group-hover/pill:scale-110",
-                      tech.accentCircle
-                    )}
-                  >
-                    {tech.icon("h-4 w-4")}
+                  <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
+                    {tech.icon("h-3.5 w-3.5")}
                   </div>
-                  <span className="text-sm font-semibold tracking-tight text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+                  <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="rounded-md border border-zinc-200/80 bg-white/90 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-zinc-600 uppercase dark:border-zinc-700/60 dark:bg-zinc-800/80 dark:text-zinc-300 whitespace-nowrap">
+                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
                     {tech.category}
                   </span>
                 </div>
               ))}
             </Marquee>
 
-            {/* Baris 2: Arah Kanan (Counter-Flow) */}
             <Marquee direction="right" speed="slow" pauseOnHover fade gap={20}>
               {techPillsRow2.map((tech) => (
                 <div
                   key={tech.id}
-                  className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 px-3.5 py-2 shadow-2xs backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-zinc-200/80 hover:border-zinc-300 hover:shadow-md dark:hover:bg-zinc-800 dark:hover:border-zinc-700 cursor-pointer select-none"
+                  className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3.5 py-2 shadow-xs transition-all hover:scale-105 cursor-pointer select-none"
                 >
-                  <div
-                    className={cn(
-                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border shadow-2xs transition-transform duration-300 group-hover/pill:scale-110",
-                      tech.accentCircle
-                    )}
-                  >
-                    {tech.icon("h-4 w-4")}
+                  <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
+                    {tech.icon("h-3.5 w-3.5")}
                   </div>
-                  <span className="text-sm font-semibold tracking-tight text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+                  <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="rounded-md border border-zinc-200/80 bg-white/90 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-zinc-600 uppercase dark:border-zinc-700/60 dark:bg-zinc-800/80 dark:text-zinc-300 whitespace-nowrap">
+                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
                     {tech.category}
                   </span>
                 </div>
@@ -647,78 +474,55 @@ export function MarqueeDemo() {
           </div>
         ),
       },
+
+      // 2. SOCIAL PROOF / REVIEWS
       {
         id: "testimonials",
-        title: t("content.marqueeDemo.variants.testimonials.title", "2. User Testimonials (Review Cards)"),
+        title: t("content.marqueeDemo.variants.testimonials.title", "2. Social Proof / Review Cards (Testimonial Loop)"),
         badge: t("content.marqueeDemo.variants.testimonials.badge", "Social Proof"),
-        description: t(
-          "content.marqueeDemo.variants.testimonials.desc",
-          "Marquee yang membungkus deretan kartu testimoni pengguna dengan avatar, nama, handle @, rating bintang 5, dan kutipan ulasan singkat."
-        ),
-        snippet: codeBlocksVariant2.react,
+        description:
+          "High-conversion horizontal testimonial ticker rendering customer reviews, star ratings, user avatars, and feedback cards.",
+        codeBlocks: {
+          react: `<Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
+  {userReviews.map((review) => (
+    <ReviewCard key={review.id} review={review} />
+  ))}
+</Marquee>`,
+          vue: `<template>
+  <Marquee direction="left" speed="normal" pauseOnHover fade :gap="18">
+    <ReviewCard v-for="review in userReviews" :key="review.id" :review="review" />
+  </Marquee>
+</template>`,
+          laravel: `<x-ui::marquee direction="left" speed="normal" pause-on-hover fade :gap="18">
+  @foreach($userReviews as $review)
+    <x-review-card :review="$review" />
+  @endforeach
+</x-ui::marquee>`,
+        },
         render: () => (
-          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 py-6 dark:border-zinc-800/70 dark:bg-zinc-900/40 space-y-4">
-            {/* Baris 1: Testimoni ke Kiri */}
+          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-6 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
-              {userReviews.slice(0, 4).map((review) => (
+              {userReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="w-80 shrink-0 rounded-2xl border border-zinc-200/90 bg-white/95 p-5 shadow-xs backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-zinc-300 hover:shadow-md dark:border-zinc-800/90 dark:bg-zinc-900/90 dark:hover:border-zinc-700 cursor-pointer"
+                  className="w-80 shrink-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-4 shadow-xs transition-all hover:scale-[1.02] cursor-pointer"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br text-white font-bold text-sm shadow-xs", review.avatarGrad)}>
+                  <div className="flex items-center justify-between mb-2.5">
+                    <div className="flex items-center gap-2.5">
+                      <div className={cn("flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br text-white font-bold text-xs shadow-xs", review.avatarGrad)}>
                         {review.name.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-tight">
+                        <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
                           {review.name}
                         </h4>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                        <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono">
                           {review.username}
                         </span>
                       </div>
                     </div>
-                    {/* Bintang Rating */}
-                    <div className="flex items-center text-amber-400 text-xs gap-0.5">
-                      {Array.from({ length: review.stars }).map((_, i) => (
-                        <span key={i}>★</span>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                    "{review.content}"
-                  </p>
-                </div>
-              ))}
-            </Marquee>
-
-            {/* Baris 2: Testimoni ke Kanan (Counter-Flow) */}
-            <Marquee direction="right" speed="slow" pauseOnHover fade gap={18}>
-              {userReviews.slice(4, 8).map((review) => (
-                <div
-                  key={review.id}
-                  className="w-80 shrink-0 rounded-2xl border border-zinc-200/90 bg-white/95 p-5 shadow-xs backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-zinc-300 hover:shadow-md dark:border-zinc-800/90 dark:bg-zinc-900/90 dark:hover:border-zinc-700 cursor-pointer"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br text-white font-bold text-sm shadow-xs", review.avatarGrad)}>
-                        {review.name.charAt(0)}
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-tight">
-                          {review.name}
-                        </h4>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-                          {review.username}
-                        </span>
-                      </div>
-                    </div>
-                    {/* Bintang Rating */}
-                    <div className="flex items-center text-amber-400 text-xs gap-0.5">
-                      {Array.from({ length: review.stars }).map((_, i) => (
-                        <span key={i}>★</span>
-                      ))}
+                    <div className="flex text-amber-400 text-xs">
+                      {"★".repeat(review.stars)}
                     </div>
                   </div>
                   <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
@@ -730,237 +534,565 @@ export function MarqueeDemo() {
           </div>
         ),
       },
+
+      // 3. VERTICAL MASONRY WATERFALL
       {
         id: "vertical-masonry",
-        title: t("content.marqueeDemo.variants.vertical.title", "3. Vertical Column (Masonry Ticker)"),
+        title: t("content.marqueeDemo.variants.vertical.title", "3. Vertical Masonry Waterfall (Feed Stream)"),
         badge: t("content.marqueeDemo.variants.vertical.badge", "Dual Column Waterfall"),
-        description: t(
-          "content.marqueeDemo.variants.vertical.desc",
-          "Dua marquee vertikal berdampingan bergerak secara simultan berlawanan arah (ke atas dan ke bawah), menciptakan efek air terjun dinamis."
-        ),
-        snippet: codeBlocksVariant3.react,
+        description:
+          "Dual vertical marquee columns flowing in opposite directions simultaneously to create a live activity feed stream.",
+        codeBlocks: {
+          react: `<div className="h-[400px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+  <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade gap={14}>
+    {columnFeed1.map((item) => <ActivityCard key={item.id} item={item} />)}
+  </Marquee>
+  <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover fade gap={14}>
+    {columnFeed2.map((item) => <ActivityCard key={item.id} item={item} />)}
+  </Marquee>
+</div>`,
+          vue: `<template>
+  <div class="h-[400px] overflow-hidden grid grid-cols-2 gap-4">
+    <Marquee orientation="vertical" direction="up" :speed="28" pauseOnHover fade :gap="14">
+      <ActivityCard v-for="item in columnFeed1" :key="item.id" :item="item" />
+    </Marquee>
+    <Marquee orientation="vertical" direction="down" :speed="32" pauseOnHover fade :gap="14">
+      <ActivityCard v-for="item in columnFeed2" :key="item.id" :item="item" />
+    </Marquee>
+  </div>
+</template>`,
+          laravel: `<div class="h-[400px] overflow-hidden grid grid-cols-2 gap-4">
+  <x-ui::marquee orientation="vertical" direction="up" :speed="28" pause-on-hover fade :gap="14">
+    @foreach($columnFeed1 as $item) <x-activity-card :item="$item" /> @endforeach
+  </x-ui::marquee>
+  <x-ui::marquee orientation="vertical" direction="down" :speed="32" pause-on-hover fade :gap="14">
+    @foreach($columnFeed2 as $item) <x-activity-card :item="$item" /> @endforeach
+  </x-ui::marquee>
+</div>`,
+        },
         render: () => (
-          <div className="w-full relative h-[430px] overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-50/80 p-4 dark:border-zinc-800/70 dark:bg-zinc-900/40">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
-              {/* Kolom 1: Bergerak Vertikal ke Atas (Up) */}
-              <div className="h-full relative overflow-hidden">
-                <Marquee
-                  orientation="vertical"
-                  direction="up"
-                  speed={28}
-                  pauseOnHover
-                  fade
-                  gap={14}
-                  className="h-full"
-                >
-                  {columnFeed1.map((item) => (
-                    <div
-                      key={item.id}
-                      className="w-full rounded-xl border border-zinc-200/90 bg-white/95 p-4 shadow-2xs backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:border-zinc-300 dark:border-zinc-800/90 dark:bg-zinc-900/90 dark:hover:border-zinc-700 cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="flex items-center gap-1.5 text-base">
-                          <span>{item.icon}</span>
-                          <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-                            {item.title}
-                          </span>
-                        </span>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">
-                          {item.time}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className={cn("rounded-md px-2 py-0.5 text-[10px] font-semibold border", item.badgeBg)}>
-                          {item.tag}
-                        </span>
-                        <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                          Pipeline synchronized successfully
-                        </span>
-                      </div>
+          <div className="w-full relative h-[400px] overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 p-4 dark:bg-zinc-950">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+              <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade gap={14} className="h-full">
+                {columnFeed1.map((item) => (
+                  <div key={item.id} className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3.5 shadow-2xs">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+                        <span>{item.icon}</span> {item.title}
+                      </span>
+                      <span className="text-[10px] text-zinc-400 font-mono">{item.time}</span>
                     </div>
-                  ))}
-                </Marquee>
-              </div>
+                    <span className={cn("rounded-md px-2 py-0.5 text-[10px] font-semibold border", item.badgeBg)}>
+                      {item.tag}
+                    </span>
+                  </div>
+                ))}
+              </Marquee>
 
-              {/* Kolom 2: Bergerak Vertikal ke Bawah (Down - Counter Flow) */}
-              <div className="h-full relative overflow-hidden">
-                <Marquee
-                  orientation="vertical"
-                  direction="down"
-                  speed={32}
-                  pauseOnHover
-                  fade
-                  gap={14}
-                  className="h-full"
-                >
-                  {columnFeed2.map((item) => (
-                    <div
-                      key={item.id}
-                      className="w-full rounded-xl border border-zinc-200/90 bg-white/95 p-4 shadow-2xs backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:border-zinc-300 dark:border-zinc-800/90 dark:bg-zinc-900/90 dark:hover:border-zinc-700 cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="flex items-center gap-1.5 text-base">
-                          <span>{item.icon}</span>
-                          <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-                            {item.title}
-                          </span>
-                        </span>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">
-                          {item.time}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className={cn("rounded-md px-2 py-0.5 text-[10px] font-semibold border", item.badgeBg)}>
-                          {item.tag}
-                        </span>
-                        <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                          Automated task completed
-                        </span>
-                      </div>
+              <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover fade gap={14} className="h-full">
+                {columnFeed2.map((item) => (
+                  <div key={item.id} className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3.5 shadow-2xs">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+                        <span>{item.icon}</span> {item.title}
+                      </span>
+                      <span className="text-[10px] text-zinc-400 font-mono">{item.time}</span>
                     </div>
-                  ))}
-                </Marquee>
-              </div>
+                    <span className={cn("rounded-md px-2 py-0.5 text-[10px] font-semibold border", item.badgeBg)}>
+                      {item.tag}
+                    </span>
+                  </div>
+                ))}
+              </Marquee>
             </div>
           </div>
         ),
       },
+
+      // 4. MASSIVE HEADLINE BANNER
       {
         id: "giant-typography",
-        title: t("content.marqueeDemo.variants.giantTypography.title", "4. Giant Typography (Background Layer)"),
+        title: t("content.marqueeDemo.variants.giantTypography.title", "4. Massive Headline Banner (Hero Typography Ticker)"),
         badge: t("content.marqueeDemo.variants.giantTypography.badge", "Hero Outline Text"),
-        description: t(
-          "content.marqueeDemo.variants.giantTypography.desc",
-          "Teks raksasa dengan tipografi outline transparan yang bergerak sangat lambat, ideal sebagai latar belakang dinamis hero section."
-        ),
-        snippet: codeBlocksVariant4.react,
+        description:
+          "Ultra-large display typography banner with transparent outline gradient text that flows smoothly as an immersive hero background.",
+        codeBlocks: {
+          react: `<Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
+  <span className="text-7xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
+    CREATIVE ARCHITECTURE • 60 FPS MOTION • ZERO SHIFT •
+  </span>
+</Marquee>`,
+          vue: `<template>
+  <Marquee direction="left" :speed="45" fade :gap="24" pauseOnHover>
+    <span class="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
+      CREATIVE ARCHITECTURE • 60 FPS MOTION •
+    </span>
+  </Marquee>
+</template>`,
+          laravel: `<x-ui::marquee direction="left" :speed="45" fade :gap="24" pause-on-hover>
+  <span class="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
+    CREATIVE ARCHITECTURE • 60 FPS MOTION •
+  </span>
+</x-ui::marquee>`,
+        },
         render: () => (
-          <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-50/80 py-12 dark:border-zinc-800/70 dark:bg-zinc-950 space-y-4">
-            {/* Baris 1: Outline Teks Raksasa Kiri */}
+          <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 py-10 dark:bg-zinc-950 space-y-3">
             <Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
-              <div
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter select-none transition-colors duration-300"
-                style={{
-                  WebkitTextStroke: "1.5px currentColor",
-                  color: "transparent",
-                }}
-              >
-                <span className="text-zinc-300 hover:text-zinc-800 dark:text-zinc-800 dark:hover:text-zinc-300 transition-colors">
-                  CREATIVE ARCHITECTURE • 60 FPS MOTION • ZERO SHIFT •
-                </span>
-              </div>
+              <span className="text-6xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-600 to-zinc-400 dark:from-white dark:via-zinc-300 dark:to-zinc-600 select-none">
+                CREATIVE ARCHITECTURE • 60 FPS MOTION • ZERO RUNTIME •
+              </span>
             </Marquee>
-
-            {/* Floating Hero Card di atas layer marquee */}
-            <div className="relative z-10 flex justify-center py-2">
-              <div className="inline-flex items-center gap-3 rounded-full border border-zinc-200/80 bg-white/90 px-6 py-2.5 shadow-lg backdrop-blur-md dark:border-zinc-700/80 dark:bg-zinc-900/90">
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                  Hero Layer Demo — Responsive Outline Typography
-                </span>
-              </div>
-            </div>
-
-            {/* Baris 2: Outline Teks Raksasa Kanan */}
             <Marquee direction="right" speed={55} fade gap={24} pauseOnHover>
-              <div
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter select-none transition-colors duration-300"
-                style={{
-                  WebkitTextStroke: "1.5px currentColor",
-                  color: "transparent",
-                }}
-              >
-                <span className="text-zinc-300 hover:text-zinc-800 dark:text-zinc-800 dark:hover:text-zinc-300 transition-colors">
-                  DESIGN SYSTEM • TAILWIND CSS • FRAMER MOTION • ACCESSIBLE •
-                </span>
-              </div>
+              <span className="text-6xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 select-none">
+                DESIGN SYSTEM • TAILWIND CSS • FRAMER MOTION • ACCESSIBLE •
+              </span>
             </Marquee>
           </div>
         ),
       },
+
+      // 5. 3D PERSPECTIVE ISOMETRIC TICKER
       {
         id: "perspective-3d",
-        title: t("content.marqueeDemo.variants.perspective3d.title", "5. 3D Perspective Ticker"),
+        title: t("content.marqueeDemo.variants.perspective3d.title", "5. 3D Perspective Isometric Marquee (Depth Presentation)"),
         badge: t("content.marqueeDemo.variants.perspective3d.badge", "CSS 3D Depth"),
-        description: t(
-          "content.marqueeDemo.variants.perspective3d.desc",
-          "Marquee dalam kontainer dengan efek kedalaman CSS 3D Perspective, menciptakan ilusi deretan kartu bergerak masuk ke dalam ruang 3 dimensi."
-        ),
-        snippet: codeBlocksVariant5.react,
+        description:
+          "Cards streaming within an inclined 3D perspective space (rotateX, rotateZ, skewX) creating an illusion of infinite depth.",
+        codeBlocks: {
+          react: `<div style={{ perspective: "1100px" }} className="overflow-hidden py-14">
+  <div style={{ transform: "rotateX(22deg) rotateZ(-7deg) skewX(-7deg)", transformStyle: "preserve-3d" }}>
+    <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
+      {projectCards.map((card) => <Card3D key={card.id} card={card} />)}
+    </Marquee>
+  </div>
+</div>`,
+          vue: `<template>
+  <div style="perspective: 1100px" class="overflow-hidden py-14">
+    <div style="transform: rotateX(22deg) rotateZ(-7deg) skewX(-7deg); transform-style: preserve-3d">
+      <Marquee direction="left" speed="normal" pauseOnHover fade :gap="18">
+        <Card3D v-for="card in projectCards" :key="card.id" :card="card" />
+      </Marquee>
+    </div>
+  </div>
+</template>`,
+          laravel: `<div style="perspective: 1100px" class="overflow-hidden py-14">
+  <div style="transform: rotateX(22deg) rotateZ(-7deg) skewX(-7deg); transform-style: preserve-3d">
+    <x-ui::marquee direction="left" speed="normal" pause-on-hover fade :gap="18">
+      @foreach($projectCards as $card) <x-card-3d :card="$card" /> @endforeach
+    </x-ui::marquee>
+  </div>
+</div>`,
+        },
         render: () => (
           <div
-            className="w-full relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-100/70 py-16 px-4 dark:border-zinc-800/70 dark:bg-zinc-950/90"
+            className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/70 py-14 px-4 dark:bg-zinc-950"
             style={{ perspective: "1100px" }}
           >
             <div
-              className="space-y-6 transition-transform duration-500"
+              className="space-y-4"
               style={{
                 transform: "rotateX(22deg) rotateZ(-7deg) skewX(-7deg)",
                 transformStyle: "preserve-3d",
               }}
             >
-              {/* Row 1 dalam 3D Space */}
               <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
                 {projectCards.map((card) => (
                   <div
-                    key={`p1-${card.id}`}
-                    className="group w-72 shrink-0 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                    key={card.id}
+                    className="w-64 shrink-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-lg hover:scale-105 transition-transform cursor-pointer"
                   >
-                    <div
-                      className={cn(
-                        "h-24 w-full rounded-xl p-3.5 flex flex-col justify-between shadow-2xs mb-3 border bg-linear-to-br transition-colors",
-                        card.accentGradient
-                      )}
-                    >
-                      <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 dark:text-zinc-400">
-                        {card.category}
-                      </span>
-                      <span className="text-xl font-black tracking-tight text-zinc-900 dark:text-white">
-                        {card.metric}
-                      </span>
+                    <div className={cn("h-20 w-full rounded-xl p-3 flex flex-col justify-between mb-2 border bg-gradient-to-br", card.accentGradient)}>
+                      <span className="text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400">{card.category}</span>
+                      <span className="text-lg font-black text-zinc-900 dark:text-white">{card.metric}</span>
                     </div>
-                    <div className="flex items-center justify-between pt-0.5">
-                      <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                        {card.title}
-                      </h4>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-100 text-xs text-zinc-500 transition-colors group-hover:bg-zinc-200 group-hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-400 dark:group-hover:bg-zinc-700 dark:group-hover:text-zinc-100">
-                        ↗
-                      </span>
+                    <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{card.title}</span>
+                  </div>
+                ))}
+              </Marquee>
+            </div>
+          </div>
+        ),
+      },
+
+      // 6. VERTICAL INFINITE SCROLL (TESTIMONIAL COLUMN)
+      {
+        id: "vertical-testimonials",
+        title: t("content.marqueeDemo.variants.verticalTestimonials.title", "6. Vertical Infinite Scroll (Testimonial Dual-Column)"),
+        badge: t("content.marqueeDemo.variants.verticalTestimonials.badge", "Dual Vertical Flow"),
+        description:
+          "Two vertical columns side-by-side moving in counter-flow directions (up and down) masked with a top-to-bottom edge fade gradient.",
+        codeBlocks: {
+          react: `<div
+  className="h-[460px] overflow-hidden grid grid-cols-2 gap-4"
+  style={{
+    maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
+    WebkitMaskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
+  }}
+>
+  <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover gap={16}>
+    {reviewsCol1.map((rev) => <TestimonialCard key={rev.id} review={rev} />)}
+  </Marquee>
+  <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover gap={16}>
+    {reviewsCol2.map((rev) => <TestimonialCard key={rev.id} review={rev} />)}
+  </Marquee>
+</div>`,
+          vue: `<template>
+  <div
+    class="h-[460px] overflow-hidden grid grid-cols-2 gap-4"
+    style="mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)"
+  >
+    <Marquee orientation="vertical" direction="up" :speed="28" pauseOnHover :gap="16">
+      <TestimonialCard v-for="rev in reviewsCol1" :key="rev.id" :review="rev" />
+    </Marquee>
+    <Marquee orientation="vertical" direction="down" :speed="32" pauseOnHover :gap="16">
+      <TestimonialCard v-for="rev in reviewsCol2" :key="rev.id" :review="rev" />
+    </Marquee>
+  </div>
+</template>`,
+          laravel: `<div class="h-[460px] overflow-hidden grid grid-cols-2 gap-4" style="mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)">
+  <x-ui::marquee orientation="vertical" direction="up" :speed="28" pause-on-hover :gap="16">
+    @foreach($reviewsCol1 as $rev) <x-testimonial-card :review="$rev" /> @endforeach
+  </x-ui::marquee>
+  <x-ui::marquee orientation="vertical" direction="down" :speed="32" pause-on-hover :gap="16">
+    @foreach($reviewsCol2 as $rev) <x-testimonial-card :review="$rev" /> @endforeach
+  </x-ui::marquee>
+</div>`,
+        },
+        render: () => (
+          <div
+            className="w-full relative h-[460px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4"
+            style={{
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+            }}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+              {/* Kolom 1: Upward Testimonials */}
+              <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade={false} gap={16} className="h-full">
+                {userReviews.slice(0, 3).map((rev) => (
+                  <div
+                    key={rev.id}
+                    className="w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-4 shadow-sm hover:scale-[1.02] transition-transform"
+                  >
+                    <div className="flex items-center gap-3 mb-2.5">
+                      <div className={cn("h-9 w-9 rounded-full flex items-center justify-center text-white font-bold text-xs bg-gradient-to-tr shadow-xs", rev.avatarGrad)}>
+                        {rev.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">{rev.name}</h4>
+                        <span className="text-[10px] text-zinc-500 dark:text-zinc-400">{rev.role}</span>
+                      </div>
                     </div>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed mb-2">"{rev.content}"</p>
+                    <div className="flex text-amber-400 text-xs">{"★".repeat(rev.stars)}</div>
                   </div>
                 ))}
               </Marquee>
 
-              {/* Row 2 dalam 3D Space (Counter-Flow) */}
-              <Marquee direction="right" speed="slow" pauseOnHover fade gap={18}>
-                {projectCards.slice().reverse().map((card) => (
+              {/* Kolom 2: Downward Testimonials */}
+              <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover fade={false} gap={16} className="h-full">
+                {userReviews.slice(3, 6).map((rev) => (
                   <div
-                    key={`p2-${card.id}`}
-                    className="group w-72 shrink-0 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                    key={rev.id}
+                    className="w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-4 shadow-sm hover:scale-[1.02] transition-transform"
                   >
-                    <div
-                      className={cn(
-                        "h-24 w-full rounded-xl p-3.5 flex flex-col justify-between shadow-2xs mb-3 border bg-linear-to-br transition-colors",
-                        card.accentGradient
-                      )}
-                    >
-                      <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 dark:text-zinc-400">
-                        {card.category}
-                      </span>
-                      <span className="text-xl font-black tracking-tight text-zinc-900 dark:text-white">
-                        {card.metric}
-                      </span>
+                    <div className="flex items-center gap-3 mb-2.5">
+                      <div className={cn("h-9 w-9 rounded-full flex items-center justify-center text-white font-bold text-xs bg-gradient-to-tr shadow-xs", rev.avatarGrad)}>
+                        {rev.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">{rev.name}</h4>
+                        <span className="text-[10px] text-zinc-500 dark:text-zinc-400">{rev.role}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between pt-0.5">
-                      <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                        {card.title}
-                      </h4>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-100 text-xs text-zinc-500 transition-colors group-hover:bg-zinc-200 group-hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-400 dark:group-hover:bg-zinc-700 dark:group-hover:text-zinc-100">
-                        ↗
-                      </span>
-                    </div>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed mb-2">"{rev.content}"</p>
+                    <div className="flex text-amber-400 text-xs">{"★".repeat(rev.stars)}</div>
                   </div>
                 ))}
+              </Marquee>
+            </div>
+          </div>
+        ),
+      },
+
+      // 7. PARALLAX DUAL-DIRECTION (OPPOSING TEXT TRACKS)
+      {
+        id: "parallax-dual",
+        title: t("content.marqueeDemo.variants.parallaxDual.title", "7. Parallax Dual-Direction (Opposing Text Tracks)"),
+        badge: t("content.marqueeDemo.variants.parallaxDual.badge", "Interactive Velocity"),
+        description:
+          "Two giant text tracks running in opposite directions with asymmetric velocities. Hovering over the container dynamically shifts speed for a parallax depth illusion.",
+        codeBlocks: {
+          react: `<div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+  {/* Track 1: Slows down on hover */}
+  <Marquee direction="left" speed={isHovered ? 52 : 24} fade gap={28}>
+    <span className="text-7xl font-black uppercase">PARALLAX VELOCITY • NEXT-GEN •</span>
+  </Marquee>
+
+  {/* Track 2: Accelerates on hover */}
+  <Marquee direction="right" speed={isHovered ? 14 : 36} fade gap={28}>
+    <span className="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500">
+      COUNTER DIRECTIONAL TRACKS • SPEED SHIFT •
+    </span>
+  </Marquee>
+</div>`,
+          vue: `<template>
+  <div @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+    <Marquee direction="left" :speed="isHovered ? 52 : 24" fade :gap="28">
+      <span class="text-7xl font-black uppercase">PARALLAX VELOCITY •</span>
+    </Marquee>
+    <Marquee direction="right" :speed="isHovered ? 14 : 36" fade :gap="28">
+      <span class="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500">
+        COUNTER DIRECTIONAL TRACKS •
+      </span>
+    </Marquee>
+  </div>
+</template>`,
+          laravel: `<div onmouseenter="shiftSpeeds(true)" onmouseleave="shiftSpeeds(false)">
+  <x-ui::marquee direction="left" :speed="24" fade :gap="28">
+    <span class="text-7xl font-black uppercase">PARALLAX VELOCITY •</span>
+  </x-ui::marquee>
+  <x-ui::marquee direction="right" :speed="36" fade :gap="28">
+    <span class="text-7xl font-black uppercase">COUNTER TRACKS •</span>
+  </x-ui::marquee>
+</div>`,
+        },
+        render: () => <ParallaxDualDirection />,
+      },
+
+      // 8. DRAGGABLE CAROUSEL MARQUEE (FRAMER MOTION PHYSICS)
+      {
+        id: "draggable-carousel",
+        title: t("content.marqueeDemo.variants.draggableCarousel.title", "8. Draggable Carousel Marquee (Framer Motion Physics)"),
+        badge: t("content.marqueeDemo.variants.draggableCarousel.badge", "Interactive Drag Physics"),
+        description:
+          "Autonomous motion loop that empowers users to swipe and drag content horizontally using Framer Motion drag constraints, elastic bounds, and grab cursors.",
+        codeBlocks: {
+          react: `<motion.div
+  drag="x"
+  dragConstraints={{ left: -1100, right: 0 }}
+  dragElastic={0.12}
+  animate={{ x: [0, -700] }}
+  transition={{ x: { repeat: Infinity, duration: 28, ease: "linear" } }}
+  className="flex gap-4 cursor-grab active:cursor-grabbing"
+>
+  {cards.map((card) => <Card key={card.id} {...card} />)}
+</motion.div>`,
+          vue: `<template>
+  <!-- Powered by Framer Motion / VueUse Drag Physics -->
+  <div class="flex gap-4 cursor-grab active:cursor-grabbing overflow-x-auto">
+    <Card v-for="card in cards" :key="card.id" v-bind="card" />
+  </div>
+</template>`,
+          laravel: `<div class="draggable-marquee-wrapper cursor-grab active:cursor-grabbing">
+  @foreach($cards as $card)
+    <x-card :item="$card" />
+  @endforeach
+</div>`,
+        },
+        render: () => (
+          <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4">
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-200/80 dark:border-zinc-800/80 text-xs font-mono text-zinc-500">
+              <span>Touch / Mouse Interactive Drag</span>
+              <span className="text-[11px] bg-zinc-200/80 dark:bg-zinc-800 px-2 py-0.5 rounded text-zinc-600 dark:text-zinc-300">
+                drag="x" • dragElastic=0.12
+              </span>
+            </div>
+            <DraggableMarqueeCarousel />
+          </div>
+        ),
+      },
+
+      // 9. OUTLINE TO SOLID TYPOGRAPHY (STROKE FILL HOVER)
+      {
+        id: "stroke-fill",
+        title: t("content.marqueeDemo.variants.strokeFill.title", "9. Outline to Solid Typography (Stroke Fill Hover)"),
+        badge: t("content.marqueeDemo.variants.strokeFill.badge", "CSS Text-Stroke Transition"),
+        description:
+          "Hollow text using transparent fill with stroke borders that smoothly transitions into vibrant solid colors upon mouse hover with micro-scaling.",
+        codeBlocks: {
+          react: `<Marquee direction="left" speed={35} fade gap={32} pauseOnHover>
+  {words.map((word) => (
+    <span
+      key={word}
+      className="text-7xl font-black uppercase tracking-tight text-transparent transition-all duration-300 hover:text-zinc-900 dark:hover:text-white hover:scale-105"
+      style={{ WebkitTextStroke: "1.5px currentColor" }}
+    >
+      {word} •
+    </span>
+  ))}
+</Marquee>`,
+          vue: `<template>
+  <Marquee direction="left" :speed="35" fade :gap="32" pauseOnHover>
+    <span
+      v-for="word in words"
+      :key="word"
+      class="text-7xl font-black uppercase text-transparent transition-all duration-300 hover:text-zinc-900 dark:hover:text-white"
+      style="-webkit-text-stroke: 1.5px currentColor"
+    >
+      {{ word }} •
+    </span>
+  </Marquee>
+</template>`,
+          laravel: `<x-ui::marquee direction="left" :speed="35" fade :gap="32" pause-on-hover>
+  @foreach($words as $word)
+    <span class="text-7xl font-black uppercase text-transparent transition-all duration-300 hover:text-white" style="-webkit-text-stroke: 1.5px currentColor">
+      {{ $word }} •
+    </span>
+  @endforeach
+</x-ui::marquee>`,
+        },
+        render: () => (
+          <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 py-10 dark:bg-zinc-950 space-y-4">
+            <Marquee direction="left" speed={32} fade gap={28} pauseOnHover>
+              {[
+                "HYPERDRIVE",
+                "SPATIAL MOTION",
+                "HARDWARE ACCELERATED",
+                "ZERO RUNTIME",
+                "IMMERSIVE DEPTH",
+                "PURE AESTHETICS",
+              ].map((word) => (
+                <span
+                  key={word}
+                  className="text-6xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-transparent transition-all duration-300 hover:text-zinc-900 dark:hover:text-white hover:scale-105 cursor-pointer select-none inline-block"
+                  style={{
+                    WebkitTextStroke: "1.5px currentColor",
+                  }}
+                >
+                  <span className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-600 dark:hover:text-white transition-colors">
+                    {word} •
+                  </span>
+                </span>
+              ))}
+            </Marquee>
+
+            <div className="text-center">
+              <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                💡 Hover individual words to observe the stroke-to-solid color fill transition
+              </span>
+            </div>
+          </div>
+        ),
+      },
+
+      // 10. Z-INDEX LAYERING (SANDWICH IMAGE MARQUEE)
+      {
+        id: "sandwich-marquee",
+        title: t("content.marqueeDemo.variants.sandwichMarquee.title", "10. Z-Index Layering (Sandwich Image Marquee)"),
+        badge: t("content.marqueeDemo.variants.sandwichMarquee.badge", "Spatial Sandwich Depth"),
+        description:
+          "A floating 3D graphic anchored between two synchronized marquee streams: a solid backdrop layer underneath, and an outline wireframe layer in front.",
+        codeBlocks: {
+          react: `<div className="relative h-[380px] overflow-hidden flex items-center justify-center">
+  {/* Layer A (Back): Solid Text behind object */}
+  <div className="absolute inset-0 z-10 flex items-center opacity-70">
+    <Marquee direction="left" speed={22} fade gap={28}>
+      <span className="text-8xl font-black text-zinc-700 dark:text-zinc-800">SPATIAL AUDIO • ACOUSTICS •</span>
+    </Marquee>
+  </div>
+
+  {/* Center Object: Anchored in 3D Space */}
+  <div className="relative z-20 drop-shadow-2xl animate-pulse">
+    <HeadphoneImage />
+  </div>
+
+  {/* Layer B (Front): Wireframe Outline passing above object */}
+  <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
+    <Marquee direction="left" speed={22} fade gap={28}>
+      <span className="text-8xl font-black text-transparent" style={{ WebkitTextStroke: "1.5px white" }}>
+        SPATIAL AUDIO • ACOUSTICS •
+      </span>
+    </Marquee>
+  </div>
+</div>`,
+          vue: `<template>
+  <div class="relative h-[380px] overflow-hidden flex items-center justify-center">
+    <!-- Back Marquee -->
+    <div class="absolute inset-0 z-10 flex items-center opacity-70">
+      <Marquee direction="left" :speed="22" fade :gap="28">
+        <span class="text-8xl font-black text-zinc-700 dark:text-zinc-800">SPATIAL AUDIO •</span>
+      </Marquee>
+    </div>
+    <!-- Center Device -->
+    <div class="relative z-20">
+      <HeadphoneVector />
+    </div>
+    <!-- Front Wireframe Marquee -->
+    <div class="absolute inset-0 z-30 flex items-center pointer-events-none">
+      <Marquee direction="left" :speed="22" fade :gap="28">
+        <span class="text-8xl font-black text-transparent" style="-webkit-text-stroke: 1.5px white">
+          SPATIAL AUDIO •
+        </span>
+      </Marquee>
+    </div>
+  </div>
+</template>`,
+          laravel: `<div class="relative h-[380px] overflow-hidden flex items-center justify-center">
+  <div class="absolute inset-0 z-10 flex items-center opacity-70">
+    <x-ui::marquee direction="left" :speed="22" fade :gap="28">
+      <span class="text-8xl font-black text-zinc-700">SPATIAL AUDIO •</span>
+    </x-ui::marquee>
+  </div>
+  <div class="relative z-20">
+    <x-device-vector />
+  </div>
+  <div class="absolute inset-0 z-30 flex items-center pointer-events-none">
+    <x-ui::marquee direction="left" :speed="22" fade :gap="28">
+      <span class="text-8xl font-black text-transparent" style="-webkit-text-stroke: 1.5px white">SPATIAL AUDIO •</span>
+    </x-ui::marquee>
+  </div>
+</div>`,
+        },
+        render: () => (
+          <div className="w-full relative h-[380px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-950 flex items-center justify-center select-none">
+            {/* Ambient Background Glow */}
+            <div className="absolute w-72 h-72 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
+
+            {/* Layer A (Back): Solid Dim Text Behind Device (z-10) */}
+            <div className="absolute inset-0 z-10 flex items-center opacity-75 pointer-events-none">
+              <Marquee direction="left" speed={24} fade gap={28}>
+                <span className="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-zinc-800 dark:text-zinc-800 whitespace-nowrap">
+                  SPATIAL SOUND • ACOUSTIC MATRIX • NEXT AESTHETICS •
+                </span>
+              </Marquee>
+            </div>
+
+            {/* Center Anchor Object (z-20): High-End Spatial Audio Headphone Vector */}
+            <div className="relative z-20 flex flex-col items-center justify-center p-6 drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)] pointer-events-none">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl bg-gradient-to-tr from-zinc-900/90 to-zinc-800/80 border border-zinc-700/60 flex items-center justify-center p-6 shadow-2xl backdrop-blur-sm relative group">
+                {/* Visual Headphone Icon with Glow Accents */}
+                <svg
+                  className="w-28 h-28 text-indigo-400 drop-shadow-[0_0_20px_rgba(99,102,241,0.6)] animate-pulse"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3" />
+                </svg>
+
+                <div className="absolute bottom-3 text-center">
+                  <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-zinc-400">
+                    Spatial Pro X-1
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Layer B (Front): Wireframe Outline Passing Directly Above Device (z-30) */}
+            <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
+              <Marquee direction="left" speed={24} fade gap={28}>
+                <span
+                  className="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-transparent whitespace-nowrap"
+                  style={{
+                    WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.85)",
+                  }}
+                >
+                  SPATIAL SOUND • ACOUSTIC MATRIX • NEXT AESTHETICS •
+                </span>
               </Marquee>
             </div>
           </div>
@@ -986,101 +1118,93 @@ export function MarqueeDemo() {
       {/* Top Search & Filter Bar */}
       <div className="space-y-4">
         <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-400">
             <SearchIcon size={18} />
           </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={t(
-              "content.marqueeDemo.searchPlaceholder",
-              "Cari variasi marquee (contoh: 'ticker', 'social proof', 'testimonials', '3d', 'typography')..."
-            )}
-            className="w-full rounded-2xl border border-neutral-200/90 bg-white py-3.5 pl-11 pr-10 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-neutral-800/90 dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder:text-neutral-500 transition shadow-xs"
+            placeholder="Search marquee variants (e.g. 'parallax', 'draggable', 'sandwich', 'testimonials', '3d')..."
+            className="w-full rounded-2xl border border-zinc-200 bg-white py-3.5 pl-11 pr-10 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:placeholder:text-zinc-500 transition shadow-xs"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 cursor-pointer"
+              className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer"
             >
-              {t("common.clearSearch", "✕ Hapus")}
+              ✕ Clear
             </button>
           )}
         </div>
 
         {/* Info Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40">
           <div className="space-y-0.5">
-            <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
-              {t("content.marqueeDemo.collectionTitle", "Koleksi Variasi Marquee Animasi:")}
+            <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Complete Animated Marquee Collection:
             </span>
-            <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
-              {t("content.marqueeDemo.showingCount", {
-                count: filteredList.length,
-                total: marqueeList.length,
-                defaultValue: `Menampilkan ${filteredList.length} dari ${marqueeList.length} variasi marquee motion berkinerja tinggi.`,
-              })}
+            <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+              Showing {filteredList.length} of {marqueeList.length} production-ready motion variants.
             </p>
           </div>
-          <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
-            {t("content.marqueeDemo.statusBadge", "Smooth 60FPS Hardware Accelerated")}
+          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+            60FPS Hardware Accelerated • Framer Motion Ready
           </span>
         </div>
       </div>
 
       {/* Empty Search State */}
       {filteredList.length === 0 && (
-        <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
-          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-            {t("content.marqueeDemo.emptySearch", {
-              query: searchQuery,
-              defaultValue: `Tidak ditemukan variasi marquee dengan kata kunci "${searchQuery}"`,
-            })}
+        <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800">
+          <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            No marquee variants matching "{searchQuery}"
           </p>
           <button
             type="button"
             onClick={() => setSearchQuery("")}
-            className="mt-3 text-xs text-blue-600 hover:underline dark:text-blue-400 font-medium cursor-pointer"
+            className="mt-3 text-xs text-indigo-600 hover:underline dark:text-indigo-400 font-medium cursor-pointer"
           >
-            {t("content.marqueeDemo.resetSearch", "Reset pencarian")}
+            Reset search query
           </button>
         </div>
       )}
 
-      {/* 1 Column Vertical List (gap-14) for Full Experience */}
+      {/* 1-Column Full Experience Layout (gap-14) */}
       <div className="flex flex-col gap-14">
         {filteredList.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
+            className="flex flex-col justify-between rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white p-5 sm:p-7 shadow-xs transition hover:border-zinc-300 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
             {/* Header Info */}
-            <div className="space-y-2 mb-4">
+            <div className="space-y-1.5 mb-5">
               <div className="flex items-start justify-between gap-3">
-                <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
+                <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
                   {item.title}
                 </h3>
-                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
+                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200/60 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-900 font-semibold">
                   {item.badge}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-4xl">
                 {item.description}
               </p>
             </div>
 
             {/* Interactive Preview Canvas */}
-            <div className="w-full flex items-center justify-center p-4 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
+            <div className="w-full flex items-center justify-center p-3 sm:p-5 rounded-xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-5 overflow-hidden">
               {item.render()}
             </div>
 
-            {/* Usage Code Snippet */}
-            <CodeSnippet code={item.snippet} />
+            {/* Multi-Framework Code Snippet */}
+            <MultiCodeSnippet codeBlocks={item.codeBlocks} title={`${item.title} Usage`} />
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+export default MarqueeDemo;

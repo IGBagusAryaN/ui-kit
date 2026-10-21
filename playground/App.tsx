@@ -14,6 +14,7 @@ import { ModalAnimationPage } from "./pages/ModalAnimationPage";
 import { MarqueeAnimationPage } from "./pages/MarqueeAnimationPage";
 import { TimelineAnimationPage } from "./pages/TimelineAnimationPage";
 import { DropdownPage } from "./pages/DropdownPage";
+import { AnimatedAccordionDemo } from "./pages/AnimatedAccordionDemo";
 import { ToastProvider } from "../src/components/ToastAnimation";
 
 export function App() {
@@ -69,6 +70,10 @@ export function App() {
             id: "dropdown-animation",
             label: t("sidebar.components.dropdown", "Dropdown"),
           },
+          {
+            id: "accordion-animation",
+            label: t("sidebar.components.accordion", "Accordion"),
+          },
         ],
       },
       {
@@ -94,6 +99,7 @@ export function App() {
       "advanced-buttons",
       "navbar-animation",
       "dropdown-animation",
+      "accordion-animation",
       "toast-animation",
       "modal-animation",
       "marquee-animation",
@@ -141,6 +147,8 @@ export function App() {
         return <NavbarAnimationPage />;
       case "dropdown-animation":
         return <DropdownPage />;
+      case "accordion-animation":
+        return <AnimatedAccordionDemo />;
       case "toast-animation":
         return <ToastAnimationPage />;
       case "modal-animation":
