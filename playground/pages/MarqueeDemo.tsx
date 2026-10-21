@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, useMotionValue } from "framer-motion";
 import { Marquee } from "../../src/components/Marquee";
-import { MultiCodeSnippet } from "../components/MultiCodeSnippet";
+import { CodeSnippet } from "../components/CodeSnippet";
 import {
   SearchIcon,
   CheckCircleIcon,
@@ -404,8 +404,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.trustedBy.badge", "Tech Stack Pills"),
         description:
           "Dual horizontal counter-flow marquee showcasing technology badges and client logos with interactive glow effects and category pills.",
-        codeBlocks: {
-          react: `<div className="space-y-4">
+        snippet: `<div className="space-y-4">
   <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
     {techPillsRow1.map((tech) => <TechPill key={tech.id} item={tech} />)}
   </Marquee>
@@ -413,25 +412,6 @@ export function MarqueeDemo() {
     {techPillsRow2.map((tech) => <TechPill key={tech.id} item={tech} />)}
   </Marquee>
 </div>`,
-          vue: `<template>
-  <div class="space-y-4">
-    <Marquee direction="left" speed="normal" pauseOnHover fade :gap="20">
-      <TechPill v-for="tech in techPillsRow1" :key="tech.id" :item="tech" />
-    </Marquee>
-    <Marquee direction="right" speed="slow" pauseOnHover fade :gap="20">
-      <TechPill v-for="tech in techPillsRow2" :key="tech.id" :item="tech" />
-    </Marquee>
-  </div>
-</template>`,
-          laravel: `<div class="space-y-4">
-  <x-ui::marquee direction="left" speed="normal" pause-on-hover fade :gap="20">
-    @foreach($techPillsRow1 as $tech) <x-tech-pill :item="$tech" /> @endforeach
-  </x-ui::marquee>
-  <x-ui::marquee direction="right" speed="slow" pause-on-hover fade :gap="20">
-    @foreach($techPillsRow2 as $tech) <x-tech-pill :item="$tech" /> @endforeach
-  </x-ui::marquee>
-</div>`,
-        },
         render: () => (
           <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-6 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
@@ -482,23 +462,11 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.testimonials.badge", "Social Proof"),
         description:
           "High-conversion horizontal testimonial ticker rendering customer reviews, star ratings, user avatars, and feedback cards.",
-        codeBlocks: {
-          react: `<Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
+        snippet: `<Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
   {userReviews.map((review) => (
     <ReviewCard key={review.id} review={review} />
   ))}
 </Marquee>`,
-          vue: `<template>
-  <Marquee direction="left" speed="normal" pauseOnHover fade :gap="18">
-    <ReviewCard v-for="review in userReviews" :key="review.id" :review="review" />
-  </Marquee>
-</template>`,
-          laravel: `<x-ui::marquee direction="left" speed="normal" pause-on-hover fade :gap="18">
-  @foreach($userReviews as $review)
-    <x-review-card :review="$review" />
-  @endforeach
-</x-ui::marquee>`,
-        },
         render: () => (
           <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-6 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
@@ -542,8 +510,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.vertical.badge", "Dual Column Waterfall"),
         description:
           "Dual vertical marquee columns flowing in opposite directions simultaneously to create a live activity feed stream.",
-        codeBlocks: {
-          react: `<div className="h-[400px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+        snippet: `<div className="h-[400px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
   <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade gap={14}>
     {columnFeed1.map((item) => <ActivityCard key={item.id} item={item} />)}
   </Marquee>
@@ -551,25 +518,6 @@ export function MarqueeDemo() {
     {columnFeed2.map((item) => <ActivityCard key={item.id} item={item} />)}
   </Marquee>
 </div>`,
-          vue: `<template>
-  <div class="h-[400px] overflow-hidden grid grid-cols-2 gap-4">
-    <Marquee orientation="vertical" direction="up" :speed="28" pauseOnHover fade :gap="14">
-      <ActivityCard v-for="item in columnFeed1" :key="item.id" :item="item" />
-    </Marquee>
-    <Marquee orientation="vertical" direction="down" :speed="32" pauseOnHover fade :gap="14">
-      <ActivityCard v-for="item in columnFeed2" :key="item.id" :item="item" />
-    </Marquee>
-  </div>
-</template>`,
-          laravel: `<div class="h-[400px] overflow-hidden grid grid-cols-2 gap-4">
-  <x-ui::marquee orientation="vertical" direction="up" :speed="28" pause-on-hover fade :gap="14">
-    @foreach($columnFeed1 as $item) <x-activity-card :item="$item" /> @endforeach
-  </x-ui::marquee>
-  <x-ui::marquee orientation="vertical" direction="down" :speed="32" pause-on-hover fade :gap="14">
-    @foreach($columnFeed2 as $item) <x-activity-card :item="$item" /> @endforeach
-  </x-ui::marquee>
-</div>`,
-        },
         render: () => (
           <div className="w-full relative h-[400px] overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 p-4 dark:bg-zinc-950">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
@@ -616,25 +564,11 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.giantTypography.badge", "Hero Outline Text"),
         description:
           "Ultra-large display typography banner with transparent outline gradient text that flows smoothly as an immersive hero background.",
-        codeBlocks: {
-          react: `<Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
+        snippet: `<Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
   <span className="text-7xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
     CREATIVE ARCHITECTURE • 60 FPS MOTION • ZERO SHIFT •
   </span>
 </Marquee>`,
-          vue: `<template>
-  <Marquee direction="left" :speed="45" fade :gap="24" pauseOnHover>
-    <span class="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
-      CREATIVE ARCHITECTURE • 60 FPS MOTION •
-    </span>
-  </Marquee>
-</template>`,
-          laravel: `<x-ui::marquee direction="left" :speed="45" fade :gap="24" pause-on-hover>
-  <span class="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
-    CREATIVE ARCHITECTURE • 60 FPS MOTION •
-  </span>
-</x-ui::marquee>`,
-        },
         render: () => (
           <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 py-10 dark:bg-zinc-950 space-y-3">
             <Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
@@ -658,31 +592,13 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.perspective3d.badge", "CSS 3D Depth"),
         description:
           "Cards streaming within an inclined 3D perspective space (rotateX, rotateZ, skewX) creating an illusion of infinite depth.",
-        codeBlocks: {
-          react: `<div style={{ perspective: "1100px" }} className="overflow-hidden py-14">
+        snippet: `<div style={{ perspective: "1100px" }} className="overflow-hidden py-14">
   <div style={{ transform: "rotateX(22deg) rotateZ(-7deg) skewX(-7deg)", transformStyle: "preserve-3d" }}>
     <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
       {projectCards.map((card) => <Card3D key={card.id} card={card} />)}
     </Marquee>
   </div>
 </div>`,
-          vue: `<template>
-  <div style="perspective: 1100px" class="overflow-hidden py-14">
-    <div style="transform: rotateX(22deg) rotateZ(-7deg) skewX(-7deg); transform-style: preserve-3d">
-      <Marquee direction="left" speed="normal" pauseOnHover fade :gap="18">
-        <Card3D v-for="card in projectCards" :key="card.id" :card="card" />
-      </Marquee>
-    </div>
-  </div>
-</template>`,
-          laravel: `<div style="perspective: 1100px" class="overflow-hidden py-14">
-  <div style="transform: rotateX(22deg) rotateZ(-7deg) skewX(-7deg); transform-style: preserve-3d">
-    <x-ui::marquee direction="left" speed="normal" pause-on-hover fade :gap="18">
-      @foreach($projectCards as $card) <x-card-3d :card="$card" /> @endforeach
-    </x-ui::marquee>
-  </div>
-</div>`,
-        },
         render: () => (
           <div
             className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/70 py-14 px-4 dark:bg-zinc-950"
@@ -721,8 +637,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.verticalTestimonials.badge", "Dual Vertical Flow"),
         description:
           "Two vertical columns side-by-side moving in counter-flow directions (up and down) masked with a top-to-bottom edge fade gradient.",
-        codeBlocks: {
-          react: `<div
+        snippet: `<div
   className="h-[460px] overflow-hidden grid grid-cols-2 gap-4"
   style={{
     maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
@@ -736,28 +651,6 @@ export function MarqueeDemo() {
     {reviewsCol2.map((rev) => <TestimonialCard key={rev.id} review={rev} />)}
   </Marquee>
 </div>`,
-          vue: `<template>
-  <div
-    class="h-[460px] overflow-hidden grid grid-cols-2 gap-4"
-    style="mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)"
-  >
-    <Marquee orientation="vertical" direction="up" :speed="28" pauseOnHover :gap="16">
-      <TestimonialCard v-for="rev in reviewsCol1" :key="rev.id" :review="rev" />
-    </Marquee>
-    <Marquee orientation="vertical" direction="down" :speed="32" pauseOnHover :gap="16">
-      <TestimonialCard v-for="rev in reviewsCol2" :key="rev.id" :review="rev" />
-    </Marquee>
-  </div>
-</template>`,
-          laravel: `<div class="h-[460px] overflow-hidden grid grid-cols-2 gap-4" style="mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)">
-  <x-ui::marquee orientation="vertical" direction="up" :speed="28" pause-on-hover :gap="16">
-    @foreach($reviewsCol1 as $rev) <x-testimonial-card :review="$rev" /> @endforeach
-  </x-ui::marquee>
-  <x-ui::marquee orientation="vertical" direction="down" :speed="32" pause-on-hover :gap="16">
-    @foreach($reviewsCol2 as $rev) <x-testimonial-card :review="$rev" /> @endforeach
-  </x-ui::marquee>
-</div>`,
-        },
         render: () => (
           <div
             className="w-full relative h-[460px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4"
@@ -822,8 +715,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.parallaxDual.badge", "Interactive Velocity"),
         description:
           "Two giant text tracks running in opposite directions with asymmetric velocities. Hovering over the container dynamically shifts speed for a parallax depth illusion.",
-        codeBlocks: {
-          react: `<div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+        snippet: `<div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
   {/* Track 1: Slows down on hover */}
   <Marquee direction="left" speed={isHovered ? 52 : 24} fade gap={28}>
     <span className="text-7xl font-black uppercase">PARALLAX VELOCITY • NEXT-GEN •</span>
@@ -836,27 +728,6 @@ export function MarqueeDemo() {
     </span>
   </Marquee>
 </div>`,
-          vue: `<template>
-  <div @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-    <Marquee direction="left" :speed="isHovered ? 52 : 24" fade :gap="28">
-      <span class="text-7xl font-black uppercase">PARALLAX VELOCITY •</span>
-    </Marquee>
-    <Marquee direction="right" :speed="isHovered ? 14 : 36" fade :gap="28">
-      <span class="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500">
-        COUNTER DIRECTIONAL TRACKS •
-      </span>
-    </Marquee>
-  </div>
-</template>`,
-          laravel: `<div onmouseenter="shiftSpeeds(true)" onmouseleave="shiftSpeeds(false)">
-  <x-ui::marquee direction="left" :speed="24" fade :gap="28">
-    <span class="text-7xl font-black uppercase">PARALLAX VELOCITY •</span>
-  </x-ui::marquee>
-  <x-ui::marquee direction="right" :speed="36" fade :gap="28">
-    <span class="text-7xl font-black uppercase">COUNTER TRACKS •</span>
-  </x-ui::marquee>
-</div>`,
-        },
         render: () => <ParallaxDualDirection />,
       },
 
@@ -867,8 +738,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.draggableCarousel.badge", "Interactive Drag Physics"),
         description:
           "Autonomous motion loop that empowers users to swipe and drag content horizontally using Framer Motion drag constraints, elastic bounds, and grab cursors.",
-        codeBlocks: {
-          react: `<motion.div
+        snippet: `<motion.div
   drag="x"
   dragConstraints={{ left: -1100, right: 0 }}
   dragElastic={0.12}
@@ -878,18 +748,6 @@ export function MarqueeDemo() {
 >
   {cards.map((card) => <Card key={card.id} {...card} />)}
 </motion.div>`,
-          vue: `<template>
-  <!-- Powered by Framer Motion / VueUse Drag Physics -->
-  <div class="flex gap-4 cursor-grab active:cursor-grabbing overflow-x-auto">
-    <Card v-for="card in cards" :key="card.id" v-bind="card" />
-  </div>
-</template>`,
-          laravel: `<div class="draggable-marquee-wrapper cursor-grab active:cursor-grabbing">
-  @foreach($cards as $card)
-    <x-card :item="$card" />
-  @endforeach
-</div>`,
-        },
         render: () => (
           <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4">
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-200/80 dark:border-zinc-800/80 text-xs font-mono text-zinc-500">
@@ -910,8 +768,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.strokeFill.badge", "CSS Text-Stroke Transition"),
         description:
           "Hollow text using transparent fill with stroke borders that smoothly transitions into vibrant solid colors upon mouse hover with micro-scaling.",
-        codeBlocks: {
-          react: `<Marquee direction="left" speed={35} fade gap={32} pauseOnHover>
+        snippet: `<Marquee direction="left" speed={35} fade gap={32} pauseOnHover>
   {words.map((word) => (
     <span
       key={word}
@@ -922,26 +779,6 @@ export function MarqueeDemo() {
     </span>
   ))}
 </Marquee>`,
-          vue: `<template>
-  <Marquee direction="left" :speed="35" fade :gap="32" pauseOnHover>
-    <span
-      v-for="word in words"
-      :key="word"
-      class="text-7xl font-black uppercase text-transparent transition-all duration-300 hover:text-zinc-900 dark:hover:text-white"
-      style="-webkit-text-stroke: 1.5px currentColor"
-    >
-      {{ word }} •
-    </span>
-  </Marquee>
-</template>`,
-          laravel: `<x-ui::marquee direction="left" :speed="35" fade :gap="32" pause-on-hover>
-  @foreach($words as $word)
-    <span class="text-7xl font-black uppercase text-transparent transition-all duration-300 hover:text-white" style="-webkit-text-stroke: 1.5px currentColor">
-      {{ $word }} •
-    </span>
-  @endforeach
-</x-ui::marquee>`,
-        },
         render: () => (
           <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 py-10 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed={32} fade gap={28} pauseOnHover>
@@ -983,8 +820,7 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.sandwichMarquee.badge", "Spatial Sandwich Depth"),
         description:
           "A floating 3D graphic anchored between two synchronized marquee streams: a solid backdrop layer underneath, and an outline wireframe layer in front.",
-        codeBlocks: {
-          react: `<div className="relative h-[380px] overflow-hidden flex items-center justify-center">
+        snippet: `<div className="relative h-[380px] overflow-hidden flex items-center justify-center">
   {/* Layer A (Back): Solid Text behind object */}
   <div className="absolute inset-0 z-10 flex items-center opacity-70">
     <Marquee direction="left" speed={22} fade gap={28}>
@@ -1006,44 +842,6 @@ export function MarqueeDemo() {
     </Marquee>
   </div>
 </div>`,
-          vue: `<template>
-  <div class="relative h-[380px] overflow-hidden flex items-center justify-center">
-    <!-- Back Marquee -->
-    <div class="absolute inset-0 z-10 flex items-center opacity-70">
-      <Marquee direction="left" :speed="22" fade :gap="28">
-        <span class="text-8xl font-black text-zinc-700 dark:text-zinc-800">SPATIAL AUDIO •</span>
-      </Marquee>
-    </div>
-    <!-- Center Device -->
-    <div class="relative z-20">
-      <HeadphoneVector />
-    </div>
-    <!-- Front Wireframe Marquee -->
-    <div class="absolute inset-0 z-30 flex items-center pointer-events-none">
-      <Marquee direction="left" :speed="22" fade :gap="28">
-        <span class="text-8xl font-black text-transparent" style="-webkit-text-stroke: 1.5px white">
-          SPATIAL AUDIO •
-        </span>
-      </Marquee>
-    </div>
-  </div>
-</template>`,
-          laravel: `<div class="relative h-[380px] overflow-hidden flex items-center justify-center">
-  <div class="absolute inset-0 z-10 flex items-center opacity-70">
-    <x-ui::marquee direction="left" :speed="22" fade :gap="28">
-      <span class="text-8xl font-black text-zinc-700">SPATIAL AUDIO •</span>
-    </x-ui::marquee>
-  </div>
-  <div class="relative z-20">
-    <x-device-vector />
-  </div>
-  <div class="absolute inset-0 z-30 flex items-center pointer-events-none">
-    <x-ui::marquee direction="left" :speed="22" fade :gap="28">
-      <span class="text-8xl font-black text-transparent" style="-webkit-text-stroke: 1.5px white">SPATIAL AUDIO •</span>
-    </x-ui::marquee>
-  </div>
-</div>`,
-        },
         render: () => (
           <div className="w-full relative h-[380px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-950 flex items-center justify-center select-none">
             {/* Ambient Background Glow */}
@@ -1198,8 +996,8 @@ export function MarqueeDemo() {
               {item.render()}
             </div>
 
-            {/* Multi-Framework Code Snippet */}
-            <MultiCodeSnippet codeBlocks={item.codeBlocks} title={`${item.title} Usage`} />
+            {/* Usage Snippet */}
+            <CodeSnippet code={item.snippet} />
           </div>
         ))}
       </div>
