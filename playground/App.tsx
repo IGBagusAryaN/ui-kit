@@ -13,6 +13,7 @@ import { ToastAnimationPage } from "./pages/ToastAnimationPage";
 import { ModalAnimationPage } from "./pages/ModalAnimationPage";
 import { MarqueeAnimationPage } from "./pages/MarqueeAnimationPage";
 import { TimelineAnimationPage } from "./pages/TimelineAnimationPage";
+import { AnimatedTimelineDemo } from "./pages/AnimatedTimelineDemo";
 import { DropdownPage } from "./pages/DropdownPage";
 import { AnimatedAccordionDemo } from "./pages/AnimatedAccordionDemo";
 import { AdvancedCarouselDemo } from "./pages/AdvancedCarouselDemo";
@@ -189,7 +190,7 @@ export function App() {
       case "marquee-animation":
         return <MarqueeAnimationPage />;
       case "timeline-animation":
-        return <TimelineAnimationPage />;
+        return <AnimatedTimelineDemo />;
       case "web-icons":
         return <WebIconsPage />;
       default:

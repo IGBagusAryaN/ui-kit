@@ -316,40 +316,42 @@ function FluidPillTabs() {
   const [activeTab, setActiveTab] = useState(FLUID_TABS[0].id);
 
   return (
-    <div className="w-full max-w-xl mx-auto space-y-5">
+    <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5">
       {/* Tab Track */}
-      <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-zinc-100/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-inner">
-        {FLUID_TABS.map((tab) => {
-          const isActive = tab.id === activeTab;
-          const Icon = tab.icon;
+      <div className="w-full overflow-x-auto no-scrollbar py-0.5">
+        <div className="inline-flex sm:flex w-auto sm:w-full min-w-full items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl bg-zinc-100/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-inner">
+          {FLUID_TABS.map((tab) => {
+            const isActive = tab.id === activeTab;
+            const Icon = tab.icon;
 
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={cn(
-                "relative flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors select-none",
-                isActive
-                  ? "text-zinc-950 dark:text-white"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
-              )}
-            >
-              {isActive && (
-                <motion.div
-                  layoutId="fluidPillBg"
-                  className="absolute inset-0 rounded-xl bg-white dark:bg-zinc-800 shadow-sm border border-zinc-200/50 dark:border-zinc-700/60 -z-0"
-                  transition={{ type: "spring", stiffness: 450, damping: 32 }}
-                />
-              )}
-              <Icon size={15} className="relative z-10 shrink-0" />
-              <span className="relative z-10">{tab.label}</span>
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  "relative flex-1 shrink-0 flex items-center justify-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors select-none whitespace-nowrap",
+                  isActive
+                    ? "text-zinc-950 dark:text-white"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+                )}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="fluidPillBg"
+                    className="absolute inset-0 rounded-xl bg-white dark:bg-zinc-800 shadow-sm border border-zinc-200/50 dark:border-zinc-700/60 -z-0"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <Icon size={14} className="relative z-10 shrink-0" />
+                <span className="relative z-10">{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Content Viewport */}
-      <div className="relative min-h-[160px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 sm:p-6 shadow-sm overflow-hidden">
+      <div className="relative min-h-[160px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -361,32 +363,32 @@ function FluidPillTabs() {
           >
             {activeTab === "overview" && (
               <>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
+                <div className="flex flex-wrap items-center justify-between gap-1.5">
+                  <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
                     System Health • Normal
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400 font-semibold">
                     99.98% SLA
                   </span>
                 </div>
-                <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
                   Global Cluster Throughput
                 </h4>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   Active replication nodes across 14 edge regions responding with sub-12ms latency. All background cron tasks synchronized.
                 </p>
-                <div className="grid grid-cols-3 gap-3 pt-2">
-                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80">
-                    <span className="text-[10px] text-zinc-400 font-mono">Requests/s</span>
-                    <p className="text-base font-extrabold text-zinc-900 dark:text-zinc-100">42,890</p>
+                <div className="grid grid-cols-3 gap-1.5 sm:gap-3 pt-2">
+                  <div className="p-2 sm:p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-center sm:text-left">
+                    <span className="text-[9px] sm:text-[10px] text-zinc-400 font-mono block truncate">Requests/s</span>
+                    <p className="text-xs sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 truncate">42,890</p>
                   </div>
-                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80">
-                    <span className="text-[10px] text-zinc-400 font-mono">Avg Latency</span>
-                    <p className="text-base font-extrabold text-indigo-600 dark:text-indigo-400">8.4 ms</p>
+                  <div className="p-2 sm:p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-center sm:text-left">
+                    <span className="text-[9px] sm:text-[10px] text-zinc-400 font-mono block truncate">Avg Latency</span>
+                    <p className="text-xs sm:text-base font-extrabold text-indigo-600 dark:text-indigo-400 truncate">8.4 ms</p>
                   </div>
-                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80">
-                    <span className="text-[10px] text-zinc-400 font-mono">Error Rate</span>
-                    <p className="text-base font-extrabold text-emerald-600 dark:text-emerald-400">0.001%</p>
+                  <div className="p-2 sm:p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-center sm:text-left">
+                    <span className="text-[9px] sm:text-[10px] text-zinc-400 font-mono block truncate">Error Rate</span>
+                    <p className="text-xs sm:text-base font-extrabold text-emerald-600 dark:text-emerald-400 truncate">0.001%</p>
                   </div>
                 </div>
               </>
@@ -394,19 +396,19 @@ function FluidPillTabs() {
 
             {activeTab === "analytics" && (
               <>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
+                <div className="flex flex-wrap items-center justify-between gap-1.5">
+                  <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
                     Audience Telemetry
                   </span>
                   <span className="text-[10px] text-zinc-400 font-mono">Real-time Feed</span>
                 </div>
-                <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
                   Engagement & Session Duration
                 </h4>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   Interactive session duration increased by 24.6% this cycle following fluid micro-interaction deployments across all consumer funnels.
                 </p>
-                <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-between">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
                   <span className="text-xs text-zinc-600 dark:text-zinc-300 font-medium">Conversion Funnel Completion</span>
                   <span className="text-sm font-extrabold text-indigo-600 dark:text-indigo-400 font-mono">+18.2% YoY</span>
                 </div>
@@ -415,25 +417,25 @@ function FluidPillTabs() {
 
             {activeTab === "reports" && (
               <>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
+                <div className="flex flex-wrap items-center justify-between gap-1.5">
+                  <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
                     Compliance & Audits
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold">
                     SOC2 Certified
                   </span>
                 </div>
-                <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
                   Automated Security Verification
                 </h4>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   Continuous zero-trust auditing across storage buckets and secret managers with automatic anomaly quarantine.
                 </p>
-                <div className="flex items-center gap-2 pt-1">
-                  <button className="px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 transition">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
+                  <button className="w-full sm:w-auto px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 transition text-center">
                     Download PDF Summary
                   </button>
-                  <button className="px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition">
+                  <button className="w-full sm:w-auto px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition text-center">
                     Export Raw JSON
                   </button>
                 </div>
@@ -442,19 +444,19 @@ function FluidPillTabs() {
 
             {activeTab === "settings" && (
               <>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
+                <div className="flex flex-wrap items-center justify-between gap-1.5">
+                  <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
                     Workspace Preferences
                   </span>
                   <span className="text-[10px] text-zinc-400 font-mono">v0.1.2 Production</span>
                 </div>
-                <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
                   Animation & Sound Physics
                 </h4>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   Customize spring stiffness, damping ratios, and haptic feedback profiles for all shared-layout components.
                 </p>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 sm:p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 gap-1.5">
                   <span className="text-xs text-zinc-700 dark:text-zinc-300 font-medium">Reduced Motion Override</span>
                   <span className="text-xs font-mono font-semibold text-zinc-400">System Respect</span>
                 </div>
@@ -482,40 +484,42 @@ function ElasticUnderlineTabs() {
   const [activeTab, setActiveTab] = useState(UNDERLINE_TABS[0]);
 
   return (
-    <div className="w-full max-w-xl mx-auto space-y-5">
+    <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5">
       {/* Minimalist Baseline Header */}
-      <div className="relative border-b border-zinc-200/90 dark:border-zinc-800 flex items-center gap-1 sm:gap-2">
-        {UNDERLINE_TABS.map((tab) => {
-          const isActive = tab === activeTab;
+      <div className="w-full border-b border-zinc-200/90 dark:border-zinc-800 overflow-x-auto no-scrollbar py-0.5">
+        <div className="relative inline-flex sm:flex items-center gap-1 sm:gap-2 min-w-full">
+          {UNDERLINE_TABS.map((tab) => {
+            const isActive = tab === activeTab;
 
-          return (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                "relative pb-3 pt-1 px-3 sm:px-4 text-xs sm:text-sm font-semibold transition-colors select-none",
-                isActive
-                  ? "text-indigo-600 dark:text-indigo-400 font-bold"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
-              )}
-            >
-              <span>{tab}</span>
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  "relative shrink-0 pb-3 pt-1 px-3 sm:px-4 text-xs sm:text-sm font-semibold transition-colors select-none whitespace-nowrap",
+                  isActive
+                    ? "text-indigo-600 dark:text-indigo-400 font-bold"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+                )}
+              >
+                <span>{tab}</span>
 
-              {/* Elastic Moving Underline Bar */}
-              {isActive && (
-                <motion.div
-                  layoutId="elasticUnderline"
-                  className="absolute bottom-0 inset-x-0 h-[2.5px] bg-indigo-600 dark:bg-indigo-400 rounded-full"
-                  transition={{ type: "spring", stiffness: 420, damping: 30 }}
-                />
-              )}
-            </button>
-          );
-        })}
+                {/* Elastic Moving Underline Bar */}
+                {isActive && (
+                  <motion.div
+                    layoutId="elasticUnderline"
+                    className="absolute bottom-0 inset-x-0 h-[2.5px] bg-indigo-600 dark:bg-indigo-400 rounded-full"
+                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Content Viewport */}
-      <div className="relative min-h-[140px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 sm:p-6 shadow-sm overflow-hidden">
+      <div className="relative min-h-[140px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -536,7 +540,7 @@ function ElasticUnderlineTabs() {
               Configuring active parameters for {activeTab}. The elastic baseline slider automatically measures the exact text bounds of the clicked tab.
             </p>
 
-            <div className="pt-2 flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-zinc-100 dark:border-zinc-800/80">
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-zinc-400 border-t border-zinc-100 dark:border-zinc-800/80 gap-1 sm:gap-0">
               <span>Status: Synchronized</span>
               <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Active Key • {activeTab}</span>
             </div>
@@ -562,58 +566,60 @@ function ExpandableIconTabs() {
   const [activeTab, setActiveTab] = useState(EXPANDABLE_TABS[0].id);
 
   return (
-    <div className="w-full max-w-xl mx-auto space-y-5 flex flex-col items-center">
+    <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5 flex flex-col items-center">
       {/* Expandable Navigation Capsule */}
-      <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm">
-        {EXPANDABLE_TABS.map((tab) => {
-          const isActive = tab.id === activeTab;
-          const Icon = tab.icon;
+      <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-start sm:justify-center py-1">
+        <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm shrink-0">
+          {EXPANDABLE_TABS.map((tab) => {
+            const isActive = tab.id === activeTab;
+            const Icon = tab.icon;
 
-          return (
-            <motion.button
-              key={tab.id}
-              layout
-              onClick={() => setActiveTab(tab.id)}
-              transition={{ type: "spring", stiffness: 450, damping: 30 }}
-              className={cn(
-                "relative flex items-center gap-2 py-2 px-3.5 rounded-full text-xs font-semibold select-none transition-colors",
-                isActive
-                  ? "text-white font-bold"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
-              )}
-            >
-              {/* Active Morphing Background Pill */}
-              {isActive && (
-                <motion.div
-                  layoutId="expandablePill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-700 shadow-md shadow-indigo-600/30 -z-0"
-                  transition={{ type: "spring", stiffness: 450, damping: 30 }}
-                />
-              )}
-
-              <Icon size={16} className="relative z-10 shrink-0" />
-
-              {/* Dynamic Label Breathing In When Active */}
-              <AnimatePresence>
-                {isActive && (
-                  <motion.span
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: "auto" }}
-                    exit={{ opacity: 0, width: 0 }}
-                    transition={{ duration: 0.18 }}
-                    className="relative z-10 whitespace-nowrap overflow-hidden"
-                  >
-                    {tab.label}
-                  </motion.span>
+            return (
+              <motion.button
+                key={tab.id}
+                layout
+                onClick={() => setActiveTab(tab.id)}
+                transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                className={cn(
+                  "relative shrink-0 flex items-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-full text-xs font-semibold select-none transition-colors",
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 )}
-              </AnimatePresence>
-            </motion.button>
-          );
-        })}
+              >
+                {/* Active Morphing Background Pill */}
+                {isActive && (
+                  <motion.div
+                    layoutId="expandablePill"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-700 shadow-md shadow-indigo-600/30 -z-0"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
+                )}
+
+                <Icon size={16} className="relative z-10 shrink-0" />
+
+                {/* Dynamic Label Breathing In When Active */}
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.span
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: "auto" }}
+                      exit={{ opacity: 0, width: 0 }}
+                      transition={{ duration: 0.18 }}
+                      className="relative z-10 whitespace-nowrap overflow-hidden"
+                    >
+                      {tab.label}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Content Viewport */}
-      <div className="w-full relative min-h-[140px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 sm:p-6 shadow-sm overflow-hidden text-left">
+      <div className="w-full relative min-h-[140px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden text-left">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -623,8 +629,8 @@ function ExpandableIconTabs() {
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="space-y-3"
           >
-            <div className="flex items-center justify-between">
-              <span className="text-xs uppercase font-mono font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">
+            <div className="flex flex-wrap items-center justify-between gap-1.5">
+              <span className="text-[11px] sm:text-xs uppercase font-mono font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">
                 Active Viewport
               </span>
               <span className="text-[10px] font-mono text-zinc-400">
@@ -632,7 +638,7 @@ function ExpandableIconTabs() {
               </span>
             </div>
 
-            <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-100 capitalize">
+            <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100 capitalize">
               {EXPANDABLE_TABS.find((t) => t.id === activeTab)?.label} Hub
             </h4>
 
@@ -661,49 +667,56 @@ function VerticalMinimalTabs() {
   const [activeItem, setActiveItem] = useState(VERTICAL_MENU[0].id);
 
   return (
-    <div className="w-full max-w-xl mx-auto flex flex-col sm:flex-row gap-5 items-stretch">
+    <div className="w-full max-w-xl mx-auto flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch">
       {/* Left Vertical Menu */}
-      <div className="w-full sm:w-48 flex sm:flex-col gap-1 p-1 rounded-2xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/80 dark:border-zinc-800/80 overflow-x-auto sm:overflow-visible">
-        {VERTICAL_MENU.map((item) => {
-          const isActive = item.id === activeItem;
-          const Icon = item.icon;
+      <div className="w-full sm:w-48 overflow-x-auto no-scrollbar py-0.5">
+        <div className="flex sm:flex-col gap-1 p-1 rounded-2xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/80 dark:border-zinc-800/80 min-w-full">
+          {VERTICAL_MENU.map((item) => {
+            const isActive = item.id === activeItem;
+            const Icon = item.icon;
 
-          return (
-            <button
-              key={item.id}
-              onClick={() => setActiveItem(item.id)}
-              className={cn(
-                "relative flex-1 sm:flex-none flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left transition-colors select-none whitespace-nowrap",
-                isActive
-                  ? "text-zinc-950 dark:text-white"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
-              )}
-            >
-              {/* Vertical Sliding Tracker Indicator */}
-              {isActive && (
-                <>
-                  <motion.div
-                    layoutId="verticalTrack"
-                    className="hidden sm:block absolute left-0 inset-y-1.5 w-1 bg-indigo-600 dark:bg-indigo-400 rounded-r-full"
-                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
-                  />
-                  <motion.div
-                    layoutId="verticalBg"
-                    className="absolute inset-0 bg-white dark:bg-zinc-800/80 shadow-xs rounded-xl -z-0"
-                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
-                  />
-                </>
-              )}
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveItem(item.id)}
+                className={cn(
+                  "relative shrink-0 sm:shrink sm:w-full flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-xl text-xs font-semibold text-left transition-colors select-none whitespace-nowrap",
+                  isActive
+                    ? "text-zinc-950 dark:text-white"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+                )}
+              >
+                {/* Vertical Sliding Tracker Indicator on Desktop, Horizontal Pill on Mobile */}
+                {isActive && (
+                  <>
+                    <motion.div
+                      layoutId="verticalTrack"
+                      className="hidden sm:block absolute left-0 inset-y-1.5 w-1 bg-indigo-600 dark:bg-indigo-400 rounded-r-full"
+                      transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                    />
+                    <motion.div
+                      layoutId="verticalTrackMobile"
+                      className="sm:hidden absolute bottom-0 inset-x-2 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
+                      transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                    />
+                    <motion.div
+                      layoutId="verticalBg"
+                      className="absolute inset-0 bg-white dark:bg-zinc-800/80 shadow-xs rounded-xl -z-0"
+                      transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                    />
+                  </>
+                )}
 
-              <Icon size={15} className="relative z-10 shrink-0" />
-              <span className="relative z-10">{item.label}</span>
-            </button>
-          );
-        })}
+                <Icon size={15} className="relative z-10 shrink-0" />
+                <span className="relative z-10">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Right Content Panel */}
-      <div className="flex-1 relative min-h-[180px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 sm:p-6 shadow-sm overflow-hidden">
+      <div className="flex-1 relative min-h-[160px] sm:min-h-[180px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem}
@@ -713,14 +726,14 @@ function VerticalMinimalTabs() {
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="space-y-3"
           >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
+            <div className="flex flex-wrap items-center justify-between gap-1.5">
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
                 Navigation Panel
               </span>
               <span className="text-[10px] text-zinc-400 font-mono">Vertical Tracker Line</span>
             </div>
 
-            <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+            <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
               {VERTICAL_MENU.find((m) => m.id === activeItem)?.label}
             </h4>
 
@@ -755,46 +768,48 @@ function SegmentedControlTabs() {
   const currentTier = TIERS.find((t) => t.id === selectedTier) || TIERS[0];
 
   return (
-    <div className="w-full max-w-xl mx-auto space-y-6 flex flex-col items-center">
+    <div className="w-full max-w-xl mx-auto space-y-5 sm:space-y-6 flex flex-col items-center">
       {/* macOS Styled Segmented Track */}
-      <div className="w-full flex items-center p-1 rounded-xl bg-zinc-100/90 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 shadow-inner">
-        {TIERS.map((tier) => {
-          const isSelected = tier.id === selectedTier;
+      <div className="w-full overflow-x-auto no-scrollbar py-0.5">
+        <div className="inline-flex sm:flex w-auto sm:w-full min-w-full items-center p-1 rounded-xl bg-zinc-100/90 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 shadow-inner">
+          {TIERS.map((tier) => {
+            const isSelected = tier.id === selectedTier;
 
-          return (
-            <button
-              key={tier.id}
-              onClick={() => setSelectedTier(tier.id)}
-              className={cn(
-                "relative flex-1 py-1.5 px-2 text-xs font-semibold rounded-lg transition-colors select-none flex items-center justify-center gap-1.5",
-                isSelected
-                  ? "text-zinc-950 dark:text-zinc-100 font-bold"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
-              )}
-            >
-              {/* Solid Apple Elevated Card Slider */}
-              {isSelected && (
-                <motion.div
-                  layoutId="segmentedActive"
-                  className="absolute inset-0 rounded-lg bg-white dark:bg-zinc-900 shadow-sm border border-zinc-200/80 dark:border-zinc-700/80 -z-0"
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-              )}
+            return (
+              <button
+                key={tier.id}
+                onClick={() => setSelectedTier(tier.id)}
+                className={cn(
+                  "relative flex-1 shrink-0 py-1.5 px-2.5 sm:px-2 text-xs font-semibold rounded-lg transition-colors select-none flex items-center justify-center gap-1.5 whitespace-nowrap",
+                  isSelected
+                    ? "text-zinc-950 dark:text-zinc-100 font-bold"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+                )}
+              >
+                {/* Solid Apple Elevated Card Slider */}
+                {isSelected && (
+                  <motion.div
+                    layoutId="segmentedActive"
+                    className="absolute inset-0 rounded-lg bg-white dark:bg-zinc-900 shadow-sm border border-zinc-200/80 dark:border-zinc-700/80 -z-0"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
 
-              <span className="relative z-10">{tier.label}</span>
+                <span className="relative z-10">{tier.label}</span>
 
-              {tier.save && (
-                <span className="hidden sm:inline-block relative z-10 text-[9px] font-mono px-1.5 py-0.2 rounded-md bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold">
-                  {tier.save}
-                </span>
-              )}
-            </button>
-          );
-        })}
+                {tier.save && (
+                  <span className="hidden sm:inline-block relative z-10 text-[9px] font-mono px-1.5 py-0.2 rounded-md bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold">
+                    {tier.save}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Plan Preview Card matching active segment */}
-      <div className="w-full p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="w-full p-4 sm:p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
         <div className="space-y-1 text-center sm:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-2">
             <span className="text-xs uppercase font-mono font-bold text-indigo-600 dark:text-indigo-400">
@@ -806,7 +821,7 @@ function SegmentedControlTabs() {
               </span>
             )}
           </div>
-          <h4 className="text-xl font-extrabold text-zinc-900 dark:text-zinc-100">
+          <h4 className="text-lg sm:text-xl font-extrabold text-zinc-900 dark:text-zinc-100">
             {currentTier.price}
           </h4>
           <p className="text-xs text-zinc-500">
@@ -901,19 +916,19 @@ export function AnimatedTabsDemo() {
       </div>
 
       {/* Single Column Stack of All 5 Tabs Architectures */}
-      <div className="grid grid-cols-1 gap-12 sm:gap-14">
+      <div className="grid grid-cols-1 gap-8 sm:gap-14">
         {tabsCards.map((card) => (
           <section
             key={card.id}
-            className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
+            className="flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200/80 bg-white p-4 sm:p-6 md:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
             {/* Header Info */}
-            <div className="space-y-2 mb-6">
-              <div className="flex items-start justify-between gap-4">
-                <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="space-y-2 mb-5 sm:mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+                <h2 className="text-base sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
                   {card.title}
                 </h2>
-                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800 font-semibold">
+                <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800 font-semibold">
                   {card.badge}
                 </span>
               </div>
@@ -923,7 +938,7 @@ export function AnimatedTabsDemo() {
             </div>
 
             {/* Interactive Preview Canvas */}
-            <div className="flex items-center justify-center p-4 sm:p-8 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
+            <div className="flex items-center justify-center p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-5 sm:mb-6 overflow-hidden">
               {card.component}
             </div>
 
