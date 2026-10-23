@@ -36,7 +36,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
   const { t } = useTranslation();
   const [copied, setCopied] = useState<boolean>(false);
 
-  // Tentukan daftar tab yang tersedia berdasarkan codeBlocks
   const availableTabs = codeBlocks
     ? (Object.keys(codeBlocks).filter(
         (key) => Boolean(codeBlocks[key])
@@ -45,22 +44,30 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
 
   const hasMultipleTabs = availableTabs.length > 1;
 
-  // Tab aktif (default "react" atau tab pertama yang ada)
   const [activeTab, setActiveTab] = useState<FrameworkTab>(
     availableTabs.includes("react")
       ? "react"
       : availableTabs[0] ?? "react"
   );
 
-  // Dapatkan kode yang sedang aktif
   const currentCode =
     (codeBlocks && codeBlocks[activeTab]) ||
     code ||
     (codeBlocks?.react ?? "");
 
-  // Label nama framework untuk tab
   const getTabLabel = (tab: string) => {
-    switch (tab) {
+    const key = tab.toLowerCase();
+    switch (key) {
+      case "usage":
+        return "Usage";
+      case "source":
+        return "Component Source";
+      case "installation":
+        return "Installation";
+      case "code":
+        return "Code";
+      case "preview":
+        return "Preview";
       case "react":
         return "React";
       case "vue":
@@ -68,7 +75,7 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
       case "laravel":
         return "Laravel (Blade)";
       default:
-        return tab.toUpperCase();
+        return tab.charAt(0).toUpperCase() + tab.slice(1);
     }
   };
 
@@ -94,7 +101,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
     <div
       className={`relative rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 overflow-hidden font-mono text-xs shadow-xs transition-colors ${className}`}
     >
-      {/* Header Bar */}
       <div className="flex items-center justify-between px-3.5 py-2 bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 select-none">
         <div className="flex items-center gap-2">
           {title && (
@@ -103,7 +109,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
             </span>
           )}
 
-          {/* Tab Framework Buttons */}
           {hasMultipleTabs && (
             <div className="flex items-center gap-1 bg-zinc-200/70 dark:bg-zinc-800/80 p-0.5 rounded-lg">
               {availableTabs.map((tab) => {
@@ -133,7 +138,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
           )}
         </div>
 
-        {/* Copy Button */}
         <button
           type="button"
           onClick={handleCopy}
@@ -177,7 +181,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
         </button>
       </div>
 
-      {/* Code Body */}
       <pre className="overflow-x-auto p-4 m-0 text-[11px] leading-relaxed text-zinc-800 dark:text-zinc-300 font-mono">
         <code>{currentCode}</code>
       </pre>

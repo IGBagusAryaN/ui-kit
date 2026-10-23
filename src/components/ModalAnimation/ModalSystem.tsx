@@ -10,10 +10,6 @@ import {
 } from "../../icons";
 import { cn } from "../../utils/cn";
 
-/* =========================================================================
- * 1. BASE MODAL INTERFACES & BACKDROP
- * ========================================================================= */
-
 export interface BaseModalProps {
   /** Status keterbukaan modal */
   isOpen: boolean;
@@ -26,10 +22,6 @@ export interface BaseModalProps {
   /** Class styling kustom untuk elemen backdrop */
   backdropClassName?: string;
 }
-
-/* =========================================================================
- * 2. BODY SCROLL LOCK & ESCAPE KEY HOOK
- * ========================================================================= */
 
 function useModalAccessibility(
   isOpen: boolean,
@@ -79,13 +71,6 @@ export function ModalPortal({ children }: { children: React.ReactNode }) {
   return createPortal(children, document.body);
 }
 
-/* =========================================================================
- * 3. VARIANT 1: STANDARD CONFIRMATION (ModalConfirm)
- * Alert klasik di tengah layar dengan ikon peringatan, judul, deskripsi,
- * serta tombol Batal dan Konfirmasi.
- * Animasi: Fade in & subtle scale-up.
- * ========================================================================= */
-
 export interface ModalConfirmProps extends BaseModalProps {
   title: string;
   description: string;
@@ -116,7 +101,6 @@ export function ModalConfirm({
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Backdrop Transparan / Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -131,7 +115,6 @@ export function ModalConfirm({
               )}
             />
 
-          {/* Kotak Modal Dialog */}
           <motion.div
             role="alertdialog"
             aria-modal="true"
@@ -142,7 +125,6 @@ export function ModalConfirm({
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-md overflow-hidden rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-2xl dark:border-neutral-800/90 dark:bg-neutral-900 z-10"
           >
-            {/* Ikon Peringatan & Judul */}
             <div className="flex items-start gap-4">
               <div
                 className={cn(
@@ -164,7 +146,6 @@ export function ModalConfirm({
                 </p>
               </div>
 
-              {/* Tombol X Tutup */}
               <button
                 type="button"
                 aria-label="Tutup modal"
@@ -175,7 +156,6 @@ export function ModalConfirm({
               </button>
             </div>
 
-            {/* Tombol Aksi Bawah (Footer) */}
             <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-neutral-200/70 dark:border-neutral-800/70">
               <button
                 type="button"
@@ -207,12 +187,6 @@ export function ModalConfirm({
     </ModalPortal>
   );
 }
-
-/* =========================================================================
- * 4. VARIANT 2: FORM DIALOG (ModalForm)
- * Modal formulir interaktif dengan Header (tombol X), Form Body (Nama, Email, dsb),
- * dan Footer tombol Simpan / Batal.
- * ========================================================================= */
 
 export interface ModalFormProps extends BaseModalProps {
   title: string;
@@ -255,7 +229,6 @@ export function ModalForm({
 
   const [formData, setFormData] = React.useState(initialValues);
 
-  // Reset form ketika modal dibuka
   useEffect(() => {
     if (isOpen) {
       setFormData(initialValues);
@@ -273,7 +246,6 @@ export function ModalForm({
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Backdrop Transparan / Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -288,7 +260,6 @@ export function ModalForm({
               )}
             />
 
-          {/* Kotak Modal Form */}
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -299,7 +270,6 @@ export function ModalForm({
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-neutral-200/90 bg-white shadow-2xl dark:border-neutral-800/90 dark:bg-neutral-900 z-10"
           >
-            {/* Header Form */}
             <div className="flex items-start justify-between border-b border-neutral-200/80 px-6 py-5 dark:border-neutral-800/80">
               <div>
                 <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
@@ -321,10 +291,8 @@ export function ModalForm({
               </button>
             </div>
 
-            {/* Body Form */}
             <form onSubmit={handleSubmit}>
               <div className="space-y-4 p-6">
-                {/* Field Nama */}
                 <div className="space-y-1.5">
                   <label className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-200">
                     <UserIcon size={14} className="text-neutral-500" />
@@ -340,7 +308,6 @@ export function ModalForm({
                   />
                 </div>
 
-                {/* Field Email */}
                 <div className="space-y-1.5">
                   <label className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-200">
                     <MailIcon size={14} className="text-neutral-500" />
@@ -356,7 +323,6 @@ export function ModalForm({
                   />
                 </div>
 
-                {/* Field Role / Peran */}
                 <div className="space-y-1.5">
                   <label className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-200">
                     <SettingsIcon size={14} className="text-neutral-500" />
@@ -375,7 +341,6 @@ export function ModalForm({
                 </div>
               </div>
 
-              {/* Footer Form */}
               <div className="flex items-center justify-end gap-3 border-t border-neutral-200/80 bg-neutral-50/70 px-6 py-4 dark:border-neutral-800/80 dark:bg-neutral-950/40">
                 <button
                   type="button"
@@ -399,12 +364,6 @@ export function ModalForm({
     </ModalPortal>
   );
 }
-
-/* =========================================================================
- * 5. VARIANT 3: RIGHT SLIDE-OVER / DRAWER (ModalDrawer)
- * Panel modal yang meluncur (slide in) dari sisi kanan layar menutupi 100%
- * tinggi layar (full height), biasa dipakai untuk menu Settings atau Filter.
- * ========================================================================= */
 
 export interface ModalDrawerProps extends BaseModalProps {
   title: string;
@@ -435,7 +394,6 @@ export function ModalDrawer({
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 top-0 left-0 right-0 bottom-0 z-[100] flex justify-end overflow-hidden">
-            {/* Backdrop Transparan / Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -450,7 +408,6 @@ export function ModalDrawer({
               )}
             />
 
-            {/* Drawer Sheet 100% Height */}
             <motion.div
               role="dialog"
               aria-modal="true"
@@ -461,7 +418,6 @@ export function ModalDrawer({
               onClick={(e) => e.stopPropagation()}
               className="relative flex h-full h-screen max-h-screen w-full max-w-md flex-col border-l border-neutral-200/90 bg-white shadow-2xl dark:border-neutral-800/90 dark:bg-neutral-900 z-10"
             >
-            {/* Header Drawer */}
             <div className="flex items-center justify-between border-b border-neutral-200/80 px-6 py-5 dark:border-neutral-800/80">
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
@@ -488,12 +444,10 @@ export function ModalDrawer({
               </button>
             </div>
 
-            {/* Scrollable Body Drawer */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {children}
             </div>
 
-            {/* Footer Drawer */}
             <div className="flex items-center justify-end gap-3 border-t border-neutral-200/80 bg-neutral-50/70 px-6 py-4 dark:border-neutral-800/80 dark:bg-neutral-950/40">
               <button
                 type="button"
@@ -523,12 +477,6 @@ export function ModalDrawer({
   );
 }
 
-/* =========================================================================
- * 6. VARIANT 4: BOTTOM SHEET (ModalBottomSheet)
- * Modal yang meluncur naik dari BAWAH layar. Desain melengkung di bagian
- * atas (rounded-t-2xl / rounded-t-3xl) menempel di dasar layar dengan drag handle.
- * ========================================================================= */
-
 export interface ModalBottomSheetProps extends BaseModalProps {
   title: string;
   subtitle?: string;
@@ -554,7 +502,6 @@ export function ModalBottomSheet({
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[100] flex items-end justify-center">
-          {/* Backdrop Transparan / Blur */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -569,7 +516,6 @@ export function ModalBottomSheet({
             )}
           />
 
-          {/* Bottom Sheet Modal Container */}
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -580,12 +526,10 @@ export function ModalBottomSheet({
             onClick={(e) => e.stopPropagation()}
             className="relative flex flex-col w-full max-w-2xl max-h-[85vh] rounded-t-3xl border-t border-x border-neutral-200/90 bg-white shadow-2xl dark:border-neutral-800/90 dark:bg-neutral-900 z-10 overflow-hidden"
           >
-            {/* Drag Handle Bar Indicator */}
             <div className="pt-3 pb-1 flex justify-center">
               <div className="h-1.5 w-12 rounded-full bg-neutral-300 dark:bg-neutral-700" />
             </div>
 
-            {/* Header Sheet */}
             <div className="flex items-center justify-between border-b border-neutral-200/80 px-6 py-4 dark:border-neutral-800/80">
               <div>
                 <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
@@ -607,12 +551,10 @@ export function ModalBottomSheet({
               </button>
             </div>
 
-            {/* Scrollable Body Sheet */}
             <div className="flex-1 overflow-y-auto p-6">
               {children}
             </div>
 
-            {/* Footer Sheet */}
             <div className="flex items-center justify-end border-t border-neutral-200/80 bg-neutral-50/70 px-6 py-3.5 dark:border-neutral-800/80 dark:bg-neutral-950/40">
               <button
                 type="button"
@@ -629,12 +571,6 @@ export function ModalBottomSheet({
     </ModalPortal>
   );
 }
-
-/* =========================================================================
- * 7. VARIANT 5: MEDIA LIGHTBOX (ModalMedia)
- * Modal khusus untuk menampilkan gambar atau video. Backdrop lebih gelap
- * pekat (bg-black/90), tanpa border tebal, gambar muncul dengan efek zoom/spring physics.
- * ========================================================================= */
 
 export interface ModalMediaProps extends BaseModalProps {
   src: string;
@@ -661,7 +597,6 @@ export function ModalMedia({
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8">
-          {/* Backdrop Sangat Gelap Khusus Media (bg-black/90) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -673,7 +608,6 @@ export function ModalMedia({
             className={cn("fixed inset-0 bg-black/90 backdrop-blur-md", backdropClassName)}
           />
 
-          {/* Tombol Tutup Mengambang Top-Right */}
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -686,7 +620,6 @@ export function ModalMedia({
             <CloseIcon size={20} />
           </motion.button>
 
-          {/* Konten Lightbox Media */}
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -705,7 +638,6 @@ export function ModalMedia({
               />
             </div>
 
-            {/* Caption & Title Keterangan Media */}
             {(title || caption) && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}

@@ -48,7 +48,6 @@ export const IconCard: React.FC<IconCardProps> = ({
   const [copiedState, setCopiedState] = useState<CopiedState>("idle");
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Fallback otomatis jika svgContent atau jsxContent tidak dioper secara eksplisit
   const resolvedJsxContent = jsxContent || `<${name} size={24} />`;
   const resolvedSvgContent =
     svgContent ||
@@ -100,27 +99,18 @@ export const IconCard: React.FC<IconCardProps> = ({
     <div
       className={`relative group flex flex-col items-center justify-center p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 transition-all overflow-hidden ${className}`}
     >
-      {/* ===================================================================
-       * 1. DEFAULT VIEW (IDLE)
-       * =================================================================== */}
       <div className="flex flex-col items-center justify-center w-full">
-        {/* Ikon di Tengah */}
         <div className="flex items-center justify-center h-12 w-12 text-zinc-700 dark:text-zinc-300 transition-transform duration-200 group-hover:scale-110 mb-3">
           {icon}
         </div>
 
-        {/* Nama Komponen Ikon */}
         <span className="text-xs font-mono font-medium text-zinc-600 dark:text-zinc-400 truncate max-w-full text-center px-1 select-none">
           {name}
         </span>
       </div>
 
-      {/* ===================================================================
-       * 2. HOVER OVERLAY (DUAL-BUTTONS: "Copy SVG" & "Copy JSX")
-       * =================================================================== */}
       {copiedState === "idle" && (
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col transition-opacity bg-white/90 dark:bg-zinc-950/90 backdrop-blur-sm z-10">
-          {/* Tombol Atas: Copy SVG */}
           <button
             type="button"
             onClick={(e) => handleCopy("svg", e)}
@@ -142,7 +132,6 @@ export const IconCard: React.FC<IconCardProps> = ({
             <span>Copy SVG</span>
           </button>
 
-          {/* Tombol Bawah: Copy JSX */}
           <button
             type="button"
             onClick={(e) => handleCopy("jsx", e)}
@@ -166,12 +155,8 @@ export const IconCard: React.FC<IconCardProps> = ({
         </div>
       )}
 
-      {/* ===================================================================
-       * 3. COPIED STATE (FULL CARD DARK OVERLAY DENGAN IKON CENTANG & TEKS HIJAU)
-       * =================================================================== */}
       {copiedState !== "idle" && (
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-1.5 bg-zinc-900 dark:bg-zinc-100 transition-all animate-in fade-in zoom-in-95 duration-150 select-none">
-          {/* Ikon Centang Hijau */}
           <svg
             className="w-6 h-6 text-emerald-500 animate-in zoom-in-50 duration-200"
             viewBox="0 0 24 24"
@@ -184,7 +169,6 @@ export const IconCard: React.FC<IconCardProps> = ({
             <polyline points="20 6 9 17 4 12" />
           </svg>
 
-          {/* Label Teks Copied Hijau */}
           <span className="text-xs font-bold text-emerald-500 tracking-wide">
             {copiedState === "svg" ? "SVG Copied!" : "JSX Copied!"}
           </span>

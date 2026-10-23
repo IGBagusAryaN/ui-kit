@@ -20,9 +20,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * I18N DICTIONARY FOR ANIMATED TABS (BILINGUAL EN & ID - 5 VARIANTS)
- * ========================================================================= */
 const TABS_DICT = {
   en: {
     pillTag1: "Shared LayoutId Dynamics",
@@ -46,7 +43,6 @@ export function FluidPillTabs() {
 
   return (
     <div className="w-full max-w-lg space-y-4">
-      {/* Pill Track */}
       <div className="flex items-center gap-1 p-1 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
         {TABS.map((tab) => {
           const isActive = tab === activeTab;
@@ -69,7 +65,6 @@ export function FluidPillTabs() {
         })}
       </div>
 
-      {/* Panel */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
@@ -133,7 +128,7 @@ export function ElasticUnderlineTabs() {
           "Compact visual space saver where inactive tabs display only subtle icon markers. Upon selection, the active tab smoothly breathes outward with Framer Motion layout animation to reveal its title label alongside the icon.",
         snippet: `import { useState } from "react";
 import { motion } from "framer-motion";
-import { ZapIcon, UserIcon, ShieldIcon, BellIcon } from "@bgsaryzzz/ui/icons";
+import { ZapIcon, UserIcon, ShieldIcon, BellIcon } from "@needui/ui-kit/icons";
 
 const TABS = [
   { id: "dash", label: "Dashboard", icon: ZapIcon },
@@ -302,9 +297,6 @@ export function SegmentedControlTabs() {
   },
 };
 
-/* =========================================================================
- * 1. FLUID PILL TABS
- * ========================================================================= */
 const FLUID_TABS = [
   { id: "overview", label: "Overview", icon: ActivityIcon },
   { id: "analytics", label: "Analytics", icon: ZapIcon },
@@ -317,7 +309,6 @@ function FluidPillTabs() {
 
   return (
     <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5">
-      {/* Tab Track */}
       <div className="w-full overflow-x-auto no-scrollbar py-0.5">
         <div className="inline-flex sm:flex w-auto sm:w-full min-w-full items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl bg-zinc-100/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-inner">
           {FLUID_TABS.map((tab) => {
@@ -350,7 +341,6 @@ function FluidPillTabs() {
         </div>
       </div>
 
-      {/* Content Viewport */}
       <div className="relative min-h-[160px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -469,9 +459,6 @@ function FluidPillTabs() {
   );
 }
 
-/* =========================================================================
- * 2. ELASTIC UNDERLINE TABS
- * ========================================================================= */
 const UNDERLINE_TABS = [
   "General",
   "Security",
@@ -485,7 +472,6 @@ function ElasticUnderlineTabs() {
 
   return (
     <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5">
-      {/* Minimalist Baseline Header */}
       <div className="w-full border-b border-zinc-200/90 dark:border-zinc-800 overflow-x-auto no-scrollbar py-0.5">
         <div className="relative inline-flex sm:flex items-center gap-1 sm:gap-2 min-w-full">
           {UNDERLINE_TABS.map((tab) => {
@@ -504,7 +490,6 @@ function ElasticUnderlineTabs() {
               >
                 <span>{tab}</span>
 
-                {/* Elastic Moving Underline Bar */}
                 {isActive && (
                   <motion.div
                     layoutId="elasticUnderline"
@@ -518,7 +503,6 @@ function ElasticUnderlineTabs() {
         </div>
       </div>
 
-      {/* Content Viewport */}
       <div className="relative min-h-[140px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -551,9 +535,6 @@ function ElasticUnderlineTabs() {
   );
 }
 
-/* =========================================================================
- * 3. EXPANDABLE ICON TABS (DYNAMIC WIDTH BREATHING)
- * ========================================================================= */
 const EXPANDABLE_TABS = [
   { id: "dash", label: "Dashboard", icon: ZapIcon },
   { id: "user", label: "Account", icon: UserIcon },
@@ -567,7 +548,6 @@ function ExpandableIconTabs() {
 
   return (
     <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5 flex flex-col items-center">
-      {/* Expandable Navigation Capsule */}
       <div className="w-full overflow-x-auto no-scrollbar flex items-center justify-start sm:justify-center py-1">
         <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm shrink-0">
           {EXPANDABLE_TABS.map((tab) => {
@@ -587,7 +567,6 @@ function ExpandableIconTabs() {
                     : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 )}
               >
-                {/* Active Morphing Background Pill */}
                 {isActive && (
                   <motion.div
                     layoutId="expandablePill"
@@ -598,7 +577,6 @@ function ExpandableIconTabs() {
 
                 <Icon size={16} className="relative z-10 shrink-0" />
 
-                {/* Dynamic Label Breathing In When Active */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.span
@@ -618,7 +596,6 @@ function ExpandableIconTabs() {
         </div>
       </div>
 
-      {/* Content Viewport */}
       <div className="w-full relative min-h-[140px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden text-left">
         <AnimatePresence mode="wait">
           <motion.div
@@ -652,9 +629,6 @@ function ExpandableIconTabs() {
   );
 }
 
-/* =========================================================================
- * 4. VERTICAL MINIMAL TABS
- * ========================================================================= */
 const VERTICAL_MENU = [
   { id: "profile", label: "Profile Info", icon: UserIcon },
   { id: "team", label: "Team Members", icon: LayersIcon },
@@ -668,7 +642,6 @@ function VerticalMinimalTabs() {
 
   return (
     <div className="w-full max-w-xl mx-auto flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch">
-      {/* Left Vertical Menu */}
       <div className="w-full sm:w-48 overflow-x-auto no-scrollbar py-0.5">
         <div className="flex sm:flex-col gap-1 p-1 rounded-2xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/80 dark:border-zinc-800/80 min-w-full">
           {VERTICAL_MENU.map((item) => {
@@ -686,7 +659,6 @@ function VerticalMinimalTabs() {
                     : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 )}
               >
-                {/* Vertical Sliding Tracker Indicator on Desktop, Horizontal Pill on Mobile */}
                 {isActive && (
                   <>
                     <motion.div
@@ -715,7 +687,6 @@ function VerticalMinimalTabs() {
         </div>
       </div>
 
-      {/* Right Content Panel */}
       <div className="flex-1 relative min-h-[160px] sm:min-h-[180px] rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-6 shadow-sm overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -752,9 +723,6 @@ function VerticalMinimalTabs() {
   );
 }
 
-/* =========================================================================
- * 5. SEGMENTED CONTROL TABS (macOS STYLED TOGGLE)
- * ========================================================================= */
 const TIERS = [
   { id: "monthly", label: "Monthly", price: "$29/mo", save: null },
   { id: "quarterly", label: "Quarterly", price: "$24/mo", save: "Save 15%" },
@@ -763,13 +731,12 @@ const TIERS = [
 ];
 
 function SegmentedControlTabs() {
-  const [selectedTier, setSelectedTier] = useState(TIERS[2].id); // Annual default
+  const [selectedTier, setSelectedTier] = useState(TIERS[2].id); 
 
   const currentTier = TIERS.find((t) => t.id === selectedTier) || TIERS[0];
 
   return (
     <div className="w-full max-w-xl mx-auto space-y-5 sm:space-y-6 flex flex-col items-center">
-      {/* macOS Styled Segmented Track */}
       <div className="w-full overflow-x-auto no-scrollbar py-0.5">
         <div className="inline-flex sm:flex w-auto sm:w-full min-w-full items-center p-1 rounded-xl bg-zinc-100/90 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 shadow-inner">
           {TIERS.map((tier) => {
@@ -786,7 +753,6 @@ function SegmentedControlTabs() {
                     : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 )}
               >
-                {/* Solid Apple Elevated Card Slider */}
                 {isSelected && (
                   <motion.div
                     layoutId="segmentedActive"
@@ -808,7 +774,6 @@ function SegmentedControlTabs() {
         </div>
       </div>
 
-      {/* Plan Preview Card matching active segment */}
       <div className="w-full p-4 sm:p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
         <div className="space-y-1 text-center sm:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-2">
@@ -838,9 +803,6 @@ function SegmentedControlTabs() {
   );
 }
 
-/* =========================================================================
- * MAIN PAGE COMPONENT: ANIMATED TABS DEMO (5 VARIANTS)
- * ========================================================================= */
 export function AnimatedTabsDemo() {
   const { i18n } = useTranslation();
   const currentLang = (i18n.language?.startsWith("id") ? "id" : "en") as
@@ -893,7 +855,6 @@ export function AnimatedTabsDemo() {
 
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Page Header */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1 text-xs font-mono font-semibold text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
@@ -915,14 +876,12 @@ export function AnimatedTabsDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 5 Tabs Architectures */}
       <div className="grid grid-cols-1 gap-8 sm:gap-14">
         {tabsCards.map((card) => (
           <section
             key={card.id}
             className="flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200/80 bg-white p-4 sm:p-6 md:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-5 sm:mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
                 <h2 className="text-base sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -937,12 +896,10 @@ export function AnimatedTabsDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="flex items-center justify-center p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-5 sm:mb-6 overflow-hidden">
               {card.component}
             </div>
 
-            {/* Standardized Usage Snippet (No Framework Tabs) */}
             <CodeSnippet code={card.snippet} />
           </section>
         ))}

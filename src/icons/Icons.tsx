@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 
 /**
- * Interface dasar untuk seluruh koleksi komponen ikon SVG @bgsaryzzz/ui.
+ * Interface dasar untuk seluruh koleksi komponen ikon SVG needui.
  * Menerima `size` (default: 24) dan mewarisi seluruh atribut standar SVGElement.
  */
 export interface IconProps extends React.SVGAttributes<SVGElement> {
@@ -10,10 +10,6 @@ export interface IconProps extends React.SVGAttributes<SVGElement> {
   /** Class utility Tailwind CSS untuk warna teks, margin, hover, dll */
   className?: string;
 }
-
-/* =========================================================================
- * 1. NAVIGASI DASAR (9 Ikon)
- * ========================================================================= */
 
 /** SearchIcon - Ikon kaca pembesar untuk pencarian */
 export const SearchIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -228,10 +224,6 @@ export const ArrowLeftIcon = forwardRef<SVGSVGElement, IconProps>(
 );
 ArrowLeftIcon.displayName = "ArrowLeftIcon";
 
-/* =========================================================================
- * 2. USER & AKUN (5 Ikon)
- * ========================================================================= */
-
 /** UserIcon - Ikon profil pengguna tunggal */
 export const UserIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ size = 24, className = "", ...props }, ref) => (
@@ -354,10 +346,6 @@ export const ShieldIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 ShieldIcon.displayName = "ShieldIcon";
-
-/* =========================================================================
- * 3. AKSI & INTERAKSI (7 Ikon)
- * ========================================================================= */
 
 /** PlusIcon - Ikon tambah (plus) untuk create / add item */
 export const PlusIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -529,10 +517,6 @@ export const ExternalLinkIcon = forwardRef<SVGSVGElement, IconProps>(
 );
 ExternalLinkIcon.displayName = "ExternalLinkIcon";
 
-/* =========================================================================
- * 4. SISTEM & UMPAN BALIK (5 Ikon)
- * ========================================================================= */
-
 /** SettingsIcon - Ikon roda gigi untuk pengaturan aplikasi */
 export const SettingsIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ size = 24, className = "", ...props }, ref) => (
@@ -655,10 +639,6 @@ export const CheckCircleIcon = forwardRef<SVGSVGElement, IconProps>(
 );
 CheckCircleIcon.displayName = "CheckCircleIcon";
 
-/* =========================================================================
- * 5. MEDIA & DOKUMEN (4 Ikon)
- * ========================================================================= */
-
 /** ImageIcon - Ikon gambar foto / ilustrasi */
 export const ImageIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ size = 24, className = "", ...props }, ref) => (
@@ -760,10 +740,6 @@ export const UploadIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 UploadIcon.displayName = "UploadIcon";
-
-/* =========================================================================
- * 6. E-COMMERCE & KEUANGAN (7 Ikon)
- * ========================================================================= */
 
 /** ShoppingCartIcon - Ikon troli / keranjang belanja */
 export const ShoppingCartIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -939,10 +915,6 @@ export const BanknoteIcon = forwardRef<SVGSVGElement, IconProps>(
 );
 BanknoteIcon.displayName = "BanknoteIcon";
 
-/* =========================================================================
- * 7. KOMUNIKASI (6 Ikon)
- * ========================================================================= */
-
 /** MailIcon - Ikon amplop / email */
 export const MailIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ size = 24, className = "", ...props }, ref) => (
@@ -1086,10 +1058,6 @@ export const ShareIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 ShareIcon.displayName = "ShareIcon";
-
-/* =========================================================================
- * 8. PERANGKAT & HARDWARE (6 Ikon)
- * ========================================================================= */
 
 /** MonitorIcon - Ikon layar desktop / monitor PC */
 export const MonitorIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -1237,10 +1205,6 @@ export const CameraIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 CameraIcon.displayName = "CameraIcon";
-
-/* =========================================================================
- * 9. EDITOR TEKS & DOKUMEN (6 Ikon)
- * ========================================================================= */
 
 /** BoldIcon - Ikon format teks tebal (bold) */
 export const BoldIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -1393,10 +1357,6 @@ export const AlignRightIcon = forwardRef<SVGSVGElement, IconProps>(
 );
 AlignRightIcon.displayName = "AlignRightIcon";
 
-/* =========================================================================
- * 10. WAKTU & LOKASI (5 Ikon)
- * ========================================================================= */
-
 /** ClockIcon - Ikon jam / waktu / durasi */
 export const ClockIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ size = 24, className = "", ...props }, ref) => (
@@ -1519,10 +1479,6 @@ export const CompassIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 CompassIcon.displayName = "CompassIcon";
-
-/* =========================================================================
- * 11. IKON TAMBAHAN BATCH 2 (Media, Editor, Tech, Alam)
- * ========================================================================= */
 
 /** PlayIcon - Ikon pemutar media segitiga */
 export const PlayIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -1942,10 +1898,6 @@ export const GlobeIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 GlobeIcon.displayName = "GlobeIcon";
-
-/* =========================================================================
- * 11. FILE, KEAMANAN, DATA & UI (BATCH 3 IKON TAMBAHAN)
- * ========================================================================= */
 
 /** FolderIcon - Ikon direktori / folder dokumen */
 export const FolderIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -2485,10 +2437,6 @@ export const StarIcon = forwardRef<SVGSVGElement, IconProps>(
   )
 );
 StarIcon.displayName = "StarIcon";
-
-/* =========================================================================
- * 12. BATCH 4 - PETA, EDITING, AUDIO, E-COMMERCE & UTILITAS (30 Ikon)
- * ========================================================================= */
 
 /** NavigationIcon - Ikon panah arah navigasi / kompas penunjuk */
 export const NavigationIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -3109,17 +3057,12 @@ export const ThermometerIcon = forwardRef<SVGSVGElement, IconProps>(
 ThermometerIcon.displayName = "ThermometerIcon";
 export const Thermometer = ThermometerIcon;
 
-// Alias untuk kompatibilitas nama ikon tanpa akhiran "Icon"
 export const Map = MapIcon;
 export const MapPin = MapPinIcon;
 export const Compass = CompassIcon;
 export const Copy = CopyIcon;
 export const ShoppingBag = ShoppingBagIcon;
 export const ShoppingCart = ShoppingCartIcon;
-
-/* =========================================================================
- * 11. TAMBAHAN 30 IKON WEB ESENSIAL BARU
- * ========================================================================= */
 
 /** EyeIcon - Ikon mata terbuka untuk melihat sandi / visibilitas */
 export const EyeIcon = forwardRef<SVGSVGElement, IconProps>(
@@ -3902,8 +3845,4 @@ export const SparklesIcon = forwardRef<SVGSVGElement, IconProps>(
 );
 SparklesIcon.displayName = "SparklesIcon";
 export const Sparkles = SparklesIcon;
-
-
-
-
 

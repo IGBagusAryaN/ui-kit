@@ -23,9 +23,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * I18N DICTIONARY FOR ADVANCED CAROUSELS (BILINGUAL EN & ID)
- * ========================================================================= */
 const CAROUSEL_DICT = {
   en: {
     pillTag1: "Physics-Based Gesture Dynamics",
@@ -470,9 +467,6 @@ export function SeamlessInfiniteLoop({ items }) {
   },
 };
 
-/* =========================================================================
- * 1. COMPONENT: COVERFLOW CAROUSEL (3D DEPTH SLIDER)
- * ========================================================================= */
 interface CoverflowItem {
   id: string;
   title: string;
@@ -564,7 +558,6 @@ export function CoverflowCarousel() {
 
   return (
     <div className="w-full flex flex-col items-center select-none py-4">
-      {/* 3D Perspective Stage Container */}
       <div
         className="relative w-full h-[380px] sm:h-[430px] flex items-center justify-center overflow-hidden"
         style={{ perspective: "1100px" }}
@@ -609,7 +602,6 @@ export function CoverflowCarousel() {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Background Image with Ambient Fallback */}
                 <img
                   src={item.image}
                   alt={item.title}
@@ -617,10 +609,8 @@ export function CoverflowCarousel() {
                   loading="lazy"
                 />
 
-                {/* Gradient Shading Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none" />
 
-                {/* Top Badge Info */}
                 <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
                   <span className="font-mono text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/20">
                     {item.tag}
@@ -631,7 +621,6 @@ export function CoverflowCarousel() {
                   </div>
                 </div>
 
-                {/* Bottom Content Area */}
                 <div className="absolute bottom-0 inset-x-0 p-4 z-10 flex flex-col justify-end text-white">
                   <span className="text-[11px] font-mono font-medium text-indigo-300">
                     {item.category} • {item.year}
@@ -655,7 +644,6 @@ export function CoverflowCarousel() {
         </div>
       </div>
 
-      {/* Navigation Controls Bar */}
       <div className="flex items-center justify-between w-full max-w-sm mt-3 px-4">
         <button
           type="button"
@@ -666,7 +654,6 @@ export function CoverflowCarousel() {
           <ChevronLeftIcon size={18} />
         </button>
 
-        {/* Dynamic Pagination Indicator Dots */}
         <div className="flex items-center gap-2">
           {coverflowItems.map((_, i) => (
             <button
@@ -782,7 +769,6 @@ export function ParallaxImageCarousel() {
 
   return (
     <div className="w-full space-y-3 py-2">
-      {/* Top Drag Indicator Banner */}
       <div className="flex items-center justify-between text-xs font-mono text-zinc-500 dark:text-zinc-400 px-1">
         <span className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-indigo-500 animate-ping" />
@@ -793,7 +779,6 @@ export function ParallaxImageCarousel() {
         </span>
       </div>
 
-      {/* Parallax Viewport Stage */}
       <div
         ref={containerRef}
         className="w-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4 sm:p-6 cursor-grab active:cursor-grabbing select-none"
@@ -826,7 +811,6 @@ function ParallaxCard({
 
   return (
     <div className="w-72 sm:w-80 shrink-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      {/* Parallax Image Window */}
       <div className="relative h-48 sm:h-52 overflow-hidden bg-zinc-950">
         <motion.img
           style={{ x: imgX, scale: 1.25 }}
@@ -853,7 +837,6 @@ function ParallaxCard({
         </div>
       </div>
 
-      {/* Card Metadata */}
       <div className="p-4 flex items-center justify-between">
         <div>
           <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
@@ -968,7 +951,6 @@ export function StackedSwipeCarousel() {
 
   return (
     <div className="w-full flex flex-col items-center py-6 select-none">
-      {/* Top Stack Stats */}
       <div className="flex items-center justify-between w-full max-w-sm mb-4 px-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
         <span>Cards in Stack: {cards.length}</span>
         <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
@@ -976,7 +958,6 @@ export function StackedSwipeCarousel() {
         </span>
       </div>
 
-      {/* Card Stack Arena */}
       <div className="relative w-80 sm:w-88 h-[370px]">
         <AnimatePresence mode="popLayout">
           {cards.length > 0 ? (
@@ -1015,7 +996,6 @@ export function StackedSwipeCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* Action Buttons: Pass, Reset, Like */}
       {cards.length > 0 && (
         <div className="flex items-center gap-4 mt-6">
           <button
@@ -1108,7 +1088,6 @@ function SwipeableCard({
         card.gradient
       )}
     >
-      {/* Direction Stamp Overlays */}
       {isTop && (
         <>
           <motion.div
@@ -1126,7 +1105,6 @@ function SwipeableCard({
         </>
       )}
 
-      {/* Top Header */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <span className="font-mono text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/20">
@@ -1145,7 +1123,6 @@ function SwipeableCard({
         </p>
       </div>
 
-      {/* Middle Tags */}
       <div className="flex flex-wrap gap-1.5 my-3">
         {card.tags.map((tag) => (
           <span
@@ -1157,7 +1134,6 @@ function SwipeableCard({
         ))}
       </div>
 
-      {/* Bottom Metrics Bar */}
       <div className="pt-3 border-t border-white/15 flex items-center justify-between font-mono text-xs text-white/90">
         <div>
           <span className="text-[10px] text-white/60 block">STARS</span>
@@ -1251,7 +1227,6 @@ export function ExpandingActiveCarousel() {
 
   return (
     <div className="w-full space-y-3 py-2">
-      {/* Top Banner Hint */}
       <div className="flex items-center justify-between text-xs font-mono text-zinc-500 dark:text-zinc-400 px-1">
         <span>Click or hover panels to expand</span>
         <span className="text-[11px] bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-zinc-600 dark:text-zinc-300">
@@ -1259,7 +1234,6 @@ export function ExpandingActiveCarousel() {
         </span>
       </div>
 
-      {/* Accordion Stage */}
       <div className="flex flex-col sm:flex-row h-[520px] sm:h-[390px] gap-3 w-full overflow-hidden rounded-2xl select-none">
         {expandingPanels.map((panel) => {
           const isActive = activeId === panel.id;
@@ -1278,7 +1252,6 @@ export function ExpandingActiveCarousel() {
                   : "flex-1 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 opacity-80 hover:opacity-100"
               )}
             >
-              {/* Image Layer */}
               <img
                 src={panel.image}
                 alt={panel.title}
@@ -1286,7 +1259,6 @@ export function ExpandingActiveCarousel() {
                 loading="lazy"
               />
 
-              {/* Gradient Backdrop */}
               <div
                 className={cn(
                   "absolute inset-0 transition-opacity duration-300 pointer-events-none",
@@ -1296,7 +1268,6 @@ export function ExpandingActiveCarousel() {
                 )}
               />
 
-              {/* Active Panel View */}
               {isActive ? (
                 <div className="absolute inset-0 p-5 sm:p-7 flex flex-col justify-between text-white z-10">
                   <div className="flex items-center justify-between">
@@ -1471,7 +1442,6 @@ export function SeamlessInfiniteCarousel() {
 
   return (
     <div className="w-full space-y-4 py-2 select-none">
-      {/* Top Controls Bar */}
       <div className="flex items-center justify-between text-xs font-mono text-zinc-500 dark:text-zinc-400 px-1">
         <span>Continuous Virtual Ring Loop</span>
         <div className="flex items-center gap-2">
@@ -1497,7 +1467,6 @@ export function SeamlessInfiniteCarousel() {
         </div>
       </div>
 
-      {/* Continuous Loop Track Arena */}
       <div className="w-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4 sm:p-5">
         <motion.div
           drag="x"
@@ -1554,7 +1523,6 @@ export function SeamlessInfiniteCarousel() {
         </motion.div>
       </div>
 
-      {/* Bottom Pagination Rings */}
       <div className="flex items-center justify-center gap-2 pt-1">
         {infiniteCardItems.map((_, i) => (
           <button
@@ -1628,7 +1596,6 @@ export function AdvancedCarouselDemo() {
 
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Page Header */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1 text-xs font-mono font-semibold text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
@@ -1650,14 +1617,12 @@ export function AdvancedCarouselDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 5 Carousel Architectures */}
       <div className="grid grid-cols-1 gap-12 sm:gap-14">
         {carouselCards.map((card) => (
           <section
             key={card.id}
             className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -1672,12 +1637,10 @@ export function AdvancedCarouselDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="flex items-center justify-center p-3 sm:p-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
               {card.component}
             </div>
 
-            {/* Standardized Usage Snippet (No Framework Tabs) */}
             <CodeSnippet code={card.snippet} />
           </section>
         ))}

@@ -10,12 +10,11 @@ export function WebIconsPage() {
   SettingsIcon,
   CheckCircleIcon,
   DownloadIcon
-} from "@bgsaryzzz/ui/icons";
+} from "@needui/ui-kit/icons";
 
 export function Example() {
   return (
     <div className="flex items-center gap-4">
-      {/* Dynamic colors using Tailwind utilities */}
       <SearchIcon size={24} className="text-blue-500" />
       <UserIcon size={24} className="text-neutral-700 dark:text-neutral-200" />
       <TrashIcon size={24} className="text-rose-500 hover:text-rose-600 cursor-pointer" />
@@ -28,10 +27,8 @@ export function Example() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Interactive Icon Demo Gallery (contains Header, Filters, Grid, and Toasts) */}
       <IconDemo />
 
-      {/* Usage Code */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           Import & Usage
@@ -39,7 +36,6 @@ export function Example() {
         <CodeBlock code={importUsage} language="tsx" filename="IconUsage.tsx" />
       </section>
 
-      {/* Props */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           Icon Props Interface

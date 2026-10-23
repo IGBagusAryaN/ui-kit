@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CloseIcon } from "../../src/icons";
+import { NeedUiLogo } from "./NeedUiLogo";
 
 export interface NavItem {
   id: string;
@@ -33,7 +34,6 @@ export function Sidebar({
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Keyboard shortcut listener (Cmd+K / Ctrl+K)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -50,7 +50,6 @@ export function Sidebar({
     typeof navigator !== "undefined" &&
     /(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent);
 
-  // Daftar default jika tidak dioper secara eksplisit dari parent
   const defaultNavGroups: NavGroup[] = [
     {
       title: t("sidebar.gettingStarted", "Getting Started"),
@@ -118,7 +117,6 @@ export function Sidebar({
       ? customNavGroups
       : defaultNavGroups;
 
-  // Real-time filtering logic
   const filteredGroups = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     if (!q) return groups;
@@ -149,18 +147,15 @@ export function Sidebar({
         isOpenMobile ? "translate-x-0 shadow-2xl" : "-translate-x-full"
       }`}
     >
-      {/* 1. Mobile-Only Drawer Header: Logo, Versi, & Tombol Close (Hanya di mode HP/mobile, tersembunyi di tablet & desktop) */}
       <div className="flex md:hidden items-center justify-between pb-3.5 mb-3 border-b border-zinc-200/80 dark:border-zinc-800/80 shrink-0">
         <div
           className="flex items-center gap-2.5 cursor-pointer select-none"
           onClick={() => handleMenuClick("introduction")}
         >
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-600 font-bold text-white shadow-xs text-xs">
-            UI
-          </div>
+          <NeedUiLogo size="sm" />
           <div className="flex items-center gap-2">
             <span className="font-bold text-sm tracking-tight text-zinc-950 dark:text-white">
-              @bgsaryzzz/ui
+              needui
             </span>
             <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-mono font-medium text-zinc-600 border border-zinc-200/80 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800">
               {version}
@@ -168,7 +163,6 @@ export function Sidebar({
           </div>
         </div>
 
-        {/* Tombol Close khusus mobile drawer */}
         {onCloseMobile && (
           <button
             type="button"
@@ -181,7 +175,6 @@ export function Sidebar({
         )}
       </div>
 
-      {/* 2. Real-time Search Input UI (Sticky) */}
       <div className="sticky top-0 z-10 pb-3 mb-3 shrink-0 bg-white dark:bg-neutral-950 border-b border-zinc-200/70 dark:border-zinc-800/70">
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-400 dark:text-zinc-500">
@@ -226,7 +219,6 @@ export function Sidebar({
         </div>
       </div>
 
-      {/* 3. Filtered Navigation Groups (Scrollable) */}
       <nav className="flex-1 overflow-y-auto pr-1 space-y-6 pb-4">
         {filteredGroups.length === 0 ? (
           /* Empty Search State */

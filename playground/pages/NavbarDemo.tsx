@@ -90,7 +90,6 @@ export function NavbarDemo() {
 />`,
         render: ({ glassScrolled, setGlassScrolled }) => (
           <div className="w-full flex flex-col space-y-3">
-            {/* Controls Bar Simulator */}
             <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-xl bg-white/90 dark:bg-neutral-900/90 border border-neutral-200/80 dark:border-neutral-800/80 text-xs">
               <span className="text-neutral-600 dark:text-neutral-400 font-medium">
                 {t(
@@ -130,7 +129,6 @@ export function NavbarDemo() {
               </div>
             </div>
 
-            {/* Navbar Preview Container with Simulated Content */}
             <div className="relative w-full rounded-xl overflow-hidden border border-neutral-200/70 dark:border-neutral-800/70 bg-gradient-to-b from-blue-50/30 to-purple-50/20 dark:from-neutral-900 dark:to-neutral-950 shadow-xs">
               <GlassHeader isScrolled={glassScrolled} />
               <div className="p-8 text-center text-xs text-neutral-500 dark:text-neutral-400">
@@ -252,7 +250,6 @@ export function NavbarDemo() {
 
   return (
     <div className="w-full space-y-8">
-      {/* Title Section */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.navbarDemo.badge", "Navigasi")}</span>
@@ -268,7 +265,6 @@ export function NavbarDemo() {
         </p>
       </div>
 
-      {/* Top Search & Filter Bar */}
       <div className="space-y-4">
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
@@ -295,7 +291,6 @@ export function NavbarDemo() {
           )}
         </div>
 
-        {/* Info Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
           <div className="space-y-0.5">
             <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
@@ -321,7 +316,6 @@ export function NavbarDemo() {
         </div>
       </div>
 
-      {/* Empty Search State */}
       {filteredList.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
           <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -340,14 +334,12 @@ export function NavbarDemo() {
         </div>
       )}
 
-      {/* 1 Column Vertical List (gap-14) for Full-Width Navigation Experience */}
       <div className="flex flex-col gap-14">
         {filteredList.map((item) => (
           <div
             key={item.id}
             className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-4">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
@@ -362,7 +354,6 @@ export function NavbarDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="w-full flex items-center justify-center p-4 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
               {item.render({
                 glassScrolled,
@@ -372,7 +363,6 @@ export function NavbarDemo() {
               })}
             </div>
 
-            {/* Usage Code Snippet */}
             <CodeSnippet code={item.snippet} />
           </div>
         ))}

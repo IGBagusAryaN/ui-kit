@@ -71,7 +71,6 @@ const defaultTransition: Transition = {
   damping: 35,
 };
 
-// Logic variants animasi form terpisah di luar komponen
 const formAnimationVariants: Record<
   SearchAnimationVariant,
   {
@@ -191,7 +190,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
       }
     };
 
-    // Auto-focus input saat search bar terbuka
     useEffect(() => {
       if (isOpen) {
         const timer = setTimeout(() => {
@@ -201,7 +199,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
       }
     }, [isOpen]);
 
-    // Close on click outside
     useEffect(() => {
       if (!isOpen || !closeOnClickOutside) return;
 
@@ -220,7 +217,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
       };
     }, [isOpen, closeOnClickOutside]);
 
-    // Close on Escape key
     useEffect(() => {
       if (!isOpen || !closeOnEscape) return;
 
@@ -261,7 +257,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
         )}
         {...motionProps}
       >
-        {/* Glow Aura Overlay (Variant: glow-pulse) */}
         {animationVariant === "glow-pulse" && isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -271,7 +266,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
           />
         )}
 
-        {/* Search Icon / Submit Button */}
         <button
           type="button"
           aria-label="Search"
@@ -290,7 +284,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
           <SearchIcon size={18} />
         </button>
 
-        {/* Expandable Form & Input */}
         <AnimatePresence initial={false}>
           {isOpen && (
             <motion.form
@@ -318,7 +311,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
                 )}
               />
 
-              {/* Clear / Close Button */}
               <button
                 type="button"
                 aria-label={query ? "Clear search" : "Close search"}
@@ -334,7 +326,6 @@ export const SearchAnimation = forwardRef<HTMLDivElement, SearchAnimationProps>(
           )}
         </AnimatePresence>
 
-        {/* Underline Expand Accent (Variant: underline-expand) */}
         {animationVariant === "underline-expand" && (
           <motion.div
             initial={false}

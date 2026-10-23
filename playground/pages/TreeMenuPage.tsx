@@ -6,7 +6,7 @@ import { CodeBlock } from "../components/CodeBlock";
 export function TreeMenuPage() {
   const { t } = useTranslation();
 
-  const sampleUsage = `import { AnimatedTreeMenu, TreeMenuItem } from "@bgsaryzzz/ui";
+  const sampleUsage = `import { AnimatedTreeMenu, TreeMenuItem } from "@needui/ui-kit";
 
 const navigationItems: TreeMenuItem[] = [
   {
@@ -28,7 +28,6 @@ export function AppSidebar() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Title & Header */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.treeMenuDemo.badge", "Navigasi")}</span>
@@ -44,12 +43,10 @@ export function AppSidebar() {
         </p>
       </div>
 
-      {/* Interactive Presentation Demo */}
       <section className="space-y-6">
         <TreeMenuDemo />
       </section>
 
-      {/* Usage Example */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.usage", "Cara Penggunaan")}
@@ -57,7 +54,6 @@ export function AppSidebar() {
         <CodeBlock code={sampleUsage} language="tsx" />
       </section>
 
-      {/* Props Table */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.props", "Properti Komponen")}

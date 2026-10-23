@@ -1,18 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/* =========================================================================
- * 1. TYPES & INTERFACES
- * ========================================================================= */
-
 export type DropdownVariant =
   | "tree"
   | "context"
   | "mega"
   | "profile"
   | "command"
-  | "sidebar" // Backward compatibility alias for "tree"
-  | "floating"; // Backward compatibility alias for "context"
+  | "sidebar" 
+  | "floating"; 
 
 export interface DropdownItem {
   /** Identifier unik */
@@ -94,10 +90,6 @@ export interface AnimatedDropdownProps {
   align?: "left" | "right" | "center";
 }
 
-/* =========================================================================
- * 2. CUSTOM HOOK: useClickOutside & useEscape
- * ========================================================================= */
-
 function useClickOutside<T extends HTMLElement = HTMLElement>(
   ref: React.RefObject<T | null>,
   handler: () => void,
@@ -131,10 +123,6 @@ function useClickOutside<T extends HTMLElement = HTMLElement>(
     };
   }, [ref, handler, isActive]);
 }
-
-/* =========================================================================
- * 3. INTERNAL ICONS (Chevron, Check, Search, User)
- * ========================================================================= */
 
 const DefaultChevron: React.FC<{ isOpen: boolean; className?: string }> = ({
   isOpen,
@@ -587,7 +575,6 @@ const MegaVariant: React.FC<{
               style={{ transformOrigin: "top center" }}
               className="w-[22rem] sm:w-[32rem] md:w-[36rem] rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-3 shadow-2xl backdrop-blur-md"
             >
-            {/* Grid 2 Kolom ala Stripe */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {items.map((item) => {
                 const isItemActive = activeId
@@ -740,7 +727,6 @@ const ProfileVariant: React.FC<{
               style={{ transformOrigin: "top center" }}
               className="w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 p-1.5 shadow-2xl backdrop-blur-md"
             >
-            {/* Profile Header Box */}
             <div className="px-3 py-2.5 mb-1 border-b border-zinc-200/80 dark:border-zinc-800/80">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 shrink-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">
@@ -757,7 +743,6 @@ const ProfileVariant: React.FC<{
               </div>
             </div>
 
-            {/* Menu List */}
             <div className="space-y-0.5">
               {items.map((item) => {
                 const isItemActive = activeId
@@ -910,7 +895,6 @@ const CommandVariant: React.FC<{
               style={{ transformOrigin: "top center" }}
               className="w-72 sm:w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-950/95 shadow-2xl backdrop-blur-md overflow-hidden"
             >
-            {/* Search Input Bar (Raycast Style) */}
             <div className="flex items-center gap-2 px-3.5 py-2.5 border-b border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30">
               <SearchIcon className="w-4 h-4 text-zinc-400 shrink-0" />
               <input
@@ -932,7 +916,6 @@ const CommandVariant: React.FC<{
               )}
             </div>
 
-            {/* Scrollable Command List */}
             <div className="max-h-60 overflow-y-auto p-1.5 space-y-0.5">
               {filteredItems.length === 0 ? (
                 <div className="py-6 text-center text-xs text-zinc-400 dark:text-zinc-500">
@@ -970,7 +953,6 @@ const CommandVariant: React.FC<{
                         <span className="truncate">{item.label}</span>
                       </div>
 
-                      {/* Shortcut Badge (misal: ⌘K, ⇧P) */}
                       {item.shortcut && (
                         <kbd className="ml-2 shrink-0 px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200/80 dark:border-zinc-700/80">
                           {item.shortcut}

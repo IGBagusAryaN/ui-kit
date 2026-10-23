@@ -36,7 +36,6 @@ export function ToastDemo() {
   const [searchQuery, setSearchQuery] = useState("");
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
 
-  // Definition of Toast Variants synchronized dynamically with selectedPosition
   const toastItems: ToastCardInfo[] = useMemo(
     () => [
       {
@@ -204,7 +203,6 @@ export function ToastDemo() {
 
   return (
     <div className="w-full space-y-10">
-      {/* Search Bar Input */}
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-400">
           <SearchIcon size={18} />
@@ -227,7 +225,6 @@ export function ToastDemo() {
         )}
       </div>
 
-      {/* Sticky Global Position Configurator Header */}
       <div className="sticky top-16 md:top-20 z-30 p-5 sm:p-6 rounded-3xl border border-zinc-200/80 bg-white/90 dark:border-zinc-800/80 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm transition-all">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
@@ -258,7 +255,6 @@ export function ToastDemo() {
           )}
         </div>
 
-        {/* Full-Width 6 Viewport Position Grid */}
         <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-2.5">
           {POSITION_OPTIONS.map((pos) => {
             const isSelected = selectedPosition === pos.id;
@@ -285,7 +281,6 @@ export function ToastDemo() {
         </div>
       </div>
 
-      {/* Action / Undo Feedback Banner */}
       <AnimatePresence>
         {actionFeedback && (
           <motion.div
@@ -309,7 +304,6 @@ export function ToastDemo() {
         )}
       </AnimatePresence>
 
-      {/* Empty State */}
       {filteredList.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800">
           <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -325,14 +319,12 @@ export function ToastDemo() {
         </div>
       )}
 
-      {/* Full-Width Single-Column Stack: flex flex-col gap-10 */}
       <div className="flex flex-col gap-10">
         {filteredList.map((item) => (
           <section
             key={item.type}
             className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700 w-full"
           >
-            {/* Card Header Info */}
             <div className="space-y-2 mb-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -347,7 +339,6 @@ export function ToastDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="flex flex-col items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 min-h-[140px]">
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -397,7 +388,6 @@ export function ToastDemo() {
               </span>
             </div>
 
-            {/* Usage Code Snippet */}
             <CodeSnippet code={item.snippet} />
           </section>
         ))}

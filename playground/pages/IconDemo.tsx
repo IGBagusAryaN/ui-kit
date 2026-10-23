@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { IconCard } from "../../src/components/IconCard";
 import {
-  // 1. Navigasi Dasar (11)
+
   SearchIcon,
   MenuIcon,
   CloseIcon,
@@ -14,7 +14,7 @@ import {
   ArrowLeftIcon,
   NavigationIcon,
   FlagIcon,
-  // 2. User & Akun & Keamanan (9)
+
   UserIcon,
   UsersIcon,
   LoginIcon,
@@ -24,7 +24,7 @@ import {
   LockIcon,
   UnlockIcon,
   KeyIcon,
-  // 3. Aksi & Interaksi (14)
+
   PlusIcon,
   MinusIcon,
   EditIcon,
@@ -38,7 +38,7 @@ import {
   ZapIcon,
   AwardIcon,
   StarIcon,
-  // 4. Sistem & Umpan Balik (9)
+
   SettingsIcon,
   BellIcon,
   BellRingIcon,
@@ -48,7 +48,7 @@ import {
   CrosshairIcon,
   TargetIcon,
   ActivityIcon,
-  // 5. Media & Dokumen & Audio (23)
+
   ImageIcon,
   FolderIcon,
   FolderOpenIcon,
@@ -72,7 +72,7 @@ import {
   MusicIcon,
   CastIcon,
   RadioIcon,
-  // 6. E-Commerce & Keuangan (10)
+
   ShoppingCartIcon,
   ShoppingBagIcon,
   CreditCardIcon,
@@ -83,7 +83,7 @@ import {
   GiftIcon,
   BoxIcon,
   PackageIcon,
-  // 7. Komunikasi (8)
+
   MailIcon,
   PhoneIcon,
   PhoneCallIcon,
@@ -92,7 +92,7 @@ import {
   SendIcon,
   ShareIcon,
   Share2Icon,
-  // 8. Perangkat & Hardware & Layout (17)
+
   MonitorIcon,
   SmartphoneIcon,
   LaptopIcon,
@@ -110,7 +110,7 @@ import {
   MinimizeIcon,
   BatteryIcon,
   BatteryChargingIcon,
-  // 9. Editor Teks & Dokumen (14)
+
   BoldIcon,
   ItalicIcon,
   UnderlineIcon,
@@ -125,7 +125,7 @@ import {
   Edit3Icon,
   PenToolIcon,
   CropIcon,
-  // 10. Waktu & Lokasi (9)
+
   ClockIcon,
   CalendarIcon,
   MapPinIcon,
@@ -135,7 +135,7 @@ import {
   MoonIcon,
   GlobeIcon,
   ThermometerIcon,
-  // 11. Tambahan 30 Ikon Web Esensial Baru
+
   EyeIcon,
   EyeOffIcon,
   HeartIcon,
@@ -190,7 +190,7 @@ interface IconItem {
 }
 
 export const ALL_ICONS: IconItem[] = [
-  // 1. Navigasi Dasar (11)
+
   { name: "SearchIcon", categoryKey: "navigation", Component: SearchIcon, tags: ["cari", "search", "kaca pembesar", "find"] },
   { name: "MenuIcon", categoryKey: "navigation", Component: MenuIcon, tags: ["menu", "hamburger", "bars", "nav"] },
   { name: "CloseIcon", categoryKey: "navigation", Component: CloseIcon, tags: ["tutup", "close", "silang", "x", "cancel"] },
@@ -203,7 +203,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "NavigationIcon", categoryKey: "navigation", Component: NavigationIcon, tags: ["navigation", "arah", "kompas", "peta", "navigasi", "gps"] },
   { name: "FlagIcon", categoryKey: "navigation", Component: FlagIcon, tags: ["flag", "bendera", "patok", "tanda", "marker", "finish"] },
 
-  // 2. User & Akun & Keamanan (9)
   { name: "UserIcon", categoryKey: "userAccount", Component: UserIcon, tags: ["user", "pengguna", "profile", "account"] },
   { name: "UsersIcon", categoryKey: "userAccount", Component: UsersIcon, tags: ["users", "tim", "group", "people", "members"] },
   { name: "LoginIcon", categoryKey: "userAccount", Component: LoginIcon, tags: ["login", "masuk", "signin", "enter"] },
@@ -214,7 +213,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "UnlockIcon", categoryKey: "userAccount", Component: UnlockIcon, tags: ["unlock", "buka kunci", "open", "access", "terbuka"] },
   { name: "KeyIcon", categoryKey: "userAccount", Component: KeyIcon, tags: ["key", "kunci", "access", "auth", "password", "token"] },
 
-  // 3. Aksi & Interaksi (14)
   { name: "PlusIcon", categoryKey: "actionInteraction", Component: PlusIcon, tags: ["plus", "tambah", "add", "create", "new"] },
   { name: "MinusIcon", categoryKey: "actionInteraction", Component: MinusIcon, tags: ["minus", "kurang", "remove", "decrease"] },
   { name: "EditIcon", categoryKey: "actionInteraction", Component: EditIcon, tags: ["edit", "pencil", "ubah", "tulis", "write"] },
@@ -229,7 +227,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "AwardIcon", categoryKey: "actionInteraction", Component: AwardIcon, tags: ["award", "penghargaan", "badge", "prestasi", "medali", "juara"] },
   { name: "StarIcon", categoryKey: "actionInteraction", Component: StarIcon, tags: ["star", "bintang", "favorite", "favorit", "rating", "nilai"] },
 
-  // 4. Sistem & Umpan Balik (9)
   { name: "SettingsIcon", categoryKey: "systemFeedback", Component: SettingsIcon, tags: ["settings", "gear", "pengaturan", "config"] },
   { name: "BellIcon", categoryKey: "systemFeedback", Component: BellIcon, tags: ["bell", "notifikasi", "alert", "notification"] },
   { name: "BellRingIcon", categoryKey: "systemFeedback", Component: BellRingIcon, tags: ["bell", "ring", "notifikasi", "alarm", "lonceng", "alert", "dering"] },
@@ -240,7 +237,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "TargetIcon", categoryKey: "systemFeedback", Component: TargetIcon, tags: ["target", "sasaran", "bullseye", "goal", "fokus", "tujuan"] },
   { name: "ActivityIcon", categoryKey: "systemFeedback", Component: ActivityIcon, tags: ["activity", "pulse", "jantung", "heartbeat", "ecg", "kesehatan", "monitoring"] },
 
-  // 5. Media & Dokumen & Audio (23)
   { name: "ImageIcon", categoryKey: "mediaDocument", Component: ImageIcon, tags: ["image", "gambar", "photo", "picture"] },
   { name: "FolderIcon", categoryKey: "mediaDocument", Component: FolderIcon, tags: ["folder", "direktori", "directory", "berkas", "arsip"] },
   { name: "FolderOpenIcon", categoryKey: "mediaDocument", Component: FolderOpenIcon, tags: ["folder", "open", "buka", "direktori", "directory", "berkas"] },
@@ -265,7 +261,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "CastIcon", categoryKey: "mediaDocument", Component: CastIcon, tags: ["cast", "airplay", "streaming", "layar", "broadcast", "tv"] },
   { name: "RadioIcon", categoryKey: "mediaDocument", Component: RadioIcon, tags: ["radio", "frekuensi", "gelombang", "signal", "siaran", "broadcast"] },
 
-  // 6. E-Commerce & Keuangan (10)
   { name: "ShoppingCartIcon", categoryKey: "ecommerceFinance", Component: ShoppingCartIcon, tags: ["cart", "keranjang", "troli", "belanja", "ecommerce", "buy"] },
   { name: "ShoppingBagIcon", categoryKey: "ecommerceFinance", Component: ShoppingBagIcon, tags: ["bag", "tas", "belanja", "checkout", "store"] },
   { name: "CreditCardIcon", categoryKey: "ecommerceFinance", Component: CreditCardIcon, tags: ["card", "kartu", "kredit", "debit", "payment", "bayar"] },
@@ -277,7 +272,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "BoxIcon", categoryKey: "ecommerceFinance", Component: BoxIcon, tags: ["box", "kardus", "kotak", "kemasan", "isometric"] },
   { name: "PackageIcon", categoryKey: "ecommerceFinance", Component: PackageIcon, tags: ["package", "paket", "pengiriman", "kurir", "ekspedisi", "delivery"] },
 
-  // 7. Komunikasi (8)
   { name: "MailIcon", categoryKey: "communication", Component: MailIcon, tags: ["mail", "email", "surat", "inbox", "pesan"] },
   { name: "PhoneIcon", categoryKey: "communication", Component: PhoneIcon, tags: ["phone", "telepon", "call", "panggilan", "kontak"] },
   { name: "PhoneCallIcon", categoryKey: "communication", Component: PhoneCallIcon, tags: ["phone", "call", "panggilan", "telepon", "dering", "contact"] },
@@ -287,7 +281,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "ShareIcon", categoryKey: "communication", Component: ShareIcon, tags: ["share", "bagikan", "sosmed", "link", "forward"] },
   { name: "Share2Icon", categoryKey: "communication", Component: Share2Icon, tags: ["share", "bagikan", "sosmed", "nodes", "social", "network"] },
 
-  // 8. Perangkat & Hardware & Layout (17)
   { name: "MonitorIcon", categoryKey: "deviceHardware", Component: MonitorIcon, tags: ["monitor", "desktop", "screen", "layar", "pc", "computer"] },
   { name: "SmartphoneIcon", categoryKey: "deviceHardware", Component: SmartphoneIcon, tags: ["smartphone", "hp", "mobile", "phone", "gadget"] },
   { name: "LaptopIcon", categoryKey: "deviceHardware", Component: LaptopIcon, tags: ["laptop", "notebook", "macbook", "komputer"] },
@@ -306,7 +299,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "BatteryIcon", categoryKey: "deviceHardware", Component: BatteryIcon, tags: ["battery", "baterai", "daya", "power", "indikator"] },
   { name: "BatteryChargingIcon", categoryKey: "deviceHardware", Component: BatteryChargingIcon, tags: ["battery", "charging", "isi daya", "cas", "listrik", "baterai"] },
 
-  // 9. Editor Teks & Dokumen (14)
   { name: "BoldIcon", categoryKey: "textEditor", Component: BoldIcon, tags: ["bold", "tebal", "typography", "text"] },
   { name: "ItalicIcon", categoryKey: "textEditor", Component: ItalicIcon, tags: ["italic", "miring", "typography", "text"] },
   { name: "UnderlineIcon", categoryKey: "textEditor", Component: UnderlineIcon, tags: ["underline", "garis bawah", "typography", "text"] },
@@ -322,7 +314,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "PenToolIcon", categoryKey: "textEditor", Component: PenToolIcon, tags: ["pentool", "vektor", "bezier", "kurva", "pen", "desain"] },
   { name: "CropIcon", categoryKey: "textEditor", Component: CropIcon, tags: ["crop", "potong", "pangkas", "bingkai", "frame", "aspect ratio"] },
 
-  // 10. Waktu & Lokasi (9)
   { name: "ClockIcon", categoryKey: "timeLocation", Component: ClockIcon, tags: ["clock", "jam", "waktu", "time", "timer", "schedule"] },
   { name: "CalendarIcon", categoryKey: "timeLocation", Component: CalendarIcon, tags: ["calendar", "kalender", "tanggal", "date", "event"] },
   { name: "MapPinIcon", categoryKey: "timeLocation", Component: MapPinIcon, tags: ["pin", "map", "lokasi", "tempat", "gps", "marker"] },
@@ -333,7 +324,6 @@ export const ALL_ICONS: IconItem[] = [
   { name: "GlobeIcon", categoryKey: "timeLocation", Component: GlobeIcon, tags: ["globe", "dunia", "earth", "bumi", "world", "international"] },
   { name: "ThermometerIcon", categoryKey: "timeLocation", Component: ThermometerIcon, tags: ["thermometer", "termometer", "suhu", "cuaca", "temperatur", "panas", "dingin"] },
 
-  // 11. Tambahan 30 Ikon Web Esensial Baru
   { name: "EyeIcon", categoryKey: "userAccount", Component: EyeIcon, tags: ["eye", "mata", "lihat", "view", "show", "password", "buka"] },
   { name: "EyeOffIcon", categoryKey: "userAccount", Component: EyeOffIcon, tags: ["eye off", "mata tertutup", "hide", "sembunyi", "secret", "password"] },
   { name: "HeartIcon", categoryKey: "actionInteraction", Component: HeartIcon, tags: ["heart", "hati", "love", "suka", "favorite", "favorit", "like"] },
@@ -373,7 +363,6 @@ export function IconDemo() {
   const [previewSize, setPreviewSize] = useState<number>(24);
   const [copiedIcon, setCopiedIcon] = useState<string | null>(null);
 
-  // Kategori filter dinamis dengan i18n
   const categoryFilters = useMemo(
     () => [
       { key: "all" as const, label: t("content.iconDemo.categories.all", "Semua") },
@@ -391,7 +380,6 @@ export function IconDemo() {
     [t]
   );
 
-  // Handle copy snippet JSX ke clipboard
   const handleCopyJSX = (iconName: string) => {
     const snippet = `<${iconName} size={${previewSize}} />`;
     navigator.clipboard.writeText(snippet);
@@ -415,7 +403,6 @@ export function IconDemo() {
 
   return (
     <div className="space-y-8">
-      {/* Header Info */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.iconDemo.badge", "Aset")}</span>
@@ -429,14 +416,12 @@ export function IconDemo() {
         <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           {t("content.iconDemo.pageDesc", {
             total: ALL_ICONS.length,
-            defaultValue: `Koleksi ${ALL_ICONS.length} ikon SVG web esensial bawaan pustaka @bgsaryzzz/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).`,
+            defaultValue: `Koleksi ${ALL_ICONS.length} ikon SVG web esensial bawaan pustaka needui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).`,
           })}
         </p>
       </div>
 
-      {/* Controls Bar: Search & Category Filter */}
       <div className="space-y-4">
-        {/* Search Input Bar */}
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
             <SearchIcon size={18} />
@@ -462,9 +447,7 @@ export function IconDemo() {
           )}
         </div>
 
-        {/* Categories & Size Selector */}
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
-          {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5">
             {categoryFilters.map((cat) => (
               <button
@@ -482,7 +465,6 @@ export function IconDemo() {
             ))}
           </div>
 
-          {/* Icon Size Toggle */}
           <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
             <span className="font-medium">
               {t("content.iconDemo.previewSize", "Ukuran Preview:")}
@@ -507,7 +489,6 @@ export function IconDemo() {
         </div>
       </div>
 
-      {/* Info Status Bar */}
       <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 px-1">
         <span>
           {t("content.iconDemo.showingCount", {
@@ -521,7 +502,6 @@ export function IconDemo() {
         </span>
       </div>
 
-      {/* Empty State jika pencarian tidak menemukan hasil */}
       {filteredIcons.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
           <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -543,7 +523,6 @@ export function IconDemo() {
         </div>
       )}
 
-      {/* Responsive Icons Grid: 2 cols di mobile, 3 di sm, 4 di md, 6 di lg */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
         {filteredIcons.map(({ name, Component }) => (
           <IconCard

@@ -24,17 +24,12 @@ import {
 export function TreeMenuDemo() {
   const { t } = useTranslation();
 
-  // State untuk melacak item yang aktif pada Demo 1 (Department)
   const [activeDeptId, setActiveDeptId] = useState<string>("web-master");
   const [lastClickedDept, setLastClickedDept] = useState<string>("Web Master");
 
-  // State untuk melacak item yang aktif pada Demo 2 (Workspace Multi-Level)
   const [activeWorkId, setActiveWorkId] = useState<string>("comp-tree");
   const [lastClickedWork, setLastClickedWork] = useState<string>("AnimatedTreeMenu.tsx");
 
-  /* -------------------------------------------------------------------------
-   * DATA: 1. Department Hierarchy (Sesuai Permintaan Spesifik User)
-   * ------------------------------------------------------------------------- */
   const departmentData: TreeMenuItem[] = [
     {
       id: "departments",
@@ -90,13 +85,10 @@ export function TreeMenuDemo() {
     },
   ];
 
-  /* -------------------------------------------------------------------------
-   * DATA: 2. Multi-Level Workspace Sidebar (Linear / Notion Style)
-   * ------------------------------------------------------------------------- */
   const workspaceData: TreeMenuItem[] = [
     {
       id: "core-library",
-      label: "ui-kit (@bgsaryzzz/ui)",
+      label: "ui-kit (needui)",
       icon: <LayersIcon size={15} className="text-indigo-500" />,
       defaultOpen: true,
       children: [
@@ -147,13 +139,10 @@ export function TreeMenuDemo() {
     },
   ];
 
-  /* -------------------------------------------------------------------------
-   * CODE BLOCKS: MULTI-FRAMEWORK SNIPPETS
-   * ------------------------------------------------------------------------- */
   const deptCodeBlocks = {
     react: `import React, { useState } from "react";
-import { AnimatedTreeMenu, TreeMenuItem } from "@bgsaryzzz/ui";
-import { FolderIcon, FileTextIcon, CodeIcon, GlobeIcon, HardDriveIcon } from "@bgsaryzzz/ui/icons";
+import { AnimatedTreeMenu, TreeMenuItem } from "@needui/ui-kit";
+import { FolderIcon, FileTextIcon, CodeIcon, GlobeIcon, HardDriveIcon } from "@needui/ui-kit/icons";
 
 export function DepartmentSidebar() {
   const [activeId, setActiveId] = useState("web-master");
@@ -185,7 +174,7 @@ export function DepartmentSidebar() {
 }`,
     vue: `<script setup lang="ts">
 import { ref } from "vue";
-import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
+import { AnimatedTreeMenu } from "needui-vue";
 
 const activeId = ref("web-master");
 
@@ -231,12 +220,12 @@ const items = [
 @endphp
 
 <div class="w-64 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
-  <x-bgsaryzzz-tree-menu :items="$departments" active-id="web-master" />
+  <x-needui-tree-menu :items="$departments" active-id="web-master" />
 </div>`,
   };
 
   const nestedCodeBlocks = {
-    react: `import { AnimatedTreeMenu, TreeMenuItem } from "@bgsaryzzz/ui";
+    react: `import { AnimatedTreeMenu, TreeMenuItem } from "@needui/ui-kit";
 
 const fileTree: TreeMenuItem[] = [
   {
@@ -261,7 +250,7 @@ export function MultiLevelExplorer() {
   return <AnimatedTreeMenu items={fileTree} />;
 }`,
     vue: `<script setup lang="ts">
-import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
+import { AnimatedTreeMenu } from "needui-vue";
 // Mendukung kedalaman hierarki folder tak terbatas (rekursif)
 </script>
 
@@ -269,16 +258,12 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
   <AnimatedTreeMenu :items="fileTree" />
 </template>`,
     laravel: `{{-- Recursive Blade Tree Component --}}
-<x-bgsaryzzz-tree-menu :items="$fileTree" />`,
+<x-needui-tree-menu :items="$fileTree" />`,
   };
 
   return (
     <div className="space-y-12 sm:space-y-16">
-      {/* =====================================================================
-       * VARIAN 1: DEPARTMENT DIRECTORY (STUDI KASUS SPESIFIK USER)
-       * ===================================================================== */}
       <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 shadow-sm">
-        {/* Header Section */}
         <div className="mb-6 pb-4 border-b border-zinc-200/80 dark:border-zinc-800/80">
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <span className="rounded-md bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
@@ -299,12 +284,9 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
           </p>
         </div>
 
-        {/* Live Interactive Preview & Contextual Frame */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
-          {/* Kolom Kiri: Realistic Desktop Sidebar Mockup */}
           <div className="lg:col-span-5">
             <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/40 p-4 shadow-sm">
-              {/* Window Header Frame */}
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-zinc-200/80 dark:border-zinc-800/80">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block" />
@@ -316,9 +298,7 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
                 </span>
               </div>
 
-              {/* Sidebar Content Card */}
               <div className="rounded-xl border border-zinc-200 dark:border-zinc-800/70 bg-white dark:bg-zinc-950 p-3 shadow-xs">
-                {/* Search Mockup */}
                 <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-400 dark:text-zinc-500 mb-3 select-none">
                   <SearchIcon size={13} className="shrink-0 text-zinc-400" />
                   <span className="truncate">Cari departemen...</span>
@@ -327,7 +307,6 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
                   </kbd>
                 </div>
 
-                {/* Render Animated Tree Menu */}
                 <AnimatedTreeMenu
                   items={departmentData}
                   activeId={activeDeptId}
@@ -337,7 +316,6 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
                   }}
                 />
 
-                {/* Bottom Profile Pill */}
                 <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/70 flex items-center justify-between px-1">
                   <div className="flex items-center gap-2 min-w-0">
                     <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 text-white flex items-center justify-center text-[10px] font-bold">
@@ -353,9 +331,7 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
             </div>
           </div>
 
-          {/* Kolom Kanan: State Inspector & Quick Controls */}
           <div className="lg:col-span-7 space-y-5">
-            {/* Active State Card */}
             <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/30 p-5 space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-zinc-200/70 dark:border-zinc-800/70">
                 <div className="flex items-center gap-2">
@@ -391,7 +367,6 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
                 </div>
               </div>
 
-              {/* Quick Select Buttons */}
               <div className="space-y-2 pt-2">
                 <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 block font-sans">
                   Uji Cepat Pemilihan Item:
@@ -423,7 +398,6 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
               </div>
             </div>
 
-            {/* Feature Highlights Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="p-3.5 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950">
                 <span className="font-semibold text-zinc-900 dark:text-zinc-100 block mb-1">
@@ -446,15 +420,10 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
           </div>
         </div>
 
-        {/* Multi-Framework Code Snippet */}
         <MultiCodeSnippet codeBlocks={deptCodeBlocks} title="Department Tree Implementation" />
       </section>
 
-      {/* =====================================================================
-       * VARIAN 2: DEEP MULTI-LEVEL WORKSPACE (LINEAR STYLE)
-       * ===================================================================== */}
       <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 shadow-sm">
-        {/* Header Section */}
         <div className="mb-6 pb-4 border-b border-zinc-200/80 dark:border-zinc-800/80">
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <span className="rounded-md bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
@@ -472,7 +441,6 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
           </p>
         </div>
 
-        {/* Live Interactive Preview */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
           <div className="lg:col-span-5">
             <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/40 p-4 shadow-sm">
@@ -519,7 +487,6 @@ import { AnimatedTreeMenu } from "@bgsaryzzz/ui-vue";
           </div>
         </div>
 
-        {/* Multi-Framework Code Snippet */}
         <MultiCodeSnippet codeBlocks={nestedCodeBlocks} title="Deep Nested Tree Implementation" />
       </section>
     </div>

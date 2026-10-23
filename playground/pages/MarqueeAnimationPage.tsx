@@ -5,7 +5,7 @@ import { CodeBlock } from "../components/CodeBlock";
 export function MarqueeAnimationPage() {
   const { t } = useTranslation();
 
-  const sampleUsage = `import { Marquee } from "@bgsaryzzz/ui";
+  const sampleUsage = `import { Marquee } from "@needui/ui-kit";
 
 export function SponsorMarquee() {
   const partners = [
@@ -18,7 +18,6 @@ export function SponsorMarquee() {
 
   return (
     <div className="w-full py-8 bg-zinc-950">
-      {/* 1. Baris Pertama Bergerak ke Kiri */}
       <Marquee direction="left" speed="normal" pauseOnHover fade gap={16}>
         {partners.map((item) => (
           <div
@@ -31,7 +30,6 @@ export function SponsorMarquee() {
         ))}
       </Marquee>
 
-      {/* 2. Baris Kedua Bergerak ke Kanan (Counter-Flow) */}
       <Marquee direction="right" speed="slow" pauseOnHover fade gap={16} className="mt-4">
         {partners.map((item) => (
           <div
@@ -49,7 +47,6 @@ export function SponsorMarquee() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Title & Header */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.marqueeDemo.badge", "Looping Ticker")}</span>
@@ -65,12 +62,10 @@ export function SponsorMarquee() {
         </p>
       </div>
 
-      {/* Interactive Marquee Presentation */}
       <section className="space-y-6">
         <MarqueeDemo />
       </section>
 
-      {/* Usage Example */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.usage", "Cara Penggunaan")}
@@ -78,7 +73,6 @@ export function SponsorMarquee() {
         <CodeBlock code={sampleUsage} language="tsx" />
       </section>
 
-      {/* Props Table */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.props", "Properti Komponen")}

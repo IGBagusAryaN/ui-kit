@@ -22,10 +22,6 @@ import {
   SettingsIcon,
 } from "../../icons";
 
-/* =========================================================================
- * 1. FLOATING MAC DOCK (`FloatingDockNav`)
- * ========================================================================= */
-
 export interface FloatingDockItem {
   id: string;
   label: string;
@@ -56,17 +52,14 @@ function DockIconItem({
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Hitung jarak kursor mouse X ke titik tengah elemen dock icon
   const distance = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  // Scale dinamis layaknya macOS Dock: tengah 64px, mereda ke 42px di radius 150px
   const widthTransform = useTransform(distance, [-140, 0, 140], [42, 64, 42]);
   const heightTransform = useTransform(distance, [-140, 0, 140], [42, 64, 42]);
 
-  // Spring physics untuk pergerakan elastis yang sangat mulus
   const width = useSpring(widthTransform, {
     mass: 0.1,
     stiffness: 180,
@@ -86,7 +79,6 @@ function DockIconItem({
       onClick={onClick}
       className="relative flex flex-col items-center cursor-pointer select-none"
     >
-      {/* Floating Tooltip Label di atas icon */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
@@ -101,7 +93,6 @@ function DockIconItem({
         )}
       </AnimatePresence>
 
-      {/* Dock Item Button with spring size */}
       <motion.div
         style={{ width, height }}
         whileTap={{ scale: 0.88 }}
@@ -117,7 +108,6 @@ function DockIconItem({
         </div>
       </motion.div>
 
-      {/* Titik indikator aktif di bawah icon (seperti macOS) */}
       {isActive && (
         <span className="absolute -bottom-1.5 h-1 w-1 rounded-full bg-blue-600 dark:bg-blue-400" />
       )}
@@ -170,10 +160,6 @@ export function FloatingDockNav({
   );
 }
 
-/* =========================================================================
- * 2. MAGNETIC SLIDING PILL (`MagneticTabNav`)
- * ========================================================================= */
-
 export interface MagneticTabItem {
   id: string;
   label: string;
@@ -218,12 +204,10 @@ export function MagneticTabNav({
       )}
     >
       <div className="flex items-center justify-between gap-4">
-        {/* Brand / Logo */}
         {brand && (
           <div className="flex items-center gap-2 pl-2 shrink-0">{brand}</div>
         )}
 
-        {/* Tab Links with Floating Pill Indicator */}
         <div
           onMouseLeave={() => setHoveredId(null)}
           className="relative flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5"
@@ -243,7 +227,6 @@ export function MagneticTabNav({
                 onMouseEnter={() => setHoveredId(item.id)}
                 className="relative px-4 py-2 text-xs sm:text-sm font-medium rounded-xl transition-colors duration-200 select-none outline-none cursor-pointer"
               >
-                {/* Active Pill (menggunakan Framer Motion layoutId untuk meluncur mulus) */}
                 {isActive && (
                   <motion.div
                     layoutId="active-tab-indicator"
@@ -256,7 +239,6 @@ export function MagneticTabNav({
                   />
                 )}
 
-                {/* Subtle Hover Background jika belum aktif */}
                 {!isActive && isHovered && (
                   <motion.div
                     layoutId="hover-tab-indicator"
@@ -269,7 +251,6 @@ export function MagneticTabNav({
                   />
                 )}
 
-                {/* Label text */}
                 <span
                   className={cn(
                     "relative z-10 flex items-center gap-1.5 transition-colors duration-150",
@@ -297,7 +278,6 @@ export function MagneticTabNav({
           })}
         </div>
 
-        {/* Right CTA Element */}
         {rightElement && (
           <div className="flex items-center gap-2 pr-1 shrink-0">
             {rightElement}
@@ -307,10 +287,6 @@ export function MagneticTabNav({
     </nav>
   );
 }
-
-/* =========================================================================
- * 3. SMART GLASSMORPHISM (`SmartScrollNav`)
- * ========================================================================= */
 
 export interface SmartScrollNavProps {
   brand?: ReactNode;
@@ -372,7 +348,6 @@ export function SmartScrollNav({
             : "border-neutral-200/60 bg-white/60 shadow-sm backdrop-blur-md dark:border-neutral-800/60 dark:bg-neutral-900/60"
         )}
       >
-        {/* Brand */}
         <div className="flex items-center gap-2 font-bold text-sm sm:text-base">
           {brand || (
             <span className="flex items-center gap-2">
@@ -384,7 +359,6 @@ export function SmartScrollNav({
           )}
         </div>
 
-        {/* Links */}
         <nav className="hidden md:flex items-center gap-6">
           {items.map((link) => (
             <a
@@ -412,7 +386,6 @@ export function SmartScrollNav({
           ))}
         </nav>
 
-        {/* Right CTA */}
         <div className="flex items-center gap-2">
           {rightElement || (
             <button
@@ -427,10 +400,6 @@ export function SmartScrollNav({
     </motion.header>
   );
 }
-
-/* =========================================================================
- * 4. MORPHING CIRCLE (`MorphingNav`)
- * ========================================================================= */
 
 export interface MorphingNavProps {
   placeholder?: string;
@@ -473,7 +442,7 @@ export function MorphingNav({
       >
         <AnimatePresence mode="wait">
           {!isOpen ? (
-            /* Lingkaran Minimalis dengan Icon Search / Menu */
+
             <motion.button
               key="closed-circle"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -488,7 +457,7 @@ export function MorphingNav({
               <SearchIcon size={22} />
             </motion.button>
           ) : (
-            /* Wujud Morphed Bar Lengkap */
+
             <motion.div
               key="opened-bar"
               initial={{ opacity: 0, y: 6 }}
@@ -497,13 +466,11 @@ export function MorphingNav({
               transition={{ duration: 0.2 }}
               className="flex items-center gap-3 w-full"
             >
-              {/* Brand Tag */}
               <div className="flex items-center gap-1.5 pl-2 pr-1 py-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-xs font-semibold text-neutral-800 dark:text-neutral-200 shrink-0">
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>{brandName}</span>
               </div>
 
-              {/* Input Area */}
               <div className="relative flex-1 flex items-center">
                 <input
                   ref={inputRef}
@@ -518,7 +485,6 @@ export function MorphingNav({
                 />
               </div>
 
-              {/* Quick Actions & Close button */}
               <div className="flex items-center gap-1 shrink-0">
                 <button
                   type="button"
@@ -535,7 +501,6 @@ export function MorphingNav({
                   <SettingsIcon size={17} />
                 </button>
 
-                {/* Close Button: kembali morph menjadi lingkaran */}
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
@@ -552,10 +517,6 @@ export function MorphingNav({
     </div>
   );
 }
-
-/* =========================================================================
- * 5. STAGGERED FULLSCREEN (`FullscreenMenuNav`)
- * ========================================================================= */
 
 export interface FullscreenMenuItem {
   number: string;
@@ -600,7 +561,6 @@ export function FullscreenMenuNav({
 
   return (
     <div className={cn("relative w-full", className)}>
-      {/* Top Bar dengan Brand dan 2-Line Hamburger Minimalis */}
       <div className="relative z-40 w-full flex items-center justify-between p-4 rounded-2xl border border-neutral-200/80 bg-white/90 backdrop-blur-md dark:border-neutral-800/80 dark:bg-neutral-950/90 shadow-sm transition-colors">
         <div className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-950 dark:text-white flex items-center gap-2">
           {brand || (
@@ -613,7 +573,6 @@ export function FullscreenMenuNav({
           )}
         </div>
 
-        {/* 2-Line Animated Hamburger Button */}
         <button
           type="button"
           onClick={handleToggle}
@@ -633,7 +592,6 @@ export function FullscreenMenuNav({
         </button>
       </div>
 
-      {/* Staggered Fullscreen Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -643,16 +601,13 @@ export function FullscreenMenuNav({
             transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
             className="absolute inset-0 z-30 min-h-[480px] rounded-3xl bg-neutral-950 text-white p-6 sm:p-10 flex flex-col justify-between shadow-2xl overflow-hidden"
           >
-            {/* Ambient Background Glow Effect */}
             <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-violet-600/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-indigo-600/20 blur-3xl" />
 
-            {/* Menu Header Note */}
             <div className="pt-12 text-xs font-mono uppercase tracking-widest text-neutral-400">
-              Navigation Index // Arya UI
+              Navigation Index 
             </div>
 
-            {/* Staggered Links List */}
             <motion.ul
               initial="closed"
               animate="open"
@@ -709,9 +664,8 @@ export function FullscreenMenuNav({
               ))}
             </motion.ul>
 
-            {/* Footer metadata */}
             <div className="pt-4 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-2">
-              <span>© {new Date().getFullYear()} @bgsaryzzz/ui design system</span>
+              <span>© {new Date().getFullYear()} needui design system</span>
               <div className="flex items-center gap-4">
                 <span className="hover:text-neutral-300 cursor-pointer">GitHub</span>
                 <span className="hover:text-neutral-300 cursor-pointer">Twitter</span>
@@ -724,10 +678,6 @@ export function FullscreenMenuNav({
     </div>
   );
 }
-
-/* =========================================================================
- * DEFAULT EXPORT & BACKWARD COMPATIBILITY
- * ========================================================================= */
 
 /** Default Unified NavbarAnimation (menggunakan SmartScrollNav sebagai basis) */
 export const NavbarAnimation = SmartScrollNav;

@@ -13,9 +13,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * I18N DICTIONARY FOR AUTO CAROUSELS (BILINGUAL EN & ID - 4 VARIANTS)
- * ========================================================================= */
 const CAROUSEL_DICT = {
   en: {
     pillTag1: "Time-Driven Progress Dynamics",
@@ -50,7 +47,6 @@ export function EpicSidebarCarousel({ slides }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 rounded-2xl overflow-hidden">
-      {/* Left 75% Hero Viewport */}
       <div className="lg:col-span-3 relative h-96 overflow-hidden rounded-2xl">
         <AnimatePresence mode="wait">
           <motion.img
@@ -65,7 +61,6 @@ export function EpicSidebarCarousel({ slides }) {
         </AnimatePresence>
       </div>
 
-      {/* Right 25% Vertical Progress List */}
       <div className="flex flex-col gap-2">
         {slides.map((slide, idx) => {
           const isActive = active === idx;
@@ -170,7 +165,6 @@ export function DynamicPillCarousel({ items }) {
         />
       </AnimatePresence>
 
-      {/* Floating Glassmorphism Pill Dock */}
       <div className="absolute bottom-5 inset-x-0 flex justify-center">
         <div className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/15">
           {items.map((_, i) => (
@@ -218,7 +212,6 @@ export function RadialProgressCarousel({ slides }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 border rounded-2xl">
       <div>
         <div className="flex items-center gap-3 mb-4">
-          {/* Circular SVG Timer */}
           <div className="relative w-11 h-11 flex items-center justify-center">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 44 44">
               <circle cx="22" cy="22" r={radius} className="stroke-zinc-800" strokeWidth="3" fill="none" />
@@ -296,7 +289,6 @@ export function EpicSidebarCarousel({ slides }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 rounded-2xl overflow-hidden">
-      {/* Left 75% Hero Viewport */}
       <div className="lg:col-span-3 relative h-96 overflow-hidden rounded-2xl">
         <AnimatePresence mode="wait">
           <motion.img
@@ -311,7 +303,6 @@ export function EpicSidebarCarousel({ slides }) {
         </AnimatePresence>
       </div>
 
-      {/* Right 25% Vertical Progress List */}
       <div className="flex flex-col gap-2">
         {slides.map((slide, idx) => {
           const isActive = active === idx;
@@ -416,7 +407,6 @@ export function DynamicPillCarousel({ items }) {
         />
       </AnimatePresence>
 
-      {/* Floating Glassmorphism Pill Dock */}
       <div className="absolute bottom-5 inset-x-0 flex justify-center">
         <div className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/15">
           {items.map((_, i) => (
@@ -464,7 +454,6 @@ export function RadialProgressCarousel({ slides }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 border rounded-2xl">
       <div>
         <div className="flex items-center gap-3 mb-4">
-          {/* Circular SVG Timer */}
           <div className="relative w-11 h-11 flex items-center justify-center">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 44 44">
               <circle cx="22" cy="22" r={radius} className="stroke-zinc-800" strokeWidth="3" fill="none" />
@@ -511,9 +500,6 @@ export function RadialProgressCarousel({ slides }) {
   },
 };
 
-/* =========================================================================
- * 1. COMPONENT: EPIC SIDEBAR CAROUSEL (VERTICAL PROGRESS SIDEBAR)
- * ========================================================================= */
 interface EpicGameSlide {
   id: string;
   title: string;
@@ -600,7 +586,6 @@ export function EpicSidebarCarousel() {
       className="w-full select-none"
     >
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 items-stretch">
-        {/* Left 75% Hero Viewport Stage */}
         <div className="lg:col-span-3 relative h-[380px] sm:h-[450px] rounded-3xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 bg-zinc-950 shadow-xl group">
           <AnimatePresence mode="wait">
             <motion.div
@@ -662,7 +647,6 @@ export function EpicSidebarCarousel() {
           </div>
         </div>
 
-        {/* Right 25% Vertical Progress List */}
         <div className="flex flex-col gap-2.5 justify-between">
           {epicSlides.map((slide, idx) => {
             const isActive = activeIndex === idx;
@@ -980,7 +964,6 @@ export function DynamicPillCarousel() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Floating Glassmorphism Pill Dock */}
         <div className="absolute bottom-4 sm:bottom-6 inset-x-0 flex items-center justify-center z-20 pointer-events-auto">
           <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-black/60 dark:bg-black/70 backdrop-blur-xl border border-white/15 shadow-2xl">
             {pillSlideItems.map((_, i) => {
@@ -1265,7 +1248,6 @@ export function AutoCarouselDemo() {
 
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Page Header */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1 text-xs font-mono font-semibold text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
@@ -1287,14 +1269,12 @@ export function AutoCarouselDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 4 Auto-Progress Variants */}
       <div className="grid grid-cols-1 gap-12 sm:gap-14">
         {carouselCards.map((card) => (
           <section
             key={card.id}
             className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -1309,12 +1289,10 @@ export function AutoCarouselDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="flex items-center justify-center p-3 sm:p-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
               {card.component}
             </div>
 
-            {/* Standardized Usage Snippet (No Framework Tabs) */}
             <CodeSnippet code={card.snippet} />
           </section>
         ))}

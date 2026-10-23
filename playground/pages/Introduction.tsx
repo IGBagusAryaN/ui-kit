@@ -19,11 +19,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
 
   return (
     <div className="w-full pb-16">
-      {/* ---------------------------------------------------------------------
-       * 1. COMPACT HIGH-END HERO BANNER
-       * --------------------------------------------------------------------- */}
       <section className="relative overflow-hidden rounded-3xl py-8 md:py-12 px-6 sm:px-8 border border-zinc-200/80 dark:border-zinc-800/80 bg-white/40 dark:bg-zinc-950/40 backdrop-blur-xs">
-        {/* Animated Moving Background Grid & Mesh Gradient */}
         <motion.div
           animate={{
             backgroundPosition: ["0px 0px", "100px 100px"],
@@ -36,7 +32,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]"
         />
 
-        {/* Ambient Glow Aura */}
         <div
           className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-purple-900/10 via-blue-900/10 to-transparent dark:from-purple-900/20 dark:via-blue-900/15 dark:to-transparent blur-3xl rounded-full"
           aria-hidden="true"
@@ -46,23 +41,18 @@ export function Introduction({ onNavigate }: IntroductionProps) {
           aria-hidden="true"
         />
 
-        {/* Grid Content */}
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Column: Hero Copywriting & Actions */}
           <div className="lg:col-span-7 flex flex-col items-start">
-            {/* The Glowing Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800/80 text-xs font-medium text-zinc-600 dark:text-zinc-300 relative group overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:border-indigo-400/60 dark:hover:border-indigo-500/60 shadow-2xs">
-              {/* Shimmer light beam on hover */}
               <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent transition-transform pointer-events-none" />
               <span>
                 {t(
                   "content.introduction.badge",
-                  "✨ @bgsaryzzz/ui v0.1.2 is now available"
+                  "✨ needui v0.1.2 is now available"
                 )}
               </span>
             </div>
 
-            {/* Hero Main Headings (Compact sizing) */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.15]">
               <span>
                 {t(
@@ -79,7 +69,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               </span>
             </h1>
 
-            {/* Introductory Paragraph */}
             <p className="max-w-xl text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mt-3.5">
               {t(
                 "content.introduction.desc",
@@ -87,7 +76,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               )}
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3 mt-6">
               <button
                 type="button"
@@ -142,12 +130,9 @@ export function Introduction({ onNavigate }: IntroductionProps) {
             </div>
           </div>
 
-          {/* Right Column: Compact 3D Floating Showcase Canvas (h-[290px]) */}
           <div className="lg:col-span-5 relative h-[290px] w-full hidden md:block select-none">
-            {/* Ambient Background Behind Cards */}
             <div className="absolute inset-0 bg-radial from-blue-500/10 via-indigo-500/5 to-transparent rounded-3xl" />
 
-            {/* FLOATING CARD A: ButtonAnimation (Adaptive Light/Dark Hold to Deploy Mockup) */}
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{
@@ -169,9 +154,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                 </span>
               </div>
 
-              {/* Simulated Button Component with Adaptive Two-Layer Clip-Path Fill */}
               <div className="relative overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 select-none shadow-xs">
-                {/* 1. Base Layer (Unfilled State) */}
                 <div className="py-2 px-3 flex items-center justify-between">
                   <span className="text-[11px] font-semibold tracking-wide text-zinc-700 dark:text-zinc-300">
                     Hold to Deploy
@@ -199,7 +182,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                   </div>
                 </div>
 
-                {/* 2. Overlay Layer (Dynamic Progress with clipPath) */}
                 <motion.div
                   animate={{
                     clipPath: [
@@ -242,7 +224,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                 </motion.div>
               </div>
 
-              {/* Realistic Miniature Mouse Cursor Pointer */}
               <div className="absolute bottom-1 right-7 pointer-events-none drop-shadow-md z-30">
                 <svg
                   className="w-5 h-5 text-zinc-900 dark:text-white fill-current filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] opacity-90 transform -rotate-12"
@@ -253,7 +234,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               </div>
             </motion.div>
 
-            {/* FLOATING CARD B: Hierarchy Menu (Nested Directory Tree) */}
             <motion.div
               animate={{ y: [0, -7, 0] }}
               transition={{
@@ -278,7 +258,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                 </span>
               </div>
 
-              {/* Guiding Indent Lines */}
               <div className="border-l border-zinc-200 dark:border-zinc-800 ml-1.5 pl-2.5 space-y-1 text-[10px] font-mono">
                 <div className="flex items-center gap-1.5 py-0.5 px-1 rounded bg-blue-50/80 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-medium">
                   <span className="w-1 h-1 rounded-full bg-blue-500" />
@@ -295,7 +274,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               </div>
             </motion.div>
 
-            {/* FLOATING CARD C: Interactive Telemetry & Physics Switch */}
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{
@@ -329,7 +307,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                 </span>
               </div>
 
-              {/* Physics Spec Bar */}
               <div className="space-y-1 mb-2">
                 <div className="flex justify-between text-[9px] font-mono text-zinc-500 dark:text-zinc-400">
                   <span>Spring Physics</span>
@@ -348,7 +325,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                 </div>
               </div>
 
-              {/* Glowing Interactive Toggle Switch */}
               <div className="flex items-center justify-between pt-1 border-t border-zinc-100 dark:border-zinc-800/80">
                 <span className="text-[10px] text-zinc-600 dark:text-zinc-400">
                   Micro-interactions: On
@@ -362,13 +338,8 @@ export function Introduction({ onNavigate }: IntroductionProps) {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------------------
-       * 2. ASYMMETRICAL BENTO CARDS (BOTTOM)
-       * --------------------------------------------------------------------- */}
       <section className="grid grid-cols-1 md:grid-cols-5 gap-6 mt-10 md:mt-12">
-        {/* CARD 1 (Wider, col-span-3): Zero Dependency Lock-in */}
         <div className="md:col-span-3 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 overflow-hidden relative flex flex-col justify-between gap-4 shadow-xs group hover:border-zinc-300 dark:hover:border-zinc-700/80 transition">
-          {/* Text Header */}
           <div className="space-y-1.5">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-mono font-medium text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-900/50 mb-1">
               <svg
@@ -400,9 +371,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
             </p>
           </div>
 
-          {/* Visual: Clean & Elegant JSX Code Block Mockup */}
           <div className="w-full rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden shadow-xs">
-            {/* Mockup Header Bar */}
             <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60">
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block" />
@@ -417,7 +386,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               </span>
             </div>
 
-            {/* Code Content */}
             <div className="p-4 font-mono text-xs leading-relaxed overflow-x-auto text-zinc-800 dark:text-zinc-200">
               <div className="flex gap-3">
                 <span className="select-none text-zinc-400 dark:text-zinc-600 shrink-0 text-right w-4">
@@ -432,7 +400,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                     from
                   </span>{" "}
                   <span className="text-emerald-600 dark:text-emerald-400">
-                    "@bgsaryzzz/ui"
+                    "@needui/ui-kit"
                   </span>
                   ;
                 </span>
@@ -547,9 +515,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
           </div>
         </div>
 
-        {/* CARD 2 (Narrower, col-span-2): Fluid Animations */}
         <div className="md:col-span-2 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 overflow-hidden relative flex flex-col justify-between gap-4 shadow-xs group hover:border-zinc-300 dark:hover:border-zinc-700/80 transition">
-          {/* Text Header */}
           <div className="space-y-1.5">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-mono font-medium text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-900/50 mb-1">
               <svg
@@ -578,21 +544,17 @@ export function Introduction({ onNavigate }: IntroductionProps) {
             </p>
           </div>
 
-          {/* Visual: 2-3 Stacked Transparent Layers with Subtle Borders */}
           <div className="w-full relative h-48 flex items-center justify-center p-3 select-none">
-            {/* Background Layer 1 (Bottom stacked card) */}
             <div
               className="absolute w-[86%] h-24 rounded-2xl border border-zinc-200/60 dark:border-zinc-700/40 bg-zinc-100/60 dark:bg-zinc-800/30 backdrop-blur-xs transform -rotate-6 translate-y-3 transition group-hover:-rotate-8 group-hover:translate-y-4 duration-300 pointer-events-none"
               aria-hidden="true"
             />
 
-            {/* Background Layer 2 (Middle stacked card) */}
             <div
               className="absolute w-[92%] h-24 rounded-2xl border border-zinc-300/80 dark:border-zinc-700/60 bg-zinc-100/80 dark:bg-zinc-800/50 backdrop-blur-xs transform rotate-3 translate-y-1.5 transition group-hover:rotate-4 group-hover:translate-y-2 duration-300 pointer-events-none"
               aria-hidden="true"
             />
 
-            {/* Foreground Layer 3 (Top interactive mockup card) */}
             <div className="relative z-10 w-full p-4 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white/95 dark:bg-zinc-950/90 shadow-md backdrop-blur-md flex flex-col gap-2.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -626,7 +588,6 @@ export function Introduction({ onNavigate }: IntroductionProps) {
                 </span>
               </div>
 
-              {/* Mini visual waveform bar */}
               <div className="w-full h-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden flex">
                 <div className="w-3/5 h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" />
               </div>

@@ -22,7 +22,7 @@ export function ThemeProvider({
   defaultTheme = "system",
   storageKey = "ui-theme",
 }: ThemeProviderProps) {
-  // Inisialisasi tema dari localStorage atau fallback ke defaultTheme
+
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem(storageKey) as Theme | null;
@@ -33,7 +33,6 @@ export function ThemeProvider({
     return defaultTheme;
   });
 
-  // State boolean apakah tema aktif sekarang adalah dark
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
     if (theme === "dark") return true;
@@ -41,7 +40,6 @@ export function ThemeProvider({
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
-  // Efek untuk sinkronisasi class 'dark' pada tag <html> dan media listener
   useEffect(() => {
     const root = document.documentElement;
 
@@ -65,7 +63,6 @@ export function ThemeProvider({
 
     applyTheme(theme);
 
-    // Listener jika user memilih 'system' dan preferensi OS berubah secara dinamis
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => {
       if (theme === "system") {
@@ -77,13 +74,11 @@ export function ThemeProvider({
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme]);
 
-  // Handler update tema dengan auto-save ke localStorage
   const setTheme = (newTheme: Theme) => {
     localStorage.setItem(storageKey, newTheme);
     setThemeState(newTheme);
   };
 
-  // Toggle instan antara Light dan Dark
   const toggleTheme = () => {
     setTheme(isDark ? "light" : "dark");
   };

@@ -23,9 +23,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * I18N DICTIONARY FOR ANIMATED TIMELINES (BILINGUAL EN & ID - 5 VARIANTS)
- * ========================================================================= */
 const TIMELINE_DICT = {
   en: {
     pillTag1: "Framer Motion Physics",
@@ -40,7 +37,7 @@ const TIMELINE_DICT = {
         description:
           "Vertical milestone roadmap where the connecting line is an SVG vector drawn dynamically with Framer Motion's pathLength as it enters the viewport. Features pulsating milestone nodes and contextual execution badges.",
         snippet: `import { motion } from "framer-motion";
-import { CheckIcon, SparklesIcon } from "@bgsaryzzz/ui/icons";
+import { CheckIcon, SparklesIcon } from "@needui/ui-kit/icons";
 
 const MILESTONES = [
   { id: 1, phase: "Phase 01", title: "Architecture & Foundation", date: "Q1 2025" },
@@ -308,9 +305,6 @@ export function AlternateScrollTimeline() {
   },
 };
 
-/* =========================================================================
- * 1. SVG DRAW TIMELINE
- * ========================================================================= */
 interface SVGMilestoneItem {
   id: number;
   phase: string;
@@ -379,7 +373,6 @@ export function SVGDrawTimeline() {
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4">
-      {/* Interactive Controls Header */}
       <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
@@ -396,11 +389,8 @@ export function SVGDrawTimeline() {
         </button>
       </div>
 
-      {/* Timeline Track with Animated SVG Path */}
       <div key={redrawKey} className="relative pl-7 sm:pl-9 py-2">
-        {/* SVG Drawing Connecting Line */}
         <svg className="absolute left-[13px] sm:left-[17px] top-6 bottom-6 w-[3px] h-[calc(100%-48px)] overflow-visible">
-          {/* Faint Background Track Line */}
           <line
             x1="0"
             y1="0"
@@ -411,7 +401,6 @@ export function SVGDrawTimeline() {
             strokeWidth="2"
             strokeDasharray="4 4"
           />
-          {/* Animated SVG Path with pathLength */}
           <motion.line
             x1="0"
             y1="0"
@@ -427,7 +416,6 @@ export function SVGDrawTimeline() {
           />
         </svg>
 
-        {/* Milestone Cards List */}
         <div className="space-y-6 sm:space-y-8">
           {SVG_MILESTONES.map((item, index) => {
             const isCompleted = item.status === "completed";
@@ -441,7 +429,6 @@ export function SVGDrawTimeline() {
                 transition={{ duration: 0.45, delay: index * 0.25 + 0.1 }}
                 className="relative group"
               >
-                {/* Node Milestone Circle */}
                 <div
                   className={cn(
                     "absolute -left-[27px] sm:-left-[35px] top-1.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 flex items-center justify-center transition-all duration-300 bg-white dark:bg-zinc-950",
@@ -461,7 +448,6 @@ export function SVGDrawTimeline() {
                   )}
                 </div>
 
-                {/* Milestone Detail Card */}
                 <div className="rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-4 sm:p-5 shadow-xs transition hover:border-zinc-300 dark:hover:border-zinc-700 space-y-2.5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
@@ -521,9 +507,6 @@ export function SVGDrawTimeline() {
   );
 }
 
-/* =========================================================================
- * 2. GLOWING PARTICLE TIMELINE
- * ========================================================================= */
 interface TelemetryNode {
   id: string;
   code: string;
@@ -584,7 +567,6 @@ export function GlowingParticleTimeline() {
   const [activeNodeIndex, setActiveNodeIndex] = useState<number>(0);
   const [progressY, setProgressY] = useState(0);
 
-  // Animate the light particle continuously down the track
   useEffect(() => {
     if (!isPlaying) return;
 
@@ -604,7 +586,6 @@ export function GlowingParticleTimeline() {
     return () => clearInterval(interval);
   }, [isPlaying, speed]);
 
-  // Sync active node highlight based on particle coordinate percentage
   useEffect(() => {
     const nodeIndex = Math.min(
       Math.floor((progressY / 100) * TELEMETRY_NODES.length),
@@ -620,7 +601,6 @@ export function GlowingParticleTimeline() {
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-5">
-      {/* Control Console */}
       <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100">
         <div className="flex items-center gap-2">
           <button
@@ -635,7 +615,6 @@ export function GlowingParticleTimeline() {
           </span>
         </div>
 
-        {/* Speed Multiplier Pills */}
         <div className="flex items-center gap-1 bg-zinc-800/80 p-0.5 rounded-lg text-xs font-mono">
           {[1, 2, 4].map((s) => (
             <button
@@ -654,21 +633,16 @@ export function GlowingParticleTimeline() {
         </div>
       </div>
 
-      {/* Main Track with Luminous Flow */}
       <div className="relative pl-7 sm:pl-9 py-2">
-        {/* Dimmed Background Fiber Line */}
         <div className="absolute left-[13px] sm:left-[17px] top-5 bottom-5 w-[2px] bg-zinc-200 dark:bg-zinc-800">
-          {/* Glowing Photon Particle */}
           <motion.div
             style={{ top: `${progressY}%` }}
             className="absolute -left-[5px] w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_16px_5px_rgba(34,211,238,0.9)] -translate-y-1/2 z-20 pointer-events-none"
           >
-            {/* Trailing Tail Glow */}
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-[2px] h-10 bg-gradient-to-t from-cyan-400 to-transparent opacity-80" />
           </motion.div>
         </div>
 
-        {/* Pipeline Telemetry Nodes */}
         <div className="space-y-5 sm:space-y-6">
           {TELEMETRY_NODES.map((node, index) => {
             const isCurrentlyActive = activeNodeIndex === index;
@@ -679,7 +653,6 @@ export function GlowingParticleTimeline() {
                 onClick={() => jumpToNode(index)}
                 className="relative cursor-pointer group"
               >
-                {/* Milestone Node Ring */}
                 <div
                   className={cn(
                     "absolute -left-[27px] sm:-left-[35px] top-2 w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 flex items-center justify-center transition-all duration-300 bg-white dark:bg-zinc-950 z-10",
@@ -693,7 +666,6 @@ export function GlowingParticleTimeline() {
                   </span>
                 </div>
 
-                {/* Node Card */}
                 <div
                   className={cn(
                     "rounded-2xl border p-4 sm:p-5 transition-all duration-300 space-y-2",
@@ -836,7 +808,6 @@ export function ExpandableStepTimeline() {
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-5">
-      {/* Workflow Navigation Controls */}
       <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
         <span className="text-xs font-mono font-semibold text-zinc-500 dark:text-zinc-400">
           Step {activeStepId} of {STEP_WORKFLOW.length} Active
@@ -859,7 +830,6 @@ export function ExpandableStepTimeline() {
         </div>
       </div>
 
-      {/* Stepper Vertical Axis */}
       <div className="relative pl-7 sm:pl-9 py-2">
         <div className="absolute left-[13px] sm:left-[17px] top-5 bottom-5 w-[2px] bg-zinc-200 dark:bg-zinc-800" />
 
@@ -870,7 +840,6 @@ export function ExpandableStepTimeline() {
 
             return (
               <div key={step.id} className="relative group">
-                {/* Spring Bouncing Node Circle */}
                 <motion.button
                   layout
                   onClick={() => setActiveStepId(step.id)}
@@ -888,7 +857,6 @@ export function ExpandableStepTimeline() {
                   {isCompleted ? <CheckIcon size={12} strokeWidth={3} /> : step.id}
                 </motion.button>
 
-                {/* Card Container with Expandable Accordion Animation */}
                 <div
                   className={cn(
                     "rounded-2xl border transition-all duration-300 overflow-hidden",
@@ -897,7 +865,6 @@ export function ExpandableStepTimeline() {
                       : "border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/40 hover:border-zinc-300"
                   )}
                 >
-                  {/* Clickable Step Header */}
                   <button
                     onClick={() => setActiveStepId(step.id)}
                     className="w-full flex items-center justify-between p-3.5 sm:p-4 text-left select-none"
@@ -937,7 +904,6 @@ export function ExpandableStepTimeline() {
                     </span>
                   </button>
 
-                  {/* Expandable Body Panel with Framer Motion */}
                   <AnimatePresence initial={false}>
                     {isActive && (
                       <motion.div
@@ -1039,23 +1005,19 @@ export function HorizontalElasticTimeline() {
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
-      {/* Horizontal Stepper Track */}
       <div className="w-full overflow-x-auto no-scrollbar py-3">
         <div className="relative min-w-[340px] px-4 sm:px-6">
-          {/* Background Track Line */}
-          <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
+          <div className="relative flex items-start justify-between">
+            <div className="absolute left-[18px] right-[18px] top-[18px] -translate-y-1/2 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
 
-          {/* Elastic Active Gradient Fill Bar */}
-          <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 overflow-hidden pointer-events-none">
-            <motion.div
-              className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
-              animate={{ width: `${progressPercent}%` }}
-              transition={{ type: "spring", stiffness: 350, damping: 30 }}
-            />
-          </div>
+            <div className="absolute left-[18px] right-[18px] top-[18px] -translate-y-1/2 h-1 overflow-hidden pointer-events-none rounded-full">
+              <motion.div
+                className="h-full bg-gradient-to-r from-emerald-500 via-indigo-500 to-purple-500 rounded-full"
+                animate={{ width: `${progressPercent}%` }}
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              />
+            </div>
 
-          {/* Step Nodes */}
-          <div className="relative flex items-center justify-between">
             {HORIZONTAL_PHASES.map((phase, index) => {
               const isPassed = index < activeStep;
               const isCurrent = index === activeStep;
@@ -1063,10 +1025,10 @@ export function HorizontalElasticTimeline() {
               return (
                 <div key={phase.id} className="flex flex-col items-center">
                   <button
+                    type="button"
                     onClick={() => setActiveStep(index)}
-                    className="relative z-10 focus:outline-hidden group"
+                    className="relative z-10 focus:outline-hidden group cursor-pointer"
                   >
-                    {/* Pulsing Aura for Active Node */}
                     {isCurrent && (
                       <motion.div
                         animate={{ scale: [1, 1.45, 1], opacity: [0.6, 0, 0.6] }}
@@ -1081,7 +1043,7 @@ export function HorizontalElasticTimeline() {
                       }}
                       transition={{ type: "spring", stiffness: 450, damping: 25 }}
                       className={cn(
-                        "w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors bg-white dark:bg-zinc-950",
+                        "w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors bg-white dark:bg-zinc-950",
                         isPassed
                           ? "border-emerald-500 bg-emerald-500 text-white shadow-sm"
                           : isCurrent
@@ -1114,7 +1076,6 @@ export function HorizontalElasticTimeline() {
         </div>
       </div>
 
-      {/* Active Phase Card with Spring Transitions */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeStep}
@@ -1159,7 +1120,6 @@ export function HorizontalElasticTimeline() {
             </div>
           </div>
 
-          {/* Stepper Controls */}
           <div className="flex items-center justify-between pt-2">
             <button
               onClick={() => setActiveStep((prev) => Math.max(prev - 1, 0))}
@@ -1239,9 +1199,7 @@ const ZIGZAG_EVENTS: ZigZagEvent[] = [
 export function AlternateScrollTimeline() {
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
-      {/* Timeline Wrapper */}
       <div className="relative py-4">
-        {/* Central Vertical Axis Line (Shifted to left on mobile, centered on sm:) */}
         <div className="absolute left-4 sm:left-1/2 top-2 bottom-2 w-[2px] bg-zinc-200 dark:bg-zinc-800 -translate-x-1/2" />
 
         <div className="space-y-8 sm:space-y-12">
@@ -1256,12 +1214,10 @@ export function AlternateScrollTimeline() {
                   isLeft ? "sm:flex-row-reverse" : "sm:flex-row"
                 )}
               >
-                {/* Center Node Indicator */}
                 <div className="absolute left-4 sm:left-1/2 top-4 -translate-x-1/2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white dark:bg-zinc-950 border-2 border-indigo-600 flex items-center justify-center z-10 shadow-md shadow-indigo-600/20">
                   <span className="w-2 h-2 rounded-full bg-indigo-600" />
                 </div>
 
-                {/* Content Card with Scroll Stagger Reveal */}
                 <motion.div
                   initial={{ opacity: 0, x: isLeft ? -35 : 35, y: 15 }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -1367,7 +1323,6 @@ export function AnimatedTimelineDemo() {
 
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Page Header */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1 text-xs font-mono font-semibold text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
@@ -1389,14 +1344,12 @@ export function AnimatedTimelineDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 5 Timeline Architectures */}
       <div className="grid grid-cols-1 gap-8 sm:gap-14">
         {timelineCards.map((card) => (
           <section
             key={card.id}
             className="flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200/80 bg-white p-4 sm:p-6 md:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-5 sm:mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
                 <h2 className="text-base sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -1411,12 +1364,10 @@ export function AnimatedTimelineDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="flex items-center justify-center p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-5 sm:mb-6 overflow-hidden">
               {card.component}
             </div>
 
-            {/* Standardized Usage Snippet (No Framework Tabs) */}
             <CodeSnippet code={card.snippet} title="Usage Snippet" />
           </section>
         ))}

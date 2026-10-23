@@ -15,7 +15,7 @@ export function CodeBlock({ code, language = "bash", filename }: CodeBlockProps)
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // fallback
+
     }
   };
 

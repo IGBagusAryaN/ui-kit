@@ -12,7 +12,7 @@ import {
   ModalDrawer,
   ModalBottomSheet,
   ModalMedia,
-} from "@bgsaryzzz/ui";
+} from "@needui/ui-kit";
 
 export function DialogShowcase() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -23,7 +23,6 @@ export function DialogShowcase() {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {/* 1. Standard Confirmation Dialog */}
       <ModalConfirm
         isOpen={isConfirmOpen}
         onClose={() => setIsConfirmOpen(false)}
@@ -32,7 +31,6 @@ export function DialogShowcase() {
         onConfirm={() => console.log("Proyek dihapus!")}
       />
 
-      {/* 2. Interactive Form Dialog */}
       <ModalForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
@@ -40,7 +38,6 @@ export function DialogShowcase() {
         onSubmit={(values) => console.log("Form data:", values)}
       />
 
-      {/* 3. Right Slide-Over Drawer */}
       <ModalDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
@@ -50,7 +47,6 @@ export function DialogShowcase() {
         <p>Konten pengaturan scrollable...</p>
       </ModalDrawer>
 
-      {/* 4. Bottom Sheet Dialog */}
       <ModalBottomSheet
         isOpen={isSheetOpen}
         onClose={() => setIsSheetOpen(false)}
@@ -59,7 +55,6 @@ export function DialogShowcase() {
         <p>Pilihan ekspor file...</p>
       </ModalBottomSheet>
 
-      {/* 5. Media Lightbox Viewer */}
       <ModalMedia
         isOpen={isMediaOpen}
         onClose={() => setIsMediaOpen(false)}
@@ -73,7 +68,6 @@ export function DialogShowcase() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Title & Header */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.modalDemo.badge", "Dialog & Overlay")}</span>
@@ -89,12 +83,10 @@ export function DialogShowcase() {
         </p>
       </div>
 
-      {/* Interactive 5 Variants Grid */}
       <section className="space-y-6">
         <ModalDemo />
       </section>
 
-      {/* Usage Example */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.usage", "Cara Penggunaan")}
@@ -102,7 +94,6 @@ export function DialogShowcase() {
         <CodeBlock code={sampleUsage} language="tsx" filename="ModalShowcase.tsx" />
       </section>
 
-      {/* Props & API Reference */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.props", "API & Properti")}

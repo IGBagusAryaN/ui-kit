@@ -19,9 +19,6 @@ import {
 } from "../../src/icons";
 import { CodeSnippet } from "../components/CodeSnippet";
 
-// ============================================================================
-// I18N LOCALIZATION DICTIONARY FOR MODAL DEMO
-// ============================================================================
 const MODAL_DICT = {
   en: {
     searchPlaceholder:
@@ -101,7 +98,6 @@ const MODAL_DICT = {
   onSave={() => applySettings()}
 >
   <div className="space-y-5">
-    {/* Settings Items with Toggle Switches */}
   </div>
 </ModalDrawer>`,
         modalTitle: "Display & System Settings",
@@ -240,7 +236,6 @@ const MODAL_DICT = {
   onSave={() => applySettings()}
 >
   <div className="space-y-5">
-    {/* Pengaturan dengan Switch Toggle */}
   </div>
 </ModalDrawer>`,
         modalTitle: "Pengaturan Tampilan & Sistem",
@@ -414,9 +409,7 @@ export function ModalDemo() {
 
   return (
     <div className="w-full space-y-10">
-      {/* Search Bar & Global Control Header */}
       <div className="space-y-4">
-        {/* Search Bar */}
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-400">
             <SearchIcon size={16} />
@@ -439,7 +432,6 @@ export function ModalDemo() {
           )}
         </div>
 
-        {/* Global Action & Quick Triggers Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl border border-zinc-200/80 bg-zinc-50/70 dark:border-zinc-800/80 dark:bg-zinc-900/40">
           <div className="space-y-0.5">
             <div className="flex items-center gap-2">
@@ -452,7 +444,6 @@ export function ModalDemo() {
             </p>
           </div>
 
-          {/* Quick Trigger Buttons */}
           <div className="flex flex-wrap items-center gap-1.5">
             {modalCards.map((item) => (
               <button
@@ -468,7 +459,6 @@ export function ModalDemo() {
           </div>
         </div>
 
-        {/* Action Feedback Banner */}
         <AnimatePresence>
           {feedbackMessage && (
             <motion.div
@@ -493,7 +483,6 @@ export function ModalDemo() {
         </AnimatePresence>
       </div>
 
-      {/* Empty State */}
       {filteredList.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800">
           <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -509,14 +498,12 @@ export function ModalDemo() {
         </div>
       )}
 
-      {/* Full-Width Single-Column Stack: flex flex-col gap-10 */}
       <div className="flex flex-col gap-10">
         {filteredList.map((item) => (
           <section
             key={item.id}
             className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700 w-full"
           >
-            {/* Card Header Info */}
             <div className="space-y-2 mb-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -531,7 +518,6 @@ export function ModalDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas with Standardized Uniform Button Style */}
             <div className="flex flex-col items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 min-h-[140px]">
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -548,17 +534,11 @@ export function ModalDemo() {
               </span>
             </div>
 
-            {/* Usage Code Snippet */}
             <CodeSnippet code={item.snippet} />
           </section>
         ))}
       </div>
 
-      {/* =========================================================================
-       * 5 VARIANT MODALS RENDERING (WITH DYNAMIC I18N LABELS)
-       * ========================================================================= */}
-
-      {/* 1. ModalConfirm */}
       <ModalConfirm
         isOpen={isConfirmOpen}
         onClose={() => setIsConfirmOpen(false)}
@@ -572,7 +552,6 @@ export function ModalDemo() {
         }}
       />
 
-      {/* 2. ModalForm */}
       <ModalForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
@@ -587,7 +566,6 @@ export function ModalDemo() {
         }}
       />
 
-      {/* 3. ModalDrawer */}
       <ModalDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
@@ -600,7 +578,6 @@ export function ModalDemo() {
         }}
       >
         <div className="space-y-5">
-          {/* Setting 1: Dark Mode */}
           <div className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/80 bg-zinc-50/60 dark:border-zinc-800/80 dark:bg-zinc-950/40">
             <div>
               <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
@@ -627,7 +604,6 @@ export function ModalDemo() {
             </button>
           </div>
 
-          {/* Setting 2: Push Notifications */}
           <div className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/80 bg-zinc-50/60 dark:border-zinc-800/80 dark:bg-zinc-950/40">
             <div>
               <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
@@ -657,7 +633,6 @@ export function ModalDemo() {
             </button>
           </div>
 
-          {/* Setting 3: Sound FX */}
           <div className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/80 bg-zinc-50/60 dark:border-zinc-800/80 dark:bg-zinc-950/40">
             <div>
               <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
@@ -686,7 +661,6 @@ export function ModalDemo() {
         </div>
       </ModalDrawer>
 
-      {/* 4. ModalBottomSheet */}
       <ModalBottomSheet
         isOpen={isBottomSheetOpen}
         onClose={() => setIsBottomSheetOpen(false)}
@@ -695,7 +669,6 @@ export function ModalDemo() {
         closeLabel={t.cards.bottomSheet.closeLabel}
       >
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {/* Option 1: PNG */}
           <div
             onClick={() => {
               showFeedback(t.cards.bottomSheet.option1Feedback);
@@ -714,7 +687,6 @@ export function ModalDemo() {
             </p>
           </div>
 
-          {/* Option 2: SVG */}
           <div
             onClick={() => {
               showFeedback(t.cards.bottomSheet.option2Feedback);
@@ -733,7 +705,6 @@ export function ModalDemo() {
             </p>
           </div>
 
-          {/* Option 3: JSON */}
           <div
             onClick={() => {
               showFeedback(t.cards.bottomSheet.option3Feedback);
@@ -754,7 +725,6 @@ export function ModalDemo() {
         </div>
       </ModalBottomSheet>
 
-      {/* 5. ModalMedia */}
       <ModalMedia
         isOpen={isMediaOpen}
         onClose={() => setIsMediaOpen(false)}

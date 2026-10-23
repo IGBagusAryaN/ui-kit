@@ -28,13 +28,9 @@ export function DropdownDemo() {
   const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
 
-  // State pemilihan item untuk masing-masing varian
   const [activeContextId, setActiveContextId] = useState<string>("prod");
   const [activeMegaId, setActiveMegaId] = useState<string>("payments");
 
-  /* -------------------------------------------------------------------------
-   * DATA VARIAN 1: Context / Floating Select Menu
-   * ------------------------------------------------------------------------- */
   const contextData: DropdownItem[] = useMemo(
     () => [
       {
@@ -67,9 +63,6 @@ export function DropdownDemo() {
     [t, activeContextId]
   );
 
-  /* -------------------------------------------------------------------------
-   * DATA VARIAN 2: Mega Menu (Stripe 2-Column Grid)
-   * ------------------------------------------------------------------------- */
   const megaData: DropdownItem[] = useMemo(
     () => [
       {
@@ -132,9 +125,6 @@ export function DropdownDemo() {
     [t]
   );
 
-  /* -------------------------------------------------------------------------
-   * DATA VARIAN 3: User Profile & Account Menu
-   * ------------------------------------------------------------------------- */
   const profileMenuItems: DropdownItem[] = useMemo(
     () => [
       {
@@ -164,9 +154,6 @@ export function DropdownDemo() {
     [t]
   );
 
-  /* -------------------------------------------------------------------------
-   * DATA VARIAN 4: Command Search Palette Menu
-   * ------------------------------------------------------------------------- */
   const commandData: DropdownItem[] = useMemo(
     () => [
       {
@@ -203,11 +190,8 @@ export function DropdownDemo() {
     [t]
   );
 
-  /* -------------------------------------------------------------------------
-   * CODE SNIPPETS (Bilingual & Dynamic)
-   * ------------------------------------------------------------------------- */
   const contextSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@bgsaryzzz/ui";
+    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
 
 const environmentItems: DropdownItem[] = [
   { id: "prod", label: "${t("content.dropdownDemo.data.context.items.prod.label", "Production (us-east-1)")}", badge: "${t("content.dropdownDemo.data.context.items.prod.badge", "Live")}", isActive: true },
@@ -231,7 +215,7 @@ export function EnvironmentSelect() {
   );
 
   const megaSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@bgsaryzzz/ui";
+    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
 
 const solutionItems: DropdownItem[] = [
   { id: "payments", label: "${t("content.dropdownDemo.data.mega.items.payments.label", "Payments & Billing")}", subtitle: "${t("content.dropdownDemo.data.mega.items.payments.subtitle", "Infrastruktur pemrosesan transaksi global")}", badge: "${t("content.dropdownDemo.data.mega.items.payments.badge", "Popular")}" },
@@ -255,7 +239,7 @@ export function NavigationMegaMenu() {
   );
 
   const profileSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@bgsaryzzz/ui";
+    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
 
 const userMenuItems: DropdownItem[] = [
   { id: "profile", label: "${t("content.dropdownDemo.data.profile.items.profile.label", "Profil Akun")}" },
@@ -284,7 +268,7 @@ export function UserAccountMenu() {
   );
 
   const commandSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@bgsaryzzz/ui";
+    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
 
 const commandItems: DropdownItem[] = [
   { id: "cmd-new", label: "${t("content.dropdownDemo.data.command.items.newProject.label", "Create New Project")}", shortcut: "⌘N" },
@@ -438,7 +422,6 @@ export function QuickCommandMenu() {
 
   return (
     <div className="w-full space-y-8">
-      {/* Top Search & Filter Bar */}
       <div className="space-y-4">
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
@@ -465,7 +448,6 @@ export function QuickCommandMenu() {
           )}
         </div>
 
-        {/* Info Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
           <div className="space-y-0.5">
             <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
@@ -485,7 +467,6 @@ export function QuickCommandMenu() {
         </div>
       </div>
 
-      {/* Empty Search State */}
       {filteredList.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
           <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -504,14 +485,12 @@ export function QuickCommandMenu() {
         </div>
       )}
 
-      {/* 1 Column Vertical List (gap-14) for Full Experience */}
       <div className="flex flex-col gap-14">
         {filteredList.map((item) => (
           <div
             key={item.id}
             className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-4">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
@@ -526,12 +505,10 @@ export function QuickCommandMenu() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas with generous breathing room for popover */}
             <div className="w-full min-h-[380px] flex items-start justify-center pt-8 pb-16 px-4 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
               {item.render()}
             </div>
 
-            {/* Usage Code Snippet */}
             <CodeSnippet code={item.snippet} />
           </div>
         ))}

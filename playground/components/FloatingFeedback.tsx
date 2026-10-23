@@ -8,10 +8,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * TYPES & CONFIGURATION
- * ========================================================================= */
-
 /** Target direct recipient email address */
 export const RECIPIENT_EMAIL = "aryabagus453@gmail.com";
 
@@ -57,10 +53,6 @@ const RATING_FEEDBACK_MAP: Record<number, { label: string; tone: string }> = {
   5: { label: "Exceptional UI library!", tone: "text-indigo-500 dark:text-indigo-400" },
 };
 
-/* =========================================================================
- * SUB-COMPONENTS: VECTOR ICONS
- * ========================================================================= */
-
 interface StarGlyphProps {
   filled: boolean;
   size?: number;
@@ -104,10 +96,6 @@ function ModernChatBubbleIcon({ size = 19, className = "" }: { size?: number; cl
   );
 }
 
-/* =========================================================================
- * MAIN COMPONENT: FLOATING FEEDBACK
- * ========================================================================= */
-
 export function FloatingFeedback({
   averageRating = 4.8,
   totalReviews = 124,
@@ -115,10 +103,9 @@ export function FloatingFeedback({
   availableTags = DEFAULT_TAGS,
   className,
 }: FloatingFeedbackProps) {
-  // Widget Open/Close State
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // Form State
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [hoveredRating, setHoveredRating] = useState<number | null>(null);
   const [message, setMessage] = useState<string>("");
@@ -132,14 +119,12 @@ export function FloatingFeedback({
   const activeRating = hoveredRating !== null ? hoveredRating : selectedRating;
   const ratingDetails = activeRating > 0 ? RATING_FEEDBACK_MAP[activeRating] : null;
 
-  // Toggle feedback tag
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
-  // Close on Escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -150,7 +135,6 @@ export function FloatingFeedback({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -166,7 +150,6 @@ export function FloatingFeedback({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  // Handle Feedback Submission - Dispatched directly to aryabagus453@gmail.com
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (selectedRating === 0) return;
@@ -189,19 +172,15 @@ export function FloatingFeedback({
         await onSubmit(payload);
         setSubmitStatus("success");
       } else {
-        /* ===================================================================
-         * RELIABLE DUAL DISPATCH (Bypasses Localhost CORS Restrictions)
-         * We programmatically submit a Form targeted to a hidden iframe.
-         * Browsers permit native cross-origin form POSTs without CORS blocking!
-         * =================================================================== */
+
         const form = document.createElement("form");
-        // Gunakan token acak FormSubmit yang telah diaktivasi untuk pengiriman langsung tanpa ekspos email
+
         form.action = `https://formsubmit.co/${FORMSUBMIT_TOKEN || RECIPIENT_EMAIL}`;
         form.method = "POST";
         form.target = "hidden_feedback_iframe";
 
         const formData: Record<string, string> = {
-          _subject: `⭐ New ${selectedRating}/5 Review on @bgsaryzzz/ui`,
+          _subject: `⭐ New ${selectedRating}/5 Review on needui`,
           _template: "table",
           _captcha: "false",
           Rating: `${selectedRating} of 5 Stars (${ratingDetails?.label || "Rated"})`,
@@ -254,7 +233,6 @@ export function FloatingFeedback({
         className
       )}
     >
-      {/* Hidden iframe target for silent, CORS-free cross-origin form submission */}
       <iframe
         ref={iframeRef}
         name="hidden_feedback_iframe"
@@ -265,9 +243,6 @@ export function FloatingFeedback({
         aria-hidden="true"
       />
 
-      {/* ===================================================================
-       * 2. POPOVER CARD PANEL (ANIMATED WITH FRAMER MOTION)
-       * =================================================================== */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -282,7 +257,6 @@ export function FloatingFeedback({
             }}
             className="mb-3 w-[360px] sm:w-[380px] max-w-[calc(100vw-2rem)] rounded-3xl bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border border-zinc-200/90 dark:border-zinc-800/90 shadow-2xl shadow-zinc-900/15 dark:shadow-black/70 p-5 sm:p-6 text-zinc-900 dark:text-zinc-100 overflow-hidden"
           >
-            {/* Header: Clean title without exposing recipient email address */}
             <div className="flex items-start justify-between gap-3 mb-4">
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:border-indigo-900/60">
@@ -338,7 +312,7 @@ export function FloatingFeedback({
                       Feedback Sent Successfully!
                     </h5>
                     <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-xs">
-                      Thank you for your review. Your feedback directly helps us improve @bgsaryzzz/ui.
+                      Thank you for your review. Your feedback directly helps us improve needui.
                     </p>
                   </div>
                 </motion.div>
@@ -355,7 +329,6 @@ export function FloatingFeedback({
                   onSubmit={handleSubmit}
                   className="space-y-4"
                 >
-                  {/* Interactive Star Bar */}
                   <div className="space-y-1.5">
                     <div
                       className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-zinc-800/70"
@@ -401,13 +374,11 @@ export function FloatingFeedback({
                         })}
                       </div>
 
-                      {/* Small Indicator Text */}
                       <span className="font-mono text-xs font-bold text-zinc-500 dark:text-zinc-400">
                         {activeRating > 0 ? `${activeRating}/5` : "0/5"}
                       </span>
                     </div>
 
-                    {/* Dynamic Rating Tone Label */}
                     <div className="min-h-[18px]">
                       {ratingDetails && (
                         <motion.p
@@ -424,7 +395,6 @@ export function FloatingFeedback({
                     </div>
                   </div>
 
-                  {/* Quick Highlight Tags */}
                   {availableTags.length > 0 && (
                     <div className="space-y-1.5">
                       <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">
@@ -453,7 +423,6 @@ export function FloatingFeedback({
                     </div>
                   )}
 
-                  {/* Textarea for detailed suggestions */}
                   <div className="space-y-1">
                     <textarea
                       rows={3}
@@ -465,14 +434,12 @@ export function FloatingFeedback({
                     />
                   </div>
 
-                  {/* Error Notification Banner if any */}
                   {submitStatus === "error" && errorMessage && (
                     <p className="text-[11px] text-rose-500 font-medium">
                       {errorMessage}
                     </p>
                   )}
 
-                  {/* Submit Button */}
                   <motion.button
                     type="submit"
                     disabled={selectedRating === 0 || submitStatus === "loading"}
@@ -547,11 +514,7 @@ export function FloatingFeedback({
         )}
       </AnimatePresence>
 
-      {/* ===================================================================
-       * 1. TRIGGER BUTTON & AGGREGATE BADGE (CLEAN, PROPORTIONAL ALIGNMENT)
-       * =================================================================== */}
       <div className="flex items-center gap-2">
-        {/* Rating Aggregate Pill Badge */}
         <motion.button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
@@ -566,7 +529,6 @@ export function FloatingFeedback({
           </span>
         </motion.button>
 
-        {/* Floating Action Button (FAB) - Fixed 44x44px Circle */}
         <motion.button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}

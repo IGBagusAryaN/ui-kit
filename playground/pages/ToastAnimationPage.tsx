@@ -5,7 +5,7 @@ import { CodeBlock } from "../components/CodeBlock";
 export function ToastAnimationPage() {
   const { t } = useTranslation();
 
-  const sampleUsage = `import { ToastProvider, useToast } from "@bgsaryzzz/ui";
+  const sampleUsage = `import { ToastProvider, useToast } from "@needui/ui-kit";
 
 // 1. Bungkus aplikasi Anda dengan ToastProvider di root
 export function App() {
@@ -22,7 +22,6 @@ export function Dashboard() {
 
   return (
     <div className="flex flex-wrap gap-3">
-      {/* 1. Default / Info */}
       <button
         onClick={() =>
           toast.info("Pembaruan data berhasil disinkronkan.", {
@@ -33,7 +32,6 @@ export function Dashboard() {
         Tampilkan Info
       </button>
 
-      {/* 2. Success */}
       <button
         onClick={() =>
           toast.success("Profil Anda berhasil diperbarui!", {
@@ -44,7 +42,6 @@ export function Dashboard() {
         Tampilkan Success
       </button>
 
-      {/* 3. Error */}
       <button
         onClick={() =>
           toast.error("Gagal menghubungkan ke server pembayaran.", {
@@ -55,7 +52,6 @@ export function Dashboard() {
         Tampilkan Error
       </button>
 
-      {/* 4. Action / Undo */}
       <button
         onClick={() =>
           toast.action(
@@ -71,7 +67,6 @@ export function Dashboard() {
         Tampilkan Action
       </button>
 
-      {/* 5. Promise / Loading */}
       <button
         onClick={() => {
           const asyncTask = new Promise((resolve) => setTimeout(resolve, 2000));
@@ -90,7 +85,6 @@ export function Dashboard() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Title & Header */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.toastDemo.badge", "Notifikasi")}</span>
@@ -106,12 +100,10 @@ export function Dashboard() {
         </p>
       </div>
 
-      {/* Interactive 5 Variants Grid */}
       <section className="space-y-6">
         <ToastDemo />
       </section>
 
-      {/* Usage Example */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.usage", "Cara Penggunaan")}
@@ -119,7 +111,6 @@ export function Dashboard() {
         <CodeBlock code={sampleUsage} language="tsx" filename="ToastExample.tsx" />
       </section>
 
-      {/* Props & API Reference */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           {t("common.props", "API & Properti")}

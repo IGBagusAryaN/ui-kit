@@ -12,9 +12,6 @@ import {
   NestedTreeAccordion,
 } from "../../src/components/AnimatedAccordion";
 
-// ============================================================================
-// I18N LOCALIZATION DICTIONARY (ALL 8 ANIMATED ACCORDION VARIANTS)
-// ============================================================================
 const ACCORDION_DICT = {
   en: {
     pillTag1: "Height Physics & Micro-Interactions",
@@ -27,7 +24,7 @@ const ACCORDION_DICT = {
         title: "1. Classic Accordion (Standard Connected)",
         badge: "Continuous Border & Subtitle Divide",
         desc: "The quintessential enterprise accordion with connected rows sharing unified borders. As each panel activates, its background shifts to an organic tint while the chevron smoothly pivots 180 degrees via spring physics.",
-        snippet: `import { ClassicAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { ClassicAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -52,7 +49,7 @@ export function Example() {
         title: "2. Floating Card Accordion (Separated Islands)",
         badge: "Isolated Card Surfaces & Elevation",
         desc: "Each accordion item lives as an independent, floating island card. Expanding an item elevates its surface with a deeper ambient drop shadow, luminous border highlight, and an active emerald status dot indicator.",
-        snippet: `import { FloatingCardAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { FloatingCardAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -79,7 +76,7 @@ export function Example() {
         title: "3. Minimalist Accordion (Clean Line & Plus/Minus)",
         badge: "Editorial Typography & Glyph Morphing",
         desc: "Ultra-clean editorial aesthetic stripped of card containers and lateral boundaries. Features a mechanical Plus (+) icon whose vertical stem smoothly rotates 90° and fades to zero, morphing seamlessly into a Minus (-) upon expansion.",
-        snippet: `import { MinimalistAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { MinimalistAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -102,7 +99,7 @@ export function Example() {
         title: "4. Glassmorphism Accordion (Translucent Blur)",
         badge: "Backdrop Blur & Ambient Specular Glow",
         desc: "Designed for immersive, modern gradient backgrounds. Features frosted translucent glass panels with backdrop blur (blur-md), specular border highlights, and ambient illumination that reacts smoothly to panel expansion.",
-        snippet: `import { GlassmorphismAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { GlassmorphismAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -127,7 +124,7 @@ export function Example() {
         title: "5. Staggered Content Accordion (Animated Internal Content)",
         badge: "Cascading Motion Physics & Interactive Steps",
         desc: "Elevates standard height expansion with cascading internal child entrance animations. Opening the panel triggers an orchestrated, sequential slide-up and fade-in of embedded interactive workflow steps with completed status indicators.",
-        snippet: `import { StaggeredContentAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { StaggeredContentAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -162,7 +159,7 @@ export function Example() {
         title: "6. Horizontal Accordion (Side-Expanding Showcase)",
         badge: "Dynamic Flex Width & Visual Feature Tab",
         desc: "Flips traditional vertical disclosures into a horizontal expanding showcase. Clicking any column smoothly expands its width via spring layout transitions while compressing sibling panels, with a fixed container height to prevent vertical jitter.",
-        snippet: `import { HorizontalAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { HorizontalAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -191,7 +188,7 @@ export function Example() {
         title: "7. Timeline Accordion (Connected Milestone Track)",
         badge: "Stepped Progress & Vertical Continuous Line",
         desc: "Connects accordion milestones with an unbroken vertical audit track. Each milestone node highlights upon expansion with custom status rings (completed, in-progress, pending) and collapsible execution logs.",
-        snippet: `import { TimelineAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { TimelineAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -224,7 +221,7 @@ export function Example() {
         title: "8. Nested Tree Accordion (Hierarchical Multi-Level)",
         badge: "Multi-Tier Module Branching & Sub-Drawers",
         desc: "Supports multi-level documentation hierarchies and folder structures. Expanding a parent module reveals secondary nested accordion panels with branch guide lines and individual disclosure controls.",
-        snippet: `import { NestedTreeAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { NestedTreeAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -265,7 +262,7 @@ export function Example() {
         title: "1. Classic Accordion (Gaya Klasik Menempel)",
         badge: "Border Bersambung & Divider Subtitle",
         desc: "Gaya akordion klasik di mana setiap baris menempel dengan pembatas garis tipis. Saat panel dibuka, background berubah halus ke warna aksen netral dan panah chevron berputar 180 derajat dengan pegas spring.",
-        snippet: `import { ClassicAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { ClassicAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -290,7 +287,7 @@ export function Example() {
         title: "2. Floating Card Accordion (Kartu Pulau Terpisah)",
         badge: "Permukaan Kartu Independen & Elevasi",
         desc: "Setiap baris akordion berdiri sendiri sebagai pulau kartu mandiri. Saat dibuka, elevasi kartu bertambah dengan bayangan halus, garis tepi menyala lembut, dan lampu indikator status hijau zamrud (emerald).",
-        snippet: `import { FloatingCardAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { FloatingCardAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -317,7 +314,7 @@ export function Example() {
         title: "3. Minimalist Accordion (Garis Bersih & Morphing Ikon)",
         badge: "Tipografi Editorial & Animasi Plus/Minus",
         desc: "Desain editorial minimalis tanpa kotak kartu samping. Menggunakan ikon Plus (+) mekanis yang bilah vertikalnya berputar 90° dan memudar mulus menjadi Minus (-) saat panel dibuka.",
-        snippet: `import { MinimalistAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { MinimalistAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -340,7 +337,7 @@ export function Example() {
         title: "4. Glassmorphism Accordion (Efek Kaca Buram)",
         badge: "Backdrop Blur & Kilauan Latar Belakang",
         desc: "Dirancang khusus untuk latar gradasi modern. Menampilkan panel kaca semi-transparan dengan efek blur (backdrop blur), garis tepi specular, dan pendaran cahaya yang bereaksi terhadap status buka-tutup.",
-        snippet: `import { GlassmorphismAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { GlassmorphismAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -365,7 +362,7 @@ export function Example() {
         title: "5. Staggered Content Accordion (Konten Anak Bertingkat)",
         badge: "Fisika Animasi Mengalir & Langkah Interaktif",
         desc: "Meningkatkan animasi tinggi dengan efek kemunculan anak elemen secara berurutan (cascading). Membuka panel akan memicu animasi geser dan pudar langkah demi langkah secara terorkestrasi.",
-        snippet: `import { StaggeredContentAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { StaggeredContentAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -400,7 +397,7 @@ export function Example() {
         title: "6. Horizontal Accordion (Ekspansi Samping / Horizontal)",
         badge: "Lebar Flex Dinamis & Showcase Fitur",
         desc: "Mengubah pola akordion vertikal menjadi ekspansi horizontal menyamping. Mengklik salah satu kolom akan melebarkan panel secara mulus dengan transisi pegas sembari memadatkan panel lainnya, dengan tinggi kontainer stabil tanpa getaran vertikal.",
-        snippet: `import { HorizontalAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { HorizontalAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -429,7 +426,7 @@ export function Example() {
         title: "7. Timeline Accordion (Jalur Milestone Terhubung)",
         badge: "Proses Bertahap & Garis Vertikal Terhubung",
         desc: "Menghubungkan setiap tahapan dengan garis rel vertikal yang tidak terputus. Titik milestone menampilkan indikator status (selesai, berjalan, menunggu) dan log detail yang dapat diciutkan.",
-        snippet: `import { TimelineAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { TimelineAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -462,7 +459,7 @@ export function Example() {
         title: "8. Nested Tree Accordion (Hierarki Bersarang Multi-Level)",
         badge: "Percabangan Modul & Sub-Drawer Dokumen",
         desc: "Mendukung hierarki dokumentasi bersarang dan struktur folder berkas. Membuka modul utama akan menampilkan sub-akordion sekunder dengan garis panduan cabang pohon yang rapi.",
-        snippet: `import { NestedTreeAccordion } from "@bgsaryzzz/ui";
+        snippet: `import { NestedTreeAccordion } from "@needui/ui-kit";
 
 export function Example() {
   const items = [
@@ -494,9 +491,6 @@ export function Example() {
   },
 };
 
-// ============================================================================
-// MAIN PAGE: AnimatedAccordionDemo (Single Column Layout)
-// ============================================================================
 export function AnimatedAccordionDemo() {
   const { i18n } = useTranslation();
   const lang = (i18n.resolvedLanguage || i18n.language || "en").startsWith("id")
@@ -506,7 +500,6 @@ export function AnimatedAccordionDemo() {
 
   return (
     <div className="w-full space-y-12 pb-20">
-      {/* Page Header */}
       <div className="space-y-3.5">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
           <span>{t.pillTag1}</span>
@@ -521,9 +514,7 @@ export function AnimatedAccordionDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 8 Variants */}
       <div className="grid grid-cols-1 gap-10">
-        {/* 1. CLASSIC ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -546,7 +537,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.classic.snippet} />
         </section>
 
-        {/* 2. FLOATING CARD ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -569,7 +559,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.floating.snippet} />
         </section>
 
-        {/* 3. MINIMALIST ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -592,7 +581,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.minimal.snippet} />
         </section>
 
-        {/* 4. GLASSMORPHISM ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -615,7 +603,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.glass.snippet} />
         </section>
 
-        {/* 5. STAGGERED CONTENT ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -638,7 +625,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.staggered.snippet} />
         </section>
 
-        {/* 6. HORIZONTAL ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -661,7 +647,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.horizontal.snippet} />
         </section>
 
-        {/* 7. TIMELINE ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -684,7 +669,6 @@ export function AnimatedAccordionDemo() {
           <CodeSnippet code={t.cards.timeline.snippet} />
         </section>
 
-        {/* 8. NESTED TREE ACCORDION */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">

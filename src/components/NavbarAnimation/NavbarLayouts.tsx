@@ -23,10 +23,6 @@ import {
   SettingsIcon,
 } from "../../icons";
 
-/* =========================================================================
- * 1. SAAS ENTERPRISE HEADER (`EnterpriseNav`)
- * ========================================================================= */
-
 export interface EnterpriseNavItem {
   id: string;
   label: string;
@@ -73,7 +69,6 @@ export function EnterpriseNav({
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
-        {/* Extreme Left: Brand Logo */}
         <div className="flex items-center gap-3 shrink-0">
           {brand || (
             <div className="flex items-center gap-2.5 cursor-pointer">
@@ -81,7 +76,7 @@ export function EnterpriseNav({
                 ▲
               </div>
               <span className="font-bold text-base tracking-tight text-neutral-950 dark:text-white">
-                bgsaryzzz/ui
+                needui
               </span>
               <span className="hidden sm:inline-block text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60">
                 Enterprise
@@ -90,7 +85,6 @@ export function EnterpriseNav({
           )}
         </div>
 
-        {/* Center: Menu Links with Smooth Underline LayoutId */}
         <nav
           onMouseLeave={() => setHoveredId(null)}
           className="hidden md:flex items-center gap-1 relative h-full"
@@ -117,7 +111,6 @@ export function EnterpriseNav({
                   </span>
                 )}
 
-                {/* Animated Bottom Indicator Line */}
                 {(isHovered || isSelected) && (
                   <motion.div
                     layoutId="enterprise-nav-underline"
@@ -134,7 +127,6 @@ export function EnterpriseNav({
           })}
         </nav>
 
-        {/* Extreme Right: Action Buttons Group */}
         <div className="flex items-center gap-3 shrink-0">
           <button
             type="button"
@@ -155,10 +147,6 @@ export function EnterpriseNav({
     </motion.header>
   );
 }
-
-/* =========================================================================
- * 2. STICKY GLASSMORPHISM (`GlassHeader`)
- * ========================================================================= */
 
 export interface GlassHeaderProps {
   brand?: ReactNode;
@@ -208,7 +196,6 @@ export function GlassHeader({
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between gap-4">
-        {/* Brand */}
         <div className="flex items-center gap-3">
           {brand || (
             <div className="flex items-center gap-2 cursor-pointer">
@@ -216,13 +203,12 @@ export function GlassHeader({
                 ✦
               </span>
               <span className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 dark:text-white">
-                bgsaryzzz/ui
+                needui
               </span>
             </div>
           )}
         </div>
 
-        {/* Centered Links */}
         <nav className="hidden md:flex items-center gap-6">
           {items.map((item) => (
             <a
@@ -235,7 +221,6 @@ export function GlassHeader({
           ))}
         </nav>
 
-        {/* CTA Button */}
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -249,10 +234,6 @@ export function GlassHeader({
     </motion.header>
   );
 }
-
-/* =========================================================================
- * 3. MODERN FLOATING PILL (`PillNav`)
- * ========================================================================= */
 
 export interface PillNavProps {
   brand?: ReactNode;
@@ -285,7 +266,6 @@ export function PillNav({
         transition={{ duration: 0.35, ease: "easeOut" }}
         className="w-full max-w-4xl rounded-full border border-neutral-200/90 bg-white/90 px-3.5 py-2 shadow-lg shadow-neutral-500/5 backdrop-blur-xl dark:border-neutral-800/90 dark:bg-neutral-900/90 dark:shadow-black/20 flex items-center justify-between gap-4 transition-colors"
       >
-        {/* Brand inside Capsule */}
         <div className="flex items-center gap-2.5 pl-2 cursor-pointer">
           {brand || (
             <>
@@ -293,13 +273,12 @@ export function PillNav({
                 P
               </div>
               <span className="font-bold text-sm tracking-tight text-neutral-950 dark:text-white">
-                bgsaryzzz/ui
+                needui
               </span>
             </>
           )}
         </div>
 
-        {/* Menu Items with subtle hover pill */}
         <div className="hidden sm:flex items-center gap-1">
           {items.map((item) => {
             const isActive = activeItem === item.label;
@@ -322,7 +301,6 @@ export function PillNav({
           })}
         </div>
 
-        {/* Right side: User & Action */}
         <div className="flex items-center gap-2 pr-1">
           <button
             type="button"
@@ -344,10 +322,6 @@ export function PillNav({
     </div>
   );
 }
-
-/* =========================================================================
- * 4. STRIPE-INSPIRED DROPDOWN (`DropdownNav`)
- * ========================================================================= */
 
 interface DropdownSection {
   title: string;
@@ -428,20 +402,17 @@ export function DropdownNav({
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
-        {/* Brand */}
         <div className="flex items-center gap-3 shrink-0">
           {brand || (
             <div className="flex items-center gap-2 cursor-pointer">
               <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                bgsaryzzz/ui
+                needui
               </span>
             </div>
           )}
         </div>
 
-        {/* Menus with Dropdown Trigger */}
         <nav className="hidden md:flex items-center gap-2 h-full">
-          {/* Products trigger */}
           <div
             onMouseEnter={() => handleMouseEnter("products")}
             onMouseLeave={handleMouseLeave}
@@ -467,7 +438,6 @@ export function DropdownNav({
             </button>
           </div>
 
-          {/* Developers trigger */}
           <div
             onMouseEnter={() => handleMouseEnter("developers")}
             onMouseLeave={handleMouseLeave}
@@ -507,7 +477,6 @@ export function DropdownNav({
           </a>
         </nav>
 
-        {/* Right CTA */}
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -519,7 +488,6 @@ export function DropdownNav({
         </div>
       </div>
 
-      {/* Floating Mega Dropdown Container */}
       <AnimatePresence>
         {activeMenu && (
           <motion.div
@@ -589,10 +557,6 @@ export function DropdownNav({
   );
 }
 
-/* =========================================================================
- * 5. SPLIT E-COMMERCE HEADER (`SplitNav`)
- * ========================================================================= */
-
 export interface SplitNavProps {
   announcement?: string;
   cartCount?: number;
@@ -617,7 +581,6 @@ export function SplitNav({
         className
       )}
     >
-      {/* Baris 1: Ultra Slim Top Announcement Bar */}
       <div className="w-full border-b border-neutral-200/80 bg-neutral-50 dark:border-neutral-800/80 dark:bg-neutral-900/60 py-1.5 px-4 sm:px-6 lg:px-8 text-xs text-neutral-600 dark:text-neutral-400 flex items-center justify-between">
         <div className="flex items-center gap-2 truncate">
           <span>{announcement}</span>
@@ -635,20 +598,17 @@ export function SplitNav({
         </div>
       </div>
 
-      {/* Baris 2: Main E-Commerce Nav Bar */}
       <div className="w-full border-b border-neutral-200/90 dark:border-neutral-800/90 py-3.5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 sm:gap-8">
-          {/* Brand Logo */}
           <div className="flex items-center gap-2 cursor-pointer shrink-0">
             <span className="h-8 w-8 rounded-xl bg-rose-600 text-white flex items-center justify-center text-sm font-black shadow-sm">
               S
             </span>
             <span className="font-extrabold text-base sm:text-lg tracking-tight text-neutral-950 dark:text-white">
-              bgsaryzzz/ui
+              needui
             </span>
           </div>
 
-          {/* Wide Centered Search Bar */}
           <div className="flex-1 max-w-xl relative">
             <SearchIcon
               size={17}
@@ -666,9 +626,7 @@ export function SplitNav({
             />
           </div>
 
-          {/* Right Action Icons: Cart, Wishlist, User */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Wishlist / Alerts */}
             <button
               type="button"
               title="Notifikasi Promo"
@@ -677,7 +635,6 @@ export function SplitNav({
               <BellIcon size={20} />
             </button>
 
-            {/* Shopping Cart Button with Badge */}
             <button
               type="button"
               onClick={onCartClick}
@@ -692,7 +649,6 @@ export function SplitNav({
               )}
             </button>
 
-            {/* User Account */}
             <button
               type="button"
               className="hidden sm:flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/60 transition cursor-pointer text-xs font-semibold text-neutral-800 dark:text-neutral-200"

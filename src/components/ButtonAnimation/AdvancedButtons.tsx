@@ -20,9 +20,6 @@ import {
   CodeIcon,
 } from "../../icons";
 
-// ============================================================================
-// 1. <HoldButton /> (Hold to Confirm with Dual-Layer Clip-Path)
-// ============================================================================
 export interface HoldButtonProps {
   label?: string;
   confirmedLabel?: string;
@@ -789,7 +786,6 @@ export function DoubleConfirmButton({
           </span>
         </span>
 
-        {/* Shrinking bottom progress bar */}
         {state === "armed" && (
           <div
             className="absolute bottom-0 left-0 h-1 bg-white/70 transition-all"
@@ -869,7 +865,6 @@ export function FlipConfirmButton({
         whileTap={{ scale: isFlipped ? 1 : 0.98 }}
         className="relative h-12 w-64 rounded-xl cursor-pointer select-none shadow-xs focus:outline-none"
       >
-        {/* Front Face (0 deg) */}
         <div
           style={{ backfaceVisibility: "hidden" }}
           className="absolute inset-0 flex items-center justify-center gap-2 px-6 rounded-xl font-semibold text-sm bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-800 dark:border-zinc-200 transition-colors"
@@ -880,7 +875,6 @@ export function FlipConfirmButton({
           <span>{activeFront}</span>
         </div>
 
-        {/* Back Face (180 deg) */}
         <div
           style={{
             backfaceVisibility: "hidden",
@@ -978,7 +972,6 @@ export function DownloadProgressButton({
             : "bg-emerald-500 text-white border-emerald-500 cursor-default"
         }`}
       >
-        {/* Progress Bar Fill Layer */}
         {state === "downloading" && (
           <motion.div
             style={{ width: `${Math.min(100, progress)}%` }}
@@ -1033,7 +1026,6 @@ export function DownloadProgressButton({
     </div>
   );
 }
-
 
 // ============================================================================
 // 9. <ReactionBurstButton /> (Radial Spark & Rolling Counter Upvote)
@@ -1506,7 +1498,6 @@ export function CopyConfettiButton({
     </div>
   );
 }
-
 
 // ============================================================================
 // 12. <OrigamiPaperPlaneButton /> (3D Origami Fold & Flight Trajectory)

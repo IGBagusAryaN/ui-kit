@@ -78,7 +78,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ @bgsaryzzz/ui v0.1.2 kini telah tersedia",
+          badge: "✨ needui v0.1.2 kini telah tersedia",
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "Koleksi komponen antarmuka web modern dengan animasi mikro fluida berbasis Framer Motion dan styling Tailwind CSS yang bebas dari dependensi kaku. Siap salin-tempel ke proyek Anda.",
@@ -108,7 +108,7 @@ export const resources = {
         installation: {
           badge: "Memulai",
           title: "Instalasi",
-          description: "Panduan langkah demi langkah untuk menginstal dan mengkonfigurasi UI Component Library @bgsaryzzz/ui pada project React, Vite, atau Next.js Anda.",
+          description: "Panduan langkah demi langkah untuk menginstal dan mengkonfigurasi UI Component Library @needui/ui-kit pada project React, Vite, atau Next.js Anda.",
           step1: {
             badge: "1",
             title: "Install Package",
@@ -226,12 +226,7 @@ export const resources = {
               desc: "Efek lipatan kertas 3D yang terbuka ke arah pandang pengguna dengan rotasi sumbu X (rotateX: 22deg), perspective 1000px, dan bayangan elevasi mendalam.",
               buttonLabel: "Unfold 3D",
             },
-            // swipeFill: {
-            //   title: "13. Swipe Fill Curtain",
-            //   badge: "Mix Blend Difference",
-            //   desc: "Saat di-hover, tirai warna solid menyapu dari kiri ke kanan menutupi tombol, secara dinamis membalik kontras warna teks dengan mix-blend-difference.",
-            //   buttonLabel: "Swipe Fill",
-            // },
+
             pixelateMorph: {
               title: "14. Pixelate Morph",
               badge: "Stepped Glitch Filter",
@@ -313,7 +308,7 @@ export const resources = {
         iconDemo: {
           badge: "Aset",
           pageTitle: "Web Icons ({{total}} Ikon Esensial)",
-          pageDesc: "Koleksi {{total}} ikon SVG web esensial bawaan pustaka @bgsaryzzz/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
+          pageDesc: "Koleksi {{total}} ikon SVG web esensial bawaan pustaka needui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
           searchPlaceholder: "Cari ikon (contoh: 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...",
           clearSearch: "✕ Hapus",
           previewSize: "Ukuran Preview:",
@@ -984,7 +979,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ @bgsaryzzz/ui v0.1.2 is now available",
+          badge: "✨ needui v0.1.2 is now available",
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "A high-end collection of modern web components featuring silky Framer Motion micro-animations and zero-dependency Tailwind CSS styling. Built for copy-paste flexibility.",
@@ -1014,7 +1009,7 @@ export const resources = {
         installation: {
           badge: "Get Started",
           title: "Installation",
-          description: "Step-by-step guide to installing and configuring the @bgsaryzzz/ui UI Component Library in your React, Vite, or Next.js project.",
+          description: "Step-by-step guide to installing and configuring the @needui/ui-kit UI Component Library in your React, Vite, or Next.js project.",
           step1: {
             badge: "1",
             title: "Install Package",
@@ -1132,12 +1127,7 @@ export const resources = {
               desc: "Origami 3D perspective unfold: button opens forward along the X-axis (rotateX: 22deg) with 1000px perspective and realistic depth shadow.",
               buttonLabel: "Unfold 3D",
             },
-            // swipeFill: {
-            //   title: "13. Swipe Fill Curtain",
-            //   badge: "Mix Blend Difference",
-            //   desc: "On hover, a solid accent curtain sweeps from left to right covering the button, dynamically inverting text contrast with mix-blend-difference.",
-            //   buttonLabel: "Swipe Fill",
-            // },
+
             pixelateMorph: {
               title: "14. Pixelate Morph",
               badge: "Stepped Glitch Filter",
@@ -1219,7 +1209,7 @@ export const resources = {
         iconDemo: {
           badge: "Assets",
           pageTitle: "Web Icons ({{total}} Essential Icons)",
-          pageDesc: "Collection of {{total}} built-in essential web SVG icons in @bgsaryzzz/ui. Designed with minimalist outline style (stroke width 2, viewBox 24x24), modular, lightweight, and fully styleable via Tailwind CSS utilities (currentColor).",
+          pageDesc: "Collection of {{total}} built-in essential web SVG icons in needui. Designed with minimalist outline style (stroke width 2, viewBox 24x24), modular, lightweight, and fully styleable via Tailwind CSS utilities (currentColor).",
           searchPlaceholder: "Search icons (e.g. 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...",
           clearSearch: "✕ Clear",
           previewSize: "Preview Size:",
@@ -1817,7 +1807,6 @@ timelineDemo: {
   },
 } as const;
 
-// Ambil preferensi bahasa tersimpan di localStorage, fallback ke browser atau default "id"
 const getInitialLanguage = (): string => {
   if (typeof window !== "undefined") {
     const saved = localStorage.getItem("ui-language");
@@ -1836,11 +1825,10 @@ i18n
     fallbackLng: "id",
     defaultNS,
     interpolation: {
-      escapeValue: false, // React sudah otomatis aman dari XSS
+      escapeValue: false, 
     },
   });
 
-// Simpan ke localStorage setiap kali bahasa berubah
 i18n.on("languageChanged", (lng) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("ui-language", lng);

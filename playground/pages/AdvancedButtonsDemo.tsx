@@ -21,9 +21,6 @@ import {
   CodeIcon,
 } from "../../src/icons";
 
-// ============================================================================
-// I18N LOCALIZATION DICTIONARY (ALL 8 ADVANCED BUTTONS)
-// ============================================================================
 const BUTTONS_DICT = {
   en: {
     pillTag1: "State-Driven & Physics",
@@ -36,7 +33,7 @@ const BUTTONS_DICT = {
         title: "1. Hold to Confirm",
         badge: "Dual-Layer Clip-Path",
         desc: "Utilizes high-precision pointer events and requestAnimationFrame with a dual-layer clip-path approach to render an organic text color shift and progress fill without layout distortion.",
-        snippet: `import { HoldButton } from "@bgsaryzzz/ui";
+        snippet: `import { HoldButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -53,7 +50,7 @@ export function Example() {
         title: "2. Swipe to Action",
         badge: "Drag Gesture & Elastic Snap",
         desc: "Horizontal gesture drag slider with dynamic track constraints. Crossing the 80% threshold completes the state and snaps to the end, while releasing midway triggers an elastic spring return.",
-        snippet: `import { SwipeButton } from "@bgsaryzzz/ui";
+        snippet: `import { SwipeButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -69,7 +66,7 @@ export function Example() {
         title: "3. Morphing Async Button",
         badge: "Layout Morph & Spinner",
         desc: "Fluid multi-stage state transition (Idle ➔ Loading ➔ Success). The button organically compresses into a circular spinner while awaiting async resolution, then expands into a clean success badge.",
-        snippet: `import { MorphingAsyncButton } from "@bgsaryzzz/ui";
+        snippet: `import { MorphingAsyncButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -89,7 +86,7 @@ export function Example() {
         badge: "Spring Physics Magnet",
         desc: "Tracks mouse cursor coordinates relative to the button's bounding box center, applying layered spring physics to both the container and inner typography for a responsive magnetic depth effect.",
         buttonText: "Hover Near Cursor",
-        snippet: `import { MagneticButton } from "@bgsaryzzz/ui";
+        snippet: `import { MagneticButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -103,7 +100,7 @@ export function Example() {
         title: "5. Expandable Action Pill",
         badge: "Staggered Pill Expand",
         desc: "A compact floating circular action button that smoothly unrolls into a linear pill capsule containing secondary actions with staggered entrance timing and rotation physics.",
-        snippet: `import { ExpandableActionPill } from "@bgsaryzzz/ui";
+        snippet: `import { ExpandableActionPill } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -122,7 +119,7 @@ export function Example() {
         title: "6. Two-Step Double Confirm Button",
         badge: "Timeout Armed State",
         desc: "Defensive interaction architecture designed to prevent accidental triggers. First click arms a 3-second animated countdown bar; a second click verifies execution.",
-        snippet: `import { DoubleConfirmButton } from "@bgsaryzzz/ui";
+        snippet: `import { DoubleConfirmButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -140,14 +137,14 @@ export function Example() {
         title: "7. 3D Reveal Flip Button",
         badge: "True 3D Spatial Rotation",
         desc: "Executes an authentic 3D card flip using CSS perspective and preserve-3d. Rotates 180 degrees along the X-axis upon interaction to reveal a confirmed state, automatically reverting after 2 seconds.",
-        snippet: `import { FlipConfirmButton } from "@bgsaryzzz/ui";
+        snippet: `import { FlipConfirmButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
     <FlipConfirmButton
       frontText="Copy Invitation Link"
       backText="Link Copied!"
-      onFlip={() => navigator.clipboard.writeText("https://ui.bgsaryzzz.dev")}
+      onFlip={() => navigator.clipboard.writeText("https://needui.dev")}
     />
   );
 }`,
@@ -156,7 +153,7 @@ export function Example() {
         title: "8. Morphing Download Progress Button",
         badge: "Dynamic Progress Fill",
         desc: "Stateful progress button that transitions into an active downloading state, filling an internal horizontal progress layer with live percentage feedback before expanding into a success badge.",
-        snippet: `import { DownloadProgressButton } from "@bgsaryzzz/ui";
+        snippet: `import { DownloadProgressButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -173,7 +170,7 @@ export function Example() {
         title: "9. Reaction Burst Upvote & Star Counter",
         badge: "Radial Spark & Rolling Counter",
         desc: "High-engagement social micro-interaction modeled after GitHub Star and Twitter/X Like. Clicking triggers a 360-degree radial explosion of 12 luminous sparks, an elastic star pop, and a rolling vertical numerical counter transition.",
-        snippet: `import { ReactionBurstButton } from "@bgsaryzzz/ui";
+        snippet: `import { ReactionBurstButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -190,7 +187,7 @@ export function Example() {
         title: "10. Biometric Passkey & Laser Scanner Button",
         badge: "Sonar Pulse & Laser Scanline",
         desc: "Futuristic security authorization button inspired by Apple TouchID/FaceID and WebAuthn passkeys. Displays an animated neon laser scanline traversing a biometric fingerprint icon accompanied by expanding radar sonar rings.",
-        snippet: `import { BiometricAuthButton } from "@bgsaryzzz/ui";
+        snippet: `import { BiometricAuthButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -207,7 +204,7 @@ export function Example() {
         title: "11. Celebration Confetti Cannon Copy Button",
         badge: "Physics Particle Cannon",
         desc: "High-delight copy interaction for referral codes and API tokens. Alongside copying to the system clipboard, it fires a dynamic multi-colored confetti cannon using Framer Motion gravity and 3D rotational physics.",
-        snippet: `import { CopyConfettiButton } from "@bgsaryzzz/ui";
+        snippet: `import { CopyConfettiButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -223,7 +220,7 @@ export function Example() {
         title: "12. Origami Paper Airplane Flight Button",
         badge: "3D Origami Fold & Flight Trajectory",
         desc: "Delightful feedback and messaging button. When triggered, the button body smoothly folds along 3D perspective creases into an origami paper airplane, tilts, and launches into the sky with trailing smoke puffs before stamping a confirmed delivery badge.",
-        snippet: `import { OrigamiPaperPlaneButton } from "@bgsaryzzz/ui";
+        snippet: `import { OrigamiPaperPlaneButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -238,7 +235,7 @@ export function Example() {
         title: "13. Gravitational Orbit Satellite Action Hub",
         badge: "Spatial Orbit & Proximity Magnet",
         desc: "Advanced multi-action spatial hub inspired by canvas toolbars (Figma and Linear). A central glowing AI core deploys 4 floating satellite badges (Summarize, Translate, Refactor, Optimize) that orbit around the button and attract toward cursor proximity.",
-        snippet: `import { OrbitalActionHubButton } from "@bgsaryzzz/ui";
+        snippet: `import { OrbitalActionHubButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -262,7 +259,7 @@ export function Example() {
         title: "1. Tahan untuk Konfirmasi (Hold to Confirm)",
         badge: "Dual-Layer Clip-Path",
         desc: "Menggunakan event pointer presisi tinggi dan requestAnimationFrame dengan teknik dual-layer clip-path untuk menghasilkan perubahan warna teks dan pengisian progress secara organik tanpa distorsi tata letak.",
-        snippet: `import { HoldButton } from "@bgsaryzzz/ui";
+        snippet: `import { HoldButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -279,7 +276,7 @@ export function Example() {
         title: "2. Geser untuk Aksi (Swipe to Action)",
         badge: "Gestur Seret & Pegas Elastis",
         desc: "Slider gestur horizontal dengan batasan lintasan dinamis. Melewati ambang batas 80% akan menyelesaikan aksi dan mengunci posisi di ujung, sedangkan pelepasan di tengah jalan akan memicu pantulan pegas elastis ke posisi awal.",
-        snippet: `import { SwipeButton } from "@bgsaryzzz/ui";
+        snippet: `import { SwipeButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -295,7 +292,7 @@ export function Example() {
         title: "3. Tombol Async Morphing (Morphing Async Button)",
         badge: "Morphing Tata Letak & Spinner",
         desc: "Transisi state multi-tahap yang sangat halus (Idle ➔ Loading ➔ Success). Tombol secara dinamis memadat menjadi lingkaran spinner saat menunggu proses asinkron, lalu melebar menjadi lencana sukses hijau yang elegan.",
-        snippet: `import { MorphingAsyncButton } from "@bgsaryzzz/ui";
+        snippet: `import { MorphingAsyncButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -315,7 +312,7 @@ export function Example() {
         badge: "Magnet Fisika Pegas",
         desc: "Melacak koordinat kursor mouse relatif terhadap pusat bounding box tombol, menerapkan fisika pegas bertingkat pada container dan tipografi di dalamnya untuk menciptakan efek kedalaman magnetik yang responsif.",
         buttonText: "Arahkan Kursor Mendekat",
-        snippet: `import { MagneticButton } from "@bgsaryzzz/ui";
+        snippet: `import { MagneticButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -329,7 +326,7 @@ export function Example() {
         title: "5. Kapsul Aksi Ekspansif (Expandable Action Pill)",
         badge: "Ekspansi Kapsul Bertahap",
         desc: "Tombol aksi melayang berbentuk lingkaran ringkas yang membuka secara lembut menjadi kapsul horizontal berisi tombol aksi sekunder dengan pewaktuan bertahap (staggered) dan rotasi fisika.",
-        snippet: `import { ExpandableActionPill } from "@bgsaryzzz/ui";
+        snippet: `import { ExpandableActionPill } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -348,7 +345,7 @@ export function Example() {
         title: "6. Tombol Konfirmasi Ganda (Double Confirm Button)",
         badge: "Batas Waktu State Armed",
         desc: "Arsitektur interaksi defensif untuk mencegah klik yang tidak disengaja. Klik pertama mengaktifkan garis hitung mundur animasi 3 detik; klik kedua mengeksekusi aksi final.",
-        snippet: `import { DoubleConfirmButton } from "@bgsaryzzz/ui";
+        snippet: `import { DoubleConfirmButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -366,14 +363,14 @@ export function Example() {
         title: "7. Tombol Balik 3D (3D Reveal Flip Button)",
         badge: "Rotasi Ruang 3D Asli",
         desc: "Menjalankan efek pembalikan kartu 3D otentik menggunakan CSS perspective dan preserve-3d. Berputar 180 derajat pada sumbu X untuk menampilkan state sukses, dan kembali otomatis setelah 2 detik.",
-        snippet: `import { FlipConfirmButton } from "@bgsaryzzz/ui";
+        snippet: `import { FlipConfirmButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
     <FlipConfirmButton
       frontText="Salin Tautan Undangan"
       backText="Tautan Disalin!"
-      onFlip={() => navigator.clipboard.writeText("https://ui.bgsaryzzz.dev")}
+      onFlip={() => navigator.clipboard.writeText("https://needui.dev")}
     />
   );
 }`,
@@ -382,7 +379,7 @@ export function Example() {
         title: "8. Tombol Progres Unduhan (Download Progress Button)",
         badge: "Pengisian Progress Dinamis",
         desc: "Tombol berbasis state yang berubah menjadi mode proses pengunduhan, mengisi layer progres horizontal dengan persentase real-time sebelum bertransformasi menjadi lencana sukses hijau.",
-        snippet: `import { DownloadProgressButton } from "@bgsaryzzz/ui";
+        snippet: `import { DownloadProgressButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -399,7 +396,7 @@ export function Example() {
         title: "9. Tombol Bintang / Upvote dengan Ledakan Partikel (Reaction Burst)",
         badge: "Percikan 360° & Counter Bergulir",
         desc: "Mikro-interaksi sosial tingkat tinggi ala GitHub Star dan Twitter/X Like. Saat diklik, tombol menembakkan 12 partikel percikan emas radial 360 derajat, memantulkan ikon bintang secara elastis, dan menggulirkan angka counter secara vertikal.",
-        snippet: `import { ReactionBurstButton } from "@bgsaryzzz/ui";
+        snippet: `import { ReactionBurstButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -416,7 +413,7 @@ export function Example() {
         title: "10. Pemindai Biometrik & Passkey Laser (Biometric Scanner)",
         badge: "Gelombang Sonar & Sinar Laser",
         desc: "Tombol otorisasi keamanan futuristik yang terinspirasi dari Apple TouchID/FaceID dan WebAuthn passkey. Menampilkan sinar laser neon yang menyapu ikon sidik jari secara vertikal disertai gelombang sonar radar melingkar.",
-        snippet: `import { BiometricAuthButton } from "@bgsaryzzz/ui";
+        snippet: `import { BiometricAuthButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -433,7 +430,7 @@ export function Example() {
         title: "11. Tombol Salin dengan Meriam Confetti Ceria (Confetti Cannon Copy)",
         badge: "Fisika Partikel Gravitasi 3D",
         desc: "Interaksi penyalinan penuh kepuasan (delight factor) untuk kode promo, token API, atau tautan undangan. Selain menyalin ke papan klip, tombol menembakkan puluhan keping confetti aneka warna yang melayang dengan simulasi gravitasi dan rotasi 3D.",
-        snippet: `import { CopyConfettiButton } from "@bgsaryzzz/ui";
+        snippet: `import { CopyConfettiButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -449,7 +446,7 @@ export function Example() {
         title: "12. Tombol Pesawat Kertas Origami 3D (Origami Flight)",
         badge: "Lipatan 3D & Jejak Asap Meluncur",
         desc: "Tombol kirim pesan penuh kejutan visual. Saat diklik, bodi tombol melipat secara 3D menjadi pesawat kertas origami, memiringkan sayap, dan melesat terbang ke udara dengan partikel jejak asap sebelum memunculkan stempel sukses terkirim.",
-        snippet: `import { OrigamiPaperPlaneButton } from "@bgsaryzzz/ui";
+        snippet: `import { OrigamiPaperPlaneButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -464,7 +461,7 @@ export function Example() {
         title: "13. Hub Aksi Satelit Gravitasi Orbital (Orbital Action Hub)",
         badge: "Orbit Spasial & Magnet Proksimitas",
         desc: "Hub multi-aksi spasial yang terinspirasi dari kanvas desain modern (Figma & Linear). Inti tombol AI di tengah meluncurkan 4 lencana satelit (Ringkas, Terjemahkan, Refactor, Optimasi) yang mengorbit secara halus dan membesar saat didekati kursor.",
-        snippet: `import { OrbitalActionHubButton } from "@bgsaryzzz/ui";
+        snippet: `import { OrbitalActionHubButton } from "@needui/ui-kit";
 
 export function Example() {
   return (
@@ -479,9 +476,6 @@ export function Example() {
   },
 };
 
-// ============================================================================
-// 1. <HoldButton /> (Hold to Confirm with Dual-Layer Clip-Path)
-// ============================================================================
 export interface HoldButtonProps {
   label?: string;
   confirmedLabel?: string;
@@ -1248,7 +1242,6 @@ export function DoubleConfirmButton({
           </span>
         </span>
 
-        {/* Shrinking bottom progress bar */}
         {state === "armed" && (
           <div
             className="absolute bottom-0 left-0 h-1 bg-white/70 transition-all"
@@ -1328,7 +1321,6 @@ export function FlipConfirmButton({
         whileTap={{ scale: isFlipped ? 1 : 0.98 }}
         className="relative h-12 w-64 rounded-xl cursor-pointer select-none shadow-xs focus:outline-none"
       >
-        {/* Front Face (0 deg) */}
         <div
           style={{ backfaceVisibility: "hidden" }}
           className="absolute inset-0 flex items-center justify-center gap-2 px-6 rounded-xl font-semibold text-sm bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-800 dark:border-zinc-200 transition-colors"
@@ -1339,7 +1331,6 @@ export function FlipConfirmButton({
           <span>{activeFront}</span>
         </div>
 
-        {/* Back Face (180 deg) */}
         <div
           style={{
             backfaceVisibility: "hidden",
@@ -1437,7 +1428,6 @@ export function DownloadProgressButton({
             : "bg-emerald-500 text-white border-emerald-500 cursor-default"
         }`}
       >
-        {/* Progress Bar Fill Layer */}
         {state === "downloading" && (
           <motion.div
             style={{ width: `${Math.min(100, progress)}%` }}
@@ -1492,7 +1482,6 @@ export function DownloadProgressButton({
     </div>
   );
 }
-
 
 // ============================================================================
 // 9. <ReactionBurstButton /> (Radial Spark & Rolling Counter Upvote)
@@ -1966,7 +1955,6 @@ export function CopyConfettiButton({
   );
 }
 
-
 // ============================================================================
 // 12. <OrigamiPaperPlaneButton /> (3D Origami Fold & Flight Trajectory)
 // ============================================================================
@@ -2260,7 +2248,6 @@ export function AdvancedButtonsDemo() {
 
   return (
     <div className="w-full space-y-12 pb-20">
-      {/* Page Header */}
       <div className="space-y-3.5">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
           <span>{t.pillTag1}</span>
@@ -2275,9 +2262,7 @@ export function AdvancedButtonsDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 8 Components */}
       <div className="grid grid-cols-1 gap-10">
-        {/* 1. HOLD BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2300,7 +2285,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.hold.snippet} />
         </section>
 
-        {/* 2. SWIPE BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2323,7 +2307,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.swipe.snippet} />
         </section>
 
-        {/* 3. MORPHING ASYNC BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2346,7 +2329,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.morph.snippet} />
         </section>
 
-        {/* 4. MAGNETIC BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2369,7 +2351,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.magnetic.snippet} />
         </section>
 
-        {/* 5. EXPANDABLE ACTION PILL */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2392,7 +2373,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.pill.snippet} />
         </section>
 
-        {/* 6. DOUBLE CONFIRM BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2415,7 +2395,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.doubleConfirm.snippet} />
         </section>
 
-        {/* 7. FLIP CONFIRM BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2438,7 +2417,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.flip.snippet} />
         </section>
 
-        {/* 8. DOWNLOAD PROGRESS BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2461,7 +2439,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.download.snippet} />
         </section>
 
-        {/* 9. REACTION BURST BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2484,7 +2461,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.star.snippet} />
         </section>
 
-        {/* 10. BIOMETRIC AUTH BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2507,7 +2483,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.biometric.snippet} />
         </section>
 
-        {/* 11. COPY CONFETTI BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2530,7 +2505,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.confetti.snippet} />
         </section>
 
-        {/* 12. ORIGAMI PAPER PLANE BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
@@ -2553,7 +2527,6 @@ export function AdvancedButtonsDemo() {
           <CodeSnippet code={t.cards.origami.snippet} />
         </section>
 
-        {/* 13. ORBITAL ACTION HUB BUTTON */}
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
