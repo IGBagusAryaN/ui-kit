@@ -1,38 +1,34 @@
 # @needui/ui-kit
 
-A modern, animated React UI Component Library powered by **Framer Motion** and **Tailwind CSS**. No separate CSS files required—styles are automatically detected and compiled by your project's Tailwind setup.
+A modern, animated React UI Component Library powered by **Framer Motion** and **Tailwind CSS**. All component styles and animations are pre-compiled into a single stylesheet—no complex Tailwind configuration or `@source` directives required.
 
 ---
 
 ### 1. Installation
 
 ```bash
-npm i @needui/ui-kit
+npm install @needui/ui-kit framer-motion
 ```
+
+*(Or use `pnpm add`, `yarn add`, or `bun add`)*
 
 ---
 
-### 2. Configure Tailwind CSS
+### 2. Import Stylesheet
 
-Add the package path to your Tailwind scanning configuration so your project compiles all component classes:
+Import the stylesheet once in your application entry file (`main.tsx`, `App.tsx`, or `layout.tsx`):
 
-- **Tailwind CSS v4** (in your main CSS file, e.g. `globals.css` / `index.css`):
-  ```css
-  @source "../node_modules/@needui/ui-kit/dist";
-  ```
+```tsx
+// src/main.tsx
+import "@needui/ui-kit/styles.css";
+```
 
-- **Tailwind CSS v3** (in your `tailwind.config.js`):
-  ```js
-  /** @type {import('tailwindcss').Config} */
-  export default {
-    content: [
-      "./index.html",
-      "./src/**/*.{js,ts,jsx,tsx}",
-      "./node_modules/@needui/ui-kit/dist/**/*.{js,mjs}"
-    ],
-    // ...
-  };
-  ```
+*Alternatively, you can import it into your global CSS file (`index.css` or `globals.css`):*
+
+```css
+/* src/index.css */
+@import "@needui/ui-kit/styles.css";
+```
 
 ---
 

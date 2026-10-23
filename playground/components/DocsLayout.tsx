@@ -35,7 +35,7 @@ export function DocsLayout({
         onToggleMobileMenu={() => setMobileSidebarOpen(!mobileSidebarOpen)}
         isMobileMenuOpen={mobileSidebarOpen}
         onLogoClick={() => handleMenuClick("introduction")}
-        version="v0.1.2"
+        version="v0.1.8"
       />
 
       <div className="flex-1 flex w-full max-w-7xl mx-auto">
@@ -52,7 +52,7 @@ export function DocsLayout({
           isOpenMobile={mobileSidebarOpen}
           onCloseMobile={() => setMobileSidebarOpen(false)}
           navGroups={navGroups}
-          version="v0.1.2"
+          version="v0.1.8"
         />
 
         <main className="flex-1 w-full min-w-0 px-4 py-8 sm:px-8 lg:px-12">

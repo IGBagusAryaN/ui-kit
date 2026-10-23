@@ -24,27 +24,31 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       cssCodeSplit: false,
       lib: {
-        entry: {
-          index: resolve(__dirname, "src/index.ts"),
-          "icons/index": resolve(__dirname, "src/icons/index.ts"),
-        },
+        entry: resolve(__dirname, "src/index.ts"),
+        name: "NeedUI",
         formats: ["es", "cjs"],
-        fileName: (format, entryName) =>
-          `${entryName}.${format === "es" ? "mjs" : "js"}`,
+        fileName: (format) => `index.${format === "es" ? "mjs" : "js"}`,
       },
       rollupOptions: {
         external: [
           "react",
           "react-dom",
           "react/jsx-runtime",
+          "react/jsx-dev-runtime",
           "framer-motion",
-          "tailwindcss",
         ],
         output: {
+          exports: "named",
           globals: {
             react: "React",
             "react-dom": "ReactDOM",
             "framer-motion": "framerMotion",
+          },
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+              return "styles.css";
+            }
+            return assetInfo.name || "[name].[ext]";
           },
         },
       },

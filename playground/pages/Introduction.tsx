@@ -48,7 +48,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               <span>
                 {t(
                   "content.introduction.badge",
-                  "✨ needui v0.1.2 is now available"
+                  "✨ needui v0.1.8 is now available"
                 )}
               </span>
             </div>

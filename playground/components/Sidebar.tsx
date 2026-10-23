@@ -28,7 +28,7 @@ export function Sidebar({
   isOpenMobile = false,
   onCloseMobile,
   navGroups: customNavGroups,
-  version = "v0.1.2",
+  version = "v0.1.8",
 }: SidebarProps) {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");

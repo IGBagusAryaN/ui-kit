@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export interface MultiCodeSnippetProps {
   /**
@@ -33,7 +32,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
   title,
   className = "",
 }) => {
-  const { t } = useTranslation();
   const [copied, setCopied] = useState<boolean>(false);
 
   const availableTabs = codeBlocks
@@ -133,7 +131,7 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
 
           {!hasMultipleTabs && !title && (
             <span className="font-sans text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
-              {t("common.usageSnippet", { defaultValue: "Usage Snippet" })}
+              "Usage Snippet"
             </span>
           )}
         </div>
@@ -158,7 +156,7 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
                 <polyline points="20 6 9 17 4 12" />
               </svg>
               <span className="text-emerald-600 dark:text-emerald-400">
-                {t("common.copied", { defaultValue: "Disalin!" })}
+                "Copied!"
               </span>
             </>
           ) : (
@@ -175,7 +173,7 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
                 <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
               </svg>
-              <span>{t("common.copy", { defaultValue: "Salin" })}</span>
+              <span>"Copy"</span>
             </>
           )}
         </button>

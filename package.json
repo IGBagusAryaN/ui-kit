@@ -1,23 +1,22 @@
 {
   "name": "@needui/ui-kit",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "description": "Customizable, accessible, animated React UI Component Library powered by Tailwind CSS & Framer Motion",
   "author": "Arya",
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "style": "./dist/styles.css",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./icons": {
-      "types": "./dist/icons/index.d.ts",
-      "import": "./dist/icons/index.mjs",
-      "require": "./dist/icons/index.js"
-    }
+    "./styles.css": "./dist/styles.css",
+    "./dist/styles.css": "./dist/styles.css"
   },
   "files": [
     "dist"
@@ -32,13 +31,10 @@
   "peerDependencies": {
     "framer-motion": ">=10.0.0",
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
-    "tailwindcss": ">=3.0.0"
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "i18next": "^26.5.2",
-    "react-i18next": "^17.1.0",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
@@ -47,8 +43,10 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "framer-motion": "^11.1.7",
+    "i18next": "^26.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^17.1.0",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vite": "^8.3.4"

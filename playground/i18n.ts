@@ -61,7 +61,7 @@ export const resources = {
         reset: "Reset",
         all: "Semua",
         language: "Bahasa",
-        version: "v0.1.2",
+        version: "v0.1.8",
       },
       theme: {
         dark: "Gelap",
@@ -78,7 +78,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ needui v0.1.2 kini telah tersedia",
+          badge: "✨ needui v0.1.8 kini telah tersedia",
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "Koleksi komponen antarmuka web modern dengan animasi mikro fluida berbasis Framer Motion dan styling Tailwind CSS yang bebas dari dependensi kaku. Siap salin-tempel ke proyek Anda.",
@@ -117,18 +117,18 @@ export const resources = {
           step2: {
             badge: "2",
             title: "Pastikan Peer Dependencies Terpasang",
-            desc: "Library ini membutuhkan framer-motion untuk animasi fluida dan tailwindcss untuk utility styling:",
+            desc: "Library ini membutuhkan framer-motion untuk animasi fluida dan micro-interactions:",
           },
           step3: {
             badge: "3",
-            title: "Konfigurasi Tailwind CSS",
-            desc: "Pilih versi Tailwind CSS yang digunakan pada proyek Anda untuk instruksi konfigurasi yang sesuai:",
-            v4Tab: "Tailwind CSS v4",
-            v4Badge: "Rekomendasi",
-            v4Desc: "Pada Tailwind CSS v4, Anda tidak lagi memerlukan file tailwind.config.js. Cukup tambahkan direktif @source ke file CSS global utama Anda (misal: index.css atau globals.css) agar Tailwind memindai dan mengekstrak komponen library:",
-            v3Tab: "Tailwind CSS v3",
-            v3Badge: "Legacy",
-            v3Desc: "Bagi pengguna Tailwind CSS v3, daftarkan path distribusi library ke dalam array content di file tailwind.config.js agar class utilitas komponen tidak terhapus saat proses purge/build:",
+            title: "Import Stylesheet CSS",
+            desc: "Tambahkan file stylesheet @needui/ui-kit/styles.css ke root project Anda. Seluruh class utility dan animasi telah terkompilasi murni sehingga tidak memerlukan konfigurasi Tailwind manual:",
+            mainTab: "main.tsx / App.tsx",
+            mainBadge: "Rekomendasi",
+            mainDesc: "Cukup import file styles.css satu kali pada file entry utama aplikasi Anda (React, Vite, Next.js, CRA, atau Remix):",
+            cssTab: "index.css",
+            cssBadge: "Alternatif",
+            cssDesc: "Atau jika Anda lebih suka mengimpor via file CSS global utama project Anda:",
           },
           step4: {
             badge: "4",
@@ -962,7 +962,7 @@ export const resources = {
         reset: "Reset",
         all: "All",
         language: "Language",
-        version: "v0.1.2",
+        version: "v0.1.8",
       },
       theme: {
         dark: "Dark",
@@ -979,7 +979,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ needui v0.1.2 is now available",
+          badge: "✨ needui v0.1.8 is now available",
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "A high-end collection of modern web components featuring silky Framer Motion micro-animations and zero-dependency Tailwind CSS styling. Built for copy-paste flexibility.",
@@ -1018,18 +1018,18 @@ export const resources = {
           step2: {
             badge: "2",
             title: "Ensure Peer Dependencies Are Installed",
-            desc: "This library requires framer-motion for fluid animations and tailwindcss for utility styling:",
+            desc: "This library requires framer-motion for fluid animations and micro-interactions:",
           },
           step3: {
             badge: "3",
-            title: "Configure Tailwind CSS",
-            desc: "Choose the Tailwind CSS version used in your project for the appropriate configuration instructions:",
-            v4Tab: "Tailwind CSS v4",
-            v4Badge: "Recommended",
-            v4Desc: "In Tailwind CSS v4, you no longer need a tailwind.config.js file. Simply add the @source directive to your main global CSS file (e.g. index.css or globals.css) so Tailwind scans and extracts classes from the library components:",
-            v3Tab: "Tailwind CSS v3",
-            v3Badge: "Legacy",
-            v3Desc: "For projects using Tailwind CSS v3, add the library distribution path to the content array in your tailwind.config.js file so component utility classes are not purged during build:",
+            title: "Import CSS Stylesheet",
+            desc: "Add the @needui/ui-kit/styles.css stylesheet to your project root. All utility classes and animations are pre-compiled and ready to use without requiring any manual Tailwind configuration:",
+            mainTab: "main.tsx / App.tsx",
+            mainBadge: "Recommended",
+            mainDesc: "Simply import the styles.css file once in your main application entry file (React, Vite, Next.js, CRA, or Remix):",
+            cssTab: "index.css",
+            cssBadge: "Alternative",
+            cssDesc: "Or if you prefer importing it via your project's main global CSS file:",
           },
           step4: {
             badge: "4",

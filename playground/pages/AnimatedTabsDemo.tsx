@@ -438,7 +438,7 @@ function FluidPillTabs() {
                   <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">
                     Workspace Preferences
                   </span>
-                  <span className="text-[10px] text-zinc-400 font-mono">v0.1.2 Production</span>
+                  <span className="text-[10px] text-zinc-400 font-mono">v0.1.8 Production</span>
                 </div>
                 <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
                   Animation & Sound Physics

@@ -11,7 +11,7 @@ export interface NavbarProps {
   isMobileMenuOpen?: boolean;
   /** Callback saat logo / judul docs diklik */
   onLogoClick?: () => void;
-  /** Teks label versi library (default: "v0.1.2") */
+  /** Teks label versi library (default: "v0.1.8") */
   version?: string;
   /** Class tambahan opsional */
   className?: string;
@@ -21,7 +21,7 @@ export function Navbar({
   onToggleMobileMenu,
   isMobileMenuOpen = false,
   onLogoClick,
-  version = "v0.1.2",
+  version = "v0.1.8",
   className = "",
 }: NavbarProps) {
   return (

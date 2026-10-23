@@ -6,7 +6,12 @@ import {
   useSpring,
   PanInfo,
 } from "framer-motion";
-import { useTranslation } from "react-i18next";
+function useUiLanguage(): "id" | "en" {
+  if (typeof document !== "undefined" && document.documentElement.lang?.startsWith("id")) {
+    return "id";
+  }
+  return "en";
+}
 import {
     StarIcon,
   ShieldCheckIcon,
@@ -35,8 +40,7 @@ export function HoldButton({
   onConfirm,
   className = "",
 }: HoldButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Tahan untuk Konfirmasi" : "Hold to Confirm";
   const defaultConfirmed = lang === "id" ? "Terkonfirmasi" : "Confirmed";
@@ -188,8 +192,7 @@ export function SwipeButton({
   onConfirm,
   className = "",
 }: SwipeButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Geser untuk Melanjutkan" : "Swipe to Proceed";
   const defaultConfirmed = lang === "id" ? "Aksi Selesai" : "Action Completed";
@@ -316,8 +319,7 @@ export function MorphingAsyncButton({
   onClick,
   className = "",
 }: MorphingAsyncButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Deploy Aplikasi" : "Deploy App";
   const defaultLoading = lang === "id" ? "Mendeploy..." : "Deploying...";
@@ -449,8 +451,7 @@ export function MagneticButton({
   className = "",
   onClick,
 }: MagneticButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultText = lang === "id" ? "Arahkan Kursor Mendekat" : "Hover Near Cursor";
   const activeContent = children ?? defaultText;
@@ -534,8 +535,7 @@ export function ExpandableActionPill({
   actions: customActions,
   className = "",
 }: ExpandableActionPillProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeMessage, setActiveMessage] = useState<string | null>(null);
@@ -684,8 +684,7 @@ export function DoubleConfirmButton({
   timeoutDuration = 3000,
   className = "",
 }: DoubleConfirmButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Hapus Repositori" : "Delete Repository";
   const defaultArmed = lang === "id" ? "Klik lagi untuk konfirmasi" : "Click again to confirm";
@@ -832,8 +831,7 @@ export function FlipConfirmButton({
   onFlip,
   className = "",
 }: FlipConfirmButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultFront = lang === "id" ? "Salin Tautan Undangan" : "Copy Invitation Link";
   const defaultBack = lang === "id" ? "Tautan Disalin!" : "Link Copied!";
@@ -918,8 +916,7 @@ export function DownloadProgressButton({
   onComplete,
   className = "",
 }: DownloadProgressButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Unduh Paket SDK" : "Download SDK Bundle";
   const defaultDownloading = lang === "id" ? "Mengunduh" : "Downloading";
@@ -1053,8 +1050,7 @@ export function ReactionBurstButton({
   onToggle,
   className = "",
 }: ReactionBurstButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Bintang" : "Star";
   const defaultActive = lang === "id" ? "Berbintang" : "Starred";
@@ -1210,8 +1206,7 @@ export function BiometricAuthButton({
   onAuthSuccess,
   className = "",
 }: BiometricAuthButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Otentikasi Passkey" : "Authenticate Passkey";
   const defaultScanning = lang === "id" ? "Memindai Biometrik..." : "Verifying Biometrics...";
@@ -1372,8 +1367,7 @@ export function CopyConfettiButton({
   copiedLabel,
   className = "",
 }: CopyConfettiButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Salin Kode Undangan" : "Copy Invite Code";
   const defaultCopied = lang === "id" ? "Kode Berhasil Disalin! 🎉" : "Code Copied to Clipboard! 🎉";
@@ -1517,8 +1511,7 @@ export function OrigamiPaperPlaneButton({
   onSend,
   className = "",
 }: OrigamiPaperPlaneButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Kirim Pesan" : "Send Message";
   const defaultSending = lang === "id" ? "Meluncur..." : "Launching...";
@@ -1664,8 +1657,7 @@ export function OrbitalActionHubButton({
   actions: customActions,
   className = "",
 }: OrbitalActionHubButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "AI Copilot Hub" : "AI Copilot Hub";
   const activeMainLabel = mainLabel ?? defaultLabel;

@@ -5,7 +5,7 @@ import { CodeBlock } from "../components/CodeBlock";
 export function InstallationPage() {
   const { t } = useTranslation();
   const [selectedPm, setSelectedPm] = useState<"npm" | "pnpm" | "yarn" | "bun">("npm");
-  const [tailwindVersion, setTailwindVersion] = useState<"v4" | "v3">("v4");
+  const [styleTab, setStyleTab] = useState<"entry" | "css" | "nextjs">("entry");
 
   const installCommands: Record<string, string> = {
     npm: "npm install @needui/ui-kit",
@@ -14,46 +14,95 @@ export function InstallationPage() {
     bun: "bun add @needui/ui-kit",
   };
 
-  const peerDepsCode = `npm install framer-motion tailwindcss react react-dom`;
+  const peerDepsCommands: Record<string, string> = {
+    npm: "npm install framer-motion",
+    pnpm: "pnpm add framer-motion",
+    yarn: "yarn add framer-motion",
+    bun: "bun add framer-motion",
+  };
 
-  const tailwindV4Code = `@import "tailwindcss";
-@source "../node_modules/@needui/ui-kit/dist";`;
+  const entryStyleCode = `import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-  const tailwindV3Code = `/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    // ...path proyek Anda
-    "./node_modules/@needui/ui-kit/dist/**/*.{js,mjs}"
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};`;
+// Import stylesheet NeedUI sekali di file entry aplikasi Anda
+import "@needui/ui-kit/styles.css";
 
-  const quickStartCode = `import { SearchAnimation, ButtonAnimation } from "@needui/ui-kit";
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);`;
 
-export default function Header() {
+  const cssStyleCode = `/* src/index.css atau src/globals.css */
+@import "@needui/ui-kit/styles.css";
+
+/* (Opsional) Jika project Anda juga menggunakan Tailwind CSS */
+@import "tailwindcss";`;
+
+  const nextjsStyleCode = `// app/layout.tsx (Next.js App Router)
+import "@needui/ui-kit/styles.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Application",
+  description: "Built with NeedUI",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <header className="flex items-center justify-between p-4 border-b">
-      <h1 className="text-lg font-bold">My Awesome App</h1>
-      <div className="flex items-center gap-3">
-        <SearchAnimation placeholder="Cari dokumentasi..." />
-        <ButtonAnimation variant="primary">
-          Get Started
-        </ButtonAnimation>
-      </div>
-    </header>
+    <html lang="en">
+      <body>{children}</body>
+    </html>
   );
 }`;
 
-  const cdnCode = `<!-- Menggunakan CDN ESM modern (misal melalui esm.sh atau unpkg) -->
+  const quickStartCode = `import { useState } from "react";
+import { 
+  SwipeButton, 
+  HoldButton, 
+  MagneticButton 
+} from "@needui/ui-kit";
+
+export default function App() {
+  const [confirmed, setConfirmed] = useState(false);
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-8">
+      <h1 className="text-2xl font-bold">Halo NeedUI</h1>
+      
+      <SwipeButton 
+        label="Geser untuk Konfirmasi" 
+        onComplete={() => setConfirmed(true)} 
+      />
+
+      <HoldButton 
+        label="Tahan 1 Detik" 
+        onConfirm={() => alert("Tindakan Berhasil!")} 
+      />
+
+      <MagneticButton>
+        Tombol Magnetik
+      </MagneticButton>
+    </div>
+  );
+}`;
+
+  const cdnCode = `<!-- 1. Muat Stylesheet Komponen Terkompilasi -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@needui/ui-kit/dist/styles.css" />
+
+<!-- 2. Import Komponen melalui ESM CDN -->
 <script type="module">
-  import { SearchAnimation } from "https://esm.sh/@needui/ui-kit";
+  import { SwipeButton } from "https://esm.sh/@needui/ui-kit";
 </script>`;
 
   return (
     <div className="space-y-12 pb-16">
+      {/* Header Halaman */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.installation.badge", "Get Started")}</span>
@@ -69,6 +118,7 @@ export default function Header() {
         </p>
       </div>
 
+      {/* Langkah 1: Install Package */}
       <section className="space-y-4">
         <div className="flex items-center gap-2.5">
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-neutral-100 text-xs font-semibold text-neutral-800 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700">
@@ -102,6 +152,7 @@ export default function Header() {
         <CodeBlock code={installCommands[selectedPm]} filename="terminal" />
       </section>
 
+      {/* Langkah 2: Peer Dependencies */}
       <section className="space-y-4">
         <div className="flex items-center gap-2.5">
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-neutral-100 text-xs font-semibold text-neutral-800 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700">
@@ -114,82 +165,120 @@ export default function Header() {
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {t(
             "content.installation.step2.desc",
-            "Library ini membutuhkan framer-motion untuk animasi fluida dan tailwindcss untuk utility styling:"
+            "Library ini membutuhkan framer-motion untuk animasi fluida dan micro-interactions:"
           )}
         </p>
-        <CodeBlock code={peerDepsCode} filename="terminal" />
+        <CodeBlock code={peerDepsCommands[selectedPm]} filename="terminal" />
       </section>
 
+      {/* Langkah 3: Import Stylesheet CSS */}
       <section className="space-y-4">
         <div className="flex items-center gap-2.5">
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-neutral-100 text-xs font-semibold text-neutral-800 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700">
             {t("content.installation.step3.badge", "3")}
           </span>
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-            {t("content.installation.step3.title", "Konfigurasi Tailwind CSS")}
+            {t("content.installation.step3.title", "Import Stylesheet CSS")}
           </h2>
         </div>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
           {t(
             "content.installation.step3.desc",
-            "Pilih versi Tailwind CSS yang digunakan pada proyek Anda untuk instruksi konfigurasi yang sesuai:"
+            "Tambahkan file stylesheet @needui/ui-kit/styles.css ke root project Anda. Seluruh class utility dan animasi telah terkompilasi murni sehingga tidak memerlukan konfigurasi Tailwind manual:"
           )}
         </p>
 
+        {/* Tab Pilihan Lokasi Import */}
         <div className="flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-800">
           <button
             type="button"
-            onClick={() => setTailwindVersion("v4")}
+            onClick={() => setStyleTab("entry")}
             className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-medium transition-colors border-b-2 -mb-[1px] cursor-pointer ${
-              tailwindVersion === "v4"
+              styleTab === "entry"
                 ? "border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 font-semibold"
                 : "border-transparent text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
             }`}
           >
-            <span>{t("content.installation.step3.v4Tab", "Tailwind CSS v4")}</span>
+            <span>{t("content.installation.step3.mainTab", "main.tsx / App.tsx")}</span>
             <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 border border-emerald-200/60 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-900">
-              {t("content.installation.step3.v4Badge", "Rekomendasi")}
+              {t("content.installation.step3.mainBadge", "Rekomendasi")}
             </span>
           </button>
+
           <button
             type="button"
-            onClick={() => setTailwindVersion("v3")}
+            onClick={() => setStyleTab("css")}
             className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-medium transition-colors border-b-2 -mb-[1px] cursor-pointer ${
-              tailwindVersion === "v3"
+              styleTab === "css"
                 ? "border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 font-semibold"
                 : "border-transparent text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
             }`}
           >
-            <span>{t("content.installation.step3.v3Tab", "Tailwind CSS v3")}</span>
+            <span>{t("content.installation.step3.cssTab", "index.css")}</span>
             <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-[10px] font-medium text-neutral-600 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-400 dark:border-neutral-700">
-              {t("content.installation.step3.v3Badge", "Legacy")}
+              {t("content.installation.step3.cssBadge", "Alternatif")}
             </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setStyleTab("nextjs")}
+            className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-medium transition-colors border-b-2 -mb-[1px] cursor-pointer ${
+              styleTab === "nextjs"
+                ? "border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 font-semibold"
+                : "border-transparent text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+            }`}
+          >
+            <span>Next.js App Router</span>
           </button>
         </div>
 
-        {tailwindVersion === "v4" ? (
+        {styleTab === "entry" && (
           <div className="space-y-3 pt-1">
             <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               {t(
-                "content.installation.step3.v4Desc",
-                "Pada Tailwind CSS v4, Anda tidak lagi memerlukan file tailwind.config.js. Cukup tambahkan direktif @source ke file CSS global utama Anda (misal: index.css atau globals.css) agar Tailwind memindai dan mengekstrak komponen library:"
+                "content.installation.step3.mainDesc",
+                "Cukup import file styles.css satu kali pada file entry utama aplikasi Anda (React, Vite, Next.js, CRA, atau Remix):"
               )}
             </p>
-            <CodeBlock code={tailwindV4Code} language="css" filename="src/index.css" />
-          </div>
-        ) : (
-          <div className="space-y-3 pt-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {t(
-                "content.installation.step3.v3Desc",
-                "Bagi pengguna Tailwind CSS v3, daftarkan path distribusi library ke dalam array content di file tailwind.config.js agar class utilitas komponen tidak terhapus saat proses purge/build:"
-              )}
-            </p>
-            <CodeBlock code={tailwindV3Code} language="javascript" filename="tailwind.config.js" />
+            <CodeBlock code={entryStyleCode} language="tsx" filename="src/main.tsx" />
           </div>
         )}
+
+        {styleTab === "css" && (
+          <div className="space-y-3 pt-1">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              {t(
+                "content.installation.step3.cssDesc",
+                "Atau jika Anda lebih suka mengimpor via file CSS global utama project Anda:"
+              )}
+            </p>
+            <CodeBlock code={cssStyleCode} language="css" filename="src/index.css" />
+          </div>
+        )}
+
+        {styleTab === "nextjs" && (
+          <div className="space-y-3 pt-1">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Pada Next.js App Router, tambahkan import stylesheet di dalam file layout root:
+            </p>
+            <CodeBlock code={nextjsStyleCode} language="tsx" filename="app/layout.tsx" />
+          </div>
+        )}
+
+        {/* Callout Bebas Konfigurasi */}
+        <div className="flex items-start gap-3 p-4 rounded-xl border border-emerald-200/80 bg-emerald-50/60 dark:border-emerald-900/60 dark:bg-emerald-950/20 text-xs text-emerald-800 dark:text-emerald-300">
+          <span className="text-base select-none">✨</span>
+          <div className="space-y-1">
+            <span className="font-bold text-xs block">Zero-Configuration Styling</span>
+            <p className="text-emerald-700/90 dark:text-emerald-400/90 leading-relaxed text-xs">
+              Seluruh class Tailwind dan animasi sudah terkompilasi murni ke dalam <code className="font-mono bg-emerald-100 dark:bg-emerald-900/50 px-1 py-0.5 rounded">styles.css</code>. Anda <strong>tidak perlu</strong> lagi menambahkan direktif <code className="font-mono">@source</code> pada Tailwind v4, mengatur array <code className="font-mono">content</code> di Tailwind v3, ataupun menginstal plugin khusus.
+            </p>
+          </div>
+        </div>
       </section>
 
+      {/* Langkah 4: Mulai Gunakan Komponen */}
       <section className="space-y-4">
         <div className="flex items-center gap-2.5">
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-neutral-100 text-xs font-semibold text-neutral-800 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700">
@@ -205,6 +294,7 @@ export default function Header() {
         <CodeBlock code={quickStartCode} language="tsx" filename="App.tsx" />
       </section>
 
+      {/* Opsi CDN */}
       <section className="space-y-3 rounded-2xl border border-neutral-200/80 bg-neutral-50/50 p-6 dark:border-neutral-800/80 dark:bg-neutral-900/30">
         <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
           {t("content.installation.cdn.title", "🌐 Opsi CDN Standalone (HTML Biasa)")}
@@ -220,3 +310,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default InstallationPage;
