@@ -75,10 +75,8 @@ export const TreeItem: React.FC<TreeItemProps> = ({
   const hasChildren = Boolean(item.children && item.children.length > 0);
   const [isOpen, setIsOpen] = useState<boolean>(Boolean(item.defaultOpen));
 
-  // Tentukan apakah item ini berstatus aktif
   const isItemActive = activeId ? activeId === item.id : Boolean(item.isActive);
 
-  // Handler klik pada baris item
   const handleClick = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (item.disabled) return;
@@ -93,7 +91,6 @@ export const TreeItem: React.FC<TreeItemProps> = ({
 
   return (
     <div className="w-full select-none font-sans">
-      {/* Baris Utama Item */}
       <div
         role="button"
         tabIndex={item.disabled ? -1 : 0}
@@ -110,7 +107,6 @@ export const TreeItem: React.FC<TreeItemProps> = ({
             : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/70 dark:text-zinc-400 dark:hover:text-zinc-200 dark:hover:bg-zinc-800/40"
         } ${item.disabled ? "opacity-40 cursor-not-allowed pointer-events-none" : ""}`}
       >
-        {/* Sisi Kiri: Chevron + Ikon Kustom + Label */}
         <div className="flex items-center gap-2 min-w-0 flex-1">
           {hasChildren ? (
             <DefaultChevron isOpen={isOpen} />
@@ -119,18 +115,15 @@ export const TreeItem: React.FC<TreeItemProps> = ({
             <span className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           )}
 
-          {/* Ikon Kustom (jika tersedia) */}
           {item.icon && (
             <span className="shrink-0 flex items-center justify-center text-current opacity-80 group-hover:opacity-100 transition-opacity">
               {item.icon}
             </span>
           )}
 
-          {/* Label Menu */}
           <span className="truncate tracking-tight">{item.label}</span>
         </div>
 
-        {/* Sisi Kanan: Badge Angka / Label Status yang Elegan */}
         {item.badge !== undefined && item.badge !== null && (
           <span
             className={`ml-2 shrink-0 text-[11px] px-1.5 py-0.5 rounded font-mono font-medium transition-colors ${
@@ -144,7 +137,6 @@ export const TreeItem: React.FC<TreeItemProps> = ({
         )}
       </div>
 
-      {/* Kontainer Animasi Rekursif untuk Anak (Children) */}
       <AnimatePresence initial={false}>
         {hasChildren && isOpen && (
           <motion.div
@@ -155,7 +147,6 @@ export const TreeItem: React.FC<TreeItemProps> = ({
             transition={{ duration: 0.22, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
           >
-            {/* Garis Vertikal Indikator Hierarki */}
             <div className="border-l border-zinc-200 dark:border-zinc-800/60 ml-4 pl-3 py-0.5 space-y-0.5">
               {item.children!.map((child) => (
                 <TreeItem

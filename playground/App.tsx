@@ -13,12 +13,14 @@ import { ToastAnimationPage } from "./pages/ToastAnimationPage";
 import { ModalAnimationPage } from "./pages/ModalAnimationPage";
 import { MarqueeAnimationPage } from "./pages/MarqueeAnimationPage";
 import { TimelineAnimationPage } from "./pages/TimelineAnimationPage";
+import { AnimatedTimelineDemo } from "./pages/AnimatedTimelineDemo";
 import { DropdownPage } from "./pages/DropdownPage";
 import { AnimatedAccordionDemo } from "./pages/AnimatedAccordionDemo";
 import { AdvancedCarouselDemo } from "./pages/AdvancedCarouselDemo";
 import { AutoCarouselDemo } from "./pages/AutoCarouselDemo";
 import { AnimatedDatepickerDemo } from "./pages/AnimatedDatepickerDemo";
 import { AnimatedTabsDemo } from "./pages/AnimatedTabsDemo";
+import { AnimatedToggleDemo } from "./pages/AnimatedToggleDemo";
 import { ToastProvider } from "../src/components/ToastAnimation";
 import { FloatingFeedback } from "./components/FloatingFeedback";
 
@@ -43,58 +45,56 @@ export function App() {
       {
         title: t("sidebar.components.title", "Components"),
         items: [
-          // {
-          //   id: "button-animation",
-          //   label: t("sidebar.components.button", "Button"),
-          // },
+
           {
             id: "advanced-buttons",
             label: t("sidebar.components.advancedButtons", "Advanced Buttons"),
           },
-          // {
-          //   id: "navbar-animation",
-          //   label: t("sidebar.components.navbar", "Navbar"),
-          // },
-          {
-            id: "toast-animation",
-            label: t("sidebar.components.toast", "Toast"),
-          },
-          {
-            id: "modal-animation",
-            label: t("sidebar.components.modal", "Modal"),
-          },
-          {
-            id: "marquee-animation",
-            label: t("sidebar.components.marquee", "Marquee"),
-          },
-          {
-            id: "timeline-animation",
-            label: t("sidebar.components.timeline", "Timeline"),
-          },
-          {
-            id: "dropdown-animation",
-            label: t("sidebar.components.dropdown", "Dropdown"),
-          },
-          {
-            id: "accordion-animation",
-            label: t("sidebar.components.accordion", "Accordion"),
-          },
-          {
-            id: "carousel-animation",
-            label: t("sidebar.components.carousel", "Carousel"),
-          },
-          {
+                    {
             id: "auto-carousel-animation",
             label: t("sidebar.components.autoCarousel", "Auto Carousel"),
           },
-          {
-            id: "datepicker-animation",
-            label: t("sidebar.components.datepicker", "Animated Datepicker"),
-          },
-          {
-            id: "tabs-animation",
-            label: t("sidebar.components.tabs", "Animated Tabs"),
-          },
+
+          // {
+          //   id: "toast-animation",
+          //   label: t("sidebar.components.toast", "Toast"),
+          // },
+          // {
+          //   id: "modal-animation",
+          //   label: t("sidebar.components.modal", "Modal"),
+          // },
+          // {
+          //   id: "marquee-animation",
+          //   label: t("sidebar.components.marquee", "Marquee"),
+          // },
+          // {
+          //   id: "timeline-animation",
+          //   label: t("sidebar.components.timeline", "Timeline"),
+          // },
+          // {
+          //   id: "dropdown-animation",
+          //   label: t("sidebar.components.dropdown", "Dropdown"),
+          // },
+          // {
+          //   id: "accordion-animation",
+          //   label: t("sidebar.components.accordion", "Accordion"),
+          // },
+          // {
+          //   id: "carousel-animation",
+          //   label: t("sidebar.components.carousel", "Carousel"),
+          // },
+          // {
+          //   id: "datepicker-animation",
+          //   label: t("sidebar.components.datepicker", "Animated Datepicker"),
+          // },
+          // {
+          //   id: "tabs-animation",
+          //   label: t("sidebar.components.tabs", "Animated Tabs"),
+          // },
+          // {
+          //   id: "toggle-animation",
+          //   label: t("sidebar.components.toggle", "Animated Toggle"),
+          // },
         ],
       },
       {
@@ -110,7 +110,6 @@ export function App() {
     [t]
   );
 
-  // Ambil initial page dari URL hash jika ada (misal #button-animation), default ke "introduction"
   const getInitialPage = () => {
     const hash = window.location.hash.replace("#", "");
     const allPageIds = [
@@ -125,6 +124,7 @@ export function App() {
       "auto-carousel-animation",
       "datepicker-animation",
       "tabs-animation",
+      "toggle-animation",
       "toast-animation",
       "modal-animation",
       "marquee-animation",
@@ -137,13 +137,11 @@ export function App() {
 
   const [activePage, setActivePage] = useState<string>(getInitialPage);
 
-  // Sync state dengan URL hash
   const handleSelectPage = (pageId: string) => {
     setActivePage(pageId);
     window.location.hash = pageId;
   };
 
-  // Dengarkan event hashchange (misal tombol Back/Forward browser ditekan)
   useEffect(() => {
     const onHashChange = () => {
       const hash = window.location.hash.replace("#", "");
@@ -155,7 +153,6 @@ export function App() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  // Render halaman sesuai activePage
   const renderContent = () => {
     switch (activePage) {
       case "introduction":
@@ -182,6 +179,8 @@ export function App() {
         return <AnimatedDatepickerDemo />;
       case "tabs-animation":
         return <AnimatedTabsDemo />;
+      case "toggle-animation":
+        return <AnimatedToggleDemo />;
       case "toast-animation":
         return <ToastAnimationPage />;
       case "modal-animation":
@@ -189,7 +188,7 @@ export function App() {
       case "marquee-animation":
         return <MarqueeAnimationPage />;
       case "timeline-animation":
-        return <TimelineAnimationPage />;
+        return <AnimatedTimelineDemo />;
       case "web-icons":
         return <WebIconsPage />;
       default:

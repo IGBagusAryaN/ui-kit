@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export interface MultiCodeSnippetProps {
   /**
@@ -33,10 +32,8 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
   title,
   className = "",
 }) => {
-  const { t } = useTranslation();
   const [copied, setCopied] = useState<boolean>(false);
 
-  // Tentukan daftar tab yang tersedia berdasarkan codeBlocks
   const availableTabs = codeBlocks
     ? (Object.keys(codeBlocks).filter(
         (key) => Boolean(codeBlocks[key])
@@ -45,22 +42,30 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
 
   const hasMultipleTabs = availableTabs.length > 1;
 
-  // Tab aktif (default "react" atau tab pertama yang ada)
   const [activeTab, setActiveTab] = useState<FrameworkTab>(
     availableTabs.includes("react")
       ? "react"
       : availableTabs[0] ?? "react"
   );
 
-  // Dapatkan kode yang sedang aktif
   const currentCode =
     (codeBlocks && codeBlocks[activeTab]) ||
     code ||
     (codeBlocks?.react ?? "");
 
-  // Label nama framework untuk tab
   const getTabLabel = (tab: string) => {
-    switch (tab) {
+    const key = tab.toLowerCase();
+    switch (key) {
+      case "usage":
+        return "Usage";
+      case "source":
+        return "Component Source";
+      case "installation":
+        return "Installation";
+      case "code":
+        return "Code";
+      case "preview":
+        return "Preview";
       case "react":
         return "React";
       case "vue":
@@ -68,7 +73,7 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
       case "laravel":
         return "Laravel (Blade)";
       default:
-        return tab.toUpperCase();
+        return tab.charAt(0).toUpperCase() + tab.slice(1);
     }
   };
 
@@ -94,7 +99,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
     <div
       className={`relative rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 overflow-hidden font-mono text-xs shadow-xs transition-colors ${className}`}
     >
-      {/* Header Bar */}
       <div className="flex items-center justify-between px-3.5 py-2 bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 select-none">
         <div className="flex items-center gap-2">
           {title && (
@@ -103,7 +107,6 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
             </span>
           )}
 
-          {/* Tab Framework Buttons */}
           {hasMultipleTabs && (
             <div className="flex items-center gap-1 bg-zinc-200/70 dark:bg-zinc-800/80 p-0.5 rounded-lg">
               {availableTabs.map((tab) => {
@@ -128,12 +131,11 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
 
           {!hasMultipleTabs && !title && (
             <span className="font-sans text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
-              {t("common.usageSnippet", { defaultValue: "Usage Snippet" })}
+              "Usage Snippet"
             </span>
           )}
         </div>
 
-        {/* Copy Button */}
         <button
           type="button"
           onClick={handleCopy}
@@ -154,7 +156,7 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
                 <polyline points="20 6 9 17 4 12" />
               </svg>
               <span className="text-emerald-600 dark:text-emerald-400">
-                {t("common.copied", { defaultValue: "Disalin!" })}
+                "Copied!"
               </span>
             </>
           ) : (
@@ -171,13 +173,12 @@ export const MultiCodeSnippet: React.FC<MultiCodeSnippetProps> = ({
                 <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
               </svg>
-              <span>{t("common.copy", { defaultValue: "Salin" })}</span>
+              <span>"Copy"</span>
             </>
           )}
         </button>
       </div>
 
-      {/* Code Body */}
       <pre className="overflow-x-auto p-4 m-0 text-[11px] leading-relaxed text-zinc-800 dark:text-zinc-300 font-mono">
         <code>{currentCode}</code>
       </pre>

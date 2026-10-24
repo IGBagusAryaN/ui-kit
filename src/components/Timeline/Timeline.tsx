@@ -3,10 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../utils/cn";
 import { CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "../../icons";
 
-/* =========================================================================
- * TYPES & INTERFACES
- * ========================================================================= */
-
 export type TimelineBadgeColor =
   | "indigo"
   | "emerald"
@@ -38,7 +34,6 @@ export interface StepItem {
   icon?: React.ReactNode;
 }
 
-/* Helper styles for badge colors */
 const badgeColorMap: Record<TimelineBadgeColor, string> = {
   indigo:
     "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-800",
@@ -56,10 +51,6 @@ const badgeColorMap: Record<TimelineBadgeColor, string> = {
     "bg-zinc-100 text-zinc-700 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700",
 };
 
-/* =========================================================================
- * 1. CLASSIC VERTICAL TIMELINE (MASTER LINE STRATEGY)
- * ========================================================================= */
-
 export interface VerticalTimelineProps {
   items: TimelineItemData[];
   className?: string;
@@ -75,11 +66,6 @@ export function VerticalTimeline({
 }: VerticalTimelineProps) {
   return (
     <div className={cn("relative py-2", className)}>
-      {/* 
-        MASTER LINE UTAMA:
-        Satu garis lurus utuh absolut yang membentang dari titik pertama hingga titik terakhir.
-        Diposisikan tepat di tengah-tengah marker (left-4 sm:left-5 -translate-x-1/2).
-      */}
       <div
         className={cn(
           "absolute top-5 bottom-5 left-4 sm:left-5 w-[2px] -translate-x-1/2 z-0",
@@ -94,11 +80,6 @@ export function VerticalTimeline({
 
           const cardContent = (
             <div className="relative flex items-start pl-10 sm:pl-12 group">
-              {/* 
-                SOLID MARKER:
-                Marker bulat dengan background solid (bg-white dark:bg-zinc-950) dan z-10
-                sehingga menutup garis utama di bawahnya dengan sangat rapi dan tanpa celah.
-              */}
               <div
                 className={cn(
                   "absolute left-4 sm:left-5 top-5 -translate-x-1/2 -translate-y-1/2 z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border-2 transition-all duration-300",
@@ -125,7 +106,6 @@ export function VerticalTimeline({
                 )}
               </div>
 
-              {/* Konten Kartu Milestone */}
               <div className="flex-1 rounded-xl border border-zinc-200/90 bg-white p-4 sm:p-5 shadow-xs transition-all duration-300 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/90 dark:hover:border-zinc-700">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                   <div className="flex items-center gap-2">
@@ -210,10 +190,6 @@ export function VerticalTimeline({
   );
 }
 
-/* =========================================================================
- * 2. ALTERNATING ZIG-ZAG TIMELINE (MASTER CENTER LINE STRATEGY)
- * ========================================================================= */
-
 export interface AlternatingTimelineProps {
   items: TimelineItemData[];
   className?: string;
@@ -227,11 +203,6 @@ export function AlternatingTimeline({
 }: AlternatingTimelineProps) {
   return (
     <div className={cn("relative py-4", className)}>
-      {/* 
-        MASTER CENTER LINE:
-        Tepat berada di sumbu tengah (md:left-1/2 -translate-x-1/2) pada desktop,
-        dan berada di posisi left-4 sm:left-5 pada mobile agar tampilan tetap proporsional.
-      */}
       <div
         className={cn(
           "absolute top-6 bottom-6 left-4 sm:left-5 md:left-1/2 w-[2px] -translate-x-1/2 z-0",
@@ -253,7 +224,6 @@ export function AlternatingTimeline({
                 isEven ? "md:flex-row-reverse" : "md:flex-row"
               )}
             >
-              {/* Kolom Konten Kartu */}
               <div className="w-full pl-10 sm:pl-12 md:pl-0 md:w-1/2">
                 <motion.div
                   initial={{ opacity: 0, x: isEven ? 36 : -36 }}
@@ -326,11 +296,6 @@ export function AlternatingTimeline({
                 </motion.div>
               </div>
 
-              {/* 
-                SOLID CENTER MARKER:
-                Marker absolut dengan z-10 dan bg solid (bg-white dark:bg-zinc-950)
-                yang menutup garis tengah tepat pada perpotongannya.
-              */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
@@ -366,7 +331,6 @@ export function AlternatingTimeline({
                 )}
               </motion.div>
 
-              {/* Sisi Kosong Penyeimbang pada Layar Desktop md+ */}
               <div className="hidden md:block md:w-1/2" />
             </div>
           );
@@ -375,10 +339,6 @@ export function AlternatingTimeline({
     </div>
   );
 }
-
-/* =========================================================================
- * 3. HORIZONTAL STEPPER (MASTER HORIZONTAL LINE STRATEGY)
- * ========================================================================= */
 
 export interface HorizontalStepperProps {
   steps: StepItem[];
@@ -412,17 +372,10 @@ export function HorizontalStepper({
 
   return (
     <div className={cn("w-full space-y-6", className)}>
-      {/* 
-        MASTER STEPPER RAIL CONTAINER:
-        Rel node dibuat memiliki tinggi tetap (h-10 sm:h-11) sehingga posisi top-1/2
-        garis master jatuh persis di tengah diameter lingkaran step button.
-      */}
       <div className="relative">
         <div className="relative flex items-center justify-between h-10 sm:h-11">
-          {/* Master Background Line (Membentang dari kiri ke kanan penuh di z-0) */}
           <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] bg-zinc-200 dark:bg-zinc-800 z-0" />
 
-          {/* Master Active Progress Line (Mengisi secara mulus dari kiri ke kanan) */}
           <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] z-0 overflow-hidden">
             <motion.div
               className="h-full bg-indigo-600 dark:bg-indigo-500 origin-left"
@@ -434,7 +387,6 @@ export function HorizontalStepper({
             />
           </div>
 
-          {/* Step Nodes dengan background solid penutup garis */}
           {steps.map((step, index) => {
             const isDone = index < currentStep;
             const isActive = index === currentStep;
@@ -475,7 +427,6 @@ export function HorizontalStepper({
           })}
         </div>
 
-        {/* Deretan Judul Langkah di Bawah Node (Desktop/Tablet) */}
         <div className="relative flex items-start justify-between mt-3 hidden sm:flex">
           {steps.map((step, index) => {
             const isDone = index < currentStep;
@@ -501,7 +452,6 @@ export function HorizontalStepper({
         </div>
       </div>
 
-      {/* Detail Konten Step yang Sedang Aktif */}
       <div className="pt-2 sm:pt-4">
         <AnimatePresence mode="wait">
           {steps[currentStep] && (
@@ -538,7 +488,6 @@ export function HorizontalStepper({
         </AnimatePresence>
       </div>
 
-      {/* Tombol Interaktif Pengontrol Stepper */}
       {showControls && (
         <div className="flex items-center justify-between pt-2">
           <button
@@ -612,11 +561,6 @@ export function AccordionTimeline({
 
   return (
     <div className={cn("relative py-2", className)}>
-      {/* 
-        MASTER VERTICAL LINE:
-        Satu garis vertikal absolut membentang dari atas hingga bawah kontainer parent.
-        Saat accordion membuka/menutup, garis ini otomatis menyesuaikan tinggi secara dinamis tanpa patah.
-      */}
       <div className="absolute top-6 bottom-6 left-4 sm:left-5 w-[2px] -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800 z-0" />
 
       <div className="space-y-4 sm:space-y-5">
@@ -625,11 +569,6 @@ export function AccordionTimeline({
 
           return (
             <div key={item.id} className="relative group pl-10 sm:pl-12">
-              {/* 
-                SOLID ACCORDION MARKER:
-                Marker bulat dengan background solid (bg-white dark:bg-zinc-950) dan z-10
-                yang menutup garis master di belakangnya.
-              */}
               <button
                 type="button"
                 onClick={() => toggleItem(item.id)}
@@ -652,7 +591,6 @@ export function AccordionTimeline({
                 )}
               </button>
 
-              {/* Kartu Accordion Interaktif */}
               <div
                 className={cn(
                   "rounded-xl border transition-all duration-300 bg-white dark:bg-zinc-900/90 overflow-hidden",
@@ -661,7 +599,6 @@ export function AccordionTimeline({
                     : "border-zinc-200/90 shadow-xs hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700"
                 )}
               >
-                {/* Header Kartu (Dapat Diklik untuk Expand/Collapse) */}
                 <button
                   type="button"
                   onClick={() => toggleItem(item.id)}
@@ -695,7 +632,6 @@ export function AccordionTimeline({
                     )}
                   </div>
 
-                  {/* Icon Panah Chevron Berputar */}
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -705,7 +641,6 @@ export function AccordionTimeline({
                   </motion.div>
                 </button>
 
-                {/* Konten Terbuka Melalui AnimatePresence */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
@@ -810,7 +745,6 @@ export function NeonGlowTimeline({
         className
       )}
     >
-      {/* Background Cyber Grid Accent */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
@@ -821,10 +755,6 @@ export function NeonGlowTimeline({
       />
 
       <div className="relative">
-        {/* 
-          1. MASTER NEON TRACK LINE:
-          Rel garis solid dasar membentang utuh di sisi kiri (left-6 sm:left-7).
-        */}
         <div
           className={cn(
             "absolute top-6 bottom-6 left-6 sm:left-7 w-[2px] -translate-x-1/2 rounded-full z-0",
@@ -832,10 +762,6 @@ export function NeonGlowTimeline({
           )}
         />
 
-        {/* 
-          2. MASTER GLOW AMBIENT AURA:
-          Pendaran blur halus yang melapisi master line secara menerus.
-        */}
         <div
           className={cn(
             "absolute top-6 bottom-6 left-6 sm:left-7 w-1 -translate-x-1/2 rounded-full blur-[2px] opacity-80 pointer-events-none z-0",
@@ -843,10 +769,6 @@ export function NeonGlowTimeline({
           )}
         />
 
-        {/* 
-          3. MASTER ANIMATED LASER BEAM:
-          Berkas laser energi mengalir terus menerus ke bawah tanpa henti.
-        */}
         <div className="absolute top-6 bottom-6 left-6 sm:left-7 w-[2px] -translate-x-1/2 overflow-hidden pointer-events-none z-0">
           <motion.div
             className={cn(
@@ -864,7 +786,6 @@ export function NeonGlowTimeline({
           />
         </div>
 
-        {/* Milestone Items */}
         <div className="space-y-8 sm:space-y-10">
           {items.map((item, index) => {
             return (
@@ -880,19 +801,13 @@ export function NeonGlowTimeline({
                 }}
                 className="relative flex items-start pl-12 sm:pl-14 group"
               >
-                {/* 
-                  SOLID NEON NODE:
-                  Lingkaran solid (bg-zinc-950) di z-10 yang menutup track master line dengan sempurna.
-                */}
                 <div className="absolute left-6 sm:left-7 top-6 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center">
-                  {/* Gelombang Ping Eksternal */}
                   <span
                     className={cn(
                       "absolute h-7 w-7 rounded-full animate-ping opacity-50",
                       colorStyles.nodePing
                     )}
                   />
-                  {/* Lingkaran Bercahaya Solid */}
                   <div
                     className={cn(
                       "relative z-10 flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full border-2 bg-zinc-950 transition-transform duration-300 group-hover:scale-125 shadow-lg",
@@ -908,7 +823,6 @@ export function NeonGlowTimeline({
                   </div>
                 </div>
 
-                {/* Kartu Neon Glassmorphism */}
                 <div
                   className={cn(
                     "flex-1 rounded-xl bg-zinc-900/90 backdrop-blur-md p-5 border transition-all duration-300",

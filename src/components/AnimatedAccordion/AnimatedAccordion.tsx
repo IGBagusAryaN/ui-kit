@@ -14,9 +14,6 @@ import {
   ActivityIcon,
 } from "../../icons";
 
-// ============================================================================
-// COMMON INTERFACES
-// ============================================================================
 export interface AccordionItem {
   id: string;
   title: string;
@@ -43,9 +40,6 @@ export interface StaggeredAccordionItem {
   steps: StaggeredListItem[];
 }
 
-// ============================================================================
-// 1. <ClassicAccordion /> (Standard Connected)
-// ============================================================================
 export interface ClassicAccordionProps {
   items?: AccordionItem[];
   defaultOpenId?: string | null;
@@ -391,15 +385,12 @@ export function MinimalistAccordion({
                 </span>
               </div>
 
-              {/* Morphing Plus / Minus Glyph */}
               <div className="relative w-7 h-7 flex items-center justify-center shrink-0 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 group-hover:border-zinc-400 dark:group-hover:border-zinc-600 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors">
-                {/* Horizontal bar */}
                 <motion.span
                   className="absolute h-0.5 w-3 bg-current rounded-full"
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.22 }}
                 />
-                {/* Vertical bar (morphs into minus by rotating and collapsing) */}
                 <motion.span
                   className="absolute h-3 w-0.5 bg-current rounded-full"
                   animate={{
@@ -499,7 +490,6 @@ export function GlassmorphismAccordion({
 
   return (
     <div className={`w-full max-w-2xl relative ${className}`}>
-      {/* Decorative ambient gradient backdrop glow for glass illusion */}
       <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500/10 via-sky-500/15 to-indigo-500/10 blur-xl opacity-75 pointer-events-none" />
 
       <div className="relative space-y-3">
@@ -737,7 +727,6 @@ export function StaggeredContentAccordion({
                   }}
                   className="overflow-hidden"
                 >
-                  {/* Staggered Children Container */}
                   <motion.div
                     variants={{
                       hidden: { opacity: 0 },
@@ -898,7 +887,6 @@ export function HorizontalAccordion({
                 : "sm:flex-1 bg-zinc-50/80 hover:bg-white text-zinc-600 border border-zinc-200 shadow-xs dark:bg-zinc-950 dark:hover:bg-zinc-900/60 dark:text-zinc-300 dark:border-zinc-800"
             }`}
           >
-            {/* Header bar / Tab handle */}
             <div className="p-4 sm:p-5 flex items-center justify-between gap-3 shrink-0">
               <div className="flex items-center gap-3 min-w-0">
                 <div
@@ -935,7 +923,6 @@ export function HorizontalAccordion({
               )}
             </div>
 
-            {/* Vertical title strip visible only on desktop when closed */}
             {!isOpen && (
               <div className="hidden sm:flex flex-1 items-center justify-center pb-6">
                 <span className="font-medium text-xs text-zinc-500 dark:text-zinc-400 [writing-mode:vertical-rl] rotate-180 tracking-wider">
@@ -944,7 +931,6 @@ export function HorizontalAccordion({
               </div>
             )}
 
-            {/* Expanded content area */}
             <AnimatePresence>
               {isOpen && (
                 <motion.div
@@ -1073,12 +1059,10 @@ export function TimelineAccordion({
 
           return (
             <div key={item.id} className="relative flex items-start gap-4">
-              {/* Continuous vertical timeline track segment connecting to next step */}
               {index < items.length - 1 && (
                 <div className="absolute left-[15px] top-[26px] -bottom-[26px] w-[2px] bg-zinc-200 dark:bg-zinc-800 z-0" />
               )}
 
-              {/* Stepped Timeline Node Circle - Perfectly Centered */}
               <motion.div
                 animate={{
                   scale: isOpen ? 1.1 : 1,
@@ -1102,7 +1086,6 @@ export function TimelineAccordion({
                 )}
               </motion.div>
 
-              {/* Accordion Card */}
               <div
                 className={`flex-1 rounded-2xl transition-all duration-200 overflow-hidden ${
                   isOpen
@@ -1287,7 +1270,6 @@ export function NestedTreeAccordion({
 
         return (
           <div key={item.id} className="transition-colors">
-            {/* Level 1: Parent Module Header */}
             <button
               type="button"
               onClick={() => toggleParent(item.id)}
@@ -1334,7 +1316,6 @@ export function NestedTreeAccordion({
               </motion.div>
             </button>
 
-            {/* Level 2: Nested Sub-Items */}
             <AnimatePresence initial={false}>
               {isParentOpen && (
                 <motion.div

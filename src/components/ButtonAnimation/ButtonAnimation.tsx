@@ -23,7 +23,6 @@ export type ButtonVariant =
   | "secondary"
   | "outline"
   | "ghost";
-  // | "danger";
 
 /** Ukuran Tombol */
 export type ButtonSize = "sm" | "md" | "lg";
@@ -62,7 +61,7 @@ export type ButtonAnimationType =
   | "neon-pulse"
   | "ripple-echo"
   | "fold-out"
-  // | "swipe-fill"
+
   | "pixelate-morph"
   | "jelly-wobble"
   | "border-beam"
@@ -94,7 +93,6 @@ export interface ButtonAnimationProps
   backContent?: ReactNode;
 }
 
-// 1. Separation of Concerns: Visual Styles (Tailwind)
 const variantStyles: Record<ButtonVariant, string> = {
   default:
     "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100 shadow-xs",
@@ -106,18 +104,16 @@ const variantStyles: Record<ButtonVariant, string> = {
     "border border-neutral-300 bg-transparent text-neutral-800 hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-900",
   ghost:
     "bg-transparent text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800",
-  // danger:
-  //   "bg-rose-600 text-white hover:bg-rose-700 dark:bg-rose-600 dark:hover:bg-rose-700 shadow-xs",
+
 };
 
-// Mask background color untuk border-beam layer tengah agar selaras sempurna dengan variant
 const variantBgMap: Record<ButtonVariant, string> = {
   default: "bg-neutral-900 dark:bg-neutral-950",
   primary: "bg-neutral-900 dark:bg-neutral-950",
   secondary: "bg-neutral-100 dark:bg-neutral-800",
   outline: "bg-white dark:bg-neutral-900",
   ghost: "bg-neutral-100 dark:bg-neutral-900",
-  // danger: "bg-rose-600 dark:bg-rose-700",
+
 };
 
 const sizeStyles: Record<ButtonSize, { base: string; rounded: string }> = {
@@ -126,7 +122,6 @@ const sizeStyles: Record<ButtonSize, { base: string; rounded: string }> = {
   lg: { base: "h-12 px-6 text-base gap-2.5 rounded-2xl", rounded: "rounded-2xl" },
 };
 
-// 12 Partikel 360 derajat untuk particle-burst (-48px s/d 48px)
 const BURST_PARTICLES = [
   { id: 0, x: 46, y: 0, color: "#3b82f6", size: 6 },
   { id: 1, x: 33, y: 33, color: "#ec4899", size: 5 },
@@ -176,9 +171,6 @@ export const ButtonAnimation = forwardRef<
     const activeAnimation = animationVariant ?? animation;
     const internalBtnRef = useRef<HTMLButtonElement | null>(null);
 
-    // =========================================================================
-    // 8. MAGNETIC 3D TILT LOGIC (Variant 8)
-    // =========================================================================
     const isMagneticTilt = activeAnimation === "magnetic-tilt";
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -205,15 +197,9 @@ export const ButtonAnimation = forwardRef<
       if (isGlitch) setIsGlitching(false);
     };
 
-    // =========================================================================
-    // 6. GLITCH CYBERPUNK LOGIC (Variant 6)
-    // =========================================================================
     const isGlitch = activeAnimation === "glitch-cyberpunk";
     const [isGlitching, setIsGlitching] = useState(false);
 
-    // =========================================================================
-    // 7. PARTICLE BURST LOGIC (Variant 7)
-    // =========================================================================
     const isParticleBurst = activeAnimation === "particle-burst";
     const [isBursting, setIsBursting] = useState(false);
     const burstTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -229,9 +215,6 @@ export const ButtonAnimation = forwardRef<
       });
     };
 
-    // =========================================================================
-    // 11. RIPPLE ECHO LOGIC (Variant 11 - Cursor-centered Water Ripple)
-    // =========================================================================
     const isRippleEcho = activeAnimation === "ripple-echo";
     const [ripples, setRipples] = useState<RippleItem[]>([]);
 
@@ -247,35 +230,30 @@ export const ButtonAnimation = forwardRef<
       }, 750);
     };
 
-    // Unified Click Handler
     const handleClick = (e: ReactMouseEvent<HTMLButtonElement>) => {
       if (isParticleBurst) triggerBurst();
       if (isRippleEcho) triggerRipple(e);
       onClick?.(e);
     };
 
-    // =========================================================================
-    // VARIANT CLASSIFIERS
-    // =========================================================================
     const isPress3D = activeAnimation === "press-3d";
     const isMagneticGlow = activeAnimation === "magnetic-glow";
     const isSlideReveal = activeAnimation === "slide-reveal";
     const isLiquid = activeAnimation === "liquid-gooey";
     const isNeonPulse = activeAnimation === "neon-pulse";
     const isFoldOut = activeAnimation === "fold-out";
-    // const isSwipeFill = activeAnimation === "swipe-fill";
+
     const isBorderBeam = activeAnimation === "border-beam";
     const isFlip3D = activeAnimation === "flip-3d";
     const showShimmer = shimmer || activeAnimation === "shimmer-sweep";
 
-    // Standard motion config selector across 19 animations
     const getMotionConfig = () => {
       if (disabled || isLoading) {
         return { whileHover: undefined, whileTap: undefined };
       }
 
       switch (activeAnimation) {
-        // 1. Spring Bounce
+
         case "spring-bounce":
           return {
             whileHover: whileHover ?? { scale: 1.04 },
@@ -283,7 +261,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 500, damping: 18 },
           };
 
-        // 2. Press 3D
         case "press-3d":
           return {
             whileHover: whileHover ?? { y: -2 },
@@ -291,7 +268,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 600, damping: 25 },
           };
 
-        // 3. Slide Reveal
         case "slide-reveal":
           return {
             whileHover: whileHover ?? { scale: 1.01 },
@@ -299,7 +275,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 450, damping: 25 },
           };
 
-        // 4. Magnetic Glow
         case "magnetic-glow":
           return {
             whileHover: whileHover ?? { y: -3, scale: 1.02 },
@@ -307,7 +282,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 400, damping: 20 },
           };
 
-        // 5. Shimmer Sweep
         case "shimmer-sweep":
           return {
             whileHover: whileHover ?? { scale: 1.02 },
@@ -315,7 +289,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 450, damping: 25 },
           };
 
-        // 6. Glitch Cyberpunk
         case "glitch-cyberpunk":
           return {
             whileHover: whileHover ?? {
@@ -327,7 +300,6 @@ export const ButtonAnimation = forwardRef<
             whileTap: whileTap ?? { scale: 0.96 },
           };
 
-        // 7. Particle Burst
         case "particle-burst":
           return {
             whileHover: whileHover ?? { scale: 1.03 },
@@ -335,14 +307,12 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 500, damping: 20 },
           };
 
-        // 8. Magnetic Tilt
         case "magnetic-tilt":
           return {
             whileHover: whileHover ?? { scale: 1.05 },
             whileTap: whileTap ?? { scale: 0.96 },
           };
 
-        // 9. Liquid Gooey
         case "liquid-gooey":
           return {
             whileHover: whileHover ?? {
@@ -366,14 +336,12 @@ export const ButtonAnimation = forwardRef<
             whileTap: whileTap ?? { scale: 0.95 },
           };
 
-        // 10. Neon Pulse
         case "neon-pulse":
           return {
             whileHover: whileHover ?? { scale: 1.04 },
             whileTap: whileTap ?? { scale: 0.96 },
           };
 
-        // 11. Ripple Echo
         case "ripple-echo":
           return {
             whileHover: whileHover ?? { scale: 1.02 },
@@ -381,7 +349,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 500, damping: 20 },
           };
 
-        // 12. Fold Out (Origami 3D Unfold with 1000px perspective)
         case "fold-out":
           return {
             whileHover: whileHover ?? {
@@ -394,14 +361,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 400, damping: 20 },
           };
 
-        // // 13. Swipe Fill
-        // case "swipe-fill":
-        //   return {
-        //     whileTap: whileTap ?? { scale: 0.96 },
-        //     transition: { duration: 0.15 },
-        //   };
-
-        // 14. Pixelate Morph
         case "pixelate-morph":
           return {
             whileHover: whileHover ?? {
@@ -419,7 +378,6 @@ export const ButtonAnimation = forwardRef<
             whileTap: whileTap ?? { scale: 0.95 },
           };
 
-        // 15. Jelly Wobble
         case "jelly-wobble":
           return {
             whileHover: whileHover ?? {
@@ -430,7 +388,6 @@ export const ButtonAnimation = forwardRef<
             whileTap: whileTap ?? { scale: 0.92 },
           };
 
-        // 16. Border Beam
         case "border-beam":
           return {
             whileHover: whileHover ?? { scale: 1.03 },
@@ -438,7 +395,6 @@ export const ButtonAnimation = forwardRef<
             transition: { type: "spring", stiffness: 450, damping: 20 },
           };
 
-        // 17. Flip 3D
         case "flip-3d":
           return {
             whileHover: whileHover ?? {
@@ -448,7 +404,6 @@ export const ButtonAnimation = forwardRef<
             whileTap: whileTap ?? { scale: 0.94 },
           };
 
-        // 18. Elastic Snap (Spring stiffness: 400, damping: 10, x: 15)
         case "elastic-snap":
           return {
             whileHover: whileHover ?? { x: 15 },
@@ -465,7 +420,6 @@ export const ButtonAnimation = forwardRef<
       }
     };
 
-    // Dynamic style overrides
     const getCustomAnimationClasses = () => {
       if (isPress3D) {
         return "border-b-[4px] border-neutral-950/80 active:border-b-0 dark:border-neutral-900 active:translate-y-1 shadow-md";
@@ -482,9 +436,7 @@ export const ButtonAnimation = forwardRef<
       if (isFlip3D) {
         return "[transform-style:preserve-3d]";
       }
-      // if (isSwipeFill) {
-      //   return "group overflow-hidden relative";
-      // }
+
       if (isBorderBeam) {
         return cn(
           "relative overflow-hidden",
@@ -497,7 +449,6 @@ export const ButtonAnimation = forwardRef<
       return "";
     };
 
-    // Container overflow rule: particle-burst dan ripple-echo WAJIB tidak overflow-hidden!
     const hasOverflowHidden =
       activeAnimation !== "particle-burst" &&
       activeAnimation !== "ripple-echo";
@@ -510,15 +461,10 @@ export const ButtonAnimation = forwardRef<
           (isMagneticTilt || isFoldOut || isFlip3D) && "[perspective:1000px]"
         )}
       >
-        {/* Glow Halo untuk animation='magnetic-glow' */}
         {isMagneticGlow && !disabled && !isLoading && (
           <div className="pointer-events-none absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-400 opacity-0 blur-lg transition-colors. duration-300 group-hover:opacity-80 group-hover:scale-105 -z-10" />
         )}
 
-
-        {/* ========================================================= */}
-        {/* 7. PARTICLE BURST RADIAL PARTICLES (Z-30) */}
-        {/* ========================================================= */}
         {isParticleBurst && (
           <AnimatePresence>
             {isBursting && (
@@ -548,9 +494,6 @@ export const ButtonAnimation = forwardRef<
           </AnimatePresence>
         )}
 
-        {/* ========================================================= */}
-        {/* 11. RIPPLE ECHO WATER RIPPLE DI KOORDINAT KURSOR (FIX REQUIRED) */}
-        {/* ========================================================= */}
         {isRippleEcho && (
           <div className="pointer-events-none absolute inset-0 overflow-visible z-20">
             {ripples.map((r) => (
@@ -624,15 +567,10 @@ export const ButtonAnimation = forwardRef<
           )}
           {...props}
         >
-          {/* ========================================================= */}
-          {/* 16. BORDER BEAM: SLEEK ORBITING NEON BEAM */}
-          {/* ========================================================= */}
           {isBorderBeam && (
             <>
-              {/* Base Border Track: Subtle border so the button outline is always clean & visible */}
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-neutral-300/80 dark:border-neutral-800 z-0" />
 
-              {/* Rotating Beam: Square container centered so the conic gradient rotates uniformly without distortion */}
               <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] aspect-square flex items-center justify-center overflow-hidden z-0">
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -645,7 +583,6 @@ export const ButtonAnimation = forwardRef<
                 />
               </div>
 
-              {/* Soft Glow Layer for extra neon luminance */}
               <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] aspect-square flex items-center justify-center overflow-hidden z-0 blur-[2px] opacity-75">
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -658,7 +595,6 @@ export const ButtonAnimation = forwardRef<
                 />
               </div>
 
-              {/* Inner Mask (Inset 1.5px): Solid fill preserving the button background and contrast */}
               <div
                 className={cn(
                   "pointer-events-none absolute inset-[1.5px] rounded-[inherit] z-0 transition-colors",
@@ -668,7 +604,6 @@ export const ButtonAnimation = forwardRef<
             </>
           )}
 
-          {/* 5. Specular Light Beam untuk animation='shimmer-sweep' */}
           {showShimmer && !disabled && !isLoading && (
             <motion.div
               initial={{ x: "-150%" }}
@@ -683,7 +618,6 @@ export const ButtonAnimation = forwardRef<
             />
           )}
 
-          {/* 9. Liquid Ripple Wave Overlay untuk animation='liquid-gooey' */}
           {isLiquid && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -693,32 +627,18 @@ export const ButtonAnimation = forwardRef<
             />
           )}
 
-          {/* 12. Fold Out subtle paper crease */}
           {isFoldOut && (
             <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent -z-0" />
           )}
 
-          {/* 13. Swipe Fill Curtain Block */}
-          {/* {isSwipeFill && (
-            <motion.span
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "0%" }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="pointer-events-none absolute inset-0 bg-blue-600 dark:bg-white z-0"
-            />
-          )} */}
-
-          {/* 17. Flip 3D Back Face */}
           {isFlip3D && (
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center gap-2 [transform:rotateX(180deg)] [backface-visibility:hidden] z-20 font-bold text-blue-500 dark:text-cyan-400">
               {backContent ?? "✨ Hello Backside"}
             </div>
           )}
 
-          {/* 6. Glitch Cyberpunk Chromatic Aberration Clones */}
           {isGlitch && (
             <>
-              {/* Cyan Glitch Clone Layer */}
               <span
                 aria-hidden="true"
                 className={cn(
@@ -734,7 +654,6 @@ export const ButtonAnimation = forwardRef<
                 {children}
               </span>
 
-              {/* Red / Magenta Glitch Clone Layer */}
               <span
                 aria-hidden="true"
                 className={cn(
@@ -750,7 +669,6 @@ export const ButtonAnimation = forwardRef<
                 {children}
               </span>
 
-              {/* Cyberpunk Scanline */}
               {isGlitching && (
                 <motion.div
                   initial={{ y: "-100%" }}
@@ -762,17 +680,15 @@ export const ButtonAnimation = forwardRef<
             </>
           )}
 
-          {/* Content & Icons */}
           <div
             className={cn(
               "inline-flex items-center justify-center gap-2 relative z-10",
               isFlip3D && "[backface-visibility:hidden]",
-              // isSwipeFill && "mix-blend-difference text-white",
+
               isBorderBeam && (variant === "default" || variant === "primary") && "!text-white dark:!text-white"
             )}
           >
 
-            {/* Loading Spinner Bawaan */}
             {isLoading && (
               <svg
                 className="animate-spin h-4 w-4 shrink-0 text-current mr-0.5"
@@ -796,14 +712,12 @@ export const ButtonAnimation = forwardRef<
               </svg>
             )}
 
-            {/* Left Icon */}
             {!isLoading && leftIcon && (
               <span className="shrink-0 flex items-center justify-center">
                 {leftIcon}
               </span>
             )}
 
-            {/* Text / Children with slide offset support */}
             <span
               className={cn(
                 "transition-transform duration-200",
@@ -813,7 +727,6 @@ export const ButtonAnimation = forwardRef<
               {children}
             </span>
 
-            {/* Right Icon / Slide Reveal Icon */}
             {!isLoading && (
               <>
                 {isSlideReveal ? (

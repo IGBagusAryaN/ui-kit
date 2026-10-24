@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { APP_VERSION } from "./version";
 
 export const defaultNS = "translation";
 
@@ -21,6 +22,7 @@ export const resources = {
           timeline: "Timeline",
           dropdown: "Dropdown",
           accordion: "Akordion",
+          autoCarousel: "Auto Carousel",
         },
         icons: {
           title: "Ikon",
@@ -61,7 +63,7 @@ export const resources = {
         reset: "Reset",
         all: "Semua",
         language: "Bahasa",
-        version: "v0.1.2",
+        version: APP_VERSION,
       },
       theme: {
         dark: "Gelap",
@@ -78,7 +80,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ @bgsaryzzz/ui v0.1.2 kini telah tersedia",
+          badge: `✨ needui ${APP_VERSION} kini telah tersedia`,
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "Koleksi komponen antarmuka web modern dengan animasi mikro fluida berbasis Framer Motion dan styling Tailwind CSS yang bebas dari dependensi kaku. Siap salin-tempel ke proyek Anda.",
@@ -108,7 +110,7 @@ export const resources = {
         installation: {
           badge: "Memulai",
           title: "Instalasi",
-          description: "Panduan langkah demi langkah untuk menginstal dan mengkonfigurasi UI Component Library @bgsaryzzz/ui pada project React, Vite, atau Next.js Anda.",
+          description: "Panduan langkah demi langkah untuk menginstal dan mengkonfigurasi UI Component Library @needui/ui-kit pada project React, Vite, atau Next.js Anda.",
           step1: {
             badge: "1",
             title: "Install Package",
@@ -116,22 +118,11 @@ export const resources = {
           },
           step2: {
             badge: "2",
-            title: "Pastikan Peer Dependencies Terpasang",
-            desc: "Library ini membutuhkan framer-motion untuk animasi fluida dan tailwindcss untuk utility styling:",
+            title: "Hubungkan Stylesheet CSS",
+            desc: "Pilih metode styling yang sesuai dengan kebutuhan project Anda:",
           },
           step3: {
             badge: "3",
-            title: "Konfigurasi Tailwind CSS",
-            desc: "Pilih versi Tailwind CSS yang digunakan pada proyek Anda untuk instruksi konfigurasi yang sesuai:",
-            v4Tab: "Tailwind CSS v4",
-            v4Badge: "Rekomendasi",
-            v4Desc: "Pada Tailwind CSS v4, Anda tidak lagi memerlukan file tailwind.config.js. Cukup tambahkan direktif @source ke file CSS global utama Anda (misal: index.css atau globals.css) agar Tailwind memindai dan mengekstrak komponen library:",
-            v3Tab: "Tailwind CSS v3",
-            v3Badge: "Legacy",
-            v3Desc: "Bagi pengguna Tailwind CSS v3, daftarkan path distribusi library ke dalam array content di file tailwind.config.js agar class utilitas komponen tidak terhapus saat proses purge/build:",
-          },
-          step4: {
-            badge: "4",
             title: "Mulai Gunakan Komponen",
             desc: "Import komponen yang Anda butuhkan langsung dari root package:",
           },
@@ -226,12 +217,7 @@ export const resources = {
               desc: "Efek lipatan kertas 3D yang terbuka ke arah pandang pengguna dengan rotasi sumbu X (rotateX: 22deg), perspective 1000px, dan bayangan elevasi mendalam.",
               buttonLabel: "Unfold 3D",
             },
-            // swipeFill: {
-            //   title: "13. Swipe Fill Curtain",
-            //   badge: "Mix Blend Difference",
-            //   desc: "Saat di-hover, tirai warna solid menyapu dari kiri ke kanan menutupi tombol, secara dinamis membalik kontras warna teks dengan mix-blend-difference.",
-            //   buttonLabel: "Swipe Fill",
-            // },
+
             pixelateMorph: {
               title: "14. Pixelate Morph",
               badge: "Stepped Glitch Filter",
@@ -313,7 +299,7 @@ export const resources = {
         iconDemo: {
           badge: "Aset",
           pageTitle: "Web Icons ({{total}} Ikon Esensial)",
-          pageDesc: "Koleksi {{total}} ikon SVG web esensial bawaan pustaka @bgsaryzzz/ui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
+          pageDesc: "Koleksi {{total}} ikon SVG web esensial bawaan pustaka needui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
           searchPlaceholder: "Cari ikon (contoh: 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...",
           clearSearch: "✕ Hapus",
           previewSize: "Ukuran Preview:",
@@ -927,6 +913,7 @@ export const resources = {
           timeline: "Timeline",
           dropdown: "Dropdown",
           accordion: "Accordion",
+          autoCarousel: "Auto Carousel",
         },
         icons: {
           title: "Icons",
@@ -967,7 +954,7 @@ export const resources = {
         reset: "Reset",
         all: "All",
         language: "Language",
-        version: "v0.1.2",
+        version: APP_VERSION,
       },
       theme: {
         dark: "Dark",
@@ -984,7 +971,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ @bgsaryzzz/ui v0.1.2 is now available",
+          badge: `✨ needui ${APP_VERSION} is now available`,
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "A high-end collection of modern web components featuring silky Framer Motion micro-animations and zero-dependency Tailwind CSS styling. Built for copy-paste flexibility.",
@@ -1014,7 +1001,7 @@ export const resources = {
         installation: {
           badge: "Get Started",
           title: "Installation",
-          description: "Step-by-step guide to installing and configuring the @bgsaryzzz/ui UI Component Library in your React, Vite, or Next.js project.",
+          description: "Step-by-step guide to installing and configuring the @needui/ui-kit UI Component Library in your React, Vite, or Next.js project.",
           step1: {
             badge: "1",
             title: "Install Package",
@@ -1022,22 +1009,11 @@ export const resources = {
           },
           step2: {
             badge: "2",
-            title: "Ensure Peer Dependencies Are Installed",
-            desc: "This library requires framer-motion for fluid animations and tailwindcss for utility styling:",
+            title: "Connect CSS Stylesheet",
+            desc: "Choose the styling method that best matches your project requirements:",
           },
           step3: {
             badge: "3",
-            title: "Configure Tailwind CSS",
-            desc: "Choose the Tailwind CSS version used in your project for the appropriate configuration instructions:",
-            v4Tab: "Tailwind CSS v4",
-            v4Badge: "Recommended",
-            v4Desc: "In Tailwind CSS v4, you no longer need a tailwind.config.js file. Simply add the @source directive to your main global CSS file (e.g. index.css or globals.css) so Tailwind scans and extracts classes from the library components:",
-            v3Tab: "Tailwind CSS v3",
-            v3Badge: "Legacy",
-            v3Desc: "For projects using Tailwind CSS v3, add the library distribution path to the content array in your tailwind.config.js file so component utility classes are not purged during build:",
-          },
-          step4: {
-            badge: "4",
             title: "Start Using Components",
             desc: "Import the components you need directly from the root package:",
           },
@@ -1132,12 +1108,7 @@ export const resources = {
               desc: "Origami 3D perspective unfold: button opens forward along the X-axis (rotateX: 22deg) with 1000px perspective and realistic depth shadow.",
               buttonLabel: "Unfold 3D",
             },
-            // swipeFill: {
-            //   title: "13. Swipe Fill Curtain",
-            //   badge: "Mix Blend Difference",
-            //   desc: "On hover, a solid accent curtain sweeps from left to right covering the button, dynamically inverting text contrast with mix-blend-difference.",
-            //   buttonLabel: "Swipe Fill",
-            // },
+
             pixelateMorph: {
               title: "14. Pixelate Morph",
               badge: "Stepped Glitch Filter",
@@ -1219,7 +1190,7 @@ export const resources = {
         iconDemo: {
           badge: "Assets",
           pageTitle: "Web Icons ({{total}} Essential Icons)",
-          pageDesc: "Collection of {{total}} built-in essential web SVG icons in @bgsaryzzz/ui. Designed with minimalist outline style (stroke width 2, viewBox 24x24), modular, lightweight, and fully styleable via Tailwind CSS utilities (currentColor).",
+          pageDesc: "Collection of {{total}} built-in essential web SVG icons in needui. Designed with minimalist outline style (stroke width 2, viewBox 24x24), modular, lightweight, and fully styleable via Tailwind CSS utilities (currentColor).",
           searchPlaceholder: "Search icons (e.g. 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...",
           clearSearch: "✕ Clear",
           previewSize: "Preview Size:",
@@ -1817,7 +1788,6 @@ timelineDemo: {
   },
 } as const;
 
-// Ambil preferensi bahasa tersimpan di localStorage, fallback ke browser atau default "id"
 const getInitialLanguage = (): string => {
   if (typeof window !== "undefined") {
     const saved = localStorage.getItem("ui-language");
@@ -1836,11 +1806,10 @@ i18n
     fallbackLng: "id",
     defaultNS,
     interpolation: {
-      escapeValue: false, // React sudah otomatis aman dari XSS
+      escapeValue: false, 
     },
   });
 
-// Simpan ke localStorage setiap kali bahasa berubah
 i18n.on("languageChanged", (lng) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("ui-language", lng);

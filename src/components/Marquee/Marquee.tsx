@@ -48,10 +48,9 @@ export function Marquee({
   style,
   ...props
 }: MarqueeProps) {
-  // Tentukan apakah berorientasi vertikal
+
   const isVertical = orientation === "vertical" || direction === "up" || direction === "down";
 
-  // Resolusi arah gerak default sesuai orientasi
   const resolvedDirection: MarqueeDirection = isVertical
     ? direction === "down"
       ? "down"
@@ -94,7 +93,6 @@ export function Marquee({
       }}
       {...props}
     >
-      {/* Definisi Keyframes CSS Mandiri (Zero-config, GPU-accelerated 60fps) */}
       <style>{`
         @keyframes a-marquee-scroll-left {
           from { transform: translateX(0); }
@@ -117,7 +115,6 @@ export function Marquee({
         }
       `}</style>
 
-      {/* Render Duplikasi Track (Infinite Seamless Loop) */}
       {Array.from({ length: repeat }).map((_, i) => (
         <div
           key={i}

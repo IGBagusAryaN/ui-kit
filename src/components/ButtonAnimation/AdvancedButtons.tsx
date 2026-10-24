@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../utils/cn";
 import {
   motion,
   AnimatePresence,
@@ -6,7 +8,12 @@ import {
   useSpring,
   PanInfo,
 } from "framer-motion";
-import { useTranslation } from "react-i18next";
+function useUiLanguage(): "id" | "en" {
+  if (typeof document !== "undefined" && document.documentElement.lang?.startsWith("id")) {
+    return "id";
+  }
+  return "en";
+}
 import {
     StarIcon,
   ShieldCheckIcon,
@@ -20,9 +27,6 @@ import {
   CodeIcon,
 } from "../../icons";
 
-// ============================================================================
-// 1. <HoldButton /> (Hold to Confirm with Dual-Layer Clip-Path)
-// ============================================================================
 export interface HoldButtonProps {
   label?: string;
   confirmedLabel?: string;
@@ -38,8 +42,7 @@ export function HoldButton({
   onConfirm,
   className = "",
 }: HoldButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Tahan untuk Konfirmasi" : "Hold to Confirm";
   const defaultConfirmed = lang === "id" ? "Terkonfirmasi" : "Confirmed";
@@ -191,8 +194,7 @@ export function SwipeButton({
   onConfirm,
   className = "",
 }: SwipeButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Geser untuk Melanjutkan" : "Swipe to Proceed";
   const defaultConfirmed = lang === "id" ? "Aksi Selesai" : "Action Completed";
@@ -319,8 +321,7 @@ export function MorphingAsyncButton({
   onClick,
   className = "",
 }: MorphingAsyncButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Deploy Aplikasi" : "Deploy App";
   const defaultLoading = lang === "id" ? "Mendeploy..." : "Deploying...";
@@ -452,8 +453,7 @@ export function MagneticButton({
   className = "",
   onClick,
 }: MagneticButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultText = lang === "id" ? "Arahkan Kursor Mendekat" : "Hover Near Cursor";
   const activeContent = children ?? defaultText;
@@ -537,8 +537,7 @@ export function ExpandableActionPill({
   actions: customActions,
   className = "",
 }: ExpandableActionPillProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeMessage, setActiveMessage] = useState<string | null>(null);
@@ -687,8 +686,7 @@ export function DoubleConfirmButton({
   timeoutDuration = 3000,
   className = "",
 }: DoubleConfirmButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Hapus Repositori" : "Delete Repository";
   const defaultArmed = lang === "id" ? "Klik lagi untuk konfirmasi" : "Click again to confirm";
@@ -789,7 +787,6 @@ export function DoubleConfirmButton({
           </span>
         </span>
 
-        {/* Shrinking bottom progress bar */}
         {state === "armed" && (
           <div
             className="absolute bottom-0 left-0 h-1 bg-white/70 transition-all"
@@ -836,8 +833,7 @@ export function FlipConfirmButton({
   onFlip,
   className = "",
 }: FlipConfirmButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultFront = lang === "id" ? "Salin Tautan Undangan" : "Copy Invitation Link";
   const defaultBack = lang === "id" ? "Tautan Disalin!" : "Link Copied!";
@@ -869,7 +865,6 @@ export function FlipConfirmButton({
         whileTap={{ scale: isFlipped ? 1 : 0.98 }}
         className="relative h-12 w-64 rounded-xl cursor-pointer select-none shadow-xs focus:outline-none"
       >
-        {/* Front Face (0 deg) */}
         <div
           style={{ backfaceVisibility: "hidden" }}
           className="absolute inset-0 flex items-center justify-center gap-2 px-6 rounded-xl font-semibold text-sm bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-800 dark:border-zinc-200 transition-colors"
@@ -880,7 +875,6 @@ export function FlipConfirmButton({
           <span>{activeFront}</span>
         </div>
 
-        {/* Back Face (180 deg) */}
         <div
           style={{
             backfaceVisibility: "hidden",
@@ -924,8 +918,7 @@ export function DownloadProgressButton({
   onComplete,
   className = "",
 }: DownloadProgressButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Unduh Paket SDK" : "Download SDK Bundle";
   const defaultDownloading = lang === "id" ? "Mengunduh" : "Downloading";
@@ -978,7 +971,6 @@ export function DownloadProgressButton({
             : "bg-emerald-500 text-white border-emerald-500 cursor-default"
         }`}
       >
-        {/* Progress Bar Fill Layer */}
         {state === "downloading" && (
           <motion.div
             style={{ width: `${Math.min(100, progress)}%` }}
@@ -1034,7 +1026,6 @@ export function DownloadProgressButton({
   );
 }
 
-
 // ============================================================================
 // 9. <ReactionBurstButton /> (Radial Spark & Rolling Counter Upvote)
 // ============================================================================
@@ -1061,8 +1052,7 @@ export function ReactionBurstButton({
   onToggle,
   className = "",
 }: ReactionBurstButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Bintang" : "Star";
   const defaultActive = lang === "id" ? "Berbintang" : "Starred";
@@ -1218,8 +1208,7 @@ export function BiometricAuthButton({
   onAuthSuccess,
   className = "",
 }: BiometricAuthButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultLabel = lang === "id" ? "Otentikasi Passkey" : "Authenticate Passkey";
   const defaultScanning = lang === "id" ? "Memindai Biometrik..." : "Verifying Biometrics...";
@@ -1380,8 +1369,7 @@ export function CopyConfettiButton({
   copiedLabel,
   className = "",
 }: CopyConfettiButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Salin Kode Undangan" : "Copy Invite Code";
   const defaultCopied = lang === "id" ? "Kode Berhasil Disalin! 🎉" : "Code Copied to Clipboard! 🎉";
@@ -1507,7 +1495,6 @@ export function CopyConfettiButton({
   );
 }
 
-
 // ============================================================================
 // 12. <OrigamiPaperPlaneButton /> (3D Origami Fold & Flight Trajectory)
 // ============================================================================
@@ -1526,8 +1513,7 @@ export function OrigamiPaperPlaneButton({
   onSend,
   className = "",
 }: OrigamiPaperPlaneButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
+  const lang = useUiLanguage();
 
   const defaultIdle = lang === "id" ? "Kirim Pesan" : "Send Message";
   const defaultSending = lang === "id" ? "Meluncur..." : "Launching...";
@@ -1654,6 +1640,31 @@ export function OrigamiPaperPlaneButton({
 // ============================================================================
 // 13. <OrbitalActionHubButton /> (Spatial Orbit & Proximity Magnet Action Hub)
 // ============================================================================
+export const orbitalHubVariants = cva(
+  "relative z-20 flex items-center justify-center gap-2.5 rounded-2xl font-bold transition-all shadow-xl cursor-pointer select-none border focus-visible:outline-none",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border-zinc-800 dark:border-zinc-200",
+        outline:
+          "bg-white/90 text-zinc-900 hover:bg-zinc-100 dark:bg-zinc-900/90 dark:text-zinc-100 dark:hover:bg-zinc-800 border-zinc-300 dark:border-zinc-700",
+        ghost:
+          "bg-transparent text-zinc-900 hover:bg-zinc-100 dark:text-zinc-100 dark:hover:bg-zinc-800 border-transparent",
+      },
+      size: {
+        default: "px-5 py-3 text-xs sm:text-sm",
+        sm: "px-3.5 py-2 text-xs",
+        lg: "px-6 py-3.5 text-sm sm:text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
 export interface SatelliteAction {
   id: string;
   label: string;
@@ -1662,131 +1673,150 @@ export interface SatelliteAction {
   onClick?: () => void;
 }
 
-export interface OrbitalActionHubButtonProps {
+export interface OrbitalActionHubButtonProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof orbitalHubVariants> {
   mainLabel?: string;
   actions?: SatelliteAction[];
+  onSelectAction?: (action: SatelliteAction) => void;
   className?: string;
 }
 
-export function OrbitalActionHubButton({
-  mainLabel,
-  actions: customActions,
-  className = "",
-}: OrbitalActionHubButtonProps) {
-  const { i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("id") ? "id" : "en";
-
-  const defaultLabel = lang === "id" ? "AI Copilot Hub" : "AI Copilot Hub";
-  const activeMainLabel = mainLabel ?? defaultLabel;
-
-  const defaultActions: SatelliteAction[] = [
+export const OrbitalActionHubButton = forwardRef<
+  HTMLDivElement,
+  OrbitalActionHubButtonProps
+>(
+  (
     {
-      id: "summarize",
-      label: lang === "id" ? "Ringkaskan" : "Summarize",
-      icon: <SparklesIcon className="w-4 h-4" />,
-      color: "bg-blue-500/10 border-blue-500/40 text-blue-600 dark:text-blue-400 hover:bg-blue-500 hover:text-white",
+      mainLabel,
+      actions: customActions,
+      onSelectAction,
+      variant = "default",
+      size = "default",
+      className = "",
+      ...props
     },
-    {
-      id: "translate",
-      label: lang === "id" ? "Terjemahkan" : "Translate",
-      icon: <GlobeIcon className="w-4 h-4" />,
-      color: "bg-purple-500/10 border-purple-500/40 text-purple-600 dark:text-purple-400 hover:bg-purple-500 hover:text-white",
-    },
-    {
-      id: "refactor",
-      label: lang === "id" ? "Refactor Kode" : "Refactor Code",
-      icon: <CodeIcon className="w-4 h-4" />,
-      color: "bg-emerald-500/10 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white",
-    },
-    {
-      id: "optimize",
-      label: lang === "id" ? "Optimasi Kilat" : "Optimize",
-      icon: <ZapIcon className="w-4 h-4" />,
-      color: "bg-amber-500/10 border-amber-500/40 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white",
-    },
-  ];
+    ref
+  ) => {
+    const lang = useUiLanguage();
 
-  const actions = customActions || defaultActions;
-  const [isOpen, setIsOpen] = useState(false);
-  const [hoveredSatellite, setHoveredSatellite] = useState<string | null>(null);
-  const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
+    const defaultLabel = lang === "id" ? "AI Copilot Hub" : "AI Copilot Hub";
+    const activeMainLabel = mainLabel ?? defaultLabel;
 
-  const radius = 64;
+    const defaultActions: SatelliteAction[] = [
+      {
+        id: "summarize",
+        label: lang === "id" ? "Ringkaskan" : "Summarize",
+        icon: <SparklesIcon className="w-4 h-4" />,
+        color: "bg-blue-500/10 border-blue-500/40 text-blue-600 dark:text-blue-400 hover:bg-blue-500 hover:text-white",
+      },
+      {
+        id: "translate",
+        label: lang === "id" ? "Terjemahkan" : "Translate",
+        icon: <GlobeIcon className="w-4 h-4" />,
+        color: "bg-purple-500/10 border-purple-500/40 text-purple-600 dark:text-purple-400 hover:bg-purple-500 hover:text-white",
+      },
+      {
+        id: "refactor",
+        label: lang === "id" ? "Refactor Kode" : "Refactor Code",
+        icon: <CodeIcon className="w-4 h-4" />,
+        color: "bg-emerald-500/10 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white",
+      },
+      {
+        id: "optimize",
+        label: lang === "id" ? "Optimasi Kilat" : "Optimize",
+        icon: <ZapIcon className="w-4 h-4" />,
+        color: "bg-amber-500/10 border-amber-500/40 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white",
+      },
+    ];
 
-  const handleSelect = (action: SatelliteAction) => {
-    setSelectedMessage(lang === "id" ? `Mengeksekusi satelit: ${action.label}` : `Executing satellite: ${action.label}`);
-    if (action.onClick) action.onClick();
-    setTimeout(() => setSelectedMessage(null), 2500);
-  };
+    const actions = customActions || defaultActions;
+    const [isOpen, setIsOpen] = useState(false);
+    const [hoveredSatellite, setHoveredSatellite] = useState<string | null>(null);
+    const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
 
-  return (
-    <div className={`relative inline-flex flex-col items-center gap-3 ${className}`}>
-      <div className="relative w-64 h-48 flex items-center justify-center select-none">
-        <div
-          className={`absolute rounded-full border border-dashed transition-all duration-500 pointer-events-none ${
-            isOpen
-              ? "w-44 h-44 border-zinc-300 dark:border-zinc-700 opacity-80 scale-100"
-              : "w-10 h-10 border-transparent opacity-0 scale-50"
-          }`}
-        />
+    const radius = 64;
 
-        <AnimatePresence>
-          {isOpen &&
-            actions.map((sat, index) => {
-              const angle = (index * (360 / actions.length) * Math.PI) / 180;
-              const x = Math.cos(angle) * radius;
-              const y = Math.sin(angle) * radius;
+    const handleSelect = (action: SatelliteAction) => {
+      setSelectedMessage(lang === "id" ? `Mengeksekusi satelit: ${action.label}` : `Executing satellite: ${action.label}`);
+      if (action.onClick) action.onClick();
+      if (onSelectAction) onSelectAction(action);
+      setTimeout(() => setSelectedMessage(null), 2500);
+    };
 
-              return (
-                <motion.button
-                  key={sat.id}
-                  type="button"
-                  onClick={() => handleSelect(sat)}
-                  onMouseEnter={() => setHoveredSatellite(sat.label)}
-                  onMouseLeave={() => setHoveredSatellite(null)}
-                  initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-                  animate={{ opacity: 1, scale: 1, x, y }}
-                  exit={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-                  transition={{ type: "spring", stiffness: 450, damping: 25, delay: index * 0.04 }}
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`absolute z-30 w-10 h-10 rounded-full border flex items-center justify-center shadow-lg backdrop-blur-md transition-colors cursor-pointer ${sat.color}`}
-                  title={sat.label}
-                >
-                  {sat.icon}
-                </motion.button>
-              );
-            })}
-        </AnimatePresence>
+    return (
+      <div
+        ref={ref}
+        className={cn("relative inline-flex flex-col items-center gap-3", className)}
+        {...props}
+      >
+        <div className="relative w-64 h-48 flex items-center justify-center select-none">
+          <div
+            className={`absolute rounded-full border border-dashed transition-all duration-500 pointer-events-none ${
+              isOpen
+                ? "w-44 h-44 border-zinc-300 dark:border-zinc-700 opacity-80 scale-100"
+                : "w-10 h-10 border-transparent opacity-0 scale-50"
+            }`}
+          />
 
-        <motion.button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`relative z-20 flex items-center gap-2.5 px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm shadow-xl transition-all border cursor-pointer ${
-            isOpen
-              ? "bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-900 border-zinc-700 shadow-[0_0_25px_rgba(99,102,241,0.25)]"
-              : "bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 border-zinc-800 dark:border-zinc-200"
-          }`}
-        >
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+          <AnimatePresence>
+            {isOpen &&
+              actions.map((sat, index) => {
+                const angle = (index * (360 / actions.length) * Math.PI) / 180;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                return (
+                  <motion.button
+                    key={sat.id}
+                    type="button"
+                    onClick={() => handleSelect(sat)}
+                    onMouseEnter={() => setHoveredSatellite(sat.label)}
+                    onMouseLeave={() => setHoveredSatellite(null)}
+                    initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                    animate={{ opacity: 1, scale: 1, x, y }}
+                    exit={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                    transition={{ type: "spring", stiffness: 450, damping: 25, delay: index * 0.04 }}
+                    whileHover={{ scale: 1.25 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`absolute z-30 w-10 h-10 rounded-full border flex items-center justify-center shadow-lg backdrop-blur-md transition-colors cursor-pointer ${sat.color}`}
+                    title={sat.label}
+                  >
+                    {sat.icon}
+                  </motion.button>
+                );
+              })}
+          </AnimatePresence>
+
+          <motion.button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(
+              orbitalHubVariants({ variant, size }),
+              isOpen && "shadow-[0_0_25px_rgba(99,102,241,0.25)] border-indigo-500/60"
+            )}
           >
-            <SparklesIcon className="w-4 h-4 text-indigo-400 dark:text-indigo-600" />
-          </motion.div>
-          <span>{activeMainLabel}</span>
-        </motion.button>
-      </div>
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            >
+              <SparklesIcon className="w-4 h-4 text-indigo-400 dark:text-indigo-600" />
+            </motion.div>
+            <span>{activeMainLabel}</span>
+          </motion.button>
+        </div>
 
-      <div className="h-4 text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
-        {selectedMessage ||
-          hoveredSatellite ||
-          (isOpen
-            ? (lang === "id" ? "Pilih salah satu satelit aksi orbital" : "Select an orbital action satellite node")
-            : (lang === "id" ? "Klik untuk mengorbitkan 4 satelit aksi" : "Click to deploy 4 gravitational action satellites"))}
+        <div className="h-4 text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+          {selectedMessage ||
+            hoveredSatellite ||
+            (isOpen
+              ? (lang === "id" ? "Pilih salah satu satelit aksi orbital" : "Select an orbital action satellite node")
+              : (lang === "id" ? "Klik untuk mengorbitkan 4 satelit aksi" : "Click to deploy 4 gravitational action satellites"))}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+);
+OrbitalActionHubButton.displayName = "OrbitalActionHubButton";

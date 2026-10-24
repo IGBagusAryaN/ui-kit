@@ -10,18 +10,11 @@ import {
 import { SearchIcon } from "../../src/icons";
 import { CodeSnippet } from "../components/CodeSnippet";
 
-/* =========================================================================
- * MAIN COMPONENT: TIMELINE DEMO (3 VARIAN UTAMA)
- * ========================================================================= */
 export function TimelineDemo() {
   const { t } = useTranslation();
 
-  // State untuk Horizontal Stepper Interaktif
   const [activeStep, setActiveStep] = useState<number>(1);
 
-  /* -------------------------------------------------------------------------
-   * DATA: 1. Classic Vertical Items
-   * ------------------------------------------------------------------------- */
   const classicItems: TimelineItemData[] = [
     {
       id: "classic-1",
@@ -97,9 +90,6 @@ export function TimelineDemo() {
     },
   ];
 
-  /* -------------------------------------------------------------------------
-   * DATA: 2. Horizontal Stepper Steps
-   * ------------------------------------------------------------------------- */
   const stepperSteps: StepItem[] = [
     {
       id: "step-1",
@@ -139,9 +129,6 @@ export function TimelineDemo() {
     },
   ];
 
-  /* -------------------------------------------------------------------------
-   * DATA: 3. Interactive Accordion Items
-   * ------------------------------------------------------------------------- */
   const accordionItems: TimelineItemData[] = [
     {
       id: "acc-1",
@@ -213,11 +200,8 @@ export function TimelineDemo() {
     },
   ];
 
-  /* -------------------------------------------------------------------------
-   * CODE SNIPPETS
-   * ------------------------------------------------------------------------- */
   const verticalCodeBlocks = {
-    react: `import { VerticalTimeline, TimelineItemData } from "@bgsaryzzz/ui";
+    react: `import { VerticalTimeline, TimelineItemData } from "@needui/ui-kit";
 
 const milestones: TimelineItemData[] = [
   {
@@ -255,7 +239,7 @@ export function ProjectRoadmap() {
   return <VerticalTimeline items={milestones} animated />;
 }`,
     vue: `<script setup lang="ts">
-import { VerticalTimeline } from "@bgsaryzzz/ui-vue";
+import { VerticalTimeline } from "needui-vue";
 
 const milestones = [
   {
@@ -333,7 +317,7 @@ const milestones = [
 
     const stepperCodeBlocks = {
     react: `import { useState } from "react";
-import { HorizontalStepper, StepItem } from "@bgsaryzzz/ui";
+import { HorizontalStepper, StepItem } from "@needui/ui-kit";
 
 const checkoutSteps: StepItem[] = [
   { id: 1, title: "Akun", subtitle: "Autentikasi Pengguna" },
@@ -358,7 +342,7 @@ export function OnboardingFlow() {
 }`,
     vue: `<script setup lang="ts">
 import { ref } from "vue";
-import { HorizontalStepper } from "@bgsaryzzz/ui-vue";
+import { HorizontalStepper } from "needui-vue";
 
 const currentStep = ref(0);
 const checkoutSteps = [
@@ -401,7 +385,7 @@ const checkoutSteps = [
   };
 
   const accordionCodeBlocks = {
-    react: `import { AccordionTimeline, TimelineItemData } from "@bgsaryzzz/ui";
+    react: `import { AccordionTimeline, TimelineItemData } from "@needui/ui-kit";
 
 const auditMilestones: TimelineItemData[] = [
   {
@@ -435,7 +419,7 @@ export function ProjectAudit() {
   );
 }`,
     vue: `<script setup lang="ts">
-import { AccordionTimeline } from "@bgsaryzzz/ui-vue";
+import { AccordionTimeline } from "needui-vue";
 
 const auditMilestones = [
   {
@@ -569,7 +553,6 @@ const auditMilestones = [
 
   return (
     <div className="w-full space-y-8">
-      {/* Top Search & Filter Bar */}
       <div className="space-y-4">
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-neutral-400">
@@ -596,7 +579,6 @@ const auditMilestones = [
           )}
         </div>
 
-        {/* Info Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-900/40">
           <div className="space-y-0.5">
             <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
@@ -616,7 +598,6 @@ const auditMilestones = [
         </div>
       </div>
 
-      {/* Empty Search State */}
       {filteredList.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800">
           <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -635,14 +616,12 @@ const auditMilestones = [
         </div>
       )}
 
-      {/* 1 Column Vertical List (gap-14) for Full Experience */}
       <div className="flex flex-col gap-14">
         {filteredList.map((item) => (
           <div
             key={item.id}
             className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-4">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
@@ -657,12 +636,10 @@ const auditMilestones = [
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="w-full flex items-center justify-center p-4 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
               {item.render()}
             </div>
 
-            {/* Usage Code Snippet */}
             <CodeSnippet code={item.snippet} />
           </div>
         ))}

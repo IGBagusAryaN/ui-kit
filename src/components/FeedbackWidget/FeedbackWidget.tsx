@@ -10,10 +10,6 @@ import {
   ActivityIcon,
 } from "../../icons";
 
-/* =========================================================================
- * TYPES & INTERFACES
- * ========================================================================= */
-
 export interface FeedbackData {
   rating: number;
   message: string;
@@ -47,10 +43,6 @@ export interface FeedbackWidgetProps {
   /** Custom class styling container */
   className?: string;
 }
-
-/* =========================================================================
- * DEFAULT DATA
- * ========================================================================= */
 
 const DEFAULT_BREAKDOWN: RatingBreakdownItem[] = [
   { stars: 5, count: 97, percentage: 78 },
@@ -97,10 +89,6 @@ const RATING_DESCRIPTORS: Record<number, { label: string; color: string; desc: s
   },
 };
 
-/* =========================================================================
- * SUB-COMPONENT: CUSTOM SVG STAR WITH PRECISION FILL & GLOW
- * ========================================================================= */
-
 interface StarGlyphProps {
   filled: boolean;
   size?: number;
@@ -125,10 +113,6 @@ function StarGlyph({ filled, size = 22, className = "" }: StarGlyphProps) {
   );
 }
 
-/* =========================================================================
- * MAIN COMPONENT: FEEDBACK WIDGET
- * ========================================================================= */
-
 export function FeedbackWidget({
   averageRating = 4.8,
   totalReviews = 124,
@@ -140,7 +124,7 @@ export function FeedbackWidget({
   subtitle = "Help us craft a better experience. Your feedback directly shapes upcoming releases.",
   className,
 }: FeedbackWidgetProps) {
-  // State management
+
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [hoveredRating, setHoveredRating] = useState<number | null>(null);
   const [message, setMessage] = useState<string>("");
@@ -151,14 +135,12 @@ export function FeedbackWidget({
   const activeRating = hoveredRating !== null ? hoveredRating : selectedRating;
   const currentDescriptor = activeRating > 0 ? RATING_DESCRIPTORS[activeRating] : null;
 
-  // Toggle feedback tag
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
-  // Handle submit action with 2s async simulation
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (selectedRating === 0) return;
@@ -176,7 +158,7 @@ export function FeedbackWidget({
       if (onSubmit) {
         await onSubmit(feedbackPayload);
       } else {
-        // Default simulated API latency: 2 seconds
+
         await new Promise((resolve) => setTimeout(resolve, 2000));
       }
 
@@ -187,7 +169,6 @@ export function FeedbackWidget({
     }
   };
 
-  // Reset form to allow another submission
   const handleReset = () => {
     setSelectedRating(0);
     setHoveredRating(null);
@@ -204,7 +185,6 @@ export function FeedbackWidget({
         className
       )}
     >
-      {/* Optional Close Button */}
       {onClose && (
         <button
           type="button"
@@ -216,7 +196,6 @@ export function FeedbackWidget({
         </button>
       )}
 
-      {/* Widget Header */}
       <div className="space-y-1.5 pr-8 mb-6">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:border-indigo-900/60">
           <SparklesIcon size={12} />
@@ -232,9 +211,7 @@ export function FeedbackWidget({
 
       <AnimatePresence mode="wait">
         {submitStatus === "success" && lastSubmittedData ? (
-          /* =============================================================
-           * SUCCESS STATE VIEW (SMOOTH FADE-IN AFTER SUBMISSION)
-           * ============================================================= */
+
           <motion.div
             key="success-view"
             initial={{ opacity: 0, y: 12, scale: 0.98 }}
@@ -243,7 +220,6 @@ export function FeedbackWidget({
             transition={{ duration: 0.28, ease: "easeOut" }}
             className="py-6 space-y-6 text-center"
           >
-            {/* Animated Checkmark Badge */}
             <div className="flex justify-center">
               <motion.div
                 initial={{ scale: 0 }}
@@ -271,11 +247,10 @@ export function FeedbackWidget({
                 Thank you for your feedback!
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-sm mx-auto leading-relaxed">
-                Your evaluation helps us continually elevate <span className="font-semibold text-zinc-800 dark:text-zinc-200">@bgsaryzzz/ui</span> for developers worldwide.
+                Your evaluation helps us continually elevate <span className="font-semibold text-zinc-800 dark:text-zinc-200">needui</span> for developers worldwide.
               </p>
             </div>
 
-            {/* Submitted Summary Card */}
             <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800/80 text-left space-y-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-mono text-zinc-400 dark:text-zinc-500">
@@ -315,7 +290,6 @@ export function FeedbackWidget({
               )}
             </div>
 
-            {/* Reset / Submit Another Button */}
             <div className="flex justify-center pt-2">
               <button
                 type="button"
@@ -328,9 +302,7 @@ export function FeedbackWidget({
             </div>
           </motion.div>
         ) : (
-          /* =============================================================
-           * ACTIVE FORM VIEW (STATISTICS + STAR RATING + TEXTAREA)
-           * ============================================================= */
+
           <motion.div
             key="form-view"
             initial={{ opacity: 0 }}
@@ -339,10 +311,8 @@ export function FeedbackWidget({
             transition={{ duration: 0.2 }}
             className="space-y-6"
           >
-            {/* 1. REVIEW STATISTICS CARD */}
             <section className="p-4 sm:p-5 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800/70">
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
-                {/* Aggregate Score & Total Reviews */}
                 <div className="sm:col-span-5 flex flex-col items-center sm:items-start text-center sm:text-left space-y-1">
                   <div className="flex items-baseline gap-2">
                     <span className="text-4xl sm:text-5xl font-black font-mono tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -353,7 +323,6 @@ export function FeedbackWidget({
                     </span>
                   </div>
 
-                  {/* Aggregate Stars */}
                   <div className="flex items-center gap-0.5 text-amber-400">
                     {Array.from({ length: 5 }).map((_, idx) => (
                       <StarGlyph
@@ -372,7 +341,6 @@ export function FeedbackWidget({
                   </p>
                 </div>
 
-                {/* Rating Bar Breakdown */}
                 <div className="sm:col-span-7 space-y-1.5 border-t sm:border-t-0 sm:border-l border-zinc-200/80 dark:border-zinc-800/80 pt-4 sm:pt-0 sm:pl-5">
                   {breakdown.map((item) => (
                     <div
@@ -397,7 +365,6 @@ export function FeedbackWidget({
               </div>
             </section>
 
-            {/* 2. ANIMATED STAR RATING (1-5 STARS) */}
             <section className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
@@ -408,7 +375,6 @@ export function FeedbackWidget({
                 </span>
               </div>
 
-              {/* Star Rating Interactive Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60">
                 <div
                   className="flex items-center gap-2"
@@ -453,7 +419,6 @@ export function FeedbackWidget({
                   })}
                 </div>
 
-                {/* Rating Label Descriptor Badge */}
                 <div className="min-h-[28px] flex items-center">
                   <AnimatePresence mode="wait">
                     {currentDescriptor ? (
@@ -488,7 +453,6 @@ export function FeedbackWidget({
               </div>
             </section>
 
-            {/* 3. QUICK FEEDBACK TAG CHIPS */}
             {availableTags.length > 0 && (
               <section className="space-y-2">
                 <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
@@ -517,7 +481,6 @@ export function FeedbackWidget({
               </section>
             )}
 
-            {/* 4. FEEDBACK FORM & SUBMISSION */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
@@ -547,7 +510,6 @@ export function FeedbackWidget({
                 </div>
               </div>
 
-              {/* Submit Button with Loading Spinner & Success Transition */}
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 dark:text-zinc-500">
                   <ActivityIcon size={13} />
@@ -585,7 +547,6 @@ export function FeedbackWidget({
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="flex items-center gap-2"
                       >
-                        {/* Smooth Spinner SVG */}
                         <svg
                           className="animate-spin h-3.5 w-3.5 text-white"
                           xmlns="http://www.w3.org/2000/svg"

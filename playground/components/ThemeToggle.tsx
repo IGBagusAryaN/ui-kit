@@ -16,7 +16,7 @@ export function ThemeToggle({
   size = "md",
   className = "",
 }: ThemeToggleProps) {
-  // Konsumsi tema langsung dari ThemeProvider React Context
+
   const { isDark, toggleTheme } = useTheme();
 
   const sizeClasses = {
@@ -41,7 +41,6 @@ export function ThemeToggle({
       title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
       className={`relative inline-flex items-center justify-center font-medium select-none cursor-pointer outline-none border border-neutral-200 bg-white text-neutral-700 shadow-xs hover:bg-neutral-100 hover:text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-white ${sizeClasses[size]} ${className}`}
     >
-      {/* Icon Sun & Moon dengan Animasi Transisi Halus Framer Motion */}
       <div className="relative flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           {isDark ? (
@@ -100,7 +99,6 @@ export function ThemeToggle({
         </AnimatePresence>
       </div>
 
-      {/* Label Text Animasi Slide-Fade */}
       {showLabel && (
         <div className="relative overflow-hidden hidden sm:inline-block">
           <AnimatePresence mode="wait" initial={false}>

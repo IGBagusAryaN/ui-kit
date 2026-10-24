@@ -5,57 +5,47 @@ import { CodeBlock } from "../components/CodeBlock";
 
 export function ButtonAnimationPage() {
   const { t } = useTranslation();
-  const sampleUsage = `import { ButtonAnimation } from "@bgsaryzzz/ui";
+  const sampleUsage = `import { ButtonAnimation } from "@needui/ui-kit";
 
 export function ButtonGallery() {
   return (
     <div className="flex flex-wrap gap-4">
-      {/* 1. Spring Bounce */}
       <ButtonAnimation animation="spring-bounce">
         Spring Bounce
       </ButtonAnimation>
 
-      {/* 6. Glitch Cyberpunk */}
       <ButtonAnimation animation="glitch-cyberpunk">
         CYBERPUNK_SYS
       </ButtonAnimation>
 
-      {/* 7. Particle Burst */}
       <ButtonAnimation animation="particle-burst" onClick={() => console.log("Boom!")}>
         Click for Boom! 💥
       </ButtonAnimation>
 
-      {/* 8. Magnetic 3D Tilt */}
       <ButtonAnimation animation="magnetic-tilt">
         Magnetic 3D Tilt
       </ButtonAnimation>
 
-      {/* 10. Neon Pulse */}
       <ButtonAnimation animation="neon-pulse">
         Neon Pulse
       </ButtonAnimation>
 
-      {/* 11. Ripple Echo */}
       <ButtonAnimation animation="ripple-echo">
         Click Ripple 🌊
       </ButtonAnimation>
 
-      {/* 12. Fold Out */}
       <ButtonAnimation animation="fold-out">
         Unfold 3D
       </ButtonAnimation>
 
-      {/* 13. Pixelate Morph */}
       <ButtonAnimation animation="pixelate-morph">
         Pixelate Jitter
       </ButtonAnimation>
 
-      {/* 14. Border Beam */}
       <ButtonAnimation animation="border-beam">
         Border Beam
       </ButtonAnimation>
 
-      {/* 15. Elastic Snap */}
       <ButtonAnimation animation="elastic-snap">
         Snap Rebound
       </ButtonAnimation>
@@ -65,7 +55,6 @@ export function ButtonGallery() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Title */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>{t("content.buttonDemo.badge", "Animations")}</span>
@@ -81,12 +70,10 @@ export function ButtonGallery() {
         </p>
       </div>
 
-      {/* All 18 Button Animations in 2-Column Grid */}
       <section className="space-y-6">
         <ButtonDemo />
       </section>
 
-      {/* Usage Code */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           Usage Example
@@ -94,7 +81,6 @@ export function ButtonGallery() {
         <CodeBlock code={sampleUsage} language="tsx" filename="ButtonGallery.tsx" />
       </section>
 
-      {/* Props Table */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           Props
@@ -124,7 +110,6 @@ export function ButtonGallery() {
                 <td className="p-3 font-semibold text-blue-600 dark:text-blue-400">variant</td>
                 <td className="p-3 text-neutral-500">
                   "default" | "secondary" | "outline" | "ghost" 
-                  {/* | "danger" */}
                 </td>
                 <td className="p-3 text-neutral-400">"default"</td>
                 <td className="p-3 font-sans">

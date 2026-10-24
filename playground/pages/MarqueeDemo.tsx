@@ -19,11 +19,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * DATA & ASSETS UNTUK 10 VARIASI MARQUEE
- * ========================================================================= */
-
-// 1. DATA: Tech Stack Pills (Trusted By / Ecosystem)
 interface TechPill {
   id: string;
   name: string;
@@ -152,7 +147,6 @@ const techPillsRow2: TechPill[] = [
   },
 ];
 
-// 2. DATA: Testimoni Pengguna
 interface ReviewItem {
   id: string;
   name: string;
@@ -171,7 +165,7 @@ const userReviews: ReviewItem[] = [
     role: "Senior Frontend Lead",
     avatarGrad: "from-blue-500 to-cyan-500",
     stars: 5,
-    content: "The hardware-accelerated animations in @bgsaryzzz/ui are butter smooth. Replaced three disparate packages with zero layout shift.",
+    content: "The hardware-accelerated animations in needui are butter smooth. Replaced three disparate packages with zero layout shift.",
   },
   {
     id: "r2",
@@ -220,7 +214,6 @@ const userReviews: ReviewItem[] = [
   },
 ];
 
-// 3. DATA: Activity Feed for Vertical Waterfall
 interface ActivityFeed {
   id: string;
   title: string;
@@ -244,7 +237,6 @@ const columnFeed2: ActivityFeed[] = [
   { id: "c2-4", title: "Test Suites: 100% Passed", tag: "CI / CD", badgeBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", time: "27m ago", icon: "✓" },
 ];
 
-// 5. DATA: 3D Perspective Cards
 interface ProjectCard {
   id: string;
   title: string;
@@ -260,7 +252,6 @@ const projectCards: ProjectCard[] = [
   { id: "p4", title: "Aura Particles", category: "WebGL Shader", metric: "120 FPS", accentGradient: "from-amber-500/10 via-orange-500/10 to-rose-500/10 border-amber-500/20 dark:from-amber-950/60 dark:via-orange-950/50 dark:to-rose-950/40 dark:border-amber-500/30" },
 ];
 
-// 8. DATA: Draggable Cards
 interface DraggableCardItem {
   id: string;
   title: string;
@@ -279,9 +270,6 @@ const draggableItems: DraggableCardItem[] = [
   { id: "d6", title: "Spatial Layering System", description: "Depth-aware z-index elevation with ambient backdrop filter.", tag: "Elevation", color: "from-amber-500 to-pink-500", stat: "3D Ready" },
 ];
 
-/* =========================================================================
- * SUB-KOMPONEN KHUSUS: DRAGGABLE CAROUSEL MARQUEE
- * ========================================================================= */
 function DraggableMarqueeCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -349,7 +337,6 @@ function ParallaxDualDirection() {
       onMouseLeave={() => setIsHovered(false)}
       className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 py-10 space-y-3 cursor-pointer"
     >
-      {/* Track 1: Bergerak ke Kiri (Melambat saat di-hover) */}
       <Marquee
         direction="left"
         speed={isHovered ? 52 : 24}
@@ -362,7 +349,6 @@ function ParallaxDualDirection() {
         </span>
       </Marquee>
 
-      {/* Track 2: Bergerak ke Kanan (Mempercepat saat di-hover) */}
       <Marquee
         direction="right"
         speed={isHovered ? 14 : 36}
@@ -660,7 +646,6 @@ export function MarqueeDemo() {
             }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
-              {/* Kolom 1: Upward Testimonials */}
               <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade={false} gap={16} className="h-full">
                 {userReviews.slice(0, 3).map((rev) => (
                   <div
@@ -682,7 +667,6 @@ export function MarqueeDemo() {
                 ))}
               </Marquee>
 
-              {/* Kolom 2: Downward Testimonials */}
               <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover fade={false} gap={16} className="h-full">
                 {userReviews.slice(3, 6).map((rev) => (
                   <div
@@ -716,12 +700,10 @@ export function MarqueeDemo() {
         description:
           "Two giant text tracks running in opposite directions with asymmetric velocities. Hovering over the container dynamically shifts speed for a parallax depth illusion.",
         snippet: `<div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-  {/* Track 1: Slows down on hover */}
   <Marquee direction="left" speed={isHovered ? 52 : 24} fade gap={28}>
     <span className="text-7xl font-black uppercase">PARALLAX VELOCITY • NEXT-GEN •</span>
   </Marquee>
 
-  {/* Track 2: Accelerates on hover */}
   <Marquee direction="right" speed={isHovered ? 14 : 36} fade gap={28}>
     <span className="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500">
       COUNTER DIRECTIONAL TRACKS • SPEED SHIFT •
@@ -821,19 +803,16 @@ export function MarqueeDemo() {
         description:
           "A floating 3D graphic anchored between two synchronized marquee streams: a solid backdrop layer underneath, and an outline wireframe layer in front.",
         snippet: `<div className="relative h-[380px] overflow-hidden flex items-center justify-center">
-  {/* Layer A (Back): Solid Text behind object */}
   <div className="absolute inset-0 z-10 flex items-center opacity-70">
     <Marquee direction="left" speed={22} fade gap={28}>
       <span className="text-8xl font-black text-zinc-700 dark:text-zinc-800">SPATIAL AUDIO • ACOUSTICS •</span>
     </Marquee>
   </div>
 
-  {/* Center Object: Anchored in 3D Space */}
   <div className="relative z-20 drop-shadow-2xl animate-pulse">
     <HeadphoneImage />
   </div>
 
-  {/* Layer B (Front): Wireframe Outline passing above object */}
   <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
     <Marquee direction="left" speed={22} fade gap={28}>
       <span className="text-8xl font-black text-transparent" style={{ WebkitTextStroke: "1.5px white" }}>
@@ -844,10 +823,8 @@ export function MarqueeDemo() {
 </div>`,
         render: () => (
           <div className="w-full relative h-[380px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-950 flex items-center justify-center select-none">
-            {/* Ambient Background Glow */}
             <div className="absolute w-72 h-72 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
 
-            {/* Layer A (Back): Solid Dim Text Behind Device (z-10) */}
             <div className="absolute inset-0 z-10 flex items-center opacity-75 pointer-events-none">
               <Marquee direction="left" speed={24} fade gap={28}>
                 <span className="text-7xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-zinc-800 dark:text-zinc-800 whitespace-nowrap">
@@ -856,10 +833,8 @@ export function MarqueeDemo() {
               </Marquee>
             </div>
 
-            {/* Center Anchor Object (z-20): High-End Spatial Audio Headphone Vector */}
             <div className="relative z-20 flex flex-col items-center justify-center p-6 drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)] pointer-events-none">
               <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl bg-gradient-to-tr from-zinc-900/90 to-zinc-800/80 border border-zinc-700/60 flex items-center justify-center p-6 shadow-2xl backdrop-blur-sm relative group">
-                {/* Visual Headphone Icon with Glow Accents */}
                 <svg
                   className="w-28 h-28 text-indigo-400 drop-shadow-[0_0_20px_rgba(99,102,241,0.6)] animate-pulse"
                   viewBox="0 0 24 24"
@@ -880,7 +855,6 @@ export function MarqueeDemo() {
               </div>
             </div>
 
-            {/* Layer B (Front): Wireframe Outline Passing Directly Above Device (z-30) */}
             <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
               <Marquee direction="left" speed={24} fade gap={28}>
                 <span
@@ -913,7 +887,6 @@ export function MarqueeDemo() {
 
   return (
     <div className="w-full space-y-8">
-      {/* Top Search & Filter Bar */}
       <div className="space-y-4">
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-400">
@@ -937,7 +910,6 @@ export function MarqueeDemo() {
           )}
         </div>
 
-        {/* Info Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/40">
           <div className="space-y-0.5">
             <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
@@ -953,7 +925,6 @@ export function MarqueeDemo() {
         </div>
       </div>
 
-      {/* Empty Search State */}
       {filteredList.length === 0 && (
         <div className="text-center py-12 px-4 rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800">
           <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -969,14 +940,12 @@ export function MarqueeDemo() {
         </div>
       )}
 
-      {/* 1-Column Full Experience Layout (gap-14) */}
       <div className="flex flex-col gap-14">
         {filteredList.map((item) => (
           <div
             key={item.id}
             className="flex flex-col justify-between rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white p-5 sm:p-7 shadow-xs transition hover:border-zinc-300 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
-            {/* Header Info */}
             <div className="space-y-1.5 mb-5">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -991,12 +960,10 @@ export function MarqueeDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="w-full flex items-center justify-center p-3 sm:p-5 rounded-xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-5 overflow-hidden">
               {item.render()}
             </div>
 
-            {/* Usage Snippet */}
             <CodeSnippet code={item.snippet} />
           </div>
         ))}

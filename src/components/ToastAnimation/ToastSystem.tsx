@@ -10,10 +10,6 @@ import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
 import { InfoIcon, CheckCircleIcon, AlertTriangleIcon, CloseIcon } from "../../icons";
 import { cn } from "../../utils/cn";
 
-/* =========================================================================
- * 1. TYPES & INTERFACES
- * ========================================================================= */
-
 export type ToastType = "info" | "success" | "error" | "action" | "promise";
 
 export type ToastPosition =
@@ -94,10 +90,6 @@ export interface ToastContextValue {
   };
 }
 
-/* =========================================================================
- * 2. SPINNER ICON COMPONENT
- * ========================================================================= */
-
 export function ToastSpinner({ className }: { className?: string }) {
   return (
     <svg
@@ -124,10 +116,6 @@ export function ToastSpinner({ className }: { className?: string }) {
     </svg>
   );
 }
-
-/* =========================================================================
- * 3. CONTEXT & PROVIDER
- * ========================================================================= */
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
@@ -219,7 +207,7 @@ export function ToastProvider({
         options?: ToastOptions
       ): Promise<T> => {
         const id = options?.id || `promise-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
-        
+
         // Buat toast awal dalam status 'loading' tanpa auto-dismiss
         addToast("promise", messages.loading.message, {
           ...options,
@@ -699,10 +687,8 @@ export function ToastItem({ toast, onDismiss }: ToastItemProps) {
         getBorderAndAccentClass()
       )}
     >
-      {/* Konten Utama Toast */}
       {renderVariantContent()}
 
-      {/* Tombol Tutup Silang (Close) */}
       <button
         type="button"
         aria-label="Tutup notifikasi"
@@ -712,7 +698,6 @@ export function ToastItem({ toast, onDismiss }: ToastItemProps) {
         <CloseIcon size={14} />
       </button>
 
-      {/* Progress Bar Timer (Auto-dismiss countdown indicator) */}
       {hasAutoDismiss && (
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-neutral-100 dark:bg-neutral-800/60 overflow-hidden">
           <div

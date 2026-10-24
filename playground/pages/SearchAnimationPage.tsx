@@ -2,24 +2,19 @@ import { Demo } from "./Demo";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function SearchAnimationPage() {
-  const sampleUsage = `import { SearchAnimation } from "@bgsaryzzz/ui";
+  const sampleUsage = `import { SearchAnimation } from "@needui/ui-kit";
 
 export function SearchVariants() {
   return (
     <div className="flex flex-wrap gap-4">
-      {/* 1. Morph (Default) */}
       <SearchAnimation animationVariant="morph" placeholder="Morphing..." />
 
-      {/* 2. Slide Down */}
       <SearchAnimation animationVariant="slide-down" placeholder="Slide down..." />
 
-      {/* 3. Scale Fade */}
       <SearchAnimation animationVariant="scale-fade" placeholder="Scale fade..." />
 
-      {/* 4. Glow Pulse */}
       <SearchAnimation animationVariant="glow-pulse" placeholder="Glow aura..." />
 
-      {/* 5. Underline Expand */}
       <SearchAnimation animationVariant="underline-expand" placeholder="Underline..." />
     </div>
   );
@@ -36,7 +31,6 @@ export function SearchVariants() {
 
   return (
     <div className="space-y-12 pb-16">
-      {/* Title */}
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700 border border-neutral-200/70 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-800">
           <span>Animations</span>
@@ -49,7 +43,6 @@ export function SearchVariants() {
         </p>
       </div>
 
-      {/* Interactive 5 Variants Preview Grid */}
       <section className="space-y-4">
         <div>
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
@@ -63,7 +56,6 @@ export function SearchVariants() {
         <Demo />
       </section>
 
-      {/* Code Examples */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           Usage
@@ -78,7 +70,6 @@ export function SearchVariants() {
         <CodeBlock code={customStyleUsage} language="tsx" filename="CustomSearch.tsx" />
       </section>
 
-      {/* Props Table */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
           Props

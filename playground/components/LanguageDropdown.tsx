@@ -37,7 +37,6 @@ export function LanguageDropdown({ className = "" }: LanguageDropdownProps) {
   const currentLang = (i18n.resolvedLanguage || i18n.language || "id").startsWith("en") ? "en" : "id";
   const activeOption = LANGUAGE_OPTIONS.find((opt) => opt.code === currentLang) || LANGUAGE_OPTIONS[0];
 
-  // Listener untuk menutup popover saat klik di luar elemen
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -60,7 +59,6 @@ export function LanguageDropdown({ className = "" }: LanguageDropdownProps) {
 
   return (
     <div ref={dropdownRef} className={`relative inline-block text-left ${className}`}>
-      {/* Tombol Pemicu (Trigger Button) */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -80,7 +78,6 @@ export function LanguageDropdown({ className = "" }: LanguageDropdownProps) {
         />
       </button>
 
-      {/* Popover Dropdown Menu dengan Animasi Framer Motion */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

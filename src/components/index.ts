@@ -12,4 +12,6 @@ export * from "./IconCard";
 export * from "./AnimatedAccordion";
 export * from "./FeedbackWidget";
 export * from "./FloatingFeedback";
+export * from "./AnimatedToggle";
+export * from "./AutoCarousel";
 

@@ -17,9 +17,6 @@ import {
 } from "../../src/icons";
 import { cn } from "../../src/utils/cn";
 
-/* =========================================================================
- * I18N DICTIONARY FOR ANIMATED DATEPICKERS (BILINGUAL EN & ID - 3 VARIANTS)
- * ========================================================================= */
 const DATEPICKER_DICT = {
   en: {
     pillTag1: "Physics & Layout Dynamics",
@@ -82,7 +79,6 @@ export function FluidSwipeCalendar() {
           exit="exit"
           className="grid grid-cols-7 gap-1"
         >
-          {/* Calendar Day Cells */}
         </motion.div>
       </AnimatePresence>
     </div>
@@ -105,10 +101,7 @@ export function CupertinoWheelDatepicker() {
   return (
     <div className="w-full max-w-md p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
       <div className="relative h-[200px] overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-950">
-        {/* Center Optical Aperture */}
         <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 h-10 rounded-xl bg-indigo-50/80 border border-indigo-200 pointer-events-none" />
-        {/* Soft Vignette Gradients (Top & Bottom) */}
-        {/* 3 Drum Columns: Month, Day, Year */}
       </div>
     </div>
   );
@@ -197,9 +190,6 @@ export function ElasticTimelineDatepicker({ dates }) {
   },
 };
 
-/* =========================================================================
- * HELPER DATE UTILITIES
- * ========================================================================= */
 const MONTH_NAMES_EN = [
   "January",
   "February",
@@ -331,7 +321,6 @@ function FluidSwipeCalendar() {
 
   return (
     <div className="w-full max-w-md mx-auto p-5 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl shadow-zinc-200/30 dark:shadow-zinc-950/50">
-      {/* Month Navigator Header */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800/80">
         <div>
           <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
@@ -367,7 +356,6 @@ function FluidSwipeCalendar() {
         </div>
       </div>
 
-      {/* Weekday Row */}
       <div className="grid grid-cols-7 gap-1 mb-2 text-center">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, idx) => (
           <span
@@ -384,7 +372,6 @@ function FluidSwipeCalendar() {
         ))}
       </div>
 
-      {/* Fluid Animated Grid Viewport */}
       <div className="relative overflow-hidden min-h-[260px]">
         <AnimatePresence mode="popLayout" custom={direction} initial={false}>
           <motion.div
@@ -412,7 +399,6 @@ function FluidSwipeCalendar() {
                     selected && "text-white font-bold dark:text-white"
                   )}
                 >
-                  {/* Active Spring Bouncing Background Pill */}
                   {selected && (
                     <motion.div
                       layoutId="fluid-active-pill"
@@ -427,7 +413,6 @@ function FluidSwipeCalendar() {
 
                   <span>{cell.date.getDate()}</span>
 
-                  {/* Indicator Dot for Today */}
                   {isToday && !selected && (
                     <span className="absolute bottom-1 w-1 h-1 rounded-full bg-indigo-500" />
                   )}
@@ -438,7 +423,6 @@ function FluidSwipeCalendar() {
         </AnimatePresence>
       </div>
 
-      {/* Quick Action Chips & Selection Readout */}
       <div className="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-1.5">
           <button
@@ -603,7 +587,6 @@ function WheelScrollDatepicker() {
 
   return (
     <div className="w-full max-w-md mx-auto p-6 sm:p-7 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-zinc-950/50">
-      {/* Header Bar */}
       <div className="flex items-center justify-between pb-4 border-b border-zinc-100 dark:border-zinc-800/80 mb-5">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
@@ -623,9 +606,7 @@ function WheelScrollDatepicker() {
         </button>
       </div>
 
-      {/* Outer Chamber Container */}
       <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50/70 dark:bg-zinc-950/70 border border-zinc-200/80 dark:border-zinc-800/80">
-        {/* Column Labels */}
         <div className="grid grid-cols-3 mb-2 text-center">
           <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 font-semibold">
             MONTH
@@ -638,18 +619,13 @@ function WheelScrollDatepicker() {
           </span>
         </div>
 
-        {/* 200px Unified Drum Viewport with Gradient Masks & Aperture */}
         <div className="relative h-[200px] overflow-hidden rounded-xl bg-white/40 dark:bg-zinc-900/30">
-          {/* Exact Center Aperture Highlight (40px height matching row rhythm) */}
           <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 h-10 rounded-xl bg-indigo-50/80 dark:bg-indigo-950/50 border border-indigo-200/80 dark:border-indigo-800/80 pointer-events-none z-0 shadow-xs" />
 
-          {/* Top Vignette Fade Mask */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-zinc-50 dark:from-zinc-950 via-zinc-50/70 dark:via-zinc-950/70 to-transparent z-20" />
 
-          {/* Bottom Vignette Fade Mask */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-zinc-50/70 dark:via-zinc-950/70 to-transparent z-20" />
 
-          {/* 3 Drum Columns */}
           <div className="grid grid-cols-3 h-full relative z-10">
             <CupertinoDrumColumn
               items={MONTHS_LIST}
@@ -671,7 +647,6 @@ function WheelScrollDatepicker() {
           </div>
         </div>
 
-        {/* Tactile Stepper Quick Buttons */}
         <div className="mt-3 pt-3 border-t border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-between text-[11px]">
           <span className="text-zinc-400 font-mono">Quick Stepper:</span>
           <div className="flex items-center gap-1.5">
@@ -697,7 +672,6 @@ function WheelScrollDatepicker() {
         </div>
       </div>
 
-      {/* Output Value Bar */}
       <div className="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
         <span className="text-zinc-400 dark:text-zinc-500 font-mono">
           Output Value:
@@ -742,7 +716,6 @@ function ElasticTimelineDatepicker() {
 
   return (
     <div className="w-full max-w-xl mx-auto p-5 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl">
-      {/* Header with Month / Year and Navigation Controls */}
       <div className="flex items-center justify-between pb-4 border-b border-zinc-100 dark:border-zinc-800/80 mb-5">
         <div>
           <span className="text-xs uppercase font-mono tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">
@@ -778,7 +751,6 @@ function ElasticTimelineDatepicker() {
         </div>
       </div>
 
-      {/* Draggable & Scrollable Horizontal Strip */}
       <div
         ref={stripRef}
         className="overflow-x-auto no-scrollbar scroll-smooth py-2 px-1 cursor-grab active:cursor-grabbing"
@@ -810,7 +782,6 @@ function ElasticTimelineDatepicker() {
                     : "bg-zinc-50 dark:bg-zinc-950/70 text-zinc-700 dark:text-zinc-300 border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
                 )}
               >
-                {/* Active Indicator Glow */}
                 {isSelected && (
                   <motion.div
                     layoutId="timeline-glow"
@@ -859,7 +830,6 @@ function ElasticTimelineDatepicker() {
         </motion.div>
       </div>
 
-      {/* Selected Preview Card */}
       <div className="mt-5 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/70 dark:border-zinc-800/70 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-sm">
@@ -922,7 +892,6 @@ export function AnimatedDatepickerDemo() {
 
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Page Header */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1 text-xs font-mono font-semibold text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
@@ -944,14 +913,12 @@ export function AnimatedDatepickerDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack of All 3 Datepicker Architectures */}
       <div className="grid grid-cols-1 gap-12 sm:gap-14">
         {datepickerCards.map((card) => (
           <section
             key={card.id}
             className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
-            {/* Header Info */}
             <div className="space-y-2 mb-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -966,12 +933,10 @@ export function AnimatedDatepickerDemo() {
               </p>
             </div>
 
-            {/* Interactive Preview Canvas */}
             <div className="flex items-center justify-center p-4 sm:p-8 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
               {card.component}
             </div>
 
-            {/* Standardized Usage Snippet (No Framework Tabs) */}
             <CodeSnippet code={card.snippet} />
           </section>
         ))}

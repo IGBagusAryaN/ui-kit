@@ -4,9 +4,6 @@ import { FeedbackWidget, FeedbackData } from "../../src/components/FeedbackWidge
 import { CodeSnippet } from "../components/CodeSnippet";
 import { ZapIcon, LayersIcon, CheckCircleIcon } from "../../src/icons";
 
-/* =========================================================================
- * I18N DICTIONARY FOR FEEDBACK WIDGET DEMO
- * ========================================================================= */
 const DEMO_DICT = {
   en: {
     pillTag1: "Micro-Interactions & Spring Physics",
@@ -18,7 +15,7 @@ const DEMO_DICT = {
     cardBadge: "All-in-One Community Pulse",
     cardDesc:
       "Hover over the stars to see dynamic color fills, click to trigger spring physics, select feedback tags, and submit with real-time loading and success states.",
-    usageSnippet: `import { FeedbackWidget, FeedbackData } from "@bgsaryzzz/ui";
+    usageSnippet: `import { FeedbackWidget, FeedbackData } from "@needui/ui-kit";
 
 export function FeedbackDemo() {
   const handleFeedbackSubmit = async (data: FeedbackData) => {
@@ -68,14 +65,13 @@ export function FeedbackWidgetDemo() {
   const [receivedSubmissions, setReceivedSubmissions] = useState<FeedbackData[]>([]);
 
   const handleCustomSubmit = async (data: FeedbackData) => {
-    // Simulate API network latency of 2000ms
+
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setReceivedSubmissions((prev) => [data, ...prev]);
   };
 
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Page Header */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1 text-xs font-mono font-semibold text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
@@ -97,10 +93,8 @@ export function FeedbackWidgetDemo() {
         </p>
       </div>
 
-      {/* Single Column Stack */}
       <div className="grid grid-cols-1 gap-12 sm:gap-14">
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
-          {/* Header Info */}
           <div className="space-y-2 mb-6">
             <div className="flex items-start justify-between gap-4">
               <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -115,12 +109,10 @@ export function FeedbackWidgetDemo() {
             </p>
           </div>
 
-          {/* Interactive Preview Canvas */}
           <div className="flex items-center justify-center p-4 sm:p-10 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
             <FeedbackWidget onSubmit={handleCustomSubmit} />
           </div>
 
-          {/* Log of Submissions received in current session */}
           {receivedSubmissions.length > 0 && (
             <div className="mb-6 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-800/80 space-y-2.5">
               <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">
@@ -153,7 +145,6 @@ export function FeedbackWidgetDemo() {
             </div>
           )}
 
-          {/* Standardized Usage Snippet (No Framework Tabs) */}
           <CodeSnippet code={t.usageSnippet} />
         </section>
       </div>
