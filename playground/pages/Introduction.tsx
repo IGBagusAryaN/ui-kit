@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { APP_VERSION } from "../version";
 
 interface IntroductionProps {
   onNavigate?: (pageId: string) => void;
@@ -48,7 +49,7 @@ export function Introduction({ onNavigate }: IntroductionProps) {
               <span>
                 {t(
                   "content.introduction.badge",
-                  "✨ needui v0.1.8 is now available"
+                  `✨ needui ${APP_VERSION} is now available`
                 )}
               </span>
             </div>

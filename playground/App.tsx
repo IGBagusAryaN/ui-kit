@@ -50,51 +50,51 @@ export function App() {
             id: "advanced-buttons",
             label: t("sidebar.components.advancedButtons", "Advanced Buttons"),
           },
-
-          {
-            id: "toast-animation",
-            label: t("sidebar.components.toast", "Toast"),
-          },
-          {
-            id: "modal-animation",
-            label: t("sidebar.components.modal", "Modal"),
-          },
-          {
-            id: "marquee-animation",
-            label: t("sidebar.components.marquee", "Marquee"),
-          },
-          {
-            id: "timeline-animation",
-            label: t("sidebar.components.timeline", "Timeline"),
-          },
-          {
-            id: "dropdown-animation",
-            label: t("sidebar.components.dropdown", "Dropdown"),
-          },
-          {
-            id: "accordion-animation",
-            label: t("sidebar.components.accordion", "Accordion"),
-          },
-          {
-            id: "carousel-animation",
-            label: t("sidebar.components.carousel", "Carousel"),
-          },
-          {
+                    {
             id: "auto-carousel-animation",
             label: t("sidebar.components.autoCarousel", "Auto Carousel"),
           },
-          {
-            id: "datepicker-animation",
-            label: t("sidebar.components.datepicker", "Animated Datepicker"),
-          },
-          {
-            id: "tabs-animation",
-            label: t("sidebar.components.tabs", "Animated Tabs"),
-          },
-          {
-            id: "toggle-animation",
-            label: t("sidebar.components.toggle", "Animated Toggle"),
-          },
+
+          // {
+          //   id: "toast-animation",
+          //   label: t("sidebar.components.toast", "Toast"),
+          // },
+          // {
+          //   id: "modal-animation",
+          //   label: t("sidebar.components.modal", "Modal"),
+          // },
+          // {
+          //   id: "marquee-animation",
+          //   label: t("sidebar.components.marquee", "Marquee"),
+          // },
+          // {
+          //   id: "timeline-animation",
+          //   label: t("sidebar.components.timeline", "Timeline"),
+          // },
+          // {
+          //   id: "dropdown-animation",
+          //   label: t("sidebar.components.dropdown", "Dropdown"),
+          // },
+          // {
+          //   id: "accordion-animation",
+          //   label: t("sidebar.components.accordion", "Accordion"),
+          // },
+          // {
+          //   id: "carousel-animation",
+          //   label: t("sidebar.components.carousel", "Carousel"),
+          // },
+          // {
+          //   id: "datepicker-animation",
+          //   label: t("sidebar.components.datepicker", "Animated Datepicker"),
+          // },
+          // {
+          //   id: "tabs-animation",
+          //   label: t("sidebar.components.tabs", "Animated Tabs"),
+          // },
+          // {
+          //   id: "toggle-animation",
+          //   label: t("sidebar.components.toggle", "Animated Toggle"),
+          // },
         ],
       },
       {

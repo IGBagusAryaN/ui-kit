@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CloseIcon } from "../../src/icons";
 import { NeedUiLogo } from "./NeedUiLogo";
+import { APP_VERSION } from "../version";
 
 export interface NavItem {
   id: string;
@@ -28,7 +29,7 @@ export function Sidebar({
   isOpenMobile = false,
   onCloseMobile,
   navGroups: customNavGroups,
-  version = "v0.1.8",
+  version = APP_VERSION,
 }: SidebarProps) {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");

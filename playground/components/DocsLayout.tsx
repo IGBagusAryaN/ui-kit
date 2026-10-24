@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navbar } from "./Navbar";
 import { Sidebar, NavGroup } from "./Sidebar";
+import { APP_VERSION } from "../version";
 
 export type { NavGroup };
 
@@ -35,7 +36,7 @@ export function DocsLayout({
         onToggleMobileMenu={() => setMobileSidebarOpen(!mobileSidebarOpen)}
         isMobileMenuOpen={mobileSidebarOpen}
         onLogoClick={() => handleMenuClick("introduction")}
-        version="v0.1.8"
+        version={APP_VERSION}
       />
 
       <div className="flex-1 flex w-full max-w-7xl mx-auto">
@@ -52,7 +53,7 @@ export function DocsLayout({
           isOpenMobile={mobileSidebarOpen}
           onCloseMobile={() => setMobileSidebarOpen(false)}
           navGroups={navGroups}
-          version="v0.1.8"
+          version={APP_VERSION}
         />
 
         <main className="flex-1 w-full min-w-0 px-4 py-8 sm:px-8 lg:px-12">

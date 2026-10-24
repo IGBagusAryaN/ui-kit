@@ -498,7 +498,7 @@ const coverflowItems: CoverflowItem[] = [
     rating: "4.92",
     year: "2025",
     image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=80",
     accent: "from-emerald-600 to-teal-900",
   },
   {
@@ -1205,7 +1205,7 @@ const expandingPanels: ExpandingPanel[] = [
     stat: "4K UHD",
     statLabel: "Fidelity",
     image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80",
   },
   {
     id: "ep-4",

@@ -3,6 +3,7 @@ import { MenuIcon, CloseIcon } from "../../src/icons";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { NeedUiLogo } from "./NeedUiLogo";
+import { APP_VERSION } from "../version";
 
 export interface NavbarProps {
   /** Callback saat tombol hamburger di layar mobile diklik */
@@ -11,7 +12,7 @@ export interface NavbarProps {
   isMobileMenuOpen?: boolean;
   /** Callback saat logo / judul docs diklik */
   onLogoClick?: () => void;
-  /** Teks label versi library (default: "v0.1.8") */
+  /** Teks label versi library (default dari package.json) */
   version?: string;
   /** Class tambahan opsional */
   className?: string;
@@ -21,7 +22,7 @@ export function Navbar({
   onToggleMobileMenu,
   isMobileMenuOpen = false,
   onLogoClick,
-  version = "v0.1.8",
+  version = APP_VERSION,
   className = "",
 }: NavbarProps) {
   return (

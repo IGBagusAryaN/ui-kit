@@ -1,6 +1,6 @@
 {
   "name": "@needui/ui-kit",
-  "version": "0.1.9",
+  "version": "0.1.14",
   "description": "Customizable, accessible, animated React UI Component Library powered by Tailwind CSS & Framer Motion",
   "author": "Arya",
   "license": "MIT",
@@ -34,6 +34,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.3.0"
   },

@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { APP_VERSION } from "./version";
 
 export const defaultNS = "translation";
 
@@ -21,6 +22,7 @@ export const resources = {
           timeline: "Timeline",
           dropdown: "Dropdown",
           accordion: "Akordion",
+          autoCarousel: "Auto Carousel",
         },
         icons: {
           title: "Ikon",
@@ -61,7 +63,7 @@ export const resources = {
         reset: "Reset",
         all: "Semua",
         language: "Bahasa",
-        version: "v0.1.8",
+        version: APP_VERSION,
       },
       theme: {
         dark: "Gelap",
@@ -78,7 +80,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ needui v0.1.8 kini telah tersedia",
+          badge: `✨ needui ${APP_VERSION} kini telah tersedia`,
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "Koleksi komponen antarmuka web modern dengan animasi mikro fluida berbasis Framer Motion dan styling Tailwind CSS yang bebas dari dependensi kaku. Siap salin-tempel ke proyek Anda.",
@@ -116,22 +118,11 @@ export const resources = {
           },
           step2: {
             badge: "2",
-            title: "Pastikan Peer Dependencies Terpasang",
-            desc: "Library ini membutuhkan framer-motion untuk animasi fluida dan micro-interactions:",
+            title: "Hubungkan Stylesheet CSS",
+            desc: "Pilih metode styling yang sesuai dengan kebutuhan project Anda:",
           },
           step3: {
             badge: "3",
-            title: "Import Stylesheet CSS",
-            desc: "Tambahkan file stylesheet @needui/ui-kit/styles.css ke root project Anda. Seluruh class utility dan animasi telah terkompilasi murni sehingga tidak memerlukan konfigurasi Tailwind manual:",
-            mainTab: "main.tsx / App.tsx",
-            mainBadge: "Rekomendasi",
-            mainDesc: "Cukup import file styles.css satu kali pada file entry utama aplikasi Anda (React, Vite, Next.js, CRA, atau Remix):",
-            cssTab: "index.css",
-            cssBadge: "Alternatif",
-            cssDesc: "Atau jika Anda lebih suka mengimpor via file CSS global utama project Anda:",
-          },
-          step4: {
-            badge: "4",
             title: "Mulai Gunakan Komponen",
             desc: "Import komponen yang Anda butuhkan langsung dari root package:",
           },
@@ -922,6 +913,7 @@ export const resources = {
           timeline: "Timeline",
           dropdown: "Dropdown",
           accordion: "Accordion",
+          autoCarousel: "Auto Carousel",
         },
         icons: {
           title: "Icons",
@@ -962,7 +954,7 @@ export const resources = {
         reset: "Reset",
         all: "All",
         language: "Language",
-        version: "v0.1.8",
+        version: APP_VERSION,
       },
       theme: {
         dark: "Dark",
@@ -979,7 +971,7 @@ export const resources = {
       },
       content: {
         introduction: {
-          badge: "✨ needui v0.1.8 is now available",
+          badge: `✨ needui ${APP_VERSION} is now available`,
           titleLine1: "Animate Your Interfaces,",
           titleLine2: "Modern React UI Kit",
           desc: "A high-end collection of modern web components featuring silky Framer Motion micro-animations and zero-dependency Tailwind CSS styling. Built for copy-paste flexibility.",
@@ -1017,22 +1009,11 @@ export const resources = {
           },
           step2: {
             badge: "2",
-            title: "Ensure Peer Dependencies Are Installed",
-            desc: "This library requires framer-motion for fluid animations and micro-interactions:",
+            title: "Connect CSS Stylesheet",
+            desc: "Choose the styling method that best matches your project requirements:",
           },
           step3: {
             badge: "3",
-            title: "Import CSS Stylesheet",
-            desc: "Add the @needui/ui-kit/styles.css stylesheet to your project root. All utility classes and animations are pre-compiled and ready to use without requiring any manual Tailwind configuration:",
-            mainTab: "main.tsx / App.tsx",
-            mainBadge: "Recommended",
-            mainDesc: "Simply import the styles.css file once in your main application entry file (React, Vite, Next.js, CRA, or Remix):",
-            cssTab: "index.css",
-            cssBadge: "Alternative",
-            cssDesc: "Or if you prefer importing it via your project's main global CSS file:",
-          },
-          step4: {
-            badge: "4",
             title: "Start Using Components",
             desc: "Import the components you need directly from the root package:",
           },
