@@ -1,0 +1,6 @@
+# robots.txt for NeedUI Documentation
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://needui.dev/sitemap.xml

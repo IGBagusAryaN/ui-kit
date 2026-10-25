@@ -1,7 +1,14 @@
 import React, { useState, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, useMotionValue } from "framer-motion";
-import { Marquee } from "../../src/components/Marquee";
+import {
+  Marquee,
+  DraggableMarquee,
+  ScrollVelocityMarquee,
+  CounterFlowMarquee,
+  VerticalMarquee,
+  PerspectiveMarquee,
+} from "../../src/components/Marquee";
 import { CodeSnippet } from "../components/CodeSnippet";
 import {
   SearchIcon,
@@ -147,6 +154,71 @@ const techPillsRow2: TechPill[] = [
   },
 ];
 
+const techPillsRow3: TechPill[] = [
+  {
+    id: "postgres",
+    name: "PostgreSQL",
+    category: "Database",
+    accentCircle: "bg-sky-500/10 text-sky-600 border-sky-500/25 dark:bg-sky-500/20 dark:text-sky-400 dark:border-sky-500/30",
+    icon: (cls) => (
+      <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+      </svg>
+    ),
+  },
+  {
+    id: "graphql",
+    name: "GraphQL",
+    category: "Query API",
+    accentCircle: "bg-pink-500/10 text-pink-600 border-pink-500/25 dark:bg-pink-500/20 dark:text-pink-400 dark:border-pink-500/30",
+    icon: (cls) => (
+      <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
+        <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+        <line x1="12" y1="2" x2="12" y2="22" />
+        <line x1="2" y1="8.5" x2="22" y2="15.5" />
+        <line x1="2" y1="15.5" x2="22" y2="8.5" />
+      </svg>
+    ),
+  },
+  {
+    id: "vite",
+    name: "Vite",
+    category: "Bundler",
+    accentCircle: "bg-amber-500/10 text-amber-500 border-amber-500/25 dark:bg-amber-500/20 dark:text-amber-400 dark:border-amber-500/30",
+    icon: (cls) => (
+      <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+  },
+  {
+    id: "kubernetes",
+    name: "Kubernetes",
+    category: "Cloud Native",
+    accentCircle: "bg-blue-600/10 text-blue-600 border-blue-600/25 dark:bg-blue-600/20 dark:text-blue-400 dark:border-blue-600/30",
+    icon: (cls) => (
+      <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <circle cx="12" cy="12" r="9" />
+        <path d="m12 3 3 6h-6l3-6zm0 18 3-6h-6l3 6zm-9-9 6-3v6l-6-3zm18 0-6-3v6l6-3z" />
+      </svg>
+    ),
+  },
+  {
+    id: "cloudflare",
+    name: "Cloudflare",
+    category: "Edge Network",
+    accentCircle: "bg-orange-500/10 text-orange-600 border-orange-500/25 dark:bg-orange-500/20 dark:text-orange-400 dark:border-orange-500/30",
+    icon: (cls) => (
+      <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z" />
+      </svg>
+    ),
+  },
+];
+
 interface ReviewItem {
   id: string;
   name: string;
@@ -271,57 +343,40 @@ const draggableItems: DraggableCardItem[] = [
 ];
 
 function DraggableMarqueeCarousel() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full overflow-hidden py-4 cursor-grab active:cursor-grabbing select-none"
+    <DraggableMarquee
+      dragLimit={-1200}
+      dragElastic={0.15}
+      duration={30}
+      gap={16}
     >
-      <motion.div
-        drag="x"
-        dragConstraints={{ left: -1100, right: 0 }}
-        dragElastic={0.12}
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
-        animate={isDragging ? undefined : { x: [0, -700] }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 28,
-            ease: "linear",
-          },
-        }}
-        className="flex gap-4 w-max"
-      >
-        {[...draggableItems, ...draggableItems].map((item, idx) => (
-          <div
-            key={`${item.id}-${idx}`}
-            className="w-72 shrink-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-5 shadow-sm transition-all hover:border-zinc-300 dark:hover:border-zinc-700 pointer-events-auto"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                {item.tag}
-              </span>
-              <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 font-mono">
-                {item.stat}
-              </span>
-            </div>
-
-            <div className={`h-1.5 w-12 rounded-full bg-gradient-to-r ${item.color} mb-3`} />
-
-            <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1">
-              {item.title}
-            </h4>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              {item.description}
-            </p>
+      {[...draggableItems, ...draggableItems].map((item, idx) => (
+        <div
+          key={`${item.id}-${idx}`}
+          className="w-72 shrink-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-5 shadow-xs transition-all hover:border-zinc-300 dark:hover:border-zinc-700 pointer-events-auto"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+              {item.tag}
+            </span>
+            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 font-mono">
+              {item.stat}
+            </span>
           </div>
-        ))}
-      </motion.div>
-    </div>
+
+          <div
+            className={`h-1.5 w-12 rounded-full bg-gradient-to-r ${item.color} mb-3`}
+          />
+
+          <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1">
+            {item.title}
+          </h4>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </DraggableMarquee>
   );
 }
 
@@ -386,52 +441,122 @@ export function MarqueeDemo() {
       // 1. TRUSTED BY / TECH STACK
       {
         id: "trusted-by",
-        title: t("content.marqueeDemo.variants.trustedBy.title", "1. Trusted By / Tech Stack (Pill Ticker)"),
-        badge: t("content.marqueeDemo.variants.trustedBy.badge", "Tech Stack Pills"),
-        description:
-          "Dual horizontal counter-flow marquee showcasing technology badges and client logos with interactive glow effects and category pills.",
-        snippet: `<div className="space-y-4">
-  <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
-    {techPillsRow1.map((tech) => <TechPill key={tech.id} item={tech} />)}
-  </Marquee>
-  <Marquee direction="right" speed="slow" pauseOnHover fade gap={20}>
-    {techPillsRow2.map((tech) => <TechPill key={tech.id} item={tech} />)}
-  </Marquee>
-</div>`,
+        title: t("content.marqueeDemo.variants.trustedBy.title", "1. Trusted By (Logo Ticker)"),
+        badge: t("content.marqueeDemo.variants.trustedBy.badge", "Logo Stream"),
+        description: t(
+          "content.marqueeDemo.variants.trustedBy.desc",
+          "Triple horizontal counter-flow marquee showcasing technology badges and client logos with interactive glow effects and category pills."
+        ),
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data JSON:
+const techRow1 = [
+  { id: "react", name: "React 19", category: "UI Library" },
+  { id: "tailwind", name: "Tailwind CSS", category: "Styling" },
+  { id: "framer", name: "Framer Motion", category: "Animation" },
+  { id: "typescript", name: "TypeScript", category: "Type-Safe" },
+  { id: "nextjs", name: "Next.js", category: "Framework" }
+];
+
+const techRow2 = [
+  { id: "supabase", name: "Supabase", category: "Backend" },
+  { id: "prisma", name: "Prisma ORM", category: "Database" },
+  { id: "stripe", name: "Stripe", category: "Payments" },
+  { id: "docker", name: "Docker", category: "DevOps" },
+  { id: "redis", name: "Redis", category: "In-Memory" }
+];
+
+const techRow3 = [
+  { id: "postgres", name: "PostgreSQL", category: "Database" },
+  { id: "graphql", name: "GraphQL", category: "Query API" },
+  { id: "vite", name: "Vite", category: "Bundler" },
+  { id: "kubernetes", name: "Kubernetes", category: "Cloud Native" },
+  { id: "cloudflare", name: "Cloudflare", category: "Edge Network" }
+];
+
+export function TrustedByTicker() {
+  return (
+    <div className="space-y-1.5">
+      <Marquee size="none" className="py-1" direction="left" speed="normal" pauseOnHover fade gap={12}>
+        {techRow1.map((item) => (
+          <div key={item.id} className="inline-flex items-center gap-2.5 rounded-full border px-3 py-1.5 bg-white dark:bg-zinc-900">
+            <span className="text-xs font-semibold">{item.name}</span>
+            <span className="text-[10px] text-zinc-500 font-mono">[{item.category}]</span>
+          </div>
+        ))}
+      </Marquee>
+      <Marquee size="none" className="py-1" direction="right" speed="slow" pauseOnHover fade gap={12}>
+        {techRow2.map((item) => (
+          <div key={item.id} className="inline-flex items-center gap-2.5 rounded-full border px-3 py-1.5 bg-white dark:bg-zinc-900">
+            <span className="text-xs font-semibold">{item.name}</span>
+            <span className="text-[10px] text-zinc-500 font-mono">[{item.category}]</span>
+          </div>
+        ))}
+      </Marquee>
+      <Marquee size="none" className="py-1" direction="left" speed="normal" pauseOnHover fade gap={12}>
+        {techRow3.map((item) => (
+          <div key={item.id} className="inline-flex items-center gap-2.5 rounded-full border px-3 py-1.5 bg-white dark:bg-zinc-900">
+            <span className="text-xs font-semibold">{item.name}</span>
+            <span className="text-[10px] text-zinc-500 font-mono">[{item.category}]</span>
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  );
+}`,
         render: () => (
-          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-6 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-4">
-            <Marquee direction="left" speed="normal" pauseOnHover fade gap={20}>
+          <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-3 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-1.5">
+            <Marquee size="none" className="py-1" direction="left" speed="normal" pauseOnHover fade gap={12}>
               {techPillsRow1.map((tech) => (
                 <div
                   key={tech.id}
-                  className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3.5 py-2 shadow-xs transition-all hover:scale-105 cursor-pointer select-none"
+                  className="group/pill inline-flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 shadow-2xs transition-all hover:scale-105 cursor-pointer select-none"
                 >
-                  <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
-                    {tech.icon("h-3.5 w-3.5")}
+                  <div className={cn("flex h-6 w-6 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
+                    {tech.icon("h-3 w-3")}
                   </div>
                   <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
+                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
                     {tech.category}
                   </span>
                 </div>
               ))}
             </Marquee>
 
-            <Marquee direction="right" speed="slow" pauseOnHover fade gap={20}>
+            <Marquee size="none" className="py-1" direction="right" speed="slow" pauseOnHover fade gap={12}>
               {techPillsRow2.map((tech) => (
                 <div
                   key={tech.id}
-                  className="group/pill inline-flex items-center gap-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3.5 py-2 shadow-xs transition-all hover:scale-105 cursor-pointer select-none"
+                  className="group/pill inline-flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 shadow-2xs transition-all hover:scale-105 cursor-pointer select-none"
                 >
-                  <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
-                    {tech.icon("h-3.5 w-3.5")}
+                  <div className={cn("flex h-6 w-6 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
+                    {tech.icon("h-3 w-3")}
                   </div>
                   <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
+                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
+                    {tech.category}
+                  </span>
+                </div>
+              ))}
+            </Marquee>
+
+            <Marquee size="none" className="py-1" direction="left" speed="normal" pauseOnHover fade gap={12}>
+              {techPillsRow3.map((tech) => (
+                <div
+                  key={tech.id}
+                  className="group/pill inline-flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-1.5 shadow-2xs transition-all hover:scale-105 cursor-pointer select-none"
+                >
+                  <div className={cn("flex h-6 w-6 shrink-0 items-center justify-center rounded-full border shadow-2xs", tech.accentCircle)}>
+                    {tech.icon("h-3 w-3")}
+                  </div>
+                  <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+                    {tech.name}
+                  </span>
+                  <span className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-300">
                     {tech.category}
                   </span>
                 </div>
@@ -448,11 +573,54 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.testimonials.badge", "Social Proof"),
         description:
           "High-conversion horizontal testimonial ticker rendering customer reviews, star ratings, user avatars, and feedback cards.",
-        snippet: `<Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
-  {userReviews.map((review) => (
-    <ReviewCard key={review.id} review={review} />
-  ))}
-</Marquee>`,
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data JSON:
+const userReviews = [
+  {
+    id: "r1",
+    name: "Sarah Jenkins",
+    username: "@sarah_dev",
+    role: "Senior Frontend Lead",
+    stars: 5,
+    content: "The hardware-accelerated animations in needui are butter smooth. Replaced three disparate packages with zero layout shift."
+  },
+  {
+    id: "r2",
+    name: "Alex Rivera",
+    username: "@alex_architect",
+    role: "Staff Engineer",
+    stars: 5,
+    content: "The accessible keyboard navigation and dual-theme tokens reduced our product launch cycle by over three full sprints."
+  },
+  {
+    id: "r3",
+    name: "David Chen",
+    username: "@david_stack",
+    role: "CTO @ CloudSync",
+    stars: 5,
+    content: "True 60 FPS across both low-end mobile devices and high-refresh desktop monitors. Absolutely enterprise-grade UI design."
+  }
+];
+
+export function TestimonialsTicker() {
+  return (
+    <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
+      {userReviews.map((review) => (
+        <div key={review.id} className="w-80 shrink-0 rounded-2xl border p-4 bg-white dark:bg-zinc-900">
+          <div className="flex items-center justify-between mb-2">
+            <div>
+              <h4 className="text-xs font-semibold">{review.name}</h4>
+              <span className="text-[10px] text-zinc-500 font-mono">{review.username}</span>
+            </div>
+            <div className="text-amber-400 text-xs">{"★".repeat(review.stars)}</div>
+          </div>
+          <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">"{review.content}"</p>
+        </div>
+      ))}
+    </Marquee>
+  );
+}`,
         render: () => (
           <div className="w-full relative overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50/80 py-6 dark:border-zinc-800/80 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
@@ -496,14 +664,52 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.vertical.badge", "Dual Column Waterfall"),
         description:
           "Dual vertical marquee columns flowing in opposite directions simultaneously to create a live activity feed stream.",
-        snippet: `<div className="h-[400px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-  <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade gap={14}>
-    {columnFeed1.map((item) => <ActivityCard key={item.id} item={item} />)}
-  </Marquee>
-  <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover fade gap={14}>
-    {columnFeed2.map((item) => <ActivityCard key={item.id} item={item} />)}
-  </Marquee>
-</div>`,
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data JSON:
+const columnFeed1 = [
+  { id: "c1-1", title: "Release v2.4.0 Deployed", tag: "Production", time: "2m ago", icon: "🚀" },
+  { id: "c1-2", title: "Lighthouse Score: 100/100", tag: "Performance", time: "8m ago", icon: "⚡" },
+  { id: "c1-3", title: "Framer Physics Calibrated", tag: "Animation", time: "14m ago", icon: "✦" },
+  { id: "c1-4", title: "Database Query: 1.2ms", tag: "PostgreSQL", time: "22m ago", icon: "⌗" }
+];
+
+const columnFeed2 = [
+  { id: "c2-1", title: "New 3D Perspective Preset", tag: "UI Library", time: "5m ago", icon: "◫" },
+  { id: "c2-2", title: "Bundle Size Reduced by 34%", tag: "Rollup / Vite", time: "11m ago", icon: "📦" },
+  { id: "c2-3", title: "Dark & Light Token Synced", tag: "Design Token", time: "19m ago", icon: "◐" },
+  { id: "c2-4", title: "Test Suites: 100% Passed", tag: "CI / CD", time: "27m ago", icon: "✓" }
+];
+
+export function VerticalMasonryWaterfall() {
+  return (
+    <div className="h-[400px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover fade gap={14}>
+        {columnFeed1.map((item) => (
+          <div key={item.id} className="w-full rounded-xl border p-3.5 bg-white dark:bg-zinc-900">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs font-semibold">{item.icon} {item.title}</span>
+              <span className="text-[10px] text-zinc-400 font-mono">{item.time}</span>
+            </div>
+            <span className="text-[10px] px-2 py-0.5 rounded border">{item.tag}</span>
+          </div>
+        ))}
+      </Marquee>
+
+      <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover fade gap={14}>
+        {columnFeed2.map((item) => (
+          <div key={item.id} className="w-full rounded-xl border p-3.5 bg-white dark:bg-zinc-900">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs font-semibold">{item.icon} {item.title}</span>
+              <span className="text-[10px] text-zinc-400 font-mono">{item.time}</span>
+            </div>
+            <span className="text-[10px] px-2 py-0.5 rounded border">{item.tag}</span>
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  );
+}`,
         render: () => (
           <div className="w-full relative h-[400px] overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 p-4 dark:bg-zinc-950">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
@@ -550,11 +756,30 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.giantTypography.badge", "Hero Outline Text"),
         description:
           "Ultra-large display typography banner with transparent outline gradient text that flows smoothly as an immersive hero background.",
-        snippet: `<Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
-  <span className="text-7xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-400 dark:from-white dark:to-zinc-600">
-    CREATIVE ARCHITECTURE • 60 FPS MOTION • ZERO SHIFT •
-  </span>
-</Marquee>`,
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data Items:
+const headlineTracks = [
+  { id: "t1", text: "CREATIVE ARCHITECTURE • 60 FPS MOTION • ZERO RUNTIME •", speed: 45 },
+  { id: "t2", text: "DESIGN SYSTEM • TAILWIND CSS • FRAMER MOTION • ACCESSIBLE •", speed: 55 }
+];
+
+export function GiantTypographyTicker() {
+  return (
+    <div className="space-y-3 py-10 overflow-hidden rounded-2xl border">
+      <Marquee direction="left" speed={headlineTracks[0].speed} fade gap={24} pauseOnHover>
+        <span className="text-7xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-600 to-zinc-400 dark:from-white dark:via-zinc-300 dark:to-zinc-600">
+          {headlineTracks[0].text}
+        </span>
+      </Marquee>
+      <Marquee direction="right" speed={headlineTracks[1].speed} fade gap={24} pauseOnHover>
+        <span className="text-7xl sm:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+          {headlineTracks[1].text}
+        </span>
+      </Marquee>
+    </div>
+  );
+}`,
         render: () => (
           <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 py-10 dark:bg-zinc-950 space-y-3">
             <Marquee direction="left" speed={45} fade gap={24} pauseOnHover>
@@ -578,13 +803,33 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.perspective3d.badge", "CSS 3D Depth"),
         description:
           "Cards streaming within an inclined 3D perspective space (rotateX, rotateZ, skewX) creating an illusion of infinite depth.",
-        snippet: `<div style={{ perspective: "1100px" }} className="overflow-hidden py-14">
-  <div style={{ transform: "rotateX(22deg) rotateZ(-7deg) skewX(-7deg)", transformStyle: "preserve-3d" }}>
-    <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
-      {projectCards.map((card) => <Card3D key={card.id} card={card} />)}
-    </Marquee>
-  </div>
-</div>`,
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data JSON:
+const projectCards = [
+  { id: "p1", title: "Quantum Engine", category: "Physics Simulator", metric: "60 FPS" },
+  { id: "p2", title: "Neural Matrix", category: "AI Interface", metric: "99.9% Acc" },
+  { id: "p3", title: "Horizon Dashboard", category: "SaaS Analytics", metric: "3.2M Req" },
+  { id: "p4", title: "Aura Particles", category: "WebGL Shader", metric: "120 FPS" }
+];
+
+export function PerspectiveIsometricMarquee() {
+  return (
+    <div style={{ perspective: "1100px" }} className="overflow-hidden py-14">
+      <div style={{ transform: "rotateX(22deg) rotateZ(-7deg) skewX(-7deg)", transformStyle: "preserve-3d" }}>
+        <Marquee direction="left" speed="normal" pauseOnHover fade gap={18}>
+          {projectCards.map((card) => (
+            <div key={card.id} className="w-64 shrink-0 rounded-2xl border bg-white dark:bg-zinc-900 p-4 shadow-lg">
+              <span className="text-[10px] uppercase font-bold text-zinc-500">{card.category}</span>
+              <p className="text-lg font-black text-zinc-900 dark:text-white mb-2">{card.metric}</p>
+              <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{card.title}</span>
+            </div>
+          ))}
+        </Marquee>
+      </div>
+    </div>
+  );
+}`,
         render: () => (
           <div
             className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/70 py-14 px-4 dark:bg-zinc-950"
@@ -623,20 +868,45 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.verticalTestimonials.badge", "Dual Vertical Flow"),
         description:
           "Two vertical columns side-by-side moving in counter-flow directions (up and down) masked with a top-to-bottom edge fade gradient.",
-        snippet: `<div
-  className="h-[460px] overflow-hidden grid grid-cols-2 gap-4"
-  style={{
-    maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
-    WebkitMaskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
-  }}
->
-  <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover gap={16}>
-    {reviewsCol1.map((rev) => <TestimonialCard key={rev.id} review={rev} />)}
-  </Marquee>
-  <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover gap={16}>
-    {reviewsCol2.map((rev) => <TestimonialCard key={rev.id} review={rev} />)}
-  </Marquee>
-</div>`,
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data JSON:
+const testimonialsCol1 = [
+  { id: "r1", name: "Sarah Jenkins", role: "Senior Frontend Lead", stars: 5, content: "Butter smooth 60fps animations with zero layout shift." },
+  { id: "r2", name: "Alex Rivera", role: "Staff Engineer", stars: 5, content: "Reduced our product launch cycle by over three full sprints." },
+  { id: "r3", name: "David Chen", role: "CTO @ CloudSync", stars: 5, content: "Absolutely enterprise-grade UI design and motion precision." }
+];
+
+const testimonialsCol2 = [
+  { id: "r4", name: "Clara Oswald", role: "Design Technologist", stars: 5, content: "The edge fade mask makes product showcases look like Apple keynote pages." },
+  { id: "r5", name: "Elena Rostova", role: "Head of Product Design", stars: 5, content: "Visual consistency across the entire design system is a true delight." },
+  { id: "r6", name: "Kenji Sato", role: "Infrastructure Architect", stars: 5, content: "Complete TypeScript typing and native i18n support make this our default." }
+];
+
+export function VerticalTestimonialsTicker() {
+  return (
+    <div className="h-[460px] overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Marquee orientation="vertical" direction="up" speed={28} pauseOnHover gap={16}>
+        {testimonialsCol1.map((rev) => (
+          <div key={rev.id} className="w-full rounded-2xl border p-4 bg-white dark:bg-zinc-900">
+            <h4 className="text-xs font-semibold">{rev.name}</h4>
+            <span className="text-[10px] text-zinc-400">{rev.role}</span>
+            <p className="text-xs text-zinc-600 dark:text-zinc-300 mt-2">"{rev.content}"</p>
+          </div>
+        ))}
+      </Marquee>
+      <Marquee orientation="vertical" direction="down" speed={32} pauseOnHover gap={16}>
+        {testimonialsCol2.map((rev) => (
+          <div key={rev.id} className="w-full rounded-2xl border p-4 bg-white dark:bg-zinc-900">
+            <h4 className="text-xs font-semibold">{rev.name}</h4>
+            <span className="text-[10px] text-zinc-400">{rev.role}</span>
+            <p className="text-xs text-zinc-600 dark:text-zinc-300 mt-2">"{rev.content}"</p>
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  );
+}`,
         render: () => (
           <div
             className="w-full relative h-[460px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4"
@@ -697,20 +967,49 @@ export function MarqueeDemo() {
         id: "parallax-dual",
         title: t("content.marqueeDemo.variants.parallaxDual.title", "7. Parallax Dual-Direction (Opposing Text Tracks)"),
         badge: t("content.marqueeDemo.variants.parallaxDual.badge", "Interactive Velocity"),
-        description:
-          "Two giant text tracks running in opposite directions with asymmetric velocities. Hovering over the container dynamically shifts speed for a parallax depth illusion.",
-        snippet: `<div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-  <Marquee direction="left" speed={isHovered ? 52 : 24} fade gap={28}>
-    <span className="text-7xl font-black uppercase">PARALLAX VELOCITY • NEXT-GEN •</span>
-  </Marquee>
+        description: t(
+          "content.marqueeDemo.variants.parallaxDual.desc",
+          "Two giant text tracks running in opposite directions with asymmetric velocities. Hovering over the container dynamically shifts speed for a parallax depth illusion."
+        ),
+        snippet: `import { useState } from "react";
+import { Marquee } from "@needui/ui-kit";
 
-  <Marquee direction="right" speed={isHovered ? 14 : 36} fade gap={28}>
-    <span className="text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500">
-      COUNTER DIRECTIONAL TRACKS • SPEED SHIFT •
-    </span>
-  </Marquee>
-</div>`,
-        render: () => <ParallaxDualDirection />,
+// Data JSON:
+const parallaxTracks = {
+  track1: "PARALLAX VELOCITY • NEXT-GEN INTERFACES • 60 FPS HARDWARE ACCELERATED •",
+  track2: "COUNTER DIRECTIONAL TRACKS • DYNAMIC HOVER SHIFT • SMOOTH MOTION •"
+};
+
+export function ParallaxDualExample() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="space-y-3 py-10 cursor-pointer overflow-hidden rounded-2xl border"
+    >
+      {/* Track 1: Normal or speed-shifted on hover */}
+      <Marquee direction="left" speed={isHovered ? 52 : 24} fade pauseOnHover={false} gap={28}>
+        <span className="text-6xl font-black uppercase tracking-tighter">
+          {parallaxTracks.track1}
+        </span>
+      </Marquee>
+
+      {/* Track 2: Opposing direction with gradient styling */}
+      <Marquee direction="right" speed={isHovered ? 14 : 36} fade pauseOnHover={false} gap={28}>
+        <span className="text-6xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+          {parallaxTracks.track2}
+        </span>
+      </Marquee>
+    </div>
+  );
+}`,
+        render: () => (
+          <div className="w-full">
+            <ParallaxDualDirection />
+          </div>
+        ),
       },
 
       // 8. DRAGGABLE CAROUSEL MARQUEE (FRAMER MOTION PHYSICS)
@@ -720,16 +1019,41 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.draggableCarousel.badge", "Interactive Drag Physics"),
         description:
           "Autonomous motion loop that empowers users to swipe and drag content horizontally using Framer Motion drag constraints, elastic bounds, and grab cursors.",
-        snippet: `<motion.div
-  drag="x"
-  dragConstraints={{ left: -1100, right: 0 }}
-  dragElastic={0.12}
-  animate={{ x: [0, -700] }}
-  transition={{ x: { repeat: Infinity, duration: 28, ease: "linear" } }}
-  className="flex gap-4 cursor-grab active:cursor-grabbing"
->
-  {cards.map((card) => <Card key={card.id} {...card} />)}
-</motion.div>`,
+        snippet: `import { DraggableMarquee } from "@needui/ui-kit";
+
+// Data JSON:
+const draggableCards = [
+  { id: "d1", title: "Aurora Motion Engine", description: "Ultra-fluid spring physics with automatic inertia calculation.", tag: "Physics", stat: "120Hz" },
+  { id: "d2", title: "Hyper-Responsive Grid", description: "Zero layout shift masonry layout designed for modern web apps.", tag: "Layout", stat: "0ms CLS" },
+  { id: "d3", title: "Adaptive Color Tokens", description: "Seamless dark and light contrast transitions without page reload.", tag: "Theming", stat: "WCAG AAA" },
+  { id: "d4", title: "Touch Gesture Handler", description: "Natural tactile swipe gestures optimized for mobile viewports.", tag: "Gestures", stat: "< 2ms" }
+];
+
+export function DraggableExample() {
+  return (
+    <DraggableMarquee
+      dragLimit={-1200}
+      dragElastic={0.15}
+      duration={30}
+      gap={16}
+    >
+      {draggableCards.map((card) => (
+        <div key={card.id} className="w-72 shrink-0 rounded-2xl border p-5 bg-white dark:bg-zinc-900 pointer-events-auto">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+              {card.tag}
+            </span>
+            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 font-mono">
+              {card.stat}
+            </span>
+          </div>
+          <h4 className="text-sm font-bold text-zinc-900 dark:text-white mb-1">{card.title}</h4>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{card.description}</p>
+        </div>
+      ))}
+    </DraggableMarquee>
+  );
+}`,
         render: () => (
           <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950 p-4">
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-200/80 dark:border-zinc-800/80 text-xs font-mono text-zinc-500">
@@ -750,17 +1074,33 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.strokeFill.badge", "CSS Text-Stroke Transition"),
         description:
           "Hollow text using transparent fill with stroke borders that smoothly transitions into vibrant solid colors upon mouse hover with micro-scaling.",
-        snippet: `<Marquee direction="left" speed={35} fade gap={32} pauseOnHover>
-  {words.map((word) => (
-    <span
-      key={word}
-      className="text-7xl font-black uppercase tracking-tight text-transparent transition-all duration-300 hover:text-zinc-900 dark:hover:text-white hover:scale-105"
-      style={{ WebkitTextStroke: "1.5px currentColor" }}
-    >
-      {word} •
-    </span>
-  ))}
-</Marquee>`,
+        snippet: `import { Marquee } from "@needui/ui-kit";
+
+// Data JSON:
+const words = [
+  "HYPERDRIVE",
+  "SPATIAL MOTION",
+  "HARDWARE ACCELERATED",
+  "ZERO RUNTIME",
+  "IMMERSIVE DEPTH",
+  "PURE AESTHETICS"
+];
+
+export function StrokeFillMarquee() {
+  return (
+    <Marquee direction="left" speed={32} fade gap={28} pauseOnHover>
+      {words.map((word) => (
+        <span
+          key={word}
+          className="text-7xl font-black uppercase tracking-tight text-transparent transition-all duration-300 hover:text-zinc-900 dark:hover:text-white hover:scale-105 cursor-pointer inline-block"
+          style={{ WebkitTextStroke: "1.5px currentColor" }}
+        >
+          {word} •
+        </span>
+      ))}
+    </Marquee>
+  );
+}`,
         render: () => (
           <div className="w-full relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 py-10 dark:bg-zinc-950 space-y-4">
             <Marquee direction="left" speed={32} fade gap={28} pauseOnHover>
@@ -802,25 +1142,46 @@ export function MarqueeDemo() {
         badge: t("content.marqueeDemo.variants.sandwichMarquee.badge", "Spatial Sandwich Depth"),
         description:
           "A floating 3D graphic anchored between two synchronized marquee streams: a solid backdrop layer underneath, and an outline wireframe layer in front.",
-        snippet: `<div className="relative h-[380px] overflow-hidden flex items-center justify-center">
-  <div className="absolute inset-0 z-10 flex items-center opacity-70">
-    <Marquee direction="left" speed={22} fade gap={28}>
-      <span className="text-8xl font-black text-zinc-700 dark:text-zinc-800">SPATIAL AUDIO • ACOUSTICS •</span>
-    </Marquee>
-  </div>
+        snippet: `import { Marquee } from "@needui/ui-kit";
 
-  <div className="relative z-20 drop-shadow-2xl animate-pulse">
-    <HeadphoneImage />
-  </div>
+// Data JSON:
+const bannerConfig = {
+  text: "SPATIAL SOUND • ACOUSTIC MATRIX • NEXT AESTHETICS •",
+  badge: "Spatial Audio 3D"
+};
 
-  <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
-    <Marquee direction="left" speed={22} fade gap={28}>
-      <span className="text-8xl font-black text-transparent" style={{ WebkitTextStroke: "1.5px white" }}>
-        SPATIAL AUDIO • ACOUSTICS •
-      </span>
-    </Marquee>
-  </div>
-</div>`,
+export function SandwichImageMarquee() {
+  return (
+    <div className="relative h-[380px] overflow-hidden flex items-center justify-center rounded-2xl border bg-zinc-950">
+      {/* Background Layer: Solid text stream */}
+      <div className="absolute inset-0 z-10 flex items-center opacity-70 pointer-events-none">
+        <Marquee direction="left" speed={24} fade gap={28}>
+          <span className="text-8xl font-black uppercase text-zinc-800">
+            {bannerConfig.text}
+          </span>
+        </Marquee>
+      </div>
+
+      {/* Middle Layer: Hero 3D Card / Graphic */}
+      <div className="relative z-20 flex flex-col items-center justify-center p-6 rounded-2xl border border-zinc-700 bg-zinc-900/90 shadow-2xl backdrop-blur-md">
+        <span className="text-4xl mb-2">🎧</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-white">{bannerConfig.badge}</span>
+      </div>
+
+      {/* Foreground Layer: Wireframe outline text */}
+      <div className="absolute inset-0 z-30 flex items-center pointer-events-none">
+        <Marquee direction="left" speed={24} fade gap={28}>
+          <span
+            className="text-8xl font-black uppercase text-transparent"
+            style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.7)" }}
+          >
+            {bannerConfig.text}
+          </span>
+        </Marquee>
+      </div>
+    </div>
+  );
+}`,
         render: () => (
           <div className="w-full relative h-[380px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-950 flex items-center justify-center select-none">
             <div className="absolute w-72 h-72 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />

@@ -21,8 +21,9 @@ import { AutoCarouselDemo } from "./pages/AutoCarouselDemo";
 import { AnimatedDatepickerDemo } from "./pages/AnimatedDatepickerDemo";
 import { AnimatedTabsDemo } from "./pages/AnimatedTabsDemo";
 import { AnimatedToggleDemo } from "./pages/AnimatedToggleDemo";
+import { AnimatedPaginationDemo } from "./pages/AnimatedPaginationDemo";
 import { ToastProvider } from "../src/components/ToastAnimation";
-import { FloatingFeedback } from "./components/FloatingFeedback";
+// import { FloatingFeedback } from "./components/FloatingFeedback";
 
 export function App() {
   const { t } = useTranslation();
@@ -45,55 +46,61 @@ export function App() {
       {
         title: t("sidebar.components.title", "Components"),
         items: [
-
+          
+          {
+            id: "accordion-animation",
+            label: t("sidebar.components.accordion", "Accordion"),
+          },
           {
             id: "advanced-buttons",
-            label: t("sidebar.components.advancedButtons", "Advanced Buttons"),
+            label: t("sidebar.components.advancedButtons", "Buttons"),
           },
-                    {
+          {
             id: "auto-carousel-animation",
-            label: t("sidebar.components.autoCarousel", "Auto Carousel"),
+            label: t("sidebar.components.autoCarousel", "Carousel (Autoplay)"),
+          },
+          {
+            id: "carousel-animation",
+            label: t("sidebar.components.carousel", "Carousel"),
+          },
+          {
+            id: "datepicker-animation",
+            label: t("sidebar.components.datepicker", "Datepicker"),
+          },
+          {
+            id: "dropdown-animation",
+            label: t("sidebar.components.dropdown", "Dropdown"),
+          },
+          {
+            id: "marquee-animation",
+            label: t("sidebar.components.marquee", "Marquee"),
+          },
+       
+      {
+        id: "modal-animation",
+        label: t("sidebar.components.modal", "Modal"),
+      },
+            {
+            id: "timeline-animation",
+            label: t("sidebar.components.timeline", "Timeline"),
           },
 
+          {
+            id: "toast-animation",
+            label: t("sidebar.components.toast", "Toast"),
+          },
+            {
+              id: "toggle-animation",
+              label: t("sidebar.components.toggle", "Toggle"),
+            },
+          
+          {
+            id: "tabs-animation",
+            label: t("sidebar.components.tabs", "Tabs"),
+          },
           // {
-          //   id: "toast-animation",
-          //   label: t("sidebar.components.toast", "Toast"),
-          // },
-          // {
-          //   id: "modal-animation",
-          //   label: t("sidebar.components.modal", "Modal"),
-          // },
-          // {
-          //   id: "marquee-animation",
-          //   label: t("sidebar.components.marquee", "Marquee"),
-          // },
-          // {
-          //   id: "timeline-animation",
-          //   label: t("sidebar.components.timeline", "Timeline"),
-          // },
-          // {
-          //   id: "dropdown-animation",
-          //   label: t("sidebar.components.dropdown", "Dropdown"),
-          // },
-          // {
-          //   id: "accordion-animation",
-          //   label: t("sidebar.components.accordion", "Accordion"),
-          // },
-          // {
-          //   id: "carousel-animation",
-          //   label: t("sidebar.components.carousel", "Carousel"),
-          // },
-          // {
-          //   id: "datepicker-animation",
-          //   label: t("sidebar.components.datepicker", "Animated Datepicker"),
-          // },
-          // {
-          //   id: "tabs-animation",
-          //   label: t("sidebar.components.tabs", "Animated Tabs"),
-          // },
-          // {
-          //   id: "toggle-animation",
-          //   label: t("sidebar.components.toggle", "Animated Toggle"),
+          //   id: "pagination-animation",
+          //   label: t("sidebar.components.pagination", "Pagination"),
           // },
         ],
       },
@@ -129,6 +136,7 @@ export function App() {
       "modal-animation",
       "marquee-animation",
       "timeline-animation",
+      "pagination-animation",
       "web-icons",
       "search-animation",
     ];
@@ -189,6 +197,8 @@ export function App() {
         return <MarqueeAnimationPage />;
       case "timeline-animation":
         return <AnimatedTimelineDemo />;
+      case "pagination-animation":
+        return <AnimatedPaginationDemo />;
       case "web-icons":
         return <WebIconsPage />;
       default:
@@ -206,7 +216,7 @@ export function App() {
         >
           {renderContent()}
         </DocsLayout>
-        <FloatingFeedback />
+        {/* <FloatingFeedback /> */}
       </ToastProvider>
     </ThemeProvider>
   );

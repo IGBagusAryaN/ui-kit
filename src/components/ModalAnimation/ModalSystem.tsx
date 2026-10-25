@@ -156,11 +156,11 @@ export function useModalAccessibility(
 export interface ModalConfirmProps
   extends BaseModalProps,
     VariantProps<typeof modalContentVariants> {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   cancelLabel?: string;
   confirmLabel?: string;
-  onConfirm: () => void;
+  onConfirm?: () => void;
   /** Varian warna tombol konfirmasi: 'danger' (merah rose) atau 'primary' (gelap/biru) */
   confirmVariant?: "danger" | "primary" | "warning";
 }
@@ -170,8 +170,8 @@ export const ModalConfirm = forwardRef<HTMLDivElement, ModalConfirmProps>(
     {
       isOpen,
       onClose,
-      title,
-      description,
+      title = "Konfirmasi Tindakan",
+      description = "Apakah Anda yakin ingin melanjutkan tindakan ini?",
       cancelLabel = "Batal",
       confirmLabel = "Konfirmasi",
       onConfirm,
@@ -261,7 +261,7 @@ export const ModalConfirm = forwardRef<HTMLDivElement, ModalConfirmProps>(
                   <button
                     type="button"
                     onClick={() => {
-                      onConfirm();
+                      onConfirm?.();
                       onClose();
                     }}
                     className={cn(
@@ -293,7 +293,7 @@ ModalConfirm.displayName = "ModalConfirm";
 export interface ModalFormProps
   extends Omit<BaseModalProps, "onSubmit">,
     VariantProps<typeof modalContentVariants> {
-  title: string;
+  title?: string;
   subtitle?: string;
   cancelLabel?: string;
   saveLabel?: string;
@@ -311,7 +311,7 @@ export interface ModalFormProps
     name?: string;
     email?: string;
   };
-  onSubmit: (values: { name: string; email: string; role: string }) => void;
+  onSubmit?: (values: { name: string; email: string; role: string }) => void;
   children?: React.ReactNode;
 }
 
@@ -320,7 +320,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>(
     {
       isOpen,
       onClose,
-      title,
+      title = "Formulir Profil Pengguna",
       subtitle,
       cancelLabel = "Batal",
       saveLabel = "Simpan Perubahan",
@@ -352,7 +352,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>(
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      onSubmit(formData as { name: string; email: string; role: string });
+      onSubmit?.(formData as { name: string; email: string; role: string });
       onClose();
     };
 
@@ -492,7 +492,7 @@ ModalForm.displayName = "ModalForm";
 export interface ModalDrawerProps
   extends BaseModalProps,
     VariantProps<typeof drawerVariants> {
-  title: string;
+  title?: string;
   subtitle?: string;
   closeLabel?: string;
   saveLabel?: string;
@@ -505,7 +505,7 @@ export const ModalDrawer = forwardRef<HTMLDivElement, ModalDrawerProps>(
     {
       isOpen,
       onClose,
-      title,
+      title = "Panel Pengaturan",
       subtitle,
       closeLabel = "Tutup Panel",
       saveLabel = "Terapkan Pengaturan",
@@ -628,7 +628,7 @@ ModalDrawer.displayName = "ModalDrawer";
 export interface ModalBottomSheetProps
   extends BaseModalProps,
     VariantProps<typeof bottomSheetVariants> {
-  title: string;
+  title?: string;
   subtitle?: string;
   closeLabel?: string;
   children?: React.ReactNode;
@@ -639,7 +639,7 @@ export const ModalBottomSheet = forwardRef<HTMLDivElement, ModalBottomSheetProps
     {
       isOpen,
       onClose,
-      title,
+      title = "Menu Aksi Cepat",
       subtitle,
       closeLabel = "Tutup",
       children,
@@ -734,7 +734,7 @@ ModalBottomSheet.displayName = "ModalBottomSheet";
 // ============================================================================
 
 export interface ModalMediaProps extends BaseModalProps {
-  src: string;
+  src?: string;
   alt?: string;
   title?: string;
   caption?: string;
@@ -745,7 +745,7 @@ export const ModalMedia = forwardRef<HTMLDivElement, ModalMediaProps>(
     {
       isOpen,
       onClose,
-      src,
+      src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
       alt = "Pratinjau Media",
       title,
       caption,
@@ -839,3 +839,174 @@ export const ModalMedia = forwardRef<HTMLDivElement, ModalMediaProps>(
   }
 );
 ModalMedia.displayName = "ModalMedia";
+
+// ============================================================================
+// 6. MASTER COMPONENT: AnimatedModal (and Dialog Aliases)
+// ============================================================================
+
+export const modalVariants = cva("font-sans", {
+  variants: {
+    variant: {
+      default: "",
+      confirm: "",
+      form: "",
+      drawer: "",
+      sheet: "",
+      media: "",
+    },
+    size: {
+      default: "",
+      sm: "",
+      md: "",
+      lg: "",
+      xl: "",
+      full: "",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
+
+export type ModalVariantType =
+  | "default"
+  | "confirm"
+  | "form"
+  | "drawer"
+  | "sheet"
+  | "media";
+
+export interface AnimatedModalProps
+  extends BaseModalProps,
+    VariantProps<typeof modalVariants> {
+  variant?: ModalVariantType;
+  title?: string;
+  description?: string;
+  subtitle?: string;
+  cancelLabel?: string;
+  confirmLabel?: string;
+  saveLabel?: string;
+  closeLabel?: string;
+  confirmVariant?: "danger" | "primary" | "warning";
+  onConfirm?: () => void;
+  onSubmit?: (values: any) => void;
+  onSave?: () => void;
+  position?: "left" | "right";
+  src?: string;
+  alt?: string;
+  caption?: string;
+  size?: "sm" | "md" | "lg" | "xl" | "full";
+  children?: React.ReactNode;
+}
+
+export const AnimatedModal = forwardRef<HTMLDivElement, AnimatedModalProps>(
+  (
+    {
+      variant = "confirm",
+      size,
+      title,
+      description,
+      subtitle,
+      cancelLabel,
+      confirmLabel,
+      saveLabel,
+      closeLabel,
+      confirmVariant,
+      onConfirm,
+      onSubmit,
+      onSave,
+      position,
+      src,
+      alt,
+      caption,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    switch (variant) {
+      case "form":
+        return (
+          <ModalForm
+            ref={ref}
+            size={size as any}
+            title={title}
+            subtitle={subtitle}
+            cancelLabel={cancelLabel}
+            saveLabel={saveLabel}
+            onSubmit={onSubmit}
+            {...props}
+          >
+            {children}
+          </ModalForm>
+        );
+      case "drawer":
+        return (
+          <ModalDrawer
+            ref={ref}
+            size={size as any}
+            position={position}
+            title={title}
+            subtitle={subtitle}
+            closeLabel={closeLabel}
+            saveLabel={saveLabel}
+            onSave={onSave}
+            {...props}
+          >
+            {children}
+          </ModalDrawer>
+        );
+      case "sheet":
+        return (
+          <ModalBottomSheet
+            ref={ref}
+            size={size as any}
+            title={title}
+            subtitle={subtitle}
+            closeLabel={closeLabel}
+            {...props}
+          >
+            {children}
+          </ModalBottomSheet>
+        );
+      case "media":
+        return (
+          <ModalMedia
+            ref={ref}
+            src={src}
+            alt={alt}
+            title={title}
+            caption={caption}
+            {...props}
+          />
+        );
+      case "confirm":
+      case "default":
+      default:
+        return (
+          <ModalConfirm
+            ref={ref}
+            size={size as any}
+            title={title}
+            description={description}
+            cancelLabel={cancelLabel}
+            confirmLabel={confirmLabel}
+            confirmVariant={confirmVariant}
+            onConfirm={onConfirm}
+            {...props}
+          />
+        );
+    }
+  }
+);
+AnimatedModal.displayName = "AnimatedModal";
+
+export const ModalDialog = AnimatedModal;
+export const ConfirmModal = ModalConfirm;
+export const FormModal = ModalForm;
+export const DrawerModal = ModalDrawer;
+export const BottomSheetModal = ModalBottomSheet;
+export const MediaModal = ModalMedia;
+export const RightDrawer = ModalDrawer;
+export const LightboxModal = ModalMedia;

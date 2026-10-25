@@ -517,11 +517,11 @@ export function AnimatedAccordionDemo() {
       <div className="grid grid-cols-1 gap-10">
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.classic.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.classic.badge}
               </span>
             </div>
@@ -539,11 +539,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.floating.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.floating.badge}
               </span>
             </div>
@@ -561,11 +561,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.minimal.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.minimal.badge}
               </span>
             </div>
@@ -583,11 +583,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.glass.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.glass.badge}
               </span>
             </div>
@@ -605,11 +605,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.staggered.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.staggered.badge}
               </span>
             </div>
@@ -627,11 +627,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.horizontal.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.horizontal.badge}
               </span>
             </div>
@@ -649,11 +649,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.timeline.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.timeline.badge}
               </span>
             </div>
@@ -671,11 +671,11 @@ export function AnimatedAccordionDemo() {
 
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100">
                 {t.cards.nested.title}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800">
                 {t.cards.nested.badge}
               </span>
             </div>
@@ -690,6 +690,60 @@ export function AnimatedAccordionDemo() {
 
           <CodeSnippet code={t.cards.nested.snippet} />
         </section>
+
+        {/* COMPONENT GUIDELINES STANDARD: PROPS API REFERENCE */}
+        <div className="mt-8 space-y-3">
+          <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-indigo-500" />
+            Props API Reference
+          </h3>
+          <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+              <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+                <tr>
+                  <th className="px-4 py-2.5">Prop</th>
+                  <th className="px-4 py-2.5">Type</th>
+                  <th className="px-4 py-2.5">Default</th>
+                  <th className="px-4 py-2.5">Description</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr>
+                  <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">items</td>
+                  <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">AccordionItem[]</td>
+                  <td className="px-4 py-2.5 font-mono text-xs">defaultItems</td>
+                  <td className="px-4 py-2.5">
+                    Daftar item data akordion yang akan dirender (id, title, content, badge).
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">defaultOpenId</td>
+                  <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string | null</td>
+                  <td className="px-4 py-2.5 font-mono text-xs">null</td>
+                  <td className="px-4 py-2.5">
+                    ID item akordion yang langsung terbuka secara default saat komponen pertama kali di-mount.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">allowMultiple</td>
+                  <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                  <td className="px-4 py-2.5 font-mono text-xs">false</td>
+                  <td className="px-4 py-2.5">
+                    Mengizinkan beberapa panel akordion terbuka bersamaan (multi-collapse mode).
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">className</td>
+                  <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                  <td className="px-4 py-2.5 font-mono text-xs">""</td>
+                  <td className="px-4 py-2.5">
+                    Class utilitas Tailwind CSS tambahan untuk container luar akordion via cn().
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

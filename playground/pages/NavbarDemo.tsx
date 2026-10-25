@@ -341,11 +341,11 @@ export function NavbarDemo() {
             className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
           >
             <div className="space-y-2 mb-4">
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
                   {item.title}
                 </h3>
-                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
+                <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
                   {item.badge}
                 </span>
               </div>
@@ -366,6 +366,52 @@ export function NavbarDemo() {
             <CodeSnippet code={item.snippet} />
           </div>
         ))}
+      </div>
+
+      {/* Props API Reference */}
+      <div className="mt-8 space-y-3">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
+        <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+            <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+              <tr>
+                <th className="px-4 py-2.5">Prop</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Default</th>
+                <th className="px-4 py-2.5">Description</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">items</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">NavItem[]</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-rose-500 font-semibold">required</td>
+                <td className="px-4 py-2.5">Array data navigasi link (id, label, href, icon, isActive).</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">logo</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">React.ReactNode</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Elemen logo kustom yang dirender di sisi kiri navbar.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">actions</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">React.ReactNode</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Tombol aksi CTA atau widget interaktif di sisi kanan navbar.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">className</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Class utilitas tambahan Tailwind CSS via cn().</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

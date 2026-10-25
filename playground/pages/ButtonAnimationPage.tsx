@@ -1,57 +1,8 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ButtonDemo } from "./ButtonDemo";
-import { CodeBlock } from "../components/CodeBlock";
 
 export function ButtonAnimationPage() {
   const { t } = useTranslation();
-  const sampleUsage = `import { ButtonAnimation } from "@needui/ui-kit";
-
-export function ButtonGallery() {
-  return (
-    <div className="flex flex-wrap gap-4">
-      <ButtonAnimation animation="spring-bounce">
-        Spring Bounce
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="glitch-cyberpunk">
-        CYBERPUNK_SYS
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="particle-burst" onClick={() => console.log("Boom!")}>
-        Click for Boom! 💥
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="magnetic-tilt">
-        Magnetic 3D Tilt
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="neon-pulse">
-        Neon Pulse
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="ripple-echo">
-        Click Ripple 🌊
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="fold-out">
-        Unfold 3D
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="pixelate-morph">
-        Pixelate Jitter
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="border-beam">
-        Border Beam
-      </ButtonAnimation>
-
-      <ButtonAnimation animation="elastic-snap">
-        Snap Rebound
-      </ButtonAnimation>
-    </div>
-  );
-}`;
 
   return (
     <div className="space-y-12 pb-16">
@@ -74,64 +25,65 @@ export function ButtonGallery() {
         <ButtonDemo />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Usage Example
-        </h2>
-        <CodeBlock code={sampleUsage} language="tsx" filename="ButtonGallery.tsx" />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Props
-        </h2>
-        <div className="overflow-x-auto rounded-xl border border-neutral-200/80 dark:border-neutral-800/80">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-neutral-50 dark:bg-neutral-900/60 text-neutral-600 dark:text-neutral-400 font-medium border-b border-neutral-200/80 dark:border-neutral-800/80 text-xs">
+      {/* Props API Reference */}
+      <div className="mt-8 space-y-3">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
+        <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+            <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
               <tr>
-                <th className="p-3">Prop</th>
-                <th className="p-3">Type</th>
-                <th className="p-3">Default</th>
-                <th className="p-3">Description</th>
+                <th className="px-4 py-2.5">Prop</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Default</th>
+                <th className="px-4 py-2.5">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200/80 dark:divide-neutral-800/80 font-mono text-xs text-neutral-700 dark:text-neutral-300">
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               <tr>
-                <td className="p-3 font-semibold text-blue-600 dark:text-blue-400">animation</td>
-                <td className="p-3 text-neutral-500">
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">animation</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">
                   "spring-bounce" | "press-3d" | "slide-reveal" | "magnetic-glow" | "shimmer-sweep" | "glitch-cyberpunk" | "particle-burst" | "magnetic-tilt" | "liquid-gooey" | "neon-pulse" | "ripple-echo" | "fold-out" | "swipe-fill" | "pixelate-morph" | "jelly-wobble" | "border-beam" | "flip-3d" | "elastic-snap"
                 </td>
-                <td className="p-3 text-neutral-400">"spring-bounce"</td>
-                <td className="p-3 font-sans">
+                <td className="px-4 py-2.5 font-mono text-xs">"spring-bounce"</td>
+                <td className="px-4 py-2.5">
                   Pilihan dari 18 interaksi fisika animasi Framer Motion tanpa kasta.
                 </td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-blue-600 dark:text-blue-400">variant</td>
-                <td className="p-3 text-neutral-500">
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">variant</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">
                   "default" | "secondary" | "outline" | "ghost" 
                 </td>
-                <td className="p-3 text-neutral-400">"default"</td>
-                <td className="p-3 font-sans">
-                  Gaya visual warna tombol (Tailwind utility).
+                <td className="px-4 py-2.5 font-mono text-xs">"default"</td>
+                <td className="px-4 py-2.5">
+                  Gaya visual warna tombol berbasis CVA.
                 </td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">size</td>
-                <td className="p-3 text-neutral-500">"sm" | "md" | "lg"</td>
-                <td className="p-3 text-neutral-400">"md"</td>
-                <td className="p-3 font-sans">Ukuran tinggi dan padding tombol.</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">size</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">"sm" | "md" | "lg"</td>
+                <td className="px-4 py-2.5 font-mono text-xs">"md"</td>
+                <td className="px-4 py-2.5">Ukuran tinggi dan padding dimensi tombol.</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">isLoading</td>
-                <td className="p-3 text-neutral-500">boolean</td>
-                <td className="p-3 text-neutral-400">false</td>
-                <td className="p-3 font-sans">Menampilkan spinner loading bawaan dan mendisabel klik.</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">isLoading</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">false</td>
+                <td className="px-4 py-2.5">Menampilkan spinner loading bawaan dan mendisabel interaksi klik.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">className</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Class utilitas tambahan Tailwind CSS yang digabungkan aman via cn().</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

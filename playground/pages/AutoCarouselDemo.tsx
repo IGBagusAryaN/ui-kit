@@ -714,11 +714,11 @@ export function AutoCarouselDemo() {
             className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
             <div className="space-y-2 mb-6">
-              <div className="flex items-start justify-between gap-4">
-                <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+                <h2 className="text-base sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
                   {card.title}
                 </h2>
-                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800 font-semibold">
+                <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800 font-semibold">
                   {card.badge}
                 </span>
               </div>
@@ -737,33 +737,34 @@ export function AutoCarouselDemo() {
       </div>
 
       {/* COMPONENT GUIDELINES STANDARD: PROPS API REFERENCE */}
-      <section className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-        <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-          {t.propsTable.title}
-        </h2>
+      <div className="mt-8 space-y-3">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
         <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
-          <table className="w-full text-left text-xs sm:text-sm">
-            <thead className="bg-zinc-50 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 font-semibold border-b border-zinc-200 dark:border-zinc-800 text-[11px] uppercase">
+          <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+            <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
               <tr>
-                <th className="p-3">{t.propsTable.headers.prop}</th>
-                <th className="p-3">{t.propsTable.headers.type}</th>
-                <th className="p-3">{t.propsTable.headers.default}</th>
-                <th className="p-3">{t.propsTable.headers.description}</th>
+                <th className="px-4 py-2.5">Prop</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Default</th>
+                <th className="px-4 py-2.5">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 font-mono text-xs text-zinc-700 dark:text-zinc-300">
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               {t.propsTable.rows.map((row) => (
                 <tr key={row.prop}>
-                  <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100">{row.prop}</td>
-                  <td className="p-3 text-zinc-500 font-mono">{row.type}</td>
-                  <td className="p-3 text-zinc-400">{row.default}</td>
-                  <td className="p-3 font-sans text-zinc-600 dark:text-zinc-400">{row.description}</td>
+                  <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">{row.prop}</td>
+                  <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">{row.type}</td>
+                  <td className="px-4 py-2.5 font-mono text-xs">{row.default}</td>
+                  <td className="px-4 py-2.5">{row.description}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

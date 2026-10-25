@@ -1,34 +1,6 @@
 import { Demo } from "./Demo";
-import { CodeBlock } from "../components/CodeBlock";
 
 export function SearchAnimationPage() {
-  const sampleUsage = `import { SearchAnimation } from "@needui/ui-kit";
-
-export function SearchVariants() {
-  return (
-    <div className="flex flex-wrap gap-4">
-      <SearchAnimation animationVariant="morph" placeholder="Morphing..." />
-
-      <SearchAnimation animationVariant="slide-down" placeholder="Slide down..." />
-
-      <SearchAnimation animationVariant="scale-fade" placeholder="Scale fade..." />
-
-      <SearchAnimation animationVariant="glow-pulse" placeholder="Glow aura..." />
-
-      <SearchAnimation animationVariant="underline-expand" placeholder="Underline..." />
-    </div>
-  );
-}`;
-
-  const customStyleUsage = `// Melakukan override style default via Tailwind className
-<SearchAnimation
-  animationVariant="glow-pulse"
-  placeholder="Cari produk..."
-  className="bg-indigo-50/70 border-indigo-200 hover:border-indigo-400 dark:bg-indigo-950/40 dark:border-indigo-800"
-  iconClassName="text-indigo-600 dark:text-indigo-400"
-  inputClassName="text-indigo-950 dark:text-indigo-100 font-medium"
-/>`;
-
   return (
     <div className="space-y-12 pb-16">
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
@@ -56,79 +28,109 @@ export function SearchVariants() {
         <Demo />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Usage
-        </h2>
-        <CodeBlock code={sampleUsage} language="tsx" filename="SearchVariantsDemo.tsx" />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Tailwind Override Example
-        </h2>
-        <CodeBlock code={customStyleUsage} language="tsx" filename="CustomSearch.tsx" />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Props
-        </h2>
-        <div className="overflow-x-auto rounded-xl border border-neutral-200/80 dark:border-neutral-800/80">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-neutral-50 dark:bg-neutral-900/60 text-neutral-600 dark:text-neutral-400 font-medium border-b border-neutral-200/80 dark:border-neutral-800/80 text-xs">
+      {/* COMPONENT GUIDELINES STANDARD: PROPS API REFERENCE */}
+      <div className="mt-8 space-y-3">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
+        <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+            <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
               <tr>
-                <th className="p-3">Prop</th>
-                <th className="p-3">Type</th>
-                <th className="p-3">Default</th>
-                <th className="p-3">Description</th>
+                <th className="px-4 py-2.5">Prop</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Default</th>
+                <th className="px-4 py-2.5">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200/80 dark:divide-neutral-800/80 font-mono text-xs text-neutral-700 dark:text-neutral-300">
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               <tr>
-                <td className="p-3 font-semibold text-blue-600 dark:text-blue-400">animationVariant</td>
-                <td className="p-3 text-neutral-500">
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">animationVariant</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">
                   "morph" | "slide-down" | "scale-fade" | "glow-pulse" | "underline-expand"
                 </td>
-                <td className="p-3 text-neutral-400">"morph"</td>
-                <td className="p-3 font-sans">
+                <td className="px-4 py-2.5 font-mono text-xs">"morph"</td>
+                <td className="px-4 py-2.5">
                   Pilihan variasi animasi interaktif saat search bar dibuka/ditutup.
                 </td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">placeholder</td>
-                <td className="p-3 text-neutral-500">string</td>
-                <td className="p-3 text-neutral-400">"Search..."</td>
-                <td className="p-3 font-sans">Placeholder teks pada input field.</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">placeholder</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">"Search..."</td>
+                <td className="px-4 py-2.5">Placeholder teks pada input field pencarian.</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">onSearch</td>
-                <td className="p-3 text-neutral-500">(query: string) =&gt; void</td>
-                <td className="p-3 text-neutral-400">-</td>
-                <td className="p-3 font-sans">Callback saat form disubmit atau tombol search ditekan.</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">value</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Nilai input teks (controlled mode).</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">className</td>
-                <td className="p-3 text-neutral-500">string</td>
-                <td className="p-3 text-neutral-400">-</td>
-                <td className="p-3 font-sans">Class Tailwind untuk container pembungkus (di-merge via cn).</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">defaultValue</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Nilai default awal input teks (uncontrolled mode).</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">closeOnClickOutside</td>
-                <td className="p-3 text-neutral-500">boolean</td>
-                <td className="p-3 text-neutral-400">true</td>
-                <td className="p-3 font-sans">Menutup input otomatis saat klik di luar container.</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">isOpen</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Status keterbukaan search bar secara eksplisit (controlled mode).</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold text-neutral-900 dark:text-neutral-100">closeOnEscape</td>
-                <td className="p-3 text-neutral-500">boolean</td>
-                <td className="p-3 text-neutral-400">true</td>
-                <td className="p-3 font-sans">Menutup input otomatis saat tombol Escape ditekan.</td>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">defaultOpen</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">false</td>
+                <td className="px-4 py-2.5">Status ekspansi awal saat komponen dimount (uncontrolled mode).</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">onSearch</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">(query: string) =&gt; void</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Callback saat form disubmit atau tombol search ditekan.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">onToggle</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">(isOpen: boolean) =&gt; void</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Callback saat status ekspansi search bar berubah.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">closeOnClickOutside</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">true</td>
+                <td className="px-4 py-2.5">Menutup input otomatis saat klik di luar area search bar.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">closeOnEscape</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">true</td>
+                <td className="px-4 py-2.5">Menutup input otomatis saat tombol Escape ditekan.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">className</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Class Tailwind untuk container pembungkus utama via cn().</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">inputClassName</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Class utilitas Tailwind tambahan khusus elemen HTML input.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">iconClassName</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">Class utilitas Tailwind tambahan khusus ikon pencarian.</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
