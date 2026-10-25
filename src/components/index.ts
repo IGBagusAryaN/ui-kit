@@ -14,4 +14,9 @@ export * from "./FeedbackWidget";
 export * from "./FloatingFeedback";
 export * from "./AnimatedToggle";
 export * from "./AutoCarousel";
+export * from "./AnimatedDatepicker";
+export * from "./AdvancedCarousel";
+export * from "./AnimatedTabs";
+export * from "./Pagination";
+
 

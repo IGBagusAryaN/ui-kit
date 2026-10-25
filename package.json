@@ -1,8 +1,8 @@
 {
   "name": "@needui/ui-kit",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Customizable, accessible, animated React UI Component Library powered by Tailwind CSS & Framer Motion",
-  "author": "Arya",
+  "author": "arz",
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

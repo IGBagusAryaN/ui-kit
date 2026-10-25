@@ -1,43 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { TimelineDemo } from "./TimelineDemo";
-import { CodeBlock } from "../components/CodeBlock";
 
 export function TimelineAnimationPage() {
   const { t } = useTranslation();
-
-  const sampleUsage = `import {
-  VerticalTimeline,
-  AlternatingTimeline,
-  HorizontalStepper,
-  AccordionTimeline,
-  NeonGlowTimeline,
-  TimelineItemData,
-} from "@needui/ui-kit";
-
-const milestoneData: TimelineItemData[] = [
-  {
-    id: 1,
-    date: "Q1 2024",
-    title: "System Architecture",
-    subtitle: "Design Tokens & Foundation",
-    description: "Built modular design system and accessible component architecture.",
-    badge: "Foundation",
-    badgeColor: "indigo",
-    status: "completed",
-    tags: ["React", "TypeScript", "Tailwind"],
-  },
-  {
-    id: 2,
-    date: "Q2 2024",
-    title: "Motion Physics",
-    subtitle: "Fluid Framer Motion",
-    status: "current",
-  },
-];
-
-export function Roadmap() {
-  return <VerticalTimeline items={milestoneData} animated />;
-}`;
 
   return (
     <div className="space-y-12 pb-16">
@@ -60,17 +25,11 @@ export function Roadmap() {
         <TimelineDemo />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          {t("common.usage", "Cara Penggunaan")}
-        </h2>
-        <CodeBlock code={sampleUsage} language="tsx" />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          {t("common.props", "Properti Komponen")}
-        </h2>
+      <section className="space-y-4 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+        <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
         <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-800">
           <table className="w-full text-left text-sm text-neutral-600 dark:text-neutral-400">
             <thead className="border-b border-neutral-200 bg-neutral-50/75 text-xs uppercase text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300">

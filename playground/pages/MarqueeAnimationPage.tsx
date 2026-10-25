@@ -1,49 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { MarqueeDemo } from "./MarqueeDemo";
-import { CodeBlock } from "../components/CodeBlock";
 
 export function MarqueeAnimationPage() {
-  const { t } = useTranslation();
-
-  const sampleUsage = `import { Marquee } from "@needui/ui-kit";
-
-export function SponsorMarquee() {
-  const partners = [
-    { id: 1, name: "Antigravity", icon: "✦" },
-    { id: 2, name: "Ballpit", icon: "●" },
-    { id: 3, name: "Pixel Trail", icon: "▦" },
-    { id: 4, name: "Magic Rings", icon: "◎" },
-    { id: 5, name: "Splash Cursor", icon: "◈" },
-  ];
-
-  return (
-    <div className="w-full py-8 bg-zinc-950">
-      <Marquee direction="left" speed="normal" pauseOnHover fade gap={16}>
-        {partners.map((item) => (
-          <div
-            key={item.id}
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-200"
-          >
-            <span>{item.icon}</span>
-            <span>{item.name}</span>
-          </div>
-        ))}
-      </Marquee>
-
-      <Marquee direction="right" speed="slow" pauseOnHover fade gap={16} className="mt-4">
-        {partners.map((item) => (
-          <div
-            key={item.id}
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-200"
-          >
-            <span>{item.icon}</span>
-            <span>{item.name}</span>
-          </div>
-        ))}
-      </Marquee>
-    </div>
-  );
-}`;
+  const { t, i18n } = useTranslation();
+  const isId = i18n.language?.startsWith("id");
 
   return (
     <div className="space-y-12 pb-16">
@@ -66,129 +26,185 @@ export function SponsorMarquee() {
         <MarqueeDemo />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          {t("common.usage", "Cara Penggunaan")}
-        </h2>
-        <CodeBlock code={sampleUsage} language="tsx" />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          {t("common.props", "Properti Komponen")}
-        </h2>
-        <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-800">
-          <table className="w-full text-left text-sm text-neutral-600 dark:text-neutral-400">
-            <thead className="border-b border-neutral-200 bg-neutral-50/75 text-xs uppercase text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300">
+      {/* Props API Reference */}
+      <div className="mt-8 space-y-3">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
+        <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+            <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
               <tr>
-                <th className="px-4 py-3 font-semibold">Prop</th>
-                <th className="px-4 py-3 font-semibold">Type</th>
-                <th className="px-4 py-3 font-semibold">Default</th>
-                <th className="px-4 py-3 font-semibold">Description</th>
+                <th className="px-4 py-2.5">Prop</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Default</th>
+                <th className="px-4 py-2.5">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  children
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">variant</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">
+                  "default" | "draggable" | "scroll" | "counter" | "vertical" | "perspective" | "bordered" | "gradient"
                 </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  React.ReactNode
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">-</td>
-                <td className="px-4 py-3 text-xs">
-                  Elemen konten yang akan digulirkan secara terus-menerus (looping).
+                <td className="px-4 py-2.5 font-mono text-xs">"default"</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Gaya visual dan jenis variasi gerak alur marquee berbasis CVA."
+                    : "Visual presentation and motion architecture styling via CVA."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  orientation
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  "horizontal" | "vertical"
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">"horizontal"</td>
-                <td className="px-4 py-3 text-xs">
-                  Orientasi arah jalur marquee: horizontal atau vertikal (kolom masonry).
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">items</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">any[]</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Array data item JSON terstruktur untuk rendering data-driven."
+                    : "Array of structured JSON items for data-driven rendering."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  direction
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  "left" | "right" | "up" | "down"
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">"left" / "up"</td>
-                <td className="px-4 py-3 text-xs">
-                  Arah pergerakan animasi ticker.
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">renderItem</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">(item: any, index: number) =&gt; ReactNode</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Fungsi render kustom untuk memetakan tiap item JSON menjadi elemen visual."
+                    : "Custom render function mapping each JSON item to a visual element."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  speed
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">size</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">
+                  "none" | "xs" | "sm" | "default" | "lg" | "full"
                 </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
+                <td className="px-4 py-2.5 font-mono text-xs">"default"</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Dimensi ukuran vertikal padding dan container width ('none'=py-0, 'xs'=py-1)."
+                    : "Vertical padding and container dimension constraint ('none'=py-0, 'xs'=py-1)."}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">children</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">ReactNode</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Elemen konten manual (opsional bila prop items diberikan)."
+                    : "Manual child elements (optional when items prop is provided)."}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">orientation</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">"horizontal" | "vertical"</td>
+                <td className="px-4 py-2.5 font-mono text-xs">"horizontal"</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Orientasi arah jalur marquee: horizontal atau vertikal (kolom masonry)."
+                    : "Scroll orientation axis: horizontal row or vertical column."}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">direction</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">"left" | "right" | "up" | "down"</td>
+                <td className="px-4 py-2.5 font-mono text-xs">"left" / "up"</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Arah translasi pergerakan animasi ticker."
+                    : "Translational animation movement direction."}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">reverse</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">false</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Membalikkan arah pergerakan animasi (shorthand untuk arah berlawanan)."
+                    : "Reverses the direction of movement."}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">speed</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">
                   "slow" | "normal" | "fast" | number
                 </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">"normal"</td>
-                <td className="px-4 py-3 text-xs">
-                  Preset kecepatan animasi atau durasi kustom dalam detik.
+                <td className="px-4 py-2.5 font-mono text-xs">"normal"</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Preset kecepatan animasi (slow: 50s, normal: 30s, fast: 15s) atau angka kustom dalam detik."
+                    : "Speed preset (slow: 50s, normal: 30s, fast: 15s) or custom duration in seconds."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  pauseOnHover
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  boolean
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">true</td>
-                <td className="px-4 py-3 text-xs">
-                  Menghentikan animasi ketika pointer/mouse melayang di atas marquee.
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">pauseOnHover</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">true</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Menjeda animasi ketika kursor pointer melayang di atas marquee."
+                    : "Pauses the animation when mouse pointer hovers over the track."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  fade
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  boolean
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">true</td>
-                <td className="px-4 py-3 text-xs">
-                  Memberikan efek CSS mask gradien halus di tepi kiri & kanan container.
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">fade</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">boolean</td>
+                <td className="px-4 py-2.5 font-mono text-xs">true</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Memberikan efek CSS mask gradien halus di kedua tepi container."
+                    : "Applies smooth gradient fade masks at both container edges."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  gap
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  number | string
-                </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">16</td>
-                <td className="px-4 py-3 text-xs">
-                  Jarak celah horizontal antar item anak (child elements).
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">gap</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">number | string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">16</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Jarak celah antar elemen anak dalam pixel atau satuan CSS."
+                    : "Gap spacing between child elements in pixels or CSS units."}
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-900 dark:text-neutral-200">
-                  repeat
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">repeat</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">number</td>
+                <td className="px-4 py-2.5 font-mono text-xs">2</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Jumlah duplikasi track konten untuk memastikan perputaran infinite tanpa jeda."
+                    : "Number of track duplications to ensure seamless infinite looping."}
                 </td>
-                <td className="px-4 py-3 font-mono text-xs text-blue-600 dark:text-blue-400">
-                  number
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">className</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Class utilitas tambahan Tailwind CSS untuk container utama (cn)."
+                    : "Additional Tailwind CSS classes merged via cn()."}
                 </td>
-                <td className="px-4 py-3 font-mono text-xs text-neutral-400">2</td>
-                <td className="px-4 py-3 text-xs">
-                  Jumlah duplikasi track loop untuk memastikan perputaran mulus tanpa patah.
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">trackClassName</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
+                  {isId
+                    ? "Class kustom tambahan untuk track pembungkus konten internal."
+                    : "Custom class for the internal track wrapper elements."}
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
 
+export default MarqueeAnimationPage;

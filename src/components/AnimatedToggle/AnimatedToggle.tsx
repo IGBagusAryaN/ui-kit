@@ -1,25 +1,68 @@
 import React, { forwardRef, useState } from "react";
-import { motion, AnimatePresence, type HTMLMotionProps } from "framer-motion";
-import { SunIcon, MoonIcon } from "../../icons";
+import { motion, AnimatePresence } from "framer-motion";
+import { cva, type VariantProps } from "class-variance-authority";
+import { SunIcon, MoonIcon, CheckIcon, CloseIcon } from "../../icons";
 import { cn } from "../../utils/cn";
 
 /* =========================================================================
- * 1. THEME MORPH TOGGLE
+ * 1. CVA VARIANTS & BASE PROPS
  * ========================================================================= */
-export interface ThemeMorphToggleProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
+
+export const toggleVariants = cva(
+  "relative inline-flex items-center rounded-full outline-none select-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  {
+    variants: {
+      variant: {
+        default: "border",
+        "theme-morph": "border shadow-inner",
+        "elastic-gooey": "border-none shadow-inner",
+        "minimal-action": "border shadow-xs hover:shadow-md",
+        outline: "border bg-transparent",
+      },
+      size: {
+        default: "",
+        sm: "",
+        lg: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+/**
+ * Standar interface terpadu untuk seluruh variasi Toggle di @needui/ui-kit.
+ */
+export interface BaseToggleProps
+  extends Omit<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      "onChange" | "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"
+    >,
+    VariantProps<typeof toggleVariants> {
+  /** Status aktif dalam mode terkontrol (controlled mode) */
   checked?: boolean;
+  /** Status awal saat pertama kali dimuat (uncontrolled mode) */
   defaultChecked?: boolean;
+  /** Callback saat saklar diklik dan mengalami perubahan status */
   onChange?: (checked: boolean) => void;
+  /** Alias callback Radix UI / shadcn compatible */
   onCheckedChange?: (checked: boolean) => void;
-  size?: "sm" | "md" | "lg";
+}
+
+/* =========================================================================
+ * 2. THEME MORPH TOGGLE
+ * ========================================================================= */
+
+export interface ThemeMorphToggleProps extends BaseToggleProps {
   sunIcon?: React.ReactNode;
   moonIcon?: React.ReactNode;
 }
 
-const SIZE_CONFIGS = {
+const THEME_SIZE_CONFIGS = {
   sm: { track: "w-14 h-8 p-1", thumb: "w-6 h-6", travelX: 24, iconSize: 13 },
-  md: { track: "w-20 h-11 p-1.5", thumb: "w-8 h-8", travelX: 36, iconSize: 16 },
+  default: { track: "w-20 h-11 p-1.5", thumb: "w-8 h-8", travelX: 36, iconSize: 16 },
   lg: { track: "w-24 h-13 p-1.5", thumb: "w-10 h-10", travelX: 44, iconSize: 20 },
 } as const;
 
@@ -30,7 +73,7 @@ export const ThemeMorphToggle = forwardRef<HTMLButtonElement, ThemeMorphTogglePr
       defaultChecked = false,
       onChange,
       onCheckedChange,
-      size = "md",
+      size = "default",
       sunIcon,
       moonIcon,
       className,
@@ -43,7 +86,7 @@ export const ThemeMorphToggle = forwardRef<HTMLButtonElement, ThemeMorphTogglePr
     const isControlled = controlledChecked !== undefined;
     const [internalChecked, setInternalChecked] = useState<boolean>(defaultChecked);
     const isDark = isControlled ? controlledChecked : internalChecked;
-    const config = SIZE_CONFIGS[size] || SIZE_CONFIGS.md;
+    const config = THEME_SIZE_CONFIGS[size as keyof typeof THEME_SIZE_CONFIGS] || THEME_SIZE_CONFIGS.default;
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (disabled) return;
@@ -64,11 +107,11 @@ export const ThemeMorphToggle = forwardRef<HTMLButtonElement, ThemeMorphTogglePr
         disabled={disabled}
         onClick={handleClick}
         className={cn(
-          "relative inline-flex items-center rounded-full outline-none select-none cursor-pointer transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500",
+          toggleVariants({ variant: "theme-morph", size }),
           config.track,
           isDark
-            ? "bg-indigo-950 border border-indigo-700/60 shadow-inner shadow-indigo-950/60"
-            : "bg-sky-200 border border-sky-300 shadow-inner shadow-sky-300/40",
+            ? "bg-indigo-950 border-indigo-700/60 shadow-indigo-950/60"
+            : "bg-sky-200 border-sky-300 shadow-sky-300/40",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
           className
         )}
@@ -140,15 +183,16 @@ export const ThemeMorphToggle = forwardRef<HTMLButtonElement, ThemeMorphTogglePr
 ThemeMorphToggle.displayName = "ThemeMorphToggle";
 
 /* =========================================================================
- * 2. ELASTIC GOOEY TOGGLE
+ * 3. ELASTIC GOOEY TOGGLE
  * ========================================================================= */
-export interface ElasticGooeyToggleProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  onChange?: (checked: boolean) => void;
-  onCheckedChange?: (checked: boolean) => void;
-}
+
+export interface ElasticGooeyToggleProps extends BaseToggleProps {}
+
+const ELASTIC_SIZE_CONFIGS = {
+  sm: { track: "w-14 h-8 p-1", thumb: "w-6 h-6", travelX: 24, dotSize: "w-2 h-2" },
+  default: { track: "w-20 h-11 p-1.5", thumb: "w-8 h-8", travelX: 36, dotSize: "w-2.5 h-2.5" },
+  lg: { track: "w-24 h-13 p-1.5", thumb: "w-10 h-10", travelX: 44, dotSize: "w-3 h-3" },
+} as const;
 
 export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyToggleProps>(
   (
@@ -157,6 +201,7 @@ export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyTogg
       defaultChecked = false,
       onChange,
       onCheckedChange,
+      size = "default",
       className,
       disabled = false,
       onClick,
@@ -167,6 +212,7 @@ export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyTogg
     const isControlled = controlledChecked !== undefined;
     const [internalChecked, setInternalChecked] = useState(defaultChecked);
     const isOn = isControlled ? controlledChecked : internalChecked;
+    const config = ELASTIC_SIZE_CONFIGS[size as keyof typeof ELASTIC_SIZE_CONFIGS] || ELASTIC_SIZE_CONFIGS.default;
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (disabled) return;
@@ -187,7 +233,8 @@ export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyTogg
         disabled={disabled}
         onClick={handleClick}
         className={cn(
-          "relative w-20 h-11 p-1.5 rounded-full transition-colors duration-300 outline-none flex items-center cursor-pointer select-none",
+          toggleVariants({ variant: "elastic-gooey", size }),
+          config.track,
           isOn ? "bg-zinc-900 dark:bg-zinc-100" : "bg-zinc-200 dark:bg-zinc-800",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
           className
@@ -196,13 +243,14 @@ export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyTogg
       >
         <motion.div
           animate={{
-            x: isOn ? 36 : 0,
+            x: isOn ? config.travelX : 0,
             scaleX: [1, 1.45, 1],
             scaleY: [1, 0.72, 1],
           }}
           transition={{ type: "spring", stiffness: 420, damping: 24 }}
           className={cn(
-            "w-8 h-8 rounded-full shadow-md flex items-center justify-center transition-colors",
+            "rounded-full shadow-md flex items-center justify-center transition-colors",
+            config.thumb,
             isOn
               ? "bg-white text-zinc-900 dark:bg-zinc-900 dark:text-white"
               : "bg-white text-zinc-400 dark:bg-zinc-300 dark:text-zinc-700"
@@ -212,7 +260,8 @@ export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyTogg
             animate={{ scale: isOn ? 1 : 0.6 }}
             transition={{ duration: 0.2 }}
             className={cn(
-              "w-2.5 h-2.5 rounded-full",
+              "rounded-full transition-colors",
+              config.dotSize,
               isOn ? "bg-emerald-500" : "bg-zinc-400 dark:bg-zinc-500"
             )}
           />
@@ -224,17 +273,19 @@ export const ElasticGooeyToggle = forwardRef<HTMLButtonElement, ElasticGooeyTogg
 ElasticGooeyToggle.displayName = "ElasticGooeyToggle";
 
 /* =========================================================================
- * 3. MINIMAL ACTION TOGGLE
+ * 4. MINIMAL ACTION TOGGLE
  * ========================================================================= */
-export interface MinimalActionToggleProps
-  extends Omit<HTMLMotionProps<"button">, "onChange"> {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  onChange?: (checked: boolean) => void;
-  onCheckedChange?: (checked: boolean) => void;
+
+export interface MinimalActionToggleProps extends BaseToggleProps {
   lightLabel?: string;
   darkLabel?: string;
 }
+
+const MINIMAL_SIZE_CONFIGS = {
+  sm: "h-8 px-3 text-[11px] gap-2",
+  default: "h-9 px-4 py-2 text-xs gap-2.5",
+  lg: "h-11 px-6 text-sm gap-3",
+} as const;
 
 export const MinimalActionToggle = forwardRef<HTMLButtonElement, MinimalActionToggleProps>(
   (
@@ -245,6 +296,7 @@ export const MinimalActionToggle = forwardRef<HTMLButtonElement, MinimalActionTo
       onCheckedChange,
       lightLabel = "Light",
       darkLabel = "Dark",
+      size = "default",
       className,
       disabled = false,
       onClick,
@@ -255,6 +307,7 @@ export const MinimalActionToggle = forwardRef<HTMLButtonElement, MinimalActionTo
     const isControlled = controlledChecked !== undefined;
     const [internalChecked, setInternalChecked] = useState(defaultChecked);
     const isDark = isControlled ? controlledChecked : internalChecked;
+    const sizeClass = MINIMAL_SIZE_CONFIGS[size as keyof typeof MINIMAL_SIZE_CONFIGS] || MINIMAL_SIZE_CONFIGS.default;
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (disabled) return;
@@ -269,12 +322,14 @@ export const MinimalActionToggle = forwardRef<HTMLButtonElement, MinimalActionTo
       <motion.button
         ref={ref}
         type="button"
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.94 }}
         disabled={disabled}
         onClick={handleClick}
         className={cn(
-          "inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 text-zinc-800 dark:text-zinc-200 shadow-sm hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-700 transition-all cursor-pointer select-none",
+          toggleVariants({ variant: "minimal-action", size }),
+          sizeClass,
+          "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 text-zinc-800 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700",
           disabled && "opacity-50 cursor-not-allowed pointer-events-none",
           className
         )}
@@ -298,7 +353,7 @@ export const MinimalActionToggle = forwardRef<HTMLButtonElement, MinimalActionTo
                 key="sun"
                 initial={{ rotate: 90, scale: 0.35, opacity: 0 }}
                 animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                exit={{ rotate: 90, scale: 0.35, opacity: 0 }}
+                exit={{ rotate: -90, scale: 0.35, opacity: 0 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="text-amber-500"
               >
@@ -329,8 +384,9 @@ export const MinimalActionToggle = forwardRef<HTMLButtonElement, MinimalActionTo
 MinimalActionToggle.displayName = "MinimalActionToggle";
 
 /* =========================================================================
- * 4. SLIDING TEXT TOGGLE
+ * 5. SLIDING TEXT TOGGLE
  * ========================================================================= */
+
 export interface SlidingOption<T extends string = string> {
   value: T;
   label: string;
@@ -338,12 +394,19 @@ export interface SlidingOption<T extends string = string> {
 }
 
 export interface SlidingTextToggleProps<T extends string = string>
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
+    VariantProps<typeof toggleVariants> {
   value?: T;
   defaultValue?: T;
   options?: SlidingOption<T>[];
   onChange?: (value: T) => void;
 }
+
+const SLIDING_SIZE_CONFIGS = {
+  sm: { container: "p-1", item: "px-3.5 py-1.5 text-[11px]" },
+  default: { container: "p-1.5", item: "px-5 py-2 text-xs" },
+  lg: { container: "p-2", item: "px-6 py-2.5 text-sm" },
+} as const;
 
 export const SlidingTextToggle = forwardRef<HTMLDivElement, SlidingTextToggleProps>(
   (
@@ -355,6 +418,7 @@ export const SlidingTextToggle = forwardRef<HTMLDivElement, SlidingTextTogglePro
         { value: "yearly", label: "Annual", badge: "-20%" },
       ],
       onChange,
+      size = "default",
       className,
       ...props
     },
@@ -365,6 +429,7 @@ export const SlidingTextToggle = forwardRef<HTMLDivElement, SlidingTextTogglePro
       defaultValue || options[0]?.value || ""
     );
     const activeValue = isControlled ? controlledValue : internalValue;
+    const config = SLIDING_SIZE_CONFIGS[size as keyof typeof SLIDING_SIZE_CONFIGS] || SLIDING_SIZE_CONFIGS.default;
 
     const handleSelect = (val: string) => {
       if (!isControlled) setInternalValue(val);
@@ -375,7 +440,8 @@ export const SlidingTextToggle = forwardRef<HTMLDivElement, SlidingTextTogglePro
       <div
         ref={ref}
         className={cn(
-          "inline-flex p-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/60 shadow-inner",
+          "inline-flex rounded-full bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/60 shadow-inner",
+          config.container,
           className
         )}
         {...props}
@@ -387,7 +453,10 @@ export const SlidingTextToggle = forwardRef<HTMLDivElement, SlidingTextTogglePro
               key={option.value}
               type="button"
               onClick={() => handleSelect(option.value)}
-              className="relative px-5 py-2 text-xs font-semibold rounded-full transition-colors z-10 cursor-pointer select-none"
+              className={cn(
+                "relative font-semibold rounded-full transition-colors z-10 cursor-pointer select-none",
+                config.item
+              )}
             >
               {isActive && (
                 <motion.div
@@ -419,3 +488,162 @@ export const SlidingTextToggle = forwardRef<HTMLDivElement, SlidingTextTogglePro
   }
 );
 SlidingTextToggle.displayName = "SlidingTextToggle";
+
+/* =========================================================================
+ * 6. UNIFIED ANIMATED TOGGLE (MASTER SWITCH PRIMITIVE)
+ * ========================================================================= */
+
+export interface AnimatedToggleProps extends BaseToggleProps {
+  activeIcon?: React.ReactNode;
+  inactiveIcon?: React.ReactNode;
+  sunIcon?: React.ReactNode;
+  moonIcon?: React.ReactNode;
+  lightLabel?: string;
+  darkLabel?: string;
+}
+
+const DEFAULT_SIZE_CONFIGS = {
+  sm: { track: "w-11 h-6 p-0.5", thumb: "w-5 h-5", travelX: 20, iconSize: 11 },
+  default: { track: "w-14 h-8 p-1", thumb: "w-6 h-6", travelX: 24, iconSize: 13 },
+  lg: { track: "w-20 h-11 p-1.5", thumb: "w-8 h-8", travelX: 36, iconSize: 16 },
+} as const;
+
+export const AnimatedToggle = forwardRef<HTMLButtonElement, AnimatedToggleProps>(
+  (
+    {
+      checked: controlledChecked,
+      defaultChecked = false,
+      onChange,
+      onCheckedChange,
+      variant = "default",
+      size = "default",
+      activeIcon,
+      inactiveIcon,
+      sunIcon,
+      moonIcon,
+      lightLabel,
+      darkLabel,
+      className,
+      disabled = false,
+      onClick,
+      ...props
+    },
+    ref
+  ) => {
+    // Jika dipanggil dengan varian spesifik, delegasikan langsung
+    if (variant === "theme-morph") {
+      return (
+        <ThemeMorphToggle
+          ref={ref}
+          checked={controlledChecked}
+          defaultChecked={defaultChecked}
+          onChange={onChange}
+          onCheckedChange={onCheckedChange}
+          size={size}
+          sunIcon={sunIcon}
+          moonIcon={moonIcon}
+          disabled={disabled}
+          className={className}
+          onClick={onClick}
+          {...props}
+        />
+      );
+    }
+
+    if (variant === "elastic-gooey") {
+      return (
+        <ElasticGooeyToggle
+          ref={ref}
+          checked={controlledChecked}
+          defaultChecked={defaultChecked}
+          onChange={onChange}
+          onCheckedChange={onCheckedChange}
+          size={size}
+          disabled={disabled}
+          className={className}
+          onClick={onClick}
+          {...props}
+        />
+      );
+    }
+
+    if (variant === "minimal-action") {
+      return (
+        <MinimalActionToggle
+          ref={ref}
+          checked={controlledChecked}
+          defaultChecked={defaultChecked}
+          onChange={onChange}
+          onCheckedChange={onCheckedChange}
+          size={size}
+          lightLabel={lightLabel}
+          darkLabel={darkLabel}
+          disabled={disabled}
+          className={className}
+          onClick={onClick}
+          {...(props as any)}
+        />
+      );
+    }
+
+    // Default: Modern fluid switch (iOS / NeedUI Signature Switch)
+    const isControlled = controlledChecked !== undefined;
+    const [internalChecked, setInternalChecked] = useState(defaultChecked);
+    const isOn = isControlled ? controlledChecked : internalChecked;
+    const config = DEFAULT_SIZE_CONFIGS[size as keyof typeof DEFAULT_SIZE_CONFIGS] || DEFAULT_SIZE_CONFIGS.default;
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (disabled) return;
+      const next = !isOn;
+      if (!isControlled) setInternalChecked(next);
+      onChange?.(next);
+      onCheckedChange?.(next);
+      onClick?.(e);
+    };
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        role="switch"
+        aria-checked={isOn}
+        aria-label={props["aria-label"] || (isOn ? "Active" : "Inactive")}
+        disabled={disabled}
+        onClick={handleClick}
+        className={cn(
+          toggleVariants({ variant: "default", size }),
+          config.track,
+          isOn
+            ? "bg-zinc-900 border-zinc-900 dark:bg-zinc-100 dark:border-zinc-100"
+            : "bg-zinc-200 border-zinc-300 dark:bg-zinc-800 dark:border-zinc-700",
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none",
+          className
+        )}
+        {...props}
+      >
+        <motion.div
+          animate={{ x: isOn ? config.travelX : 0 }}
+          transition={{ type: "spring", stiffness: 500, damping: 28 }}
+          className={cn(
+            "rounded-full shadow-md flex items-center justify-center transition-colors",
+            config.thumb,
+            isOn
+              ? "bg-white text-zinc-900 dark:bg-zinc-900 dark:text-white"
+              : "bg-white text-zinc-400 dark:bg-zinc-300 dark:text-zinc-700"
+          )}
+        >
+          {isOn ? (
+            activeIcon || <CheckIcon size={config.iconSize} />
+          ) : (
+            inactiveIcon || <CloseIcon size={config.iconSize} />
+          )}
+        </motion.div>
+      </button>
+    );
+  }
+);
+AnimatedToggle.displayName = "AnimatedToggle";
+
+/** Alias deklaratif untuk <AnimatedToggle /> */
+export const Toggle = AnimatedToggle;
+export const Switch = AnimatedToggle;

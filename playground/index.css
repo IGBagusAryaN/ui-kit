@@ -30,6 +30,14 @@
   border-radius: 9999px;
 }
 
+/* NeedUI Base Icon */
+.needui-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(150, 150, 150, 0.4);
 }

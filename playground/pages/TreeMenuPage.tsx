@@ -1,30 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TreeMenuDemo } from "./TreeMenuDemo";
-import { CodeBlock } from "../components/CodeBlock";
 
 export function TreeMenuPage() {
   const { t } = useTranslation();
-
-  const sampleUsage = `import { AnimatedTreeMenu, TreeMenuItem } from "@needui/ui-kit";
-
-const navigationItems: TreeMenuItem[] = [
-  {
-    id: "departments",
-    label: "DEPARTMENTS",
-    defaultOpen: true,
-    children: [
-      { id: "docs", label: "Docs" },
-      { id: "programmer-dev", label: "Programmer (Dev)", badge: 70 },
-      { id: "web-master", label: "Web Master", badge: 21, isActive: true },
-      { id: "infra-network", label: "Infra & Network", badge: 10 },
-    ],
-  },
-];
-
-export function AppSidebar() {
-  return <AnimatedTreeMenu items={navigationItems} />;
-}`;
 
   return (
     <div className="space-y-12 pb-16">
@@ -47,64 +26,59 @@ export function AppSidebar() {
         <TreeMenuDemo />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          {t("common.usage", "Cara Penggunaan")}
-        </h2>
-        <CodeBlock code={sampleUsage} language="tsx" />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          {t("common.props", "Properti Komponen")}
-        </h2>
-        <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-800">
-          <table className="w-full text-left text-sm text-neutral-600 dark:text-neutral-400">
-            <thead className="border-b border-neutral-200 bg-neutral-50/75 text-xs uppercase text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300">
+      {/* Props API Reference */}
+      <div className="mt-8 space-y-3">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          Props API Reference
+        </h3>
+        <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <table className="w-full text-left text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+            <thead className="border-b border-zinc-200 bg-zinc-50 text-[11px] uppercase font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
               <tr>
-                <th className="px-4 py-3 font-semibold">Prop</th>
-                <th className="px-4 py-3 font-semibold">Type</th>
-                <th className="px-4 py-3 font-semibold">Default</th>
-                <th className="px-4 py-3 font-semibold">Description</th>
+                <th className="px-4 py-2.5">Prop</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Default</th>
+                <th className="px-4 py-2.5">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 font-mono text-xs">
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               <tr>
-                <td className="px-4 py-3 text-neutral-900 dark:text-neutral-200 font-bold">items</td>
-                <td className="px-4 py-3 text-indigo-600 dark:text-indigo-400">TreeMenuItem[]</td>
-                <td className="px-4 py-3 text-neutral-400">required</td>
-                <td className="px-4 py-3 font-sans">
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">items</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">TreeMenuItem[]</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-rose-500 font-semibold">required</td>
+                <td className="px-4 py-2.5">
                   Daftar item pohon hierarki (label, icon, badge, isActive, children).
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-neutral-900 dark:text-neutral-200 font-bold">activeId</td>
-                <td className="px-4 py-3 text-indigo-600 dark:text-indigo-400">string</td>
-                <td className="px-4 py-3 text-neutral-400">undefined</td>
-                <td className="px-4 py-3 font-sans">
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">activeId</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
                   ID item yang saat ini aktif untuk state kontrol eksternal.
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-neutral-900 dark:text-neutral-200 font-bold">onItemClick</td>
-                <td className="px-4 py-3 text-indigo-600 dark:text-indigo-400">(item: TreeMenuItem) =&gt; void</td>
-                <td className="px-4 py-3 text-neutral-400">undefined</td>
-                <td className="px-4 py-3 font-sans">
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">onItemClick</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">(item: TreeMenuItem) =&gt; void</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
                   Callback ketika salah satu item pohon diklik.
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-3 text-neutral-900 dark:text-neutral-200 font-bold">className</td>
-                <td className="px-4 py-3 text-indigo-600 dark:text-indigo-400">string</td>
-                <td className="px-4 py-3 text-neutral-400">""</td>
-                <td className="px-4 py-3 font-sans">
-                  Class kustom Tailwind tambahan untuk pembungkus nav terluar.
+                <td className="px-4 py-2.5 font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">className</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-indigo-600 dark:text-indigo-400">string</td>
+                <td className="px-4 py-2.5 font-mono text-xs">undefined</td>
+                <td className="px-4 py-2.5">
+                  Class kustom Tailwind tambahan untuk pembungkus nav terluar via cn().
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

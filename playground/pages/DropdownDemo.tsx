@@ -2,7 +2,11 @@ import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   AnimatedDropdown,
-  DropdownItem,
+  ContextSelectDropdown,
+  MegaMenuDropdown,
+  UserProfileDropdown,
+  CommandMenuDropdown,
+  type DropdownItem,
 } from "../../src/components/AnimatedDropdown";
 import { CodeSnippet } from "../components/CodeSnippet";
 import {
@@ -191,7 +195,8 @@ export function DropdownDemo() {
   );
 
   const contextSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
+    () => `// Standalone Component (atau gunakan <AnimatedDropdown variant="context" />)
+import { ContextSelectDropdown, type DropdownItem } from "@needui/ui-kit";
 
 const environmentItems: DropdownItem[] = [
   { id: "prod", label: "${t("content.dropdownDemo.data.context.items.prod.label", "Production (us-east-1)")}", badge: "${t("content.dropdownDemo.data.context.items.prod.badge", "Live")}", isActive: true },
@@ -202,8 +207,7 @@ const environmentItems: DropdownItem[] = [
 
 export function EnvironmentSelect() {
   return (
-    <AnimatedDropdown
-      variant="context"
+    <ContextSelectDropdown
       items={environmentItems}
       triggerLabel="${t("content.dropdownDemo.data.context.triggerLabel", "Pilih Environment")}"
       align="center"
@@ -215,7 +219,8 @@ export function EnvironmentSelect() {
   );
 
   const megaSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
+    () => `// Standalone Component (atau gunakan <AnimatedDropdown variant="mega" />)
+import { MegaMenuDropdown, type DropdownItem } from "@needui/ui-kit";
 
 const solutionItems: DropdownItem[] = [
   { id: "payments", label: "${t("content.dropdownDemo.data.mega.items.payments.label", "Payments & Billing")}", subtitle: "${t("content.dropdownDemo.data.mega.items.payments.subtitle", "Infrastruktur pemrosesan transaksi global")}", badge: "${t("content.dropdownDemo.data.mega.items.payments.badge", "Popular")}" },
@@ -226,8 +231,7 @@ const solutionItems: DropdownItem[] = [
 
 export function NavigationMegaMenu() {
   return (
-    <AnimatedDropdown
-      variant="mega"
+    <MegaMenuDropdown
       items={solutionItems}
       triggerLabel="${t("content.dropdownDemo.data.mega.triggerLabel", "Semua Solusi & Fitur")}"
       align="center"
@@ -239,7 +243,8 @@ export function NavigationMegaMenu() {
   );
 
   const profileSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
+    () => `// Standalone Component (atau gunakan <AnimatedDropdown variant="profile" />)
+import { UserProfileDropdown, type DropdownItem } from "@needui/ui-kit";
 
 const userMenuItems: DropdownItem[] = [
   { id: "profile", label: "${t("content.dropdownDemo.data.profile.items.profile.label", "Profil Akun")}" },
@@ -250,8 +255,7 @@ const userMenuItems: DropdownItem[] = [
 
 export function UserAccountMenu() {
   return (
-    <AnimatedDropdown
-      variant="profile"
+    <UserProfileDropdown
       items={userMenuItems}
       profile={{
         name: "${t("content.dropdownDemo.data.profile.name", "John Doe")}",
@@ -268,7 +272,8 @@ export function UserAccountMenu() {
   );
 
   const commandSnippet = useMemo(
-    () => `import { AnimatedDropdown, DropdownItem } from "@needui/ui-kit";
+    () => `// Standalone Component (atau gunakan <AnimatedDropdown variant="command" />)
+import { CommandMenuDropdown, type DropdownItem } from "@needui/ui-kit";
 
 const commandItems: DropdownItem[] = [
   { id: "cmd-new", label: "${t("content.dropdownDemo.data.command.items.newProject.label", "Create New Project")}", shortcut: "⌘N" },
@@ -280,8 +285,7 @@ const commandItems: DropdownItem[] = [
 
 export function QuickCommandMenu() {
   return (
-    <AnimatedDropdown
-      variant="command"
+    <CommandMenuDropdown
       items={commandItems}
       triggerLabel="${t("content.dropdownDemo.data.command.triggerLabel", "Ketik perintah... (⌘K)")}"
       searchPlaceholder="${t("content.dropdownDemo.data.command.searchPlaceholder", "Cari perintah atau aksi cepat...")}"
@@ -492,11 +496,11 @@ export function QuickCommandMenu() {
             className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
           >
             <div className="space-y-2 mb-4">
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
                   {item.title}
                 </h3>
-                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
+                <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900">
                   {item.badge}
                 </span>
               </div>

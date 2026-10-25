@@ -1,8 +1,10 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
 import { CloseIcon } from "../../src/icons";
 import { NeedUiLogo } from "./NeedUiLogo";
 import { APP_VERSION } from "../version";
+import { cn } from "../../src/utils/cn";
 
 export interface NavItem {
   id: string;
@@ -74,7 +76,7 @@ export function Sidebar({
         },
         {
           id: "advanced-buttons",
-          label: t("sidebar.components.advancedButtons", "Advanced Buttons"),
+          label: t("sidebar.components.advancedButtons", "Buttons"),
         },
         {
           id: "navbar-animation",
@@ -99,6 +101,10 @@ export function Sidebar({
         {
           id: "timeline-animation",
           label: t("sidebar.components.timeline", "Timeline"),
+        },
+        {
+          id: "pagination-animation",
+          label: t("sidebar.components.pagination", "Pagination"),
         },
       ],
     },
@@ -249,17 +255,56 @@ export function Sidebar({
                   group.items.map((item) => {
                     const isActive = activePage === item.id;
                     return (
-                      <li key={item.id}>
+                      <li key={item.id} className="relative">
                         <button
                           type="button"
                           onClick={() => handleMenuClick(item.id)}
-                          className={`w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors text-left ${
+                          className={cn(
+                            "relative w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors text-left select-none cursor-pointer group",
                             isActive
-                              ? "bg-neutral-100 text-neutral-950 font-semibold dark:bg-neutral-900 dark:text-white border-l-2 border-blue-600 pl-2.5 dark:border-blue-500"
-                              : "text-neutral-600 hover:bg-neutral-100/70 hover:text-neutral-950 dark:text-neutral-400 dark:hover:bg-neutral-900/60 dark:hover:text-neutral-100"
-                          }`}
+                              ? "text-neutral-950 dark:text-white font-semibold"
+                              : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/70 dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-900/60"
+                          )}
                         >
-                          <span className="truncate">{item.label}</span>
+                          {isActive && (
+                            /* Fluid Sliding Active Pill Background (Smooth spring physics, no ugly edge strip) */
+                            <motion.div
+                              layoutId="sidebarActiveBackground"
+                              className="absolute inset-0 rounded-lg bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200/80 dark:border-neutral-700/60 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                              transition={{
+                                type: "spring",
+                                stiffness: 420,
+                                damping: 32,
+                              }}
+                            />
+                          )}
+
+                          <span className="relative z-10 truncate">
+                            {item.label}
+                          </span>
+
+                          {isActive && (
+                            <motion.span
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.15 }}
+                              className="relative z-10 flex items-center text-neutral-400 dark:text-neutral-500 shrink-0 ml-2"
+                            >
+                              <svg
+                                className="w-3.5 h-3.5"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2.5}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </motion.span>
+                          )}
                         </button>
                       </li>
                     );

@@ -166,6 +166,125 @@ import {
   BarChart2Icon,
   PieChartIcon,
   SparklesIcon,
+
+  // Batch 3 Icons
+  ArrowUpIcon,
+  ArrowDownIcon,
+  ArrowUpRightIcon,
+  ArrowDownLeftIcon,
+  CornerDownLeftIcon,
+  MoreHorizontalIcon,
+  MoreVerticalIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+  ChevronsUpIcon,
+  ChevronsDownIcon,
+  RotateCcwIcon,
+  MoveIcon,
+  CheckCheckIcon,
+  GitBranchIcon,
+  GitCommitIcon,
+  GitMergeIcon,
+  GitPullRequestIcon,
+  BugIcon,
+  TerminalSquareIcon,
+  FlameIcon,
+  LightbulbIcon,
+  CrownIcon,
+  DollarSignIcon,
+  CoinsIcon,
+  BriefcaseIcon,
+  BuildingIcon,
+  StoreIcon,
+  TruckIcon,
+  QrCodeIcon,
+  BarcodeIcon,
+  PaletteIcon,
+  FilmIcon,
+  ApertureIcon,
+  EraserIcon,
+  TypeIcon,
+  AtSignIcon,
+  HashIcon,
+  RssIcon,
+  SmileIcon,
+  FrownIcon,
+  PlugIcon,
+  FingerprintIcon,
+  UserPlusIcon,
+  UserMinusIcon,
+  UserCheckIcon,
+  UserXIcon,
+  FolderPlusIcon,
+  FolderMinusIcon,
+  FileCodeIcon,
+  FileCheckIcon,
+  Globe2Icon,
+  ShieldAlertIcon,
+  ShieldXIcon,
+  VerifiedIcon,
+  SlidersHorizontalIcon,
+  ScaleIcon,
+  ShapesIcon,
+  SignalIcon,
+  Wand2Icon,
+
+  // Batch 4 Icons
+  CloudRainIcon,
+  CloudSnowIcon,
+  CloudLightningIcon,
+  WindIcon,
+  UmbrellaIcon,
+  DropletIcon,
+  SunsetIcon,
+  SunriseIcon,
+  LeafIcon,
+  MouseIcon,
+  KeyboardIcon,
+  SpeakerIcon,
+  HeadsetIcon,
+  Gamepad2Icon,
+  UsbIcon,
+  WrenchIcon,
+  HammerIcon,
+  RulerIcon,
+  GaugeIcon,
+  HourglassIcon,
+  TimerIcon,
+  PinIcon,
+  PinOffIcon,
+  TableIcon,
+  KanbanIcon,
+  LineChartIcon,
+  FileSpreadsheetIcon,
+  GitForkIcon,
+  HeartHandshakeIcon,
+  PartyPopperIcon,
+  HeartPulseIcon,
+  CoffeeIcon,
+  UtensilsIcon,
+  PlaneIcon,
+  CarIcon,
+  BusIcon,
+  TrainIcon,
+  FuelIcon,
+  Navigation2Icon,
+  SparkleIcon,
+  MessageSquarePlusIcon,
+  RadioTowerIcon,
+  PodcastIcon,
+  VoicemailIcon,
+  StethoscopeIcon,
+  CupSodaIcon,
+  FolderLockIcon,
+  FileLockIcon,
+  MagnetIcon,
+  GlassesIcon,
+  KeyRoundIcon,
+  AppleIcon,
+  UnplugIcon,
+  NetworkIcon,
+
   IconProps,
 } from "../../src/icons";
 
@@ -354,14 +473,135 @@ export const ALL_ICONS: IconItem[] = [
   { name: "BarChart2Icon", categoryKey: "ecommerceFinance", Component: BarChart2Icon, tags: ["chart", "grafik", "diagram", "statistik", "bar", "analytics"] },
   { name: "PieChartIcon", categoryKey: "ecommerceFinance", Component: PieChartIcon, tags: ["pie chart", "diagram lingkaran", "persentase", "statistik", "rasio"] },
   { name: "SparklesIcon", categoryKey: "actionInteraction", Component: SparklesIcon, tags: ["sparkles", "kilau", "bintang", "ai", "magic", "fitur baru", "clean"] },
+
+  // Batch 3 Icons
+  { name: "ArrowUpIcon", categoryKey: "navigation", Component: ArrowUpIcon, tags: ["arrow", "up", "atas", "naik"] },
+  { name: "ArrowDownIcon", categoryKey: "navigation", Component: ArrowDownIcon, tags: ["arrow", "down", "bawah", "turun"] },
+  { name: "ArrowUpRightIcon", categoryKey: "navigation", Component: ArrowUpRightIcon, tags: ["arrow", "up right", "diagonal", "external", "link"] },
+  { name: "ArrowDownLeftIcon", categoryKey: "navigation", Component: ArrowDownLeftIcon, tags: ["arrow", "down left", "diagonal", "masuk"] },
+  { name: "CornerDownLeftIcon", categoryKey: "actionInteraction", Component: CornerDownLeftIcon, tags: ["enter", "return", "submit", "keyboard"] },
+  { name: "MoreHorizontalIcon", categoryKey: "actionInteraction", Component: MoreHorizontalIcon, tags: ["more", "options", "menu", "dots", "horizontal", "titik tiga"] },
+  { name: "MoreVerticalIcon", categoryKey: "actionInteraction", Component: MoreVerticalIcon, tags: ["more", "options", "menu", "dots", "vertical", "titik tiga"] },
+  { name: "ChevronsLeftIcon", categoryKey: "navigation", Component: ChevronsLeftIcon, tags: ["chevrons", "double arrow", "rewind", "first", "awal"] },
+  { name: "ChevronsRightIcon", categoryKey: "navigation", Component: ChevronsRightIcon, tags: ["chevrons", "double arrow", "fast forward", "last", "akhir"] },
+  { name: "ChevronsUpIcon", categoryKey: "navigation", Component: ChevronsUpIcon, tags: ["chevrons", "up", "top", "atas"] },
+  { name: "ChevronsDownIcon", categoryKey: "navigation", Component: ChevronsDownIcon, tags: ["chevrons", "down", "bottom", "bawah"] },
+  { name: "RotateCcwIcon", categoryKey: "actionInteraction", Component: RotateCcwIcon, tags: ["undo", "rotate", "counter clockwise", "histori", "balik"] },
+  { name: "MoveIcon", categoryKey: "actionInteraction", Component: MoveIcon, tags: ["move", "drag", "geser", "panah 4 arah", "reorder"] },
+  { name: "CheckCheckIcon", categoryKey: "communication", Component: CheckCheckIcon, tags: ["check", "double check", "read", "terbaca", "centang dua"] },
+  { name: "GitBranchIcon", categoryKey: "actionInteraction", Component: GitBranchIcon, tags: ["git", "branch", "cabang", "code", "version control"] },
+  { name: "GitCommitIcon", categoryKey: "actionInteraction", Component: GitCommitIcon, tags: ["git", "commit", "snapshot", "code"] },
+  { name: "GitMergeIcon", categoryKey: "actionInteraction", Component: GitMergeIcon, tags: ["git", "merge", "gabung", "pr"] },
+  { name: "GitPullRequestIcon", categoryKey: "actionInteraction", Component: GitPullRequestIcon, tags: ["git", "pr", "pull request", "kontribusi"] },
+  { name: "BugIcon", categoryKey: "systemFeedback", Component: BugIcon, tags: ["bug", "error", "issue", "debug", "laporan"] },
+  { name: "TerminalSquareIcon", categoryKey: "deviceHardware", Component: TerminalSquareIcon, tags: ["terminal", "console", "cmd", "bash", "cli"] },
+  { name: "FlameIcon", categoryKey: "actionInteraction", Component: FlameIcon, tags: ["flame", "fire", "api", "hot", "trending", "streak"] },
+  { name: "LightbulbIcon", categoryKey: "actionInteraction", Component: LightbulbIcon, tags: ["lightbulb", "lampu", "ide", "tips", "hint", "insight"] },
+  { name: "CrownIcon", categoryKey: "userAccount", Component: CrownIcon, tags: ["crown", "mahkota", "vip", "premium", "admin", "owner"] },
+  { name: "DollarSignIcon", categoryKey: "ecommerceFinance", Component: DollarSignIcon, tags: ["dollar", "usd", "uang", "money", "price", "harga"] },
+  { name: "CoinsIcon", categoryKey: "ecommerceFinance", Component: CoinsIcon, tags: ["coins", "koin", "crypto", "token", "saldo", "balance"] },
+  { name: "BriefcaseIcon", categoryKey: "ecommerceFinance", Component: BriefcaseIcon, tags: ["briefcase", "koper", "pekerjaan", "job", "career", "bisnis"] },
+  { name: "BuildingIcon", categoryKey: "ecommerceFinance", Component: BuildingIcon, tags: ["building", "gedung", "kantor", "office", "company", "enterprise"] },
+  { name: "StoreIcon", categoryKey: "ecommerceFinance", Component: StoreIcon, tags: ["store", "toko", "shop", "merchant", "outlet"] },
+  { name: "TruckIcon", categoryKey: "ecommerceFinance", Component: TruckIcon, tags: ["truck", "truk", "delivery", "shipping", "ongkir", "ekspedisi"] },
+  { name: "QrCodeIcon", categoryKey: "ecommerceFinance", Component: QrCodeIcon, tags: ["qr", "qrcode", "scan", "barcode 2d", "qris", "bayar"] },
+  { name: "BarcodeIcon", categoryKey: "ecommerceFinance", Component: BarcodeIcon, tags: ["barcode", "kode batang", "sku", "produk"] },
+  { name: "PaletteIcon", categoryKey: "actionInteraction", Component: PaletteIcon, tags: ["palette", "palet", "warna", "color", "theme", "design"] },
+  { name: "FilmIcon", categoryKey: "mediaDocument", Component: FilmIcon, tags: ["film", "movie", "video", "bioskop", "cinema"] },
+  { name: "ApertureIcon", categoryKey: "mediaDocument", Component: ApertureIcon, tags: ["aperture", "lens", "shutter", "kamera", "foto"] },
+  { name: "EraserIcon", categoryKey: "textEditor", Component: EraserIcon, tags: ["eraser", "penghapus", "clear", "hapus", "reset"] },
+  { name: "TypeIcon", categoryKey: "textEditor", Component: TypeIcon, tags: ["type", "font", "huruf", "text", "typography"] },
+  { name: "AtSignIcon", categoryKey: "communication", Component: AtSignIcon, tags: ["at", "@", "mention", "tag", "email"] },
+  { name: "HashIcon", categoryKey: "communication", Component: HashIcon, tags: ["hash", "#", "hashtag", "tagar", "channel", "number"] },
+  { name: "RssIcon", categoryKey: "communication", Component: RssIcon, tags: ["rss", "feed", "sindikasi", "berita", "xml"] },
+  { name: "SmileIcon", categoryKey: "communication", Component: SmileIcon, tags: ["smile", "senyum", "happy", "emoji", "reaksi"] },
+  { name: "FrownIcon", categoryKey: "communication", Component: FrownIcon, tags: ["frown", "sedih", "cemberut", "bad", "emoji"] },
+  { name: "PlugIcon", categoryKey: "deviceHardware", Component: PlugIcon, tags: ["plug", "colokan", "steker", "connect", "integration"] },
+  { name: "FingerprintIcon", categoryKey: "userAccount", Component: FingerprintIcon, tags: ["fingerprint", "sidik jari", "biometrik", "touchid", "auth"] },
+  { name: "UserPlusIcon", categoryKey: "userAccount", Component: UserPlusIcon, tags: ["user plus", "tambah teman", "add user", "register"] },
+  { name: "UserMinusIcon", categoryKey: "userAccount", Component: UserMinusIcon, tags: ["user minus", "hapus teman", "remove user"] },
+  { name: "UserCheckIcon", categoryKey: "userAccount", Component: UserCheckIcon, tags: ["user check", "verified user", "approved", "aktif"] },
+  { name: "UserXIcon", categoryKey: "userAccount", Component: UserXIcon, tags: ["user x", "block user", "blokir", "banned"] },
+  { name: "FolderPlusIcon", categoryKey: "mediaDocument", Component: FolderPlusIcon, tags: ["folder plus", "tambah folder", "folder baru", "directory"] },
+  { name: "FolderMinusIcon", categoryKey: "mediaDocument", Component: FolderMinusIcon, tags: ["folder minus", "kurang folder", "hapus direktori"] },
+  { name: "FileCodeIcon", categoryKey: "mediaDocument", Component: FileCodeIcon, tags: ["file code", "berkas kode", "script", "source"] },
+  { name: "FileCheckIcon", categoryKey: "mediaDocument", Component: FileCheckIcon, tags: ["file check", "dokumen selesai", "valid", "approved"] },
+  { name: "Globe2Icon", categoryKey: "communication", Component: Globe2Icon, tags: ["globe", "dunia", "meridian", "world", "network", "internet"] },
+  { name: "ShieldAlertIcon", categoryKey: "systemFeedback", Component: ShieldAlertIcon, tags: ["shield alert", "keamanan", "peringatan", "warning", "security"] },
+  { name: "ShieldXIcon", categoryKey: "systemFeedback", Component: ShieldXIcon, tags: ["shield x", "blokir", "ditolak", "forbidden", "firewall"] },
+  { name: "VerifiedIcon", categoryKey: "actionInteraction", Component: VerifiedIcon, tags: ["verified", "lencana", "official", "centang resmi", "badge"] },
+  { name: "SlidersHorizontalIcon", categoryKey: "actionInteraction", Component: SlidersHorizontalIcon, tags: ["sliders", "filter", "horizontal", "controls", "setting"] },
+  { name: "ScaleIcon", categoryKey: "ecommerceFinance", Component: ScaleIcon, tags: ["scale", "timbangan", "legal", "hukum", "komparasi"] },
+  { name: "ShapesIcon", categoryKey: "actionInteraction", Component: ShapesIcon, tags: ["shapes", "bentuk", "geometri", "vector", "desain"] },
+  { name: "SignalIcon", categoryKey: "deviceHardware", Component: SignalIcon, tags: ["signal", "sinyal", "cellular", "reception", "jaringan"] },
+  { name: "Wand2Icon", categoryKey: "actionInteraction", Component: Wand2Icon, tags: ["wand", "tongkat sihir", "ai", "generator", "magic", "special"] },
+
+  // Batch 4 Icons
+  { name: "CloudRainIcon", categoryKey: "timeLocation", Component: CloudRainIcon, tags: ["rain", "hujan", "weather", "cuaca", "gerimis", "cloud"] },
+  { name: "CloudSnowIcon", categoryKey: "timeLocation", Component: CloudSnowIcon, tags: ["snow", "salju", "weather", "dingin", "winter", "es"] },
+  { name: "CloudLightningIcon", categoryKey: "timeLocation", Component: CloudLightningIcon, tags: ["lightning", "petir", "badai", "storm", "thunder", "kilat"] },
+  { name: "WindIcon", categoryKey: "timeLocation", Component: WindIcon, tags: ["wind", "angin", "breeze", "udara", "weather"] },
+  { name: "UmbrellaIcon", categoryKey: "timeLocation", Component: UmbrellaIcon, tags: ["umbrella", "payung", "hujan", "protection", "protect"] },
+  { name: "DropletIcon", categoryKey: "timeLocation", Component: DropletIcon, tags: ["droplet", "tetesan", "air", "water", "oil", "kelembapan"] },
+  { name: "SunsetIcon", categoryKey: "timeLocation", Component: SunsetIcon, tags: ["sunset", "matahari terbenam", "senja", "sore", "dusk"] },
+  { name: "SunriseIcon", categoryKey: "timeLocation", Component: SunriseIcon, tags: ["sunrise", "matahari terbit", "fajar", "pagi", "dawn"] },
+  { name: "LeafIcon", categoryKey: "timeLocation", Component: LeafIcon, tags: ["leaf", "daun", "nature", "organik", "eco", "alam", "hijau"] },
+  { name: "MouseIcon", categoryKey: "deviceHardware", Component: MouseIcon, tags: ["mouse", "kursor", "hardware", "click", "komputer"] },
+  { name: "KeyboardIcon", categoryKey: "deviceHardware", Component: KeyboardIcon, tags: ["keyboard", "papan ketik", "typing", "input", "hardware"] },
+  { name: "SpeakerIcon", categoryKey: "deviceHardware", Component: SpeakerIcon, tags: ["speaker", "audio", "sound", "musik", "suara", "loudspeaker"] },
+  { name: "HeadsetIcon", categoryKey: "deviceHardware", Component: HeadsetIcon, tags: ["headset", "earphone", "call", "cs", "gaming", "operator"] },
+  { name: "Gamepad2Icon", categoryKey: "deviceHardware", Component: Gamepad2Icon, tags: ["gamepad", "stick", "controller", "gaming", "game", "play"] },
+  { name: "UsbIcon", categoryKey: "deviceHardware", Component: UsbIcon, tags: ["usb", "flashdisk", "cable", "port", "connect", "koneksi"] },
+  { name: "WrenchIcon", categoryKey: "actionInteraction", Component: WrenchIcon, tags: ["wrench", "kunci inggris", "repair", "tools", "perbaikan", "bengkel"] },
+  { name: "HammerIcon", categoryKey: "actionInteraction", Component: HammerIcon, tags: ["hammer", "palu", "alat", "tools", "build", "konstruksi"] },
+  { name: "RulerIcon", categoryKey: "actionInteraction", Component: RulerIcon, tags: ["ruler", "penggaris", "measure", "ukuran", "dimensi", "desain"] },
+  { name: "GaugeIcon", categoryKey: "systemFeedback", Component: GaugeIcon, tags: ["gauge", "speedometer", "meter", "performa", "speed", "dashboard"] },
+  { name: "HourglassIcon", categoryKey: "timeLocation", Component: HourglassIcon, tags: ["hourglass", "jam pasir", "waiting", "loading", "waktu", "timer"] },
+  { name: "TimerIcon", categoryKey: "timeLocation", Component: TimerIcon, tags: ["timer", "stopwatch", "countdown", "waktu", "hitung mundur"] },
+  { name: "PinIcon", categoryKey: "actionInteraction", Component: PinIcon, tags: ["pin", "semat", "sticky", "tancap", "favorite", "bookmark"] },
+  { name: "PinOffIcon", categoryKey: "actionInteraction", Component: PinOffIcon, tags: ["pin off", "lepas sematan", "unpin", "cabut pin"] },
+  { name: "TableIcon", categoryKey: "mediaDocument", Component: TableIcon, tags: ["table", "tabel", "baris kolom", "grid", "data", "sheet"] },
+  { name: "KanbanIcon", categoryKey: "mediaDocument", Component: KanbanIcon, tags: ["kanban", "board", "trello", "kolom", "agile", "scrum", "task"] },
+  { name: "LineChartIcon", categoryKey: "ecommerceFinance", Component: LineChartIcon, tags: ["line chart", "grafik garis", "tren", "analytics", "data", "saham"] },
+  { name: "FileSpreadsheetIcon", categoryKey: "mediaDocument", Component: FileSpreadsheetIcon, tags: ["excel", "spreadsheet", "csv", "data", "dokumen excel"] },
+  { name: "GitForkIcon", categoryKey: "actionInteraction", Component: GitForkIcon, tags: ["git fork", "fork", "salin repo", "cabang", "repo"] },
+  { name: "HeartHandshakeIcon", categoryKey: "actionInteraction", Component: HeartHandshakeIcon, tags: ["handshake", "jabat tangan", "kerja sama", "partnership", "charity", "peduli"] },
+  { name: "PartyPopperIcon", categoryKey: "actionInteraction", Component: PartyPopperIcon, tags: ["party", "popper", "selamat", "congrats", "perayaan", "event"] },
+  { name: "HeartPulseIcon", categoryKey: "systemFeedback", Component: HeartPulseIcon, tags: ["heartbeat", "pulse", "denyut jantung", "ecg", "kesehatan", "vital"] },
+  { name: "CoffeeIcon", categoryKey: "actionInteraction", Component: CoffeeIcon, tags: ["coffee", "kopi", "cafe", "istirahat", "break", "minuman"] },
+  { name: "UtensilsIcon", categoryKey: "actionInteraction", Component: UtensilsIcon, tags: ["utensils", "sendok garpu", "makan", "restoran", "food", "kuliner"] },
+  { name: "PlaneIcon", categoryKey: "navigation", Component: PlaneIcon, tags: ["plane", "pesawat", "terbang", "flight", "tiket", "travel"] },
+  { name: "CarIcon", categoryKey: "navigation", Component: CarIcon, tags: ["car", "mobil", "otomotif", "kendaraan", "transport"] },
+  { name: "BusIcon", categoryKey: "navigation", Component: BusIcon, tags: ["bus", "bis", "transportasi umum", "transit"] },
+  { name: "TrainIcon", categoryKey: "navigation", Component: TrainIcon, tags: ["train", "kereta", "railway", "commuter", "mrt", "lrt"] },
+  { name: "FuelIcon", categoryKey: "navigation", Component: FuelIcon, tags: ["fuel", "bensin", "spbu", "pom", "gas station", "energi"] },
+  { name: "Navigation2Icon", categoryKey: "navigation", Component: Navigation2Icon, tags: ["navigation", "gps", "arah", "lokasi", "pointer", "rute"] },
+  { name: "SparkleIcon", categoryKey: "actionInteraction", Component: SparkleIcon, tags: ["sparkle", "bintang", "kilau", "bersih", "ai", "magic"] },
+  { name: "MessageSquarePlusIcon", categoryKey: "communication", Component: MessageSquarePlusIcon, tags: ["message plus", "chat baru", "tambah pesan", "komentar baru"] },
+  { name: "RadioTowerIcon", categoryKey: "communication", Component: RadioTowerIcon, tags: ["tower", "pemancar", "broadcast", "siaran", "antena", "radio"] },
+  { name: "PodcastIcon", categoryKey: "communication", Component: PodcastIcon, tags: ["podcast", "siaran suara", "audio", "mic", "talk"] },
+  { name: "VoicemailIcon", categoryKey: "communication", Component: VoicemailIcon, tags: ["voicemail", "pesan suara", "rekaman", "telepon"] },
+  { name: "StethoscopeIcon", categoryKey: "systemFeedback", Component: StethoscopeIcon, tags: ["stethoscope", "stetoskop", "dokter", "medis", "klinik", "kesehatan"] },
+  { name: "CupSodaIcon", categoryKey: "actionInteraction", Component: CupSodaIcon, tags: ["cup soda", "minuman", "soft drink", "jus", "fast food"] },
+  { name: "FolderLockIcon", categoryKey: "systemFeedback", Component: FolderLockIcon, tags: ["folder lock", "folder terkunci", "private", "enkripsi", "aman"] },
+  { name: "FileLockIcon", categoryKey: "systemFeedback", Component: FileLockIcon, tags: ["file lock", "dokumen terkunci", "rahasia", "enkripsi"] },
+  { name: "MagnetIcon", categoryKey: "actionInteraction", Component: MagnetIcon, tags: ["magnet", "tarik", "leads", "attract", "daya tarik"] },
+  { name: "GlassesIcon", categoryKey: "actionInteraction", Component: GlassesIcon, tags: ["glasses", "kacamata", "vision", "membaca", "mode baca", "optik"] },
+  { name: "KeyRoundIcon", categoryKey: "systemFeedback", Component: KeyRoundIcon, tags: ["key round", "kunci bulat", "password", "akses", "token"] },
+  { name: "AppleIcon", categoryKey: "actionInteraction", Component: AppleIcon, tags: ["apple", "apel", "buah", "fruit", "sehat", "diet", "nutrition"] },
+  { name: "UnplugIcon", categoryKey: "deviceHardware", Component: UnplugIcon, tags: ["unplug", "cabut", "terputus", "disconnect", "colokan lepas"] },
+  { name: "NetworkIcon", categoryKey: "deviceHardware", Component: NetworkIcon, tags: ["network", "jaringan", "lan", "nodes", "topologi", "server"] },
 ];
 
+const ITEMS_PER_PAGE = 100;
+
 export function IconDemo() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isId = i18n.language?.startsWith("id");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<IconCategoryKey>("all");
   const [previewSize, setPreviewSize] = useState<number>(24);
-  const [copiedIcon, setCopiedIcon] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const categoryFilters = useMemo(
     () => [
@@ -376,16 +616,10 @@ export function IconDemo() {
       { key: "deviceHardware" as const, label: t("content.iconDemo.categories.deviceHardware", "Perangkat & Hardware") },
       { key: "textEditor" as const, label: t("content.iconDemo.categories.textEditor", "Editor Teks") },
       { key: "timeLocation" as const, label: t("content.iconDemo.categories.timeLocation", "Waktu & Lokasi") },
+      { key: "brandTech" as const, label: t("content.iconDemo.categories.brandTech", "Brand & Tech") },
     ],
     [t]
   );
-
-  const handleCopyJSX = (iconName: string) => {
-    const snippet = `<${iconName} size={${previewSize}} />`;
-    navigator.clipboard.writeText(snippet);
-    setCopiedIcon(iconName);
-    setTimeout(() => setCopiedIcon(null), 1800);
-  };
 
   // Filter daftar ikon berdasarkan search query dan kategori aktif
   const filteredIcons = useMemo(() => {
@@ -401,6 +635,34 @@ export function IconDemo() {
     });
   }, [searchQuery, selectedCategory]);
 
+  const totalPages = Math.max(1, Math.ceil(filteredIcons.length / ITEMS_PER_PAGE));
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+
+  const paginatedIcons = useMemo(() => {
+    const start = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
+    return filteredIcons.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredIcons, safeCurrentPage]);
+
+  const startIndex = filteredIcons.length === 0 ? 0 : (safeCurrentPage - 1) * ITEMS_PER_PAGE + 1;
+  const endIndex = Math.min(safeCurrentPage * ITEMS_PER_PAGE, filteredIcons.length);
+
+  const handlePageChange = (page: number) => {
+    const targetPage = Math.max(1, Math.min(page, totalPages));
+    setCurrentPage(targetPage);
+    const anchor = document.getElementById("icon-grid-anchor");
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const pageNumbers = useMemo(() => {
+    const pages: number[] = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }, [totalPages]);
+
   return (
     <div className="space-y-8">
       <div className="space-y-3 border-b border-neutral-200/80 pb-6 dark:border-neutral-800/80">
@@ -409,14 +671,13 @@ export function IconDemo() {
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-950 dark:text-neutral-50">
           {t("content.iconDemo.pageTitle", {
-            total: ALL_ICONS.length,
-            defaultValue: `Web Icons (${ALL_ICONS.length} Ikon Esensial)`,
+            defaultValue: "Web Icons (Ikon Esensial)",
           })}
         </h1>
         <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           {t("content.iconDemo.pageDesc", {
-            total: ALL_ICONS.length,
-            defaultValue: `Koleksi ${ALL_ICONS.length} ikon SVG web esensial bawaan pustaka needui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).`,
+            defaultValue:
+              "Koleksi ikon SVG web esensial bawaan pustaka needui. Dibuat dengan gaya garis minimalis (stroke width 2, viewBox 24x24), modular, ringan, dan warna dapat dikustomisasi langsung melalui class utility Tailwind CSS (currentColor).",
           })}
         </p>
       </div>
@@ -429,17 +690,23 @@ export function IconDemo() {
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
             placeholder={t(
               "content.iconDemo.searchPlaceholder",
-              `Cari dari ${ALL_ICONS.length} ikon (contoh: 'play', 'cloud', 'cart', 'phone', 'sun', 'code')...`
+              "Cari ikon (contoh: 'play', 'cloud', 'cart', 'phone', 'sun', 'code')..."
             )}
             className="w-full rounded-2xl border border-neutral-200/90 bg-white py-3.5 pl-11 pr-10 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-neutral-800/90 dark:bg-neutral-900/60 dark:text-neutral-100 dark:placeholder:text-neutral-500 shadow-xs"
           />
           {searchQuery && (
             <button
               type="button"
-              onClick={() => setSearchQuery("")}
+              onClick={() => {
+                setSearchQuery("");
+                setCurrentPage(1);
+              }}
               className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 cursor-pointer"
             >
               {t("content.iconDemo.clearSearch", "✕ Hapus")}
@@ -453,7 +720,10 @@ export function IconDemo() {
               <button
                 key={cat.key}
                 type="button"
-                onClick={() => setSelectedCategory(cat.key)}
+                onClick={() => {
+                  setSelectedCategory(cat.key);
+                  setCurrentPage(1);
+                }}
                 className={`px-3 py-1 rounded-lg text-xs font-medium transition cursor-pointer ${
                   selectedCategory === cat.key
                     ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-semibold shadow-xs"
@@ -465,37 +735,51 @@ export function IconDemo() {
             ))}
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
-            <span className="font-medium">
-              {t("content.iconDemo.previewSize", "Ukuran Preview:")}
-            </span>
-            <div className="inline-flex rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-0.5">
-              {[18, 24, 32].map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  onClick={() => setPreviewSize(s)}
-                  className={`px-2.5 py-0.5 rounded-md text-xs font-mono font-medium cursor-pointer transition ${
-                    previewSize === s
-                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-bold shadow-xs"
-                      : "text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
-                  }`}
-                >
-                  {s}px
-                </button>
-              ))}
+          <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
+            {/* Size Switcher */}
+            <div className="flex items-center gap-2">
+              <span className="font-medium">
+                {t("content.iconDemo.previewSize", "Ukuran Preview:")}
+              </span>
+              <div className="inline-flex rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-0.5">
+                {[18, 24, 32].map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setPreviewSize(s)}
+                    className={`px-2.5 py-0.5 rounded-md text-xs font-mono font-medium cursor-pointer transition ${
+                      previewSize === s
+                        ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-bold shadow-xs"
+                        : "text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {s}px
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 px-1">
+      <div
+        id="icon-grid-anchor"
+        className="flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-500 dark:text-neutral-400 px-1 scroll-mt-20"
+      >
         <span>
-          {t("content.iconDemo.showingCount", {
-            count: filteredIcons.length,
-            total: ALL_ICONS.length,
-            defaultValue: `Menampilkan ${filteredIcons.length} dari ${ALL_ICONS.length} ikon web esensial.`,
-          })}
+          {filteredIcons.length > ITEMS_PER_PAGE
+            ? t("content.iconDemo.showingCountPaginated", {
+                start: startIndex,
+                end: endIndex,
+                count: filteredIcons.length,
+                total: ALL_ICONS.length,
+                defaultValue: `Menampilkan ${startIndex} - ${endIndex} dari ${filteredIcons.length} ikon esensial (total ${ALL_ICONS.length} ikon).`,
+              })
+            : t("content.iconDemo.showingCount", {
+                count: filteredIcons.length,
+                total: ALL_ICONS.length,
+                defaultValue: `Menampilkan ${filteredIcons.length} dari ${ALL_ICONS.length} ikon web esensial.`,
+              })}
         </span>
         <span className="hidden sm:inline">
           {t("content.iconDemo.copyTip", "💡 Klik ikon apa saja untuk menyalin snippet JSX")}
@@ -515,6 +799,7 @@ export function IconDemo() {
             onClick={() => {
               setSearchQuery("");
               setSelectedCategory("all");
+              setCurrentPage(1);
             }}
             className="mt-3 text-xs text-blue-600 hover:underline dark:text-blue-400 font-medium cursor-pointer"
           >
@@ -524,7 +809,7 @@ export function IconDemo() {
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
-        {filteredIcons.map(({ name, Component }) => (
+        {paginatedIcons.map(({ name, Component }) => (
           <IconCard
             key={name}
             name={name}
@@ -534,6 +819,62 @@ export function IconDemo() {
           />
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80">
+          <div className="text-xs text-neutral-500 dark:text-neutral-400">
+            {t("content.iconDemo.pagination.page", {
+              current: safeCurrentPage,
+              total: totalPages,
+              defaultValue: `Halaman ${safeCurrentPage} dari ${totalPages}`,
+            })}{" "}
+            <span className="text-neutral-400 dark:text-neutral-500">
+              ({startIndex}–{endIndex} dari {filteredIcons.length} ikon)
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              disabled={safeCurrentPage === 1}
+              onClick={() => handlePageChange(safeCurrentPage - 1)}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition shadow-xs"
+              aria-label="Previous Page"
+            >
+              <ChevronLeftIcon size={14} />
+              <span>{t("content.iconDemo.pagination.prev", "Sebelumnya")}</span>
+            </button>
+
+            <div className="flex items-center gap-1">
+              {pageNumbers.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => handlePageChange(p)}
+                  className={`min-w-8 h-8 px-2 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    safeCurrentPage === p
+                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-xs"
+                      : "border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              disabled={safeCurrentPage === totalPages}
+              onClick={() => handlePageChange(safeCurrentPage + 1)}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition shadow-xs"
+              aria-label="Next Page"
+            >
+              <span>{t("content.iconDemo.pagination.next", "Berikutnya")}</span>
+              <ChevronRightIcon size={14} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
