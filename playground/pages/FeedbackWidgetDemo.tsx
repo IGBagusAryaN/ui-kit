@@ -96,11 +96,11 @@ export function FeedbackWidgetDemo() {
       <div className="grid grid-cols-1 gap-12 sm:gap-14">
         <section className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700">
           <div className="space-y-2 mb-6">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+              <h2 className="text-base sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
                 {t.cardTitle}
               </h2>
-              <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800 font-semibold">
+              <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-800 font-semibold">
                 {t.cardBadge}
               </span>
             </div>

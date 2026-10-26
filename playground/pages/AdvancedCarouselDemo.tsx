@@ -254,7 +254,7 @@ export function AdvancedCarouselDemo() {
         {carouselCards.map((card) => (
           <section
             key={card.id}
-            className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
+            className="flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200/80 bg-white p-4 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
             <div className="space-y-2 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
@@ -270,7 +270,7 @@ export function AdvancedCarouselDemo() {
               </p>
             </div>
 
-            <div className="flex items-center justify-center p-3 sm:p-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
+            <div className="flex items-center justify-center p-2 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 overflow-hidden">
               {card.component}
             </div>
 

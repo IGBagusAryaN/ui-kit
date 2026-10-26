@@ -735,7 +735,7 @@ export function AnimatedTabsDemo() {
       desc: t.variants.vertical.description,
       snippet: t.variants.vertical.snippet,
       component: (
-        <div className="w-full max-w-xl mx-auto">
+        <div className="w-full max-w-2xl mx-auto">
           <VerticalMinimalTabs items={VERTICAL_DEMO_ITEMS} defaultValue="profile" />
         </div>
       ),

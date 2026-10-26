@@ -47,7 +47,7 @@ export function Navbar({
           )}
 
           <div
-            className="hidden sm:flex items-center gap-2.5 cursor-pointer select-none min-w-0"
+            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer select-none min-w-0"
             onClick={onLogoClick}
           >
             <NeedUiLogo size="md" />

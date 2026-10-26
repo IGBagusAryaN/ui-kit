@@ -147,7 +147,7 @@ export default function App() {
         </p>
 
         {/* Tab Package Manager */}
-        <div className="flex items-center gap-1 border-b border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center gap-1 border-b border-neutral-200 dark:border-neutral-800 overflow-x-auto no-scrollbar">
           {(["npm", "pnpm", "yarn", "bun"] as const).map((pm) => (
             <button
               key={pm}
@@ -182,7 +182,7 @@ export default function App() {
         </p>
 
         {/* Tab Pemilihan Metode (Standalone vs Tailwind) */}
-        <div className="flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-800 overflow-x-auto no-scrollbar">
           <button
             type="button"
             onClick={() => setStyleMethod("standalone")}
@@ -217,7 +217,7 @@ export default function App() {
               Import file <code className="font-mono bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-xs text-neutral-800 dark:text-neutral-200">@needui/ui-kit/styles.css</code> satu kali pada entry point utama aplikasi Anda:
             </p>
 
-            <div className="flex items-center gap-1 border-b border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center gap-1 border-b border-neutral-200 dark:border-neutral-800 overflow-x-auto no-scrollbar">
               <button
                 type="button"
                 onClick={() => setFrameworkTab("vite")}

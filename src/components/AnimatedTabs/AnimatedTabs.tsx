@@ -653,10 +653,10 @@ export const VerticalMinimalTabs = forwardRef<
         className={cn(tabsVariants({ variant, size }), className)}
         {...props}
       >
-        <div className="w-full sm:w-48 overflow-x-auto no-scrollbar py-0.5">
+        <div className="w-full sm:w-56 shrink-0">
           <div
             className={cn(
-              "flex sm:flex-col gap-1 p-1 rounded-2xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/80 dark:border-zinc-800/80 min-w-full",
+              "flex flex-col gap-1 p-1.5 rounded-2xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/80 dark:border-zinc-800/80 w-full",
               tabListClassName
             )}
           >
@@ -670,36 +670,31 @@ export const VerticalMinimalTabs = forwardRef<
                   disabled={item.disabled}
                   onClick={() => handleSelect(item.id)}
                   className={cn(
-                    "relative shrink-0 sm:shrink sm:w-full flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-xl font-semibold text-left transition-colors select-none whitespace-nowrap cursor-pointer",
-                    size === "sm" ? "text-xs" : size === "lg" ? "text-base" : "text-xs",
+                    "relative w-full flex items-center gap-2.5 pl-4 pr-3 py-2 sm:py-2.5 rounded-xl font-medium text-left transition-colors select-none cursor-pointer",
+                    size === "sm" ? "text-xs" : size === "lg" ? "text-base" : "text-xs sm:text-sm",
                     isActive
                       ? "text-zinc-950 dark:text-white font-bold"
-                      : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200",
+                      : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40",
                     item.disabled && "opacity-40 cursor-not-allowed pointer-events-none"
                   )}
                 >
                   {isActive && (
                     <>
                       <motion.div
-                        layoutId={`${uniqueId}-verticalTrack`}
-                        className="hidden sm:block absolute left-0 inset-y-1.5 w-1 bg-indigo-600 dark:bg-indigo-400 rounded-r-full"
-                        transition={{ type: "spring", stiffness: 420, damping: 30 }}
-                      />
-                      <motion.div
-                        layoutId={`${uniqueId}-verticalTrackMobile`}
-                        className="sm:hidden absolute bottom-0 inset-x-2 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
-                        transition={{ type: "spring", stiffness: 420, damping: 30 }}
-                      />
-                      <motion.div
                         layoutId={`${uniqueId}-verticalBg`}
-                        className="absolute inset-0 bg-white dark:bg-zinc-800/80 shadow-xs rounded-xl -z-0"
-                        transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                        className="absolute inset-0 bg-white dark:bg-zinc-800 shadow-xs rounded-xl border border-zinc-200/70 dark:border-zinc-700/70 -z-0"
+                        transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                      />
+                      <motion.div
+                        layoutId={`${uniqueId}-verticalTrack`}
+                        className="absolute left-1.5 inset-y-2 w-1 bg-indigo-600 dark:bg-indigo-400 rounded-full z-10"
+                        transition={{ type: "spring", stiffness: 450, damping: 32 }}
                       />
                     </>
                   )}
 
                   {item.icon && <span className="relative z-10 shrink-0">{item.icon}</span>}
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10 truncate">{item.label}</span>
                 </button>
               );
             })}

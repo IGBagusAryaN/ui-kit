@@ -354,7 +354,7 @@ export function NavbarDemo() {
               </p>
             </div>
 
-            <div className="w-full flex items-center justify-center p-4 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
+            <div className="w-full flex items-center justify-center p-2 sm:p-6 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-x-auto no-scrollbar">
               {item.render({
                 glassScrolled,
                 setGlassScrolled,

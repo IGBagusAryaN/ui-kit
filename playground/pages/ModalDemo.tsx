@@ -503,7 +503,7 @@ export function ModalDemo() {
         {filteredList.map((item) => (
           <section
             key={item.id}
-            className="flex flex-col rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700 w-full"
+            className="flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200/80 bg-white p-4 sm:p-8 shadow-xs transition hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950 dark:hover:border-zinc-700 w-full"
           >
             <div className="space-y-2 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
@@ -519,7 +519,7 @@ export function ModalDemo() {
               </p>
             </div>
 
-            <div className="flex flex-col items-center justify-center py-14 px-6 rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 min-h-[140px]">
+            <div className="flex flex-col items-center justify-center py-10 px-4 sm:py-14 sm:px-6 rounded-xl sm:rounded-2xl border border-zinc-200/70 bg-zinc-50/50 dark:border-zinc-800/70 dark:bg-zinc-900/30 mb-6 min-h-[140px]">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.96 }}

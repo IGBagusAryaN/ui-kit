@@ -60,8 +60,8 @@ export function AnimatedPaginationDemo() {
       {/* 1. VARIANT: STANDARD INTERACTIVE SLIDING PILL */}
       <section className="space-y-4">
         <div className="space-y-1">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 flex flex-wrap items-center gap-2">
               <span>1. Standard Interactive Sliding Pill</span>
               <span className="text-[11px] font-mono font-normal text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800">
                 Active State Morphing
@@ -78,7 +78,7 @@ export function AnimatedPaginationDemo() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-6 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-4">
+        <div className="flex flex-col items-center justify-center p-4 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-4 overflow-x-auto w-full no-scrollbar">
           <Pagination layoutId="interactive-demo-pill">
             <PaginationContent>
               <PaginationItem>
@@ -165,7 +165,7 @@ export function StandardPagination() {
       {/* 2. VARIANT: REALISTIC RANGE WITH ELLIPSIS */}
       <section className="space-y-4">
         <div className="space-y-1">
-          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 flex flex-wrap items-center gap-2">
             <span>2. Dynamic Long Range with Ellipsis</span>
             <span className="text-[11px] font-mono font-normal text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">
               Truncated Pages
@@ -178,7 +178,7 @@ export function StandardPagination() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-6 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-4">
+        <div className="flex flex-col items-center justify-center p-4 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-4 overflow-x-auto w-full no-scrollbar">
           <AnimatedPagination
             totalPages={totalDynamicPages}
             currentPage={dynamicPage}
@@ -235,7 +235,7 @@ const pageRange = generatePaginationRange(page, 12);
       {/* 3. VARIANT: SIZES (sm, default, lg) */}
       <section className="space-y-4">
         <div className="space-y-1">
-          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 flex flex-wrap items-center gap-2">
             <span>3. Responsive Size Presets (sm, default, lg)</span>
             <span className="text-[11px] font-mono font-normal text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">
               CVA Sizing
@@ -248,7 +248,7 @@ const pageRange = generatePaginationRange(page, 12);
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-6 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-8">
+        <div className="flex flex-col items-center justify-center p-4 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-8 overflow-x-auto w-full no-scrollbar">
           {/* Small */}
           <div className="flex flex-col items-center gap-2">
             <span className="text-[11px] font-mono text-neutral-400">size="sm" (Compact)</span>
@@ -308,7 +308,7 @@ const pageRange = generatePaginationRange(page, 12);
       {/* 4. VARIANT: OUTLINE BORDERED */}
       <section className="space-y-4">
         <div className="space-y-1">
-          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 flex flex-wrap items-center gap-2">
             <span>4. Outline Bordered Variant</span>
             <span className="text-[11px] font-mono font-normal text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/60 px-2 py-0.5 rounded border border-sky-200 dark:border-sky-800">
               Bordered Cards
@@ -321,7 +321,7 @@ const pageRange = generatePaginationRange(page, 12);
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-6 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-4">
+        <div className="flex flex-col items-center justify-center p-4 sm:p-10 rounded-2xl border border-neutral-200/80 bg-neutral-50/70 dark:border-neutral-800/80 dark:bg-neutral-950 gap-4 overflow-x-auto w-full no-scrollbar">
           <Pagination layoutId="outline-demo-pill">
             <PaginationContent>
               <PaginationItem>

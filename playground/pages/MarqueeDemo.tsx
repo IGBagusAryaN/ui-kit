@@ -1308,11 +1308,11 @@ export function SandwichImageMarquee() {
             className="flex flex-col justify-between rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white p-5 sm:p-7 shadow-xs transition hover:border-zinc-300 dark:bg-zinc-950 dark:hover:border-zinc-700"
           >
             <div className="space-y-1.5 mb-5">
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
                   {item.title}
                 </h3>
-                <span className="shrink-0 font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200/60 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-900 font-semibold">
+                <span className="self-start sm:self-auto shrink-0 font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200/60 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-900 font-semibold">
                   {item.badge}
                 </span>
               </div>

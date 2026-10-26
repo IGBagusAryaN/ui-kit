@@ -215,7 +215,7 @@ export function AnimatedToggleDemo() {
         </p>
 
         {/* Global Size Configurator */}
-        <div className="flex items-center gap-3 pt-2">
+        <div className="flex flex-wrap items-center gap-3 pt-2">
           <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
             {lang === "id" ? "Ukuran Pratinjau:" : "Preview Size:"}
           </span>

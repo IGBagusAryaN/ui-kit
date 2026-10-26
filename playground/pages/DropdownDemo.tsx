@@ -493,7 +493,7 @@ export function QuickCommandMenu() {
         {filteredList.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
+            className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-4 sm:p-6 shadow-xs transition hover:border-neutral-300 dark:border-neutral-800/80 dark:bg-neutral-950 dark:hover:border-neutral-700"
           >
             <div className="space-y-2 mb-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
@@ -509,7 +509,7 @@ export function QuickCommandMenu() {
               </p>
             </div>
 
-            <div className="w-full min-h-[380px] flex items-start justify-center pt-8 pb-16 px-4 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-visible">
+            <div className="w-full min-h-[360px] flex items-start justify-center pt-8 pb-16 px-2 sm:px-4 rounded-xl border border-neutral-200/60 bg-neutral-50/50 dark:border-neutral-800/60 dark:bg-neutral-900/30 mb-4 overflow-x-auto no-scrollbar">
               {item.render()}
             </div>
 

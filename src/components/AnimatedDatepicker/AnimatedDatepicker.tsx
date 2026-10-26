@@ -258,7 +258,7 @@ export const FluidSwipeCalendar = forwardRef<HTMLDivElement, FluidSwipeCalendarP
       <div
         ref={ref}
         className={cn(
-          "w-full mx-auto p-5 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl shadow-zinc-200/30 dark:shadow-zinc-950/50",
+          "w-full mx-auto p-4 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl shadow-zinc-200/30 dark:shadow-zinc-950/50",
           size === "sm" && "max-w-sm",
           size === "md" && "max-w-md",
           size === "lg" && "max-w-xl",
@@ -600,7 +600,7 @@ export const CupertinoWheelDatepicker = forwardRef<
       <div
         ref={ref}
         className={cn(
-          "w-full mx-auto p-6 sm:p-7 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-zinc-950/50",
+          "w-full mx-auto p-4 sm:p-7 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl shadow-zinc-200/40 dark:shadow-zinc-950/50",
           size === "sm" && "max-w-sm",
           size === "md" && "max-w-md",
           size === "lg" && "max-w-xl",
@@ -841,7 +841,7 @@ export const ElasticTimelineDatepicker = forwardRef<
       <div
         ref={ref}
         className={cn(
-          "w-full mx-auto p-5 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl",
+          "w-full mx-auto p-4 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-xl",
           size === "sm" && "max-w-sm",
           size === "md" && "max-w-md",
           size === "lg" && "max-w-xl",

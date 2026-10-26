@@ -45,7 +45,7 @@ export function Demo() {
             className="flex flex-col justify-between p-5 rounded-2xl border border-neutral-200/80 bg-white shadow-xs dark:border-neutral-800/80 dark:bg-neutral-950 transition hover:border-neutral-300 dark:hover:border-neutral-700"
           >
             <div className="space-y-1.5 mb-5">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
                   {title}
                 </span>
