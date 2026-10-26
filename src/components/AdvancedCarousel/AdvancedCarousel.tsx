@@ -198,29 +198,32 @@ export const CoverflowCarousel = forwardRef<HTMLDivElement, CoverflowCarouselPro
           className="relative w-full h-[380px] sm:h-[430px] flex items-center justify-center overflow-hidden"
           style={{ perspective: "1100px" }}
         >
-          <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
+          <div className="relative w-full max-w-4xl h-full flex items-center justify-center" style={{ transformStyle: "preserve-3d" }}>
             {items.map((item, idx) => {
               const offset = idx - active;
               const isCenter = offset === 0;
               const isVisible = Math.abs(offset) <= 2;
 
-              if (!isVisible) return null;
-
               return (
                 <motion.div
                   key={item.id}
                   onClick={() => setIndex(idx)}
-                  drag="x"
+                  drag={isCenter ? "x" : false}
                   dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
+                  dragElastic={0.25}
                   onDragEnd={handleDragEnd}
                   animate={{
-                    scale: isCenter ? 1 : 0.82 - Math.abs(offset) * 0.04,
+                    scale: isCenter ? 1 : Math.max(0.7, 0.84 - Math.abs(offset) * 0.05),
                     rotateY: isCenter ? 0 : offset > 0 ? -36 : 36,
-                    x: offset * 150,
-                    z: isCenter ? 80 : -130 * Math.abs(offset),
-                    zIndex: 10 - Math.abs(offset),
-                    opacity: isCenter ? 1 : Math.max(0.45, 0.7 - Math.abs(offset) * 0.2),
+                    x: offset * 160,
+                    z: isCenter ? 80 : -120 * Math.min(Math.abs(offset), 3),
+                    zIndex: isCenter ? 20 : 10 - Math.min(Math.abs(offset), 8),
+                    opacity: isVisible
+                      ? isCenter
+                        ? 1
+                        : Math.max(0.4, 0.75 - Math.abs(offset) * 0.18)
+                      : 0,
+                    pointerEvents: isVisible ? "auto" : "none",
                   }}
                   transition={{
                     type: "spring",
@@ -242,7 +245,7 @@ export const CoverflowCarousel = forwardRef<HTMLDivElement, CoverflowCarouselPro
                     src={item.image}
                     alt={item.title}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none brightness-95"
-                    loading="lazy"
+                    decoding="async"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none" />
@@ -655,8 +658,10 @@ export const StackedSwipeCarousel = forwardRef<HTMLDivElement, StackedSwipeCarou
       }));
     }, [items, cards]);
 
+    const [deckCycle, setDeckCycle] = useState(0);
     const [stack, setStack] = useState<StackCard[]>(initialCards);
     const [historyCount, setHistoryCount] = useState(0);
+    const topCardRef = useRef<{ dismiss: (dir: "left" | "right") => void } | null>(null);
 
     useEffect(() => {
       setStack(initialCards);
@@ -673,7 +678,8 @@ export const StackedSwipeCarousel = forwardRef<HTMLDivElement, StackedSwipeCarou
     };
 
     const handleReset = () => {
-      setStack(initialCards);
+      setDeckCycle((c) => c + 1);
+      setStack([...initialCards]);
       setHistoryCount(0);
       onReset?.();
     };
@@ -689,23 +695,28 @@ export const StackedSwipeCarousel = forwardRef<HTMLDivElement, StackedSwipeCarou
         {...props}
       >
         <div className="relative w-72 sm:w-80 h-[380px] sm:h-[400px]">
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {stack.length > 0 ? (
-              stack
-                .slice(0, 3)
-                .map((card, idx) => (
-                  <SwipeCardInternal
-                    key={card.id}
-                    card={card}
-                    index={idx}
-                    isTop={idx === 0}
-                    onSwipe={handleDismiss}
-                  />
-                ))
+              <div key={`deck-wrap-${deckCycle}`} className="contents">
+                {stack
+                  .slice(0, 3)
+                  .map((card, idx) => (
+                    <SwipeCardInternal
+                      key={`card-${deckCycle}-${card.id}`}
+                      card={card}
+                      index={idx}
+                      isTop={idx === 0}
+                      topCardRef={idx === 0 ? topCardRef : undefined}
+                      onSwipe={handleDismiss}
+                    />
+                  ))}
+              </div>
             ) : (
               <motion.div
+                key="empty-stack-state"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
                 className="absolute inset-0 rounded-3xl border border-dashed border-zinc-300 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40 p-6 flex flex-col items-center justify-center text-center space-y-4"
               >
                 <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400 flex items-center justify-center">
@@ -722,7 +733,7 @@ export const StackedSwipeCarousel = forwardRef<HTMLDivElement, StackedSwipeCarou
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:opacity-90 shadow-xs cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:opacity-90 shadow-xs cursor-pointer z-30"
                 >
                   <RefreshCwIcon size={14} />
                   <span>Reset Stack Deck</span>
@@ -732,11 +743,17 @@ export const StackedSwipeCarousel = forwardRef<HTMLDivElement, StackedSwipeCarou
           </AnimatePresence>
         </div>
 
-        {stack.length > 0 && (
+        {stack.length > 0 ? (
           <div className="flex items-center gap-4 mt-8">
             <button
               type="button"
-              onClick={() => handleDismiss("left")}
+              onClick={() => {
+                if (topCardRef.current) {
+                  topCardRef.current.dismiss("left");
+                } else {
+                  handleDismiss("left");
+                }
+              }}
               aria-label="Dismiss card"
               className="p-3 rounded-full border border-rose-200 dark:border-rose-900/60 bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400 hover:scale-105 transition-transform shadow-xs cursor-pointer"
             >
@@ -752,11 +769,28 @@ export const StackedSwipeCarousel = forwardRef<HTMLDivElement, StackedSwipeCarou
             </button>
             <button
               type="button"
-              onClick={() => handleDismiss("right")}
+              onClick={() => {
+                if (topCardRef.current) {
+                  topCardRef.current.dismiss("right");
+                } else {
+                  handleDismiss("right");
+                }
+              }}
               aria-label="Accept card"
               className="p-3 rounded-full border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 hover:scale-105 transition-transform shadow-xs cursor-pointer"
             >
               <CheckIcon size={20} />
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center mt-8">
+            <button
+              type="button"
+              onClick={handleReset}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold border border-zinc-200 dark:border-zinc-800 bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-xs transition-colors cursor-pointer"
+            >
+              <RefreshCwIcon size={15} />
+              <span>Restart Card Stack</span>
             </button>
           </div>
         )}
@@ -771,51 +805,78 @@ function SwipeCardInternal({
   card,
   index,
   isTop,
+  topCardRef,
   onSwipe,
 }: {
   card: StackCard;
   index: number;
   isTop: boolean;
+  topCardRef?: React.MutableRefObject<{ dismiss: (dir: "left" | "right") => void } | null>;
   onSwipe: (dir: "left" | "right") => void;
 }) {
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-200, 200], [-18, 18]);
+  const isDismissing = useRef(false);
+  const [exitTarget, setExitTarget] = useState<{ x: number; rotate: number } | null>(null);
 
-  const likeOpacity = useTransform(x, [30, 100], [0, 1]);
-  const passOpacity = useTransform(x, [-30, -100], [0, 1]);
+  const likeOpacity = useTransform(x, [25, 80], [0, 1]);
+  const passOpacity = useTransform(x, [-25, -80], [0, 1]);
+
+  const triggerDismiss = (dir: "left" | "right") => {
+    if (isDismissing.current) return;
+    isDismissing.current = true;
+    const targetX = dir === "left" ? -800 : 800;
+    const targetRotate = dir === "left" ? -35 : 35;
+    setExitTarget({ x: targetX, rotate: targetRotate });
+    setTimeout(() => {
+      onSwipe(dir);
+    }, 220);
+  };
+
+  useEffect(() => {
+    if (isTop && topCardRef) {
+      topCardRef.current = { dismiss: triggerDismiss };
+    }
+  }, [isTop]);
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
-    if (info.offset.x > 110 || info.velocity.x > 450) {
-      onSwipe("right");
-    } else if (info.offset.x < -110 || info.velocity.x < -450) {
-      onSwipe("left");
+    if (info.offset.x < -35 || info.velocity.x < -120) {
+      triggerDismiss("left");
+    } else if (info.offset.x > 35 || info.velocity.x > 120) {
+      triggerDismiss("right");
     }
   };
 
   return (
     <motion.div
-      drag={isTop ? "x" : false}
+      drag={isTop && !exitTarget ? "x" : false}
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.9}
+      dragElastic={0.85}
       style={isTop ? { x, rotate } : undefined}
       onDragEnd={isTop ? handleDragEnd : undefined}
       initial={{ scale: 0.9, y: 30, opacity: 0 }}
-      animate={{
-        scale: 1 - index * 0.05,
-        y: index * 14,
-        zIndex: 10 - index,
-        opacity: Math.max(0.65, 1 - index * 0.18),
-      }}
-      exit={{
-        x: x.get() >= 0 ? 500 : -500,
-        opacity: 0,
-        rotate: x.get() >= 0 ? 30 : -30,
-        transition: { duration: 0.28 },
-      }}
+      animate={
+        exitTarget
+          ? {
+              x: exitTarget.x,
+              rotate: exitTarget.rotate,
+              opacity: 0,
+              transition: { duration: 0.22, ease: "easeOut" },
+            }
+          : {
+              scale: 1 - index * 0.05,
+              y: index * 14,
+              zIndex: 10 - index,
+              opacity: Math.max(0.65, 1 - index * 0.18),
+              x: 0,
+              rotate: 0,
+            }
+      }
       transition={{ type: "spring", stiffness: 320, damping: 26 }}
       className={cn(
-        "absolute inset-0 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-xl",
-        "border border-white/20 text-white cursor-grab active:cursor-grabbing",
+        "absolute inset-0 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-xl select-none",
+        "border border-white/20 text-white",
+        isTop ? "cursor-grab active:cursor-grabbing" : "pointer-events-none",
         "bg-gradient-to-br",
         card.gradient || "from-indigo-600 to-indigo-900"
       )}
@@ -945,7 +1006,7 @@ export const defaultExpandingPanels: ExpandingPanel[] = [
     stat: "4K UHD",
     statLabel: "Fidelity",
     image:
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80",
   },
   {
     id: "ep-4",
@@ -1071,7 +1132,7 @@ export const ExpandingActiveCarousel = forwardRef<HTMLDivElement, ExpandingActiv
                   src={panel.image}
                   alt={panel.title}
                   className="absolute inset-0 w-full h-full object-cover pointer-events-none brightness-90"
-                  loading="lazy"
+                  decoding="async"
                 />
 
                 <div
@@ -1132,14 +1193,16 @@ export const ExpandingActiveCarousel = forwardRef<HTMLDivElement, ExpandingActiv
                     </div>
                   </div>
                 ) : (
-                  <div className="absolute inset-0 p-4 flex flex-col justify-between items-center text-white z-10">
-                    <span className="font-mono text-xs font-bold text-zinc-400">
+                  <div className="absolute inset-0 p-3 sm:p-4 flex flex-row sm:flex-col justify-between items-center text-white z-10 select-none">
+                    <span className="font-mono text-xs font-bold text-zinc-300 dark:text-zinc-400">
                       {panel.number}
                     </span>
-                    <div className="writing-mode-vertical rotate-180 text-xs sm:text-sm font-bold tracking-wider text-zinc-300 whitespace-nowrap">
-                      {panel.title}
+                    <div className="flex-1 flex items-center justify-center my-auto overflow-hidden">
+                      <span className="sm:-rotate-90 whitespace-nowrap text-xs sm:text-sm font-bold tracking-wider text-zinc-200 dark:text-zinc-300">
+                        {panel.title}
+                      </span>
                     </div>
-                    <span className="w-2 h-2 rounded-full bg-zinc-500" />
+                    <span className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500" />
                   </div>
                 )}
               </motion.div>
